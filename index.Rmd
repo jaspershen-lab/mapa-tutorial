@@ -11,16 +11,15 @@ github-repo: rstudio/bookdown-demo
 description: "This is a tutorial for mapa."
 ---
 
-# Prerequisites
+# Install mapa
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
-
-The **bookdown** package can be installed from CRAN or Github:
+The **mapa** package can be installed from Github:
 
 ```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
+if(!require(remotes)){
+install.packages("remotes")
+}
+remotes::install_github("jaspershen-lab/mapa", dependencies = TRUE)
 ```
 
 
