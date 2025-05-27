@@ -16,10 +16,15 @@ description: "This is a tutorial for mapa."
 The **mapa** package can be installed from Github:
 
 ```{r eval=FALSE}
-if(!require(remotes)){
-install.packages("remotes")
-}
-remotes::install_github("jaspershen-lab/mapa", dependencies = TRUE)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+remotes::install_github(
+  "jaspershen-lab/mapa",
+  dependencies = TRUE,
+  repos        = BiocManager::repositories(),
+  upgrade      = "ask" 
+)
 ```
 
 
