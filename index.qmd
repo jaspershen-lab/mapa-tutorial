@@ -1,9 +1,22 @@
-# Intro {.unnumbered}
+# Overview {.unnumbered}
 
-This is a Quarto book.
+## mapa: Functional Module Annotation for Pathway Analysis Results Using LLM
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+**mapa** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:
 
-```{r}
-1 + 1
-```
+1.  **Detects enriched pathways** from your data.
+2.  **Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
+3.  **Summarises each module with large-language models (LLM)** (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.
+
+The outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.
+
+## Aim of This Tutorial
+
+This guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:
+
+1.  Merge overlapping enriched pathways into informative functional modules.
+2.  Generate biological interpretations of each module with large-language models.
+3.  Create publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.
+4.  Export a comprehensive report that gathers every table, figure, and LLM-based summary in one place.
+
+Whether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.

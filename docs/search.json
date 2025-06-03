@@ -2,41 +2,53 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "mapa-tutorial",
+    "title": "mapa tutorial",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "text": "Overview",
     "crumbs": [
-      "Preface"
+      "Overview"
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "objectID": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
+    "href": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
+    "title": "mapa tutorial",
+    "section": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM",
+    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nmapa is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:\n\nDetects enriched pathways from your data.\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "Overview"
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "objectID": "index.html#aim-of-this-tutorial",
+    "href": "index.html#aim-of-this-tutorial",
+    "title": "mapa tutorial",
+    "section": "Aim of This Tutorial",
+    "text": "Aim of This Tutorial\nThis guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:\n\nMerge overlapping enriched pathways into informative functional modules.\nGenerate biological interpretations of each module with large-language models.\nCreate publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.\nExport a comprehensive report that gathers every table, figure, and LLM-based summary in one place.\n\nWhether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "Overview"
     ]
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
+    "objectID": "01_package_installation.html",
+    "href": "01_package_installation.html",
+    "title": "1  Installation",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Follow the steps below to install the latest development version of mapa from GitHub (the script first installs BiocManager and remotes if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)",
     "crumbs": [
-      "References"
+      "MAPA R Package",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "01_shinyapp_installation.html",
+    "href": "01_shinyapp_installation.html",
+    "title": "9  Installation",
+    "section": "",
+    "text": "Follow the steps below to install the latest development version of mapa shinyapp from GitHub (the script first installs BiocManager, remotes, and mapa if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\nremotes::install_github(\n  \"jaspershen-lab/mapashiny\",\n  dependencies = TRUE,\n  repos        = BiocManager::repositories(),\n  upgrade      = \"ask\"\n)",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installation</span>"
     ]
   }
 ]
