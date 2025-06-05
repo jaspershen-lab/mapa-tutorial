@@ -4,7 +4,7 @@
 
 **mapa** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:
 
-1.  **Detects enriched pathways** from your data.
+1.  **Detects enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
 2.  **Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
 3.  **Summarises each module with large-language models (LLM)** (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.
 

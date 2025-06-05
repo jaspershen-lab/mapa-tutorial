@@ -18,7 +18,7 @@ book:
   chapters:
     - index.qmd
     
-    - part: "MAPA R Package"
+    - part: "mapa R Package"
       chapters:
         - 01_package_installation.qmd
         - 02_input.qmd
@@ -29,7 +29,7 @@ book:
         - 06_data_vis.qmd
         - 07_res_report.qmd
     
-    - part: "MAPA Shiny App"
+    - part: "mapa Shiny App"
       chapters:
         - 01_shinyapp_installation.qmd
         - 03_enrichment_analysis_shiny.qmd

@@ -1,2 +1,276 @@
-# Input data
+# Data input and preprocessing
 
+This chapter covers the input data requirements for mapa analysis, including the expected data formats and data preprocessing for converting your data to the required format.
+
+## Input Data Format Requirements
+
+### Gene Expression Data
+
+mapa accepts gene expression data with flexible identifier requirements, depending on your analysis type. Your input data must contain **at least one** of the following identifier columns:
+
+-   `ensembl`: [Ensembl gene IDs](https://asia.ensembl.org/info/genome/stable_ids/index.html) (e.g., "ENSG00000141510")
+-   `entrezid`: [NCBI Entrez gene IDs](https://pmc.ncbi.nlm.nih.gov/articles/PMC1761442/) (e.g., "7157")
+-   `uniprot`: [UniProtKB accession numbers](https://www.uniprot.org/help/accession_numbers) (e.g., "P04637")
+-   `symbol`: [Gene symbols](https://www.pnas.org/doi/full/10.1073/pnas.2025207118) (e.g., "TP53")
+
+::: callout-important
+Column names must be in lowercase.
+:::
+
+::: panel-tabset
+##### Over-Representation Analysis (ORA)
+
+For ORA, you **only need one identifier column** plus any additional metadata:
+
+```{r}
+# Example ORA input data
+
+ora_data <- readr::read_csv("examples/example_ora_gene_data.csv", show_col_types = FALSE)
+head(ora_data)
+```
+
+##### Gene Set Enrichment Analysis (GSEA)
+
+For GSEA, you need:
+
+1.  **One identifier column** (ensembl, entrezid, uniprot, or symbol)
+2.  **An `order_by` column** containing numeric values to rank genes (This is used to create the **ranked gene list** required for GSEA. Common choices like Log2 fold change values, pvalue)
+
+```{r}
+# Example GSEA input data
+
+gsea_data <- readr::read_csv("examples/example_gsea_data.csv", show_col_types = FALSE)
+head(gsea_data)
+```
+:::
+
+### Metabolite Data
+
+For metabolite analysis, mapa currently supports **Over-Representation Analysis (ORA) only**. You **only need one identifier column** plus any additional metadata (Column names must be in lowercase):
+
+- `hmdbid`: [Human Metabolome Database IDs](https://www.hmdb.ca) (e.g., "HMDB0000001", "HMDB0000002") - **Human only**
+- `keggid`: [KEGG Compound IDs](https://www.genome.jp/kegg/compound/) (e.g., "C00001", "C00002") - **All organisms**
+
+::: callout-note
+- For human metabolites: You can use either hmdbid or keggid as input
+- For other organisms: Only keggid is supported
+- GSEA for metabolites is not currently supported
+:::
+
+``` {r}
+# Example metabolite input data with KEGG IDs (works for all organisms)
+# metabolite_kegg_data <- readr::read_csv("examples/example_metabolite_kegg.csv", show_col_types = FALSE)
+# head(metabolite_kegg_data)
+```
+``` {r}
+# Example metabolite input data with HMDB IDs (human only)
+metabolite_hmdb_data <- readr::read_csv("examples/example_metabolite_hmdb.csv", show_col_types = FALSE)
+head(metabolite_hmdb_data)
+```
+
+## Input Data Preprocessing
+
+**This step is required** - MAPA provides the `convert_id()` function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.
+
+### Basic Usage
+
+The `convert_id()` function converts between different ID types and **always returns data with all four gene identifier columns** (`ensembl`, `entrezid`, `uniprot`, `symbol`), which are required to work properly.
+
+``` {r}
+# Convert from gene symbols to include all ID types
+# gene_data <- data.frame(SYMBOL = c("TP53", "BRCA1", "EGFR"))  # Note: uppercase input
+# 
+# converted_data <- convert_id(
+#   data = gene_data,
+#   query_type = "gene",
+#   from_id_type = "symbol",  # This tells the function what your input column represents
+#   organism = "org.Hs.eg.db"  # Human organism database
+# )
+# 
+# head(converted_data)
+#        ensembl entrezid uniprot symbol
+#1 ENSG00000141510     7157  P04637   TP53
+#2 ENSG00000012048      672  P38398  BRCA1
+#3 ENSG00000146648     1956  P00533   EGFR
+```
+
+### Function Parameters
+
+-   **`data`**: Data frame containing your identifiers
+-   **`query_type`**: Either `"gene"` or `"metabolite"`
+-   **`from_id_type`**: The identifier type in your input data
+    -   For genes: `"ensembl"`, `"entrezid"`, `"uniprot"`, or `"symbol"`
+    -   For metabolites: `"hmdbid"` or `"keggid"`
+-   **`organism`**: Organism database specification
+-   **`ah_id`**: AnnotationHub ID (alternative to organism parameter)
+-   **`return_orgdb`**: Whether to return the organism database object
+
+### Organism Database Options
+
+#### Option 1: Standard Bioconductor Packages
+
+For common model organisms, use standard organism database packages:
+
+``` r
+# Human
+converted_data <- convert_id(
+  data = your_data,
+  query_type = "gene",
+  from_id_type = "symbol",
+  organism = "org.Hs.eg.db"
+)
+
+# Mouse  
+converted_data <- convert_id(
+  data = your_data,
+  query_type = "gene", 
+  from_id_type = "symbol",
+  organism = "org.Mm.eg.db"
+)
+```
+
+#### Option 2: AnnotationHub for Non-Model Organisms
+
+For organisms without standard packages, use AnnotationHub IDs:
+
+``` r
+# Example: Macaca fascicularis (cynomolgus monkey)
+converted_data <- convert_id(
+  data = your_data,
+  query_type = "gene",
+  from_id_type = "ensembl",
+  ah_id = "AH119902"  # AnnotationHub ID for Macaca fascicularis
+)
+```
+
+#### Finding AnnotationHub IDs
+
+``` r
+library(AnnotationHub)
+ah <- AnnotationHub()
+
+# Search for your organism
+query_result <- query(ah, c("Macaca fascicularis", "OrgDb"))
+print(query_result)
+
+# Use the ah_id from the results
+```
+
+### Advanced Usage
+
+#### Returning Organism Database Object
+
+If you need the organism database for downstream analysis:
+
+``` r
+result <- convert_id(
+  data = gene_data,
+  query_type = "gene",
+  from_id_type = "symbol",
+  ah_id = "AH119902",
+  return_orgdb = TRUE
+)
+
+# Access converted data
+converted_data <- result$data
+
+# Access organism database
+orgdb <- result$orgdb
+```
+
+### Metabolite ID Conversion
+
+For metabolite data, convert to KEGG IDs:
+
+``` r
+# Convert HMDB IDs to KEGG IDs (human only)
+metabolite_data <- data.frame(hmdbid = c("HMDB0000001", "HMDB0000002"))
+
+converted_metabolites <- convert_id(
+  data = metabolite_data,
+  query_type = "metabolite", 
+  from_id_type = "hmdbid",
+  organism = "hsa"
+)
+
+# Result will include both hmdbid and keggid columns
+head(converted_metabolites)
+```
+
+### Preparing Data for GSEA
+
+If you're planning to perform GSEA, ensure you have an appropriate `order_by` column:
+
+``` r
+# Example: Creating order_by column from log2 fold change
+your_data$order_by <- your_data$log2fc
+
+# Or: Creating signed p-value ranking
+your_data$order_by <- -log10(your_data$pvalue) * sign(your_data$log2fc)
+
+# Convert IDs while preserving the order_by column
+converted_data <- convert_id(
+  data = your_data,
+  query_type = "gene",
+  from_id_type = "symbol",
+  organism = "org.Hs.eg.db"
+)
+
+# The order_by column is preserved in the output
+```
+
+### Important Notes
+
+1.  **Column Names**: All identifier column names must be lowercase in the final data
+2.  **Missing Identifiers**: If an identifier cannot be converted, it will be filled with `NA`
+3.  **Multiple Matches**: When multiple identifiers exist for one input ID, only the first match is retained
+4.  **GSEA Requirements**: Don't forget the `order_by` column for GSEA analysis
+5.  **Metabolite Limitations**: Only ORA is available for metabolites; GSEA is not supported
+
+### Troubleshooting Common Issues
+
+#### Issue: "Column not found in data"
+
+**Solution**: - Check that your column name matches the `from_id_type` parameter - Ensure column names are lowercase in your final data
+
+#### Issue: "ID type not available in organism database"
+
+**Solution**: Check available ID types for your organism:
+
+``` r
+library(clusterProfiler)
+available_types <- idType(your_organism_db)
+print(available_types)
+```
+
+#### Issue: GSEA fails to run
+
+**Solution**: - Verify you have an `order_by` column with numeric values - Check for missing values in the `order_by` column - Ensure the column contains a good range of values for ranking
+
+------------------------------------------------------------------------
+
+## Data Validation Checklist
+
+Before proceeding to enrichment analysis, verify your data meets these requirements:
+
+### For Gene ORA:
+
+-   [ ] At least one identifier column: `ensembl`, `entrezid`, `uniprot`, or `symbol` (lowercase)
+-   [ ] Identifier column contains valid IDs for your organism
+
+### For Gene GSEA:
+
+-   [ ] At least one identifier column: `ensembl`, `entrezid`, `uniprot`, or `symbol` (lowercase)\
+-   [ ] `order_by` column with numeric values for gene ranking
+-   [ ] No missing values in the `order_by` column
+
+### For Metabolite ORA:
+
+-   [ ] `keggid` column with valid KEGG compound IDs
+-   [ ] Data represents human metabolites (if using ID conversion)
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Once your data meets the format requirements, you can proceed to [enrichment analysis](03_enrichment_analysis.qmd) to begin your MAPA workflow.

@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>2&nbsp; Input data – mapa tutorial</title>
+<title>2&nbsp; Data input and preprocessing – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">MAPA R Package</a></li><li class="breadcrumb-item"><a href="./02_input.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Input data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./02_input.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data input and preprocessing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">MAPA R Package</span></a>
+ <span class="menu-text">mapa R Package</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -142,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_input.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Input data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data input and preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -186,7 +220,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
+ <span class="menu-text">mapa Shiny App</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -247,15 +281,43 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#input-data-format-requirements" id="toc-input-data-format-requirements" class="nav-link active" data-scroll-target="#input-data-format-requirements"><span class="header-section-number">2.1</span> Input Data Format Requirements</a>
+  <ul class="collapse">
+  <li><a href="#gene-expression-data" id="toc-gene-expression-data" class="nav-link" data-scroll-target="#gene-expression-data"><span class="header-section-number">2.1.1</span> Gene Expression Data</a></li>
+  <li><a href="#metabolite-data" id="toc-metabolite-data" class="nav-link" data-scroll-target="#metabolite-data"><span class="header-section-number">2.1.2</span> Metabolite Data</a></li>
+  </ul></li>
+  <li><a href="#input-data-preprocessing" id="toc-input-data-preprocessing" class="nav-link" data-scroll-target="#input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">2.2.1</span> Basic Usage</a></li>
+  <li><a href="#function-parameters" id="toc-function-parameters" class="nav-link" data-scroll-target="#function-parameters"><span class="header-section-number">2.2.2</span> Function Parameters</a></li>
+  <li><a href="#organism-database-options" id="toc-organism-database-options" class="nav-link" data-scroll-target="#organism-database-options"><span class="header-section-number">2.2.3</span> Organism Database Options</a></li>
+  <li><a href="#advanced-usage" id="toc-advanced-usage" class="nav-link" data-scroll-target="#advanced-usage"><span class="header-section-number">2.2.4</span> Advanced Usage</a></li>
+  <li><a href="#metabolite-id-conversion" id="toc-metabolite-id-conversion" class="nav-link" data-scroll-target="#metabolite-id-conversion"><span class="header-section-number">2.2.5</span> Metabolite ID Conversion</a></li>
+  <li><a href="#preparing-data-for-gsea" id="toc-preparing-data-for-gsea" class="nav-link" data-scroll-target="#preparing-data-for-gsea"><span class="header-section-number">2.2.6</span> Preparing Data for GSEA</a></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">2.2.7</span> Important Notes</a></li>
+  <li><a href="#troubleshooting-common-issues" id="toc-troubleshooting-common-issues" class="nav-link" data-scroll-target="#troubleshooting-common-issues"><span class="header-section-number">2.2.8</span> Troubleshooting Common Issues</a></li>
+  </ul></li>
+  <li><a href="#data-validation-checklist" id="toc-data-validation-checklist" class="nav-link" data-scroll-target="#data-validation-checklist"><span class="header-section-number">2.3</span> Data Validation Checklist</a>
+  <ul class="collapse">
+  <li><a href="#for-gene-ora" id="toc-for-gene-ora" class="nav-link" data-scroll-target="#for-gene-ora"><span class="header-section-number">2.3.1</span> For Gene ORA:</a></li>
+  <li><a href="#for-gene-gsea" id="toc-for-gene-gsea" class="nav-link" data-scroll-target="#for-gene-gsea"><span class="header-section-number">2.3.2</span> For Gene GSEA:</a></li>
+  <li><a href="#for-metabolite-ora" id="toc-for-metabolite-ora" class="nav-link" data-scroll-target="#for-metabolite-ora"><span class="header-section-number">2.3.3</span> For Metabolite ORA:</a></li>
+  </ul></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">2.4</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">MAPA R Package</a></li><li class="breadcrumb-item"><a href="./02_input.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Input data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./02_input.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data input and preprocessing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Input data</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data input and preprocessing</span></h1>
 </div>
 
 
@@ -272,8 +334,330 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This chapter covers the input data requirements for mapa analysis, including the expected data formats and data preprocessing for converting your data to the required format.</p>
+<section id="input-data-format-requirements" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="input-data-format-requirements"><span class="header-section-number">2.1</span> Input Data Format Requirements</h2>
+<section id="gene-expression-data" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="gene-expression-data"><span class="header-section-number">2.1.1</span> Gene Expression Data</h3>
+<p>mapa accepts gene expression data with flexible identifier requirements, depending on your analysis type. Your input data must contain <strong>at least one</strong> of the following identifier columns:</p>
+<ul>
+<li><code>ensembl</code>: <a href="https://asia.ensembl.org/info/genome/stable_ids/index.html">Ensembl gene IDs</a> (e.g., “ENSG00000141510”)</li>
+<li><code>entrezid</code>: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1761442/">NCBI Entrez gene IDs</a> (e.g., “7157”)</li>
+<li><code>uniprot</code>: <a href="https://www.uniprot.org/help/accession_numbers">UniProtKB accession numbers</a> (e.g., “P04637”)</li>
+<li><code>symbol</code>: <a href="https://www.pnas.org/doi/full/10.1073/pnas.2025207118">Gene symbols</a> (e.g., “TP53”)</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Column names must be in lowercase.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Over-Representation Analysis (ORA)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Gene Set Enrichment Analysis (GSEA)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>For ORA, you <strong>only need one identifier column</strong> plus any additional metadata:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example ORA input data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ora_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_ora_gene_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ora_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  variable_id ensembl        
+  &lt;chr&gt;       &lt;chr&gt;          
+1 gene_1      ENSG00000100097
+2 gene_2      ENSG00000139193
+3 gene_3      ENSG00000163513
+4 gene_4      ENSG00000127863
+5 gene_5      ENSG00000115604
+6 gene_6      ENSG00000153002</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>For GSEA, you need:</p>
+<ol type="1">
+<li><strong>One identifier column</strong> (ensembl, entrezid, uniprot, or symbol)</li>
+<li><strong>An <code>order_by</code> column</strong> containing numeric values to rank genes (This is used to create the <strong>ranked gene list</strong> required for GSEA. Common choices like Log2 fold change values, pvalue)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example GSEA input data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gsea_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_gsea_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gsea_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  variable_id ensembl     genename genetype length     fc p_value p_value_adjust
+  &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;
+1 gene_1      ENSG000001… ATPase … protein…  26084 0.358  5.17e-3        0.0202 
+2 gene_11     ENSG000001… peroxis… protein…   9834 0.234  2.61e-4        0.00514
+3 gene_12     ENSG000002… small n… pseudo      214 0.0665 8.84e-3        0.0277 
+4 gene_16     ENSG000001… SKI pro… protein…  82826 0.232  2.20e-4        0.00490
+5 gene_29     ENSG000001… phospho… protein…  79553 0.0373 7.20e-3        0.0244 
+6 gene_31     ENSG000001… splA/ry… protein…  76639 2.68   6.36e-3        0.0226 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="metabolite-data" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="metabolite-data"><span class="header-section-number">2.1.2</span> Metabolite Data</h3>
+<p>For metabolite analysis, mapa currently supports <strong>Over-Representation Analysis (ORA) only</strong>. You <strong>only need one identifier column</strong> plus any additional metadata (Column names must be in lowercase):</p>
+<ul>
+<li><code>hmdbid</code>: <a href="https://www.hmdb.ca">Human Metabolome Database IDs</a> (e.g., “HMDB0000001”, “HMDB0000002”) - <strong>Human only</strong></li>
+<li><code>keggid</code>: <a href="https://www.genome.jp/kegg/compound/">KEGG Compound IDs</a> (e.g., “C00001”, “C00002”) - <strong>All organisms</strong></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>For human metabolites: You can use either hmdbid or keggid as input</li>
+<li>For other organisms: Only keggid is supported</li>
+<li>GSEA for metabolites is not currently supported</li>
+</ul>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with KEGG IDs (works for all organisms)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># metabolite_kegg_data &lt;- readr::read_csv("examples/example_metabolite_kegg.csv", show_col_types = FALSE)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(metabolite_kegg_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with HMDB IDs (human only)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>metabolite_hmdb_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_metabolite_hmdb.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metabolite_hmdb_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  metabolite_id hmdbid     
+  &lt;chr&gt;         &lt;chr&gt;      
+1 metabolite_1  HMDB0000060
+2 metabolite_2  HMDB0000056
+3 metabolite_3  HMDB0000064
+4 metabolite_4  HMDB0000092
+5 metabolite_5  HMDB0000134
+6 metabolite_6  HMDB0000123</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="input-data-preprocessing" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</h2>
+<p><strong>This step is required</strong> - MAPA provides the <code>convert_id()</code> function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.</p>
+<section id="basic-usage" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">2.2.1</span> Basic Usage</h3>
+<p>The <code>convert_id()</code> function converts between different ID types and <strong>always returns data with all four gene identifier columns</strong> (<code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, <code>symbol</code>), which are required to work properly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert from gene symbols to include all ID types</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gene_data &lt;- data.frame(SYMBOL = c("TP53", "BRCA1", "EGFR"))  # Note: uppercase input</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># converted_data &lt;- convert_id(</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   data = gene_data,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   query_type = "gene",</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   from_id_type = "symbol",  # This tells the function what your input column represents</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   organism = "org.Hs.eg.db"  # Human organism database</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># head(converted_data)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#        ensembl entrezid uniprot symbol</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#1 ENSG00000141510     7157  P04637   TP53</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#2 ENSG00000012048      672  P38398  BRCA1</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#3 ENSG00000146648     1956  P00533   EGFR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="function-parameters" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="function-parameters"><span class="header-section-number">2.2.2</span> Function Parameters</h3>
+<ul>
+<li><strong><code>data</code></strong>: Data frame containing your identifiers</li>
+<li><strong><code>query_type</code></strong>: Either <code>"gene"</code> or <code>"metabolite"</code></li>
+<li><strong><code>from_id_type</code></strong>: The identifier type in your input data
+<ul>
+<li>For genes: <code>"ensembl"</code>, <code>"entrezid"</code>, <code>"uniprot"</code>, or <code>"symbol"</code></li>
+<li>For metabolites: <code>"hmdbid"</code> or <code>"keggid"</code></li>
+</ul></li>
+<li><strong><code>organism</code></strong>: Organism database specification</li>
+<li><strong><code>ah_id</code></strong>: AnnotationHub ID (alternative to organism parameter)</li>
+<li><strong><code>return_orgdb</code></strong>: Whether to return the organism database object</li>
+</ul>
+</section>
+<section id="organism-database-options" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="organism-database-options"><span class="header-section-number">2.2.3</span> Organism Database Options</h3>
+<section id="option-1-standard-bioconductor-packages" class="level4" data-number="2.2.3.1">
+<h4 data-number="2.2.3.1" class="anchored" data-anchor-id="option-1-standard-bioconductor-packages"><span class="header-section-number">2.2.3.1</span> Option 1: Standard Bioconductor Packages</h4>
+<p>For common model organisms, use standard organism database packages:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Human</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Hs.eg.db"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse  </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>, </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Mm.eg.db"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="option-2-annotationhub-for-non-model-organisms" class="level4" data-number="2.2.3.2">
+<h4 data-number="2.2.3.2" class="anchored" data-anchor-id="option-2-annotationhub-for-non-model-organisms"><span class="header-section-number">2.2.3.2</span> Option 2: AnnotationHub for Non-Model Organisms</h4>
+<p>For organisms without standard packages, use AnnotationHub IDs:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Macaca fascicularis (cynomolgus monkey)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>  <span class="co"># AnnotationHub ID for Macaca fascicularis</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="finding-annotationhub-ids" class="level4" data-number="2.2.3.3">
+<h4 data-number="2.2.3.3" class="anchored" data-anchor-id="finding-annotationhub-ids"><span class="header-section-number">2.2.3.3</span> Finding AnnotationHub IDs</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for your organism</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> <span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"Macaca fascicularis"</span>, <span class="st">"OrgDb"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(query_result)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the ah_id from the results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="advanced-usage" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="advanced-usage"><span class="header-section-number">2.2.4</span> Advanced Usage</h3>
+<section id="returning-organism-database-object" class="level4" data-number="2.2.4.1">
+<h4 data-number="2.2.4.1" class="anchored" data-anchor-id="returning-organism-database-object"><span class="header-section-number">2.2.4.1</span> Returning Organism Database Object</h4>
+<p>If you need the organism database for downstream analysis:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gene_data,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_orgdb =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Access converted data</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> result<span class="sc">$</span>data</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Access organism database</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>orgdb <span class="ot">&lt;-</span> result<span class="sc">$</span>orgdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="metabolite-id-conversion" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="metabolite-id-conversion"><span class="header-section-number">2.2.5</span> Metabolite ID Conversion</h3>
+<p>For metabolite data, convert to KEGG IDs:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert HMDB IDs to KEGG IDs (human only)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>metabolite_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">hmdbid =</span> <span class="fu">c</span>(<span class="st">"HMDB0000001"</span>, <span class="st">"HMDB0000002"</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>converted_metabolites <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> metabolite_data,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"metabolite"</span>, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"hmdbid"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"hsa"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Result will include both hmdbid and keggid columns</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(converted_metabolites)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="preparing-data-for-gsea" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="preparing-data-for-gsea"><span class="header-section-number">2.2.6</span> Preparing Data for GSEA</h3>
+<p>If you’re planning to perform GSEA, ensure you have an appropriate <code>order_by</code> column:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Creating order_by column from log2 fold change</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>your_data<span class="sc">$</span>order_by <span class="ot">&lt;-</span> your_data<span class="sc">$</span>log2fc</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or: Creating signed p-value ranking</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>your_data<span class="sc">$</span>order_by <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(your_data<span class="sc">$</span>pvalue) <span class="sc">*</span> <span class="fu">sign</span>(your_data<span class="sc">$</span>log2fc)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert IDs while preserving the order_by column</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Hs.eg.db"</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The order_by column is preserved in the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="important-notes" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">2.2.7</span> Important Notes</h3>
+<ol type="1">
+<li><strong>Column Names</strong>: All identifier column names must be lowercase in the final data</li>
+<li><strong>Missing Identifiers</strong>: If an identifier cannot be converted, it will be filled with <code>NA</code></li>
+<li><strong>Multiple Matches</strong>: When multiple identifiers exist for one input ID, only the first match is retained</li>
+<li><strong>GSEA Requirements</strong>: Don’t forget the <code>order_by</code> column for GSEA analysis</li>
+<li><strong>Metabolite Limitations</strong>: Only ORA is available for metabolites; GSEA is not supported</li>
+</ol>
+</section>
+<section id="troubleshooting-common-issues" class="level3" data-number="2.2.8">
+<h3 data-number="2.2.8" class="anchored" data-anchor-id="troubleshooting-common-issues"><span class="header-section-number">2.2.8</span> Troubleshooting Common Issues</h3>
+<section id="issue-column-not-found-in-data" class="level4" data-number="2.2.8.1">
+<h4 data-number="2.2.8.1" class="anchored" data-anchor-id="issue-column-not-found-in-data"><span class="header-section-number">2.2.8.1</span> Issue: “Column not found in data”</h4>
+<p><strong>Solution</strong>: - Check that your column name matches the <code>from_id_type</code> parameter - Ensure column names are lowercase in your final data</p>
+</section>
+<section id="issue-id-type-not-available-in-organism-database" class="level4" data-number="2.2.8.2">
+<h4 data-number="2.2.8.2" class="anchored" data-anchor-id="issue-id-type-not-available-in-organism-database"><span class="header-section-number">2.2.8.2</span> Issue: “ID type not available in organism database”</h4>
+<p><strong>Solution</strong>: Check available ID types for your organism:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>available_types <span class="ot">&lt;-</span> <span class="fu">idType</span>(your_organism_db)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(available_types)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="issue-gsea-fails-to-run" class="level4" data-number="2.2.8.3">
+<h4 data-number="2.2.8.3" class="anchored" data-anchor-id="issue-gsea-fails-to-run"><span class="header-section-number">2.2.8.3</span> Issue: GSEA fails to run</h4>
+<p><strong>Solution</strong>: - Verify you have an <code>order_by</code> column with numeric values - Check for missing values in the <code>order_by</code> column - Ensure the column contains a good range of values for ranking</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="data-validation-checklist" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="data-validation-checklist"><span class="header-section-number">2.3</span> Data Validation Checklist</h2>
+<p>Before proceeding to enrichment analysis, verify your data meets these requirements:</p>
+<section id="for-gene-ora" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="for-gene-ora"><span class="header-section-number">2.3.1</span> For Gene ORA:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">At least one identifier column: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code> (lowercase)</label></li>
+<li><label><input type="checkbox">Identifier column contains valid IDs for your organism</label></li>
+</ul>
+</section>
+<section id="for-gene-gsea" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="for-gene-gsea"><span class="header-section-number">2.3.2</span> For Gene GSEA:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">At least one identifier column: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code> (lowercase)<br>
+</label></li>
+<li><label><input type="checkbox"><code>order_by</code> column with numeric values for gene ranking</label></li>
+<li><label><input type="checkbox">No missing values in the <code>order_by</code> column</label></li>
+</ul>
+</section>
+<section id="for-metabolite-ora" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="for-metabolite-ora"><span class="header-section-number">2.3.3</span> For Metabolite ORA:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>keggid</code> column with valid KEGG compound IDs</label></li>
+<li><label><input type="checkbox">Data represents human metabolites (if using ID conversion)</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="next-steps" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">2.4</span> Next Steps</h2>
+<p>Once your data meets the format requirements, you can proceed to <a href="./03_enrichment_analysis.html">enrichment analysis</a> to begin your MAPA workflow.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -854,4 +1238,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
