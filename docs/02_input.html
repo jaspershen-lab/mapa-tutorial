@@ -293,22 +293,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#input-data-preprocessing" id="toc-input-data-preprocessing" class="nav-link" data-scroll-target="#input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</a>
   <ul class="collapse">
-  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">2.2.1</span> Basic Usage</a></li>
-  <li><a href="#function-parameters" id="toc-function-parameters" class="nav-link" data-scroll-target="#function-parameters"><span class="header-section-number">2.2.2</span> Function Parameters</a></li>
-  <li><a href="#organism-database-options" id="toc-organism-database-options" class="nav-link" data-scroll-target="#organism-database-options"><span class="header-section-number">2.2.3</span> Organism Database Options</a></li>
-  <li><a href="#advanced-usage" id="toc-advanced-usage" class="nav-link" data-scroll-target="#advanced-usage"><span class="header-section-number">2.2.4</span> Advanced Usage</a></li>
-  <li><a href="#metabolite-id-conversion" id="toc-metabolite-id-conversion" class="nav-link" data-scroll-target="#metabolite-id-conversion"><span class="header-section-number">2.2.5</span> Metabolite ID Conversion</a></li>
-  <li><a href="#preparing-data-for-gsea" id="toc-preparing-data-for-gsea" class="nav-link" data-scroll-target="#preparing-data-for-gsea"><span class="header-section-number">2.2.6</span> Preparing Data for GSEA</a></li>
-  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">2.2.7</span> Important Notes</a></li>
-  <li><a href="#troubleshooting-common-issues" id="toc-troubleshooting-common-issues" class="nav-link" data-scroll-target="#troubleshooting-common-issues"><span class="header-section-number">2.2.8</span> Troubleshooting Common Issues</a></li>
+  <li><a href="#gene-id-conversion" id="toc-gene-id-conversion" class="nav-link" data-scroll-target="#gene-id-conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</a></li>
+  <li><a href="#metabolite-id-conversion" id="toc-metabolite-id-conversion" class="nav-link" data-scroll-target="#metabolite-id-conversion"><span class="header-section-number">2.2.2</span> Metabolite ID Conversion</a></li>
   </ul></li>
-  <li><a href="#data-validation-checklist" id="toc-data-validation-checklist" class="nav-link" data-scroll-target="#data-validation-checklist"><span class="header-section-number">2.3</span> Data Validation Checklist</a>
-  <ul class="collapse">
-  <li><a href="#for-gene-ora" id="toc-for-gene-ora" class="nav-link" data-scroll-target="#for-gene-ora"><span class="header-section-number">2.3.1</span> For Gene ORA:</a></li>
-  <li><a href="#for-gene-gsea" id="toc-for-gene-gsea" class="nav-link" data-scroll-target="#for-gene-gsea"><span class="header-section-number">2.3.2</span> For Gene GSEA:</a></li>
-  <li><a href="#for-metabolite-ora" id="toc-for-metabolite-ora" class="nav-link" data-scroll-target="#for-metabolite-ora"><span class="header-section-number">2.3.3</span> For Metabolite ORA:</a></li>
-  </ul></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">2.4</span> Next Steps</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">2.3</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -335,6 +323,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>This chapter covers the input data requirements for mapa analysis, including the expected data formats and data preprocessing for converting your data to the required format.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="input-data-format-requirements" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="input-data-format-requirements"><span class="header-section-number">2.1</span> Input Data Format Requirements</h2>
 <section id="gene-expression-data" class="level3" data-number="2.1.1">
@@ -365,10 +356,10 @@ Important
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>For ORA, you <strong>only need one identifier column</strong> plus any additional metadata:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example ORA input data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ora_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_ora_gene_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ora_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example ORA input data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ora_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_ora_gene_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ora_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   variable_id ensembl        
@@ -389,10 +380,10 @@ Important
 <li><strong>An <code>order_by</code> column</strong> containing numeric values to rank genes (This is used to create the <strong>ranked gene list</strong> required for GSEA. Common choices like Log2 fold change values, pvalue)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example GSEA input data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gsea_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_gsea_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gsea_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example GSEA input data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gsea_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_gsea_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gsea_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   variable_id ensembl     genename genetype length     fc p_value p_value_adjust
@@ -434,227 +425,150 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with KEGG IDs (works for all organisms)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># metabolite_kegg_data &lt;- readr::read_csv("examples/example_metabolite_kegg.csv", show_col_types = FALSE)</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(metabolite_kegg_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with KEGG IDs (works for all organisms)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># metabolite_kegg_data &lt;- readr::read_csv("examples/example_metabolite_kegg.csv", show_col_types = FALSE)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(metabolite_kegg_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with HMDB IDs (human only)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>metabolite_hmdb_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_metabolite_hmdb.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metabolite_hmdb_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data with HMDB IDs (human only)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>metabolite_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_metabolite_data.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metabolite_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  metabolite_id hmdbid     
-  &lt;chr&gt;         &lt;chr&gt;      
-1 metabolite_1  HMDB0000060
-2 metabolite_2  HMDB0000056
-3 metabolite_3  HMDB0000064
-4 metabolite_4  HMDB0000092
-5 metabolite_5  HMDB0000134
-6 metabolite_6  HMDB0000123</code></pre>
+<pre><code># A tibble: 6 × 4
+  variable_id    keggid      fdr score
+  &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+1 M441T680_2_NEG &lt;NA&gt;   3.59e-16  1.11
+2 M448T566_NEG   C05466 5.12e- 3  1.13
+3 M229T462_NEG   C02678 7.43e- 4  1.20
+4 M367T590_NEG   C04555 2.28e- 4  1.34
+5 M221T50_POS    C13008 7.99e- 3  1.36
+6 M544T604_POS   C04230 1.19e-18  1.53</code></pre>
 </div>
 </div>
 </section>
 </section>
 <section id="input-data-preprocessing" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</h2>
-<p><strong>This step is required</strong> - MAPA provides the <code>convert_id()</code> function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.</p>
-<section id="basic-usage" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">2.2.1</span> Basic Usage</h3>
-<p>The <code>convert_id()</code> function converts between different ID types and <strong>always returns data with all four gene identifier columns</strong> (<code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, <code>symbol</code>), which are required to work properly.</p>
+<p><strong>This step is required except for non-human metabolite analysis</strong> - mapa provides the <code>convert_id()</code> function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.</p>
+<section id="gene-id-conversion" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="gene-id-conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</h3>
+<p>The <code>convert_id()</code> function converts between different ID types and <strong>always returns data with all four gene identifier columns</strong> (<code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, <code>symbol</code>), which are required for mapa to work properly. Since organism-specific annotation database are required for ID conversion and the following enrichment analysis, choose the ID conversion method based on your organism.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Model Organisms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Non-Model Organisms</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>For common model organisms, use standard organism database Bioconductor packages.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and install the one that matches your species of interest <a href="https://bioconductor.org/packages/release/BiocViews.html#___OrgDb">here</a>.</p>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert from gene symbols to include all ID types</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gene_data &lt;- data.frame(SYMBOL = c("TP53", "BRCA1", "EGFR"))  # Note: uppercase input</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># converted_data &lt;- convert_id(</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   data = gene_data,</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   query_type = "gene",</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   from_id_type = "symbol",  # This tells the function what your input column represents</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   organism = "org.Hs.eg.db"  # Human organism database</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># head(converted_data)</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#        ensembl entrezid uniprot symbol</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#1 ENSG00000141510     7157  P04637   TP53</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#2 ENSG00000012048      672  P38398  BRCA1</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#3 ENSG00000146648     1956  P00533   EGFR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Human</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ora_data,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,  <span class="co"># This tells the function what your input column represents</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Hs.eg.db"</span>  <span class="co"># install the package at first</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:many mapping between keys and columns</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(variable_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  ensembl         entrezid uniprot    symbol   variable_id
+  &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      
+1 ENSG00000100097 3956     A0A384MR27 LGALS1   gene_1     
+2 ENSG00000139193 939      B2RDZ0     CD27     gene_2     
+3 ENSG00000163513 7048     A0AAQ5BI03 TGFBR2   gene_3     
+4 ENSG00000127863 55504    Q9NS68     TNFRSF19 gene_4     
+5 ENSG00000115604 8809     Q13478     IL18R1   gene_5     
+6 ENSG00000153002 1360     O60834     CPB1     gene_6     </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>For organisms without standard packages, use AnnotationHub IDs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Macaca fascicularis (taxid: 9541)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>,  <span class="co"># AnnotationHub ID for Macaca fascicularis</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_orgdb =</span> <span class="cn">TRUE</span>  <span class="co"># The organism database is needed for downstream analysis</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>How to find AnnotationHub IDs according to taxid?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"AnnotationHub"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for your organism database by taxid (here taxid is "9541")</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> AnnotationHub<span class="sc">::</span><span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"OrgDb"</span>, <span class="st">"9541"</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the ah_id from the results</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>query_result<span class="sc">$</span>ah_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="function-parameters" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="function-parameters"><span class="header-section-number">2.2.2</span> Function Parameters</h3>
-<ul>
-<li><strong><code>data</code></strong>: Data frame containing your identifiers</li>
-<li><strong><code>query_type</code></strong>: Either <code>"gene"</code> or <code>"metabolite"</code></li>
-<li><strong><code>from_id_type</code></strong>: The identifier type in your input data
-<ul>
-<li>For genes: <code>"ensembl"</code>, <code>"entrezid"</code>, <code>"uniprot"</code>, or <code>"symbol"</code></li>
-<li>For metabolites: <code>"hmdbid"</code> or <code>"keggid"</code></li>
-</ul></li>
-<li><strong><code>organism</code></strong>: Organism database specification</li>
-<li><strong><code>ah_id</code></strong>: AnnotationHub ID (alternative to organism parameter)</li>
-<li><strong><code>return_orgdb</code></strong>: Whether to return the organism database object</li>
-</ul>
-</section>
-<section id="organism-database-options" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="organism-database-options"><span class="header-section-number">2.2.3</span> Organism Database Options</h3>
-<section id="option-1-standard-bioconductor-packages" class="level4" data-number="2.2.3.1">
-<h4 data-number="2.2.3.1" class="anchored" data-anchor-id="option-1-standard-bioconductor-packages"><span class="header-section-number">2.2.3.1</span> Option 1: Standard Bioconductor Packages</h4>
-<p>For common model organisms, use standard organism database packages:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Human</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Hs.eg.db"</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse  </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>, </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Mm.eg.db"</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="option-2-annotationhub-for-non-model-organisms" class="level4" data-number="2.2.3.2">
-<h4 data-number="2.2.3.2" class="anchored" data-anchor-id="option-2-annotationhub-for-non-model-organisms"><span class="header-section-number">2.2.3.2</span> Option 2: AnnotationHub for Non-Model Organisms</h4>
-<p>For organisms without standard packages, use AnnotationHub IDs:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Macaca fascicularis (cynomolgus monkey)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>  <span class="co"># AnnotationHub ID for Macaca fascicularis</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="finding-annotationhub-ids" class="level4" data-number="2.2.3.3">
-<h4 data-number="2.2.3.3" class="anchored" data-anchor-id="finding-annotationhub-ids"><span class="header-section-number">2.2.3.3</span> Finding AnnotationHub IDs</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for your organism</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> <span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"Macaca fascicularis"</span>, <span class="st">"OrgDb"</span>))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(query_result)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the ah_id from the results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="metabolite-id-conversion" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="metabolite-id-conversion"><span class="header-section-number">2.2.2</span> Metabolite ID Conversion</h3>
+<p>For human metabolite data, convert IDs bwteen KEGG and HMDB:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert KEGG IDs to HMDB IDs (human only)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> metabolite_data,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"metabolite"</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"keggid"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"hsa"</span> <span class="co"># KEGG organism code</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Result will include both hmdbid and keggid columns</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(variable_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  variable_id  keggid      fdr score hmdbid     
+  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      
+1 M448T566_NEG C05466 5.12e- 3  1.13 HMDB0000637
+2 M229T462_NEG C02678 7.43e- 4  1.20 HMDB0000623
+3 M367T590_NEG C04555 2.28e- 4  1.34 HMDB0001032
+4 M221T50_POS  C13008 7.99e- 3  1.36 HMDB0006240
+5 M544T604_POS C04230 1.19e-18  1.53 HMDB0002815
+6 M544T604_POS C04230 1.19e-18  1.53 HMDB0010380</code></pre>
+</div>
+</div>
 </section>
 </section>
-<section id="advanced-usage" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="advanced-usage"><span class="header-section-number">2.2.4</span> Advanced Usage</h3>
-<section id="returning-organism-database-object" class="level4" data-number="2.2.4.1">
-<h4 data-number="2.2.4.1" class="anchored" data-anchor-id="returning-organism-database-object"><span class="header-section-number">2.2.4.1</span> Returning Organism Database Object</h4>
-<p>If you need the organism database for downstream analysis:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gene_data,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_orgdb =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Access converted data</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> result<span class="sc">$</span>data</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Access organism database</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>orgdb <span class="ot">&lt;-</span> result<span class="sc">$</span>orgdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="metabolite-id-conversion" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="metabolite-id-conversion"><span class="header-section-number">2.2.5</span> Metabolite ID Conversion</h3>
-<p>For metabolite data, convert to KEGG IDs:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert HMDB IDs to KEGG IDs (human only)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>metabolite_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">hmdbid =</span> <span class="fu">c</span>(<span class="st">"HMDB0000001"</span>, <span class="st">"HMDB0000002"</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>converted_metabolites <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> metabolite_data,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"metabolite"</span>, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"hmdbid"</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"hsa"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Result will include both hmdbid and keggid columns</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(converted_metabolites)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="preparing-data-for-gsea" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="preparing-data-for-gsea"><span class="header-section-number">2.2.6</span> Preparing Data for GSEA</h3>
-<p>If you’re planning to perform GSEA, ensure you have an appropriate <code>order_by</code> column:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Creating order_by column from log2 fold change</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>your_data<span class="sc">$</span>order_by <span class="ot">&lt;-</span> your_data<span class="sc">$</span>log2fc</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or: Creating signed p-value ranking</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>your_data<span class="sc">$</span>order_by <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(your_data<span class="sc">$</span>pvalue) <span class="sc">*</span> <span class="fu">sign</span>(your_data<span class="sc">$</span>log2fc)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert IDs while preserving the order_by column</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>converted_data <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> your_data,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Hs.eg.db"</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The order_by column is preserved in the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="important-notes" class="level3" data-number="2.2.7">
-<h3 data-number="2.2.7" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">2.2.7</span> Important Notes</h3>
-<ol type="1">
-<li><strong>Column Names</strong>: All identifier column names must be lowercase in the final data</li>
-<li><strong>Missing Identifiers</strong>: If an identifier cannot be converted, it will be filled with <code>NA</code></li>
-<li><strong>Multiple Matches</strong>: When multiple identifiers exist for one input ID, only the first match is retained</li>
-<li><strong>GSEA Requirements</strong>: Don’t forget the <code>order_by</code> column for GSEA analysis</li>
-<li><strong>Metabolite Limitations</strong>: Only ORA is available for metabolites; GSEA is not supported</li>
-</ol>
-</section>
-<section id="troubleshooting-common-issues" class="level3" data-number="2.2.8">
-<h3 data-number="2.2.8" class="anchored" data-anchor-id="troubleshooting-common-issues"><span class="header-section-number">2.2.8</span> Troubleshooting Common Issues</h3>
-<section id="issue-column-not-found-in-data" class="level4" data-number="2.2.8.1">
-<h4 data-number="2.2.8.1" class="anchored" data-anchor-id="issue-column-not-found-in-data"><span class="header-section-number">2.2.8.1</span> Issue: “Column not found in data”</h4>
-<p><strong>Solution</strong>: - Check that your column name matches the <code>from_id_type</code> parameter - Ensure column names are lowercase in your final data</p>
-</section>
-<section id="issue-id-type-not-available-in-organism-database" class="level4" data-number="2.2.8.2">
-<h4 data-number="2.2.8.2" class="anchored" data-anchor-id="issue-id-type-not-available-in-organism-database"><span class="header-section-number">2.2.8.2</span> Issue: “ID type not available in organism database”</h4>
-<p><strong>Solution</strong>: Check available ID types for your organism:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>available_types <span class="ot">&lt;-</span> <span class="fu">idType</span>(your_organism_db)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(available_types)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="issue-gsea-fails-to-run" class="level4" data-number="2.2.8.3">
-<h4 data-number="2.2.8.3" class="anchored" data-anchor-id="issue-gsea-fails-to-run"><span class="header-section-number">2.2.8.3</span> Issue: GSEA fails to run</h4>
-<p><strong>Solution</strong>: - Verify you have an <code>order_by</code> column with numeric values - Check for missing values in the <code>order_by</code> column - Ensure the column contains a good range of values for ranking</p>
-<hr>
-</section>
-</section>
-</section>
-<section id="data-validation-checklist" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="data-validation-checklist"><span class="header-section-number">2.3</span> Data Validation Checklist</h2>
-<p>Before proceeding to enrichment analysis, verify your data meets these requirements:</p>
-<section id="for-gene-ora" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="for-gene-ora"><span class="header-section-number">2.3.1</span> For Gene ORA:</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">At least one identifier column: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code> (lowercase)</label></li>
-<li><label><input type="checkbox">Identifier column contains valid IDs for your organism</label></li>
-</ul>
-</section>
-<section id="for-gene-gsea" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="for-gene-gsea"><span class="header-section-number">2.3.2</span> For Gene GSEA:</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">At least one identifier column: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code> (lowercase)<br>
-</label></li>
-<li><label><input type="checkbox"><code>order_by</code> column with numeric values for gene ranking</label></li>
-<li><label><input type="checkbox">No missing values in the <code>order_by</code> column</label></li>
-</ul>
-</section>
-<section id="for-metabolite-ora" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="for-metabolite-ora"><span class="header-section-number">2.3.3</span> For Metabolite ORA:</h3>
-<ul class="task-list">
-<li><label><input type="checkbox"><code>keggid</code> column with valid KEGG compound IDs</label></li>
-<li><label><input type="checkbox">Data represents human metabolites (if using ID conversion)</label></li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="next-steps" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">2.4</span> Next Steps</h2>
-<p>Once your data meets the format requirements, you can proceed to <a href="./03_enrichment_analysis.html">enrichment analysis</a> to begin your MAPA workflow.</p>
+<section id="next-steps" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">2.3</span> Next Steps</h2>
+<p>Once your data meets the format requirements, you can proceed to <a href="./03_enrichment_analysis.html">enrichment analysis</a> to begin your mapa workflow.</p>
 
 
 </section>
