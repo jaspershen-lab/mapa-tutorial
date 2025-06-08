@@ -7,7 +7,6 @@ This chapter covers the input data requirements for mapa analysis, including the
 library(mapa)
 ```
 
-
 ## Input Data Format Requirements
 
 ### Gene Expression Data
@@ -54,21 +53,22 @@ head(gsea_data)
 
 For metabolite analysis, mapa currently supports **Over-Representation Analysis (ORA) only**. You **only need one identifier column** plus any additional metadata (Column names must be in lowercase):
 
-- `hmdbid`: [Human Metabolome Database IDs](https://www.hmdb.ca) (e.g., "HMDB0000001", "HMDB0000002") - **Human only**
-- `keggid`: [KEGG Compound IDs](https://www.genome.jp/kegg/compound/) (e.g., "C00001", "C00002") - **All organisms**
+-   `hmdbid`: [Human Metabolome Database IDs](https://www.hmdb.ca) (e.g., "HMDB0000001", "HMDB0000002") - **Human only**
+-   `keggid`: [KEGG Compound IDs](https://www.genome.jp/kegg/compound/) (e.g., "C00001", "C00002") - **All organisms**
 
 ::: callout-note
-- For human metabolites: You can use either hmdbid or keggid as input
-- For other organisms: Only keggid is supported
-- GSEA for metabolites is not currently supported
+-   For human metabolites: You can use either hmdbid or keggid as input
+-   For other organisms: Only keggid is supported
+-   GSEA for metabolites is not currently supported
 :::
 
-``` {r}
+```{r}
 # Example metabolite input data with KEGG IDs (works for all organisms)
 # metabolite_kegg_data <- readr::read_csv("examples/example_metabolite_kegg.csv", show_col_types = FALSE)
 # head(metabolite_kegg_data)
 ```
-``` {r}
+
+```{r}
 # Example metabolite input data with HMDB IDs (human only)
 metabolite_data <- readr::read_csv("examples/example_metabolite_data.csv", show_col_types = FALSE)
 head(metabolite_data)
@@ -78,23 +78,20 @@ head(metabolite_data)
 
 **This step is required except for non-human metabolite analysis** - mapa provides the `convert_id()` function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.
 
-### Gene ID conversion
+### Gene ID conversion {#sec-gene_id_conversion}
 
 The `convert_id()` function converts between different ID types and **always returns data with all four gene identifier columns** (`ensembl`, `entrezid`, `uniprot`, `symbol`), which are required for mapa to work properly. Since organism-specific annotation database are required for ID conversion and the following enrichment analysis, choose the ID conversion method based on your organism.
 
-::: panel-tabset
-
+::::: panel-tabset
 ##### Model Organisms
 
 For common model organisms, use standard organism database Bioconductor packages.
 
 ::: callout-note
-
 For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and install the one that matches your species of interest [here](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb).
-
 :::
 
-``` {r}
+```{r}
 # Human
 variable_info <- convert_id(
   data = ora_data,
@@ -109,7 +106,7 @@ head(variable_info)
 
 For organisms without standard packages, use AnnotationHub IDs:
 
-``` {r}
+```{r}
 #| eval: false
 
 # Macaca fascicularis (taxid: 9541)
@@ -124,7 +121,8 @@ variable_info <- convert_id(
 
 ::: callout-tip
 **How to find AnnotationHub IDs according to taxid?**
-``` {r}
+
+```{r}
 #| eval: false
 
 if (!require("BiocManager", quietly = TRUE))
@@ -140,14 +138,13 @@ query_result <- AnnotationHub::query(ah, c("OrgDb", "9541"))
 query_result$ah_id
 ```
 :::
-
-:::
+:::::
 
 ### Metabolite ID Conversion
 
 For human metabolite data, convert IDs bwteen KEGG and HMDB:
 
-``` {r}
+```{r}
 # Convert KEGG IDs to HMDB IDs (human only)
 variable_info <- convert_id(
   data = metabolite_data,

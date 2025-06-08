@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -247,8 +281,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gene-based-enrichment" id="toc-gene-based-enrichment" class="nav-link active" data-scroll-target="#gene-based-enrichment"><span class="header-section-number">3.1</span> Gene-based Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#supported-databases-and-keytypes" id="toc-supported-databases-and-keytypes" class="nav-link" data-scroll-target="#supported-databases-and-keytypes"><span class="header-section-number">3.1.1</span> Supported Databases and Keytypes</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">3.1.2</span> Basic Usage</a></li>
+  </ul></li>
+  <li><a href="#metabolite-based-enrichment" id="toc-metabolite-based-enrichment" class="nav-link" data-scroll-target="#metabolite-based-enrichment"><span class="header-section-number">3.2</span> Metabolite-based Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#supported-databases-and-keytypes-1" id="toc-supported-databases-and-keytypes-1" class="nav-link" data-scroll-target="#supported-databases-and-keytypes-1"><span class="header-section-number">3.2.1</span> Supported Databases and Keytypes</a></li>
+  <li><a href="#basic-usage-1" id="toc-basic-usage-1" class="nav-link" data-scroll-target="#basic-usage-1"><span class="header-section-number">3.2.2</span> Basic Usage</a></li>
+  </ul></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">3.3</span> Results interpretation</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -272,8 +322,358 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The <code>mapa</code> package provides two powerful functions for pathway enrichment analysis: <code>enrich_pathway()</code> for Over-Representation Analysis (ORA) and <code>do_gsea()</code> for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports <strong>ORA only</strong>). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to analyze multiple databases simultaneously in a single function call.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before running enrichment analysis, ensure your data has been properly preprocessed using the <code>convert_id()</code> function as described in Chapter 2 - Data Input and Preprocessing. The <code>variable_info</code> used in this chapter should be the output from the ID conversion step.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="gene-based-enrichment" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="gene-based-enrichment"><span class="header-section-number">3.1</span> Gene-based Enrichment</h2>
+<section id="supported-databases-and-keytypes" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="supported-databases-and-keytypes"><span class="header-section-number">3.1.1</span> Supported Databases and Keytypes</h3>
+<p>The mapa package leverages the powerful enrichment functions from the <a href="https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"><code>clusterProfiler</code></a> package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Database</th>
+<th>Supported Organism</th>
+<th>Keytype Options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gene Ontology (GO)</td>
+<td>Any organism with OrgDb object (<a href="https://bioconductor.org/packages/release/BiocViews.html#___OrgDb">organism annotation database package from Bioconductor</a> or OrgDb object retrieved from AnnotationHub, see <a href="02_input.html#sec-gene_id_conversion" class="quarto-xref"><span>Section 2.2.1</span></a>)</td>
+<td>Any keyType supported by your OrgDb object</td>
+</tr>
+<tr class="even">
+<td>KEGG</td>
+<td><a href="https://www.genome.jp/kegg/tables/br08606.html">All KEGG organisms</a></td>
+<td><code>"kegg"</code>, <code>"ncbi-geneid"</code>, <code>"ncbi-proteinid"</code>, <code>"uniprot"</code></td>
+</tr>
+<tr class="odd">
+<td>Reactome</td>
+<td>human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken</td>
+<td><code>ENTREZID</code> only</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>To check available GO keytype for your organism:</p>
+<p>For model organisms with Bioconductor annotation packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For model organisms with Bioconductor annotation packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>AnnotationDbi<span class="sc">::</span><span class="fu">keytypes</span>(org.Hs.eg.db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ACCNUM"       "ALIAS"        "ENSEMBL"      "ENSEMBLPROT"  "ENSEMBLTRANS"
+ [6] "ENTREZID"     "ENZYME"       "EVIDENCE"     "EVIDENCEALL"  "GENENAME"    
+[11] "GENETYPE"     "GO"           "GOALL"        "IPI"          "MAP"         
+[16] "OMIM"         "ONTOLOGY"     "ONTOLOGYALL"  "PATH"         "PFAM"        
+[21] "PMID"         "PROSITE"      "REFSEQ"       "SYMBOL"       "UCSCKG"      
+[26] "UNIPROT"     </code></pre>
+</div>
+</div>
+<p>For non-model organisms with annotation OrgDb retrieved from AnnotationHub</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variable_info is the output from the ID conversion step in Chapter 2 - Data Input and Preprocessing</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>AnnotationDbi<span class="sc">::</span><span class="fu">keytypes</span>(variable_info<span class="sc">$</span>orgdb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the <a href="https://yulab-smu.top/biomedical-knowledge-mining-book/index.html">Biomedical Knowledge Mining using GOSemSim and clusterProfiler</a> book. This book covers all the underlying methods that mapa uses and will help you make informed decisions about your analysis parameters.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="basic-usage" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">3.1.2</span> Basic Usage</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Over-Representation Analysis (ORA)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Gene Set Enrichment Analysis (GSEA)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Use <code>enrich_pathway()</code> for Over-Representation Analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>enriched_pathways <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enrich_pathway</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable_info =</span> variable_info,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"go"</span>, <span class="st">"kegg"</span>, <span class="st">"reactome"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># GO parameters</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.orgdb =</span> org.Hs.eg.db,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.keytype =</span> <span class="st">"ENTREZID"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KEGG parameters</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">kegg.organism =</span> <span class="st">"hsa"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">kegg.keytype =</span> <span class="st">"kegg"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reactome parameters</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">reactome.organism =</span> <span class="st">"human"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistical parameters</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The <code>do_gsea()</code> function performs GSEA using ranked gene lists based on fold changes or other metrics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gsea_pathways <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do_gsea</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable_info =</span> variable_info,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">order_by =</span> <span class="st">"fc"</span>,              <span class="co"># Column to rank genes by</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"go"</span>, <span class="st">"kegg"</span>, <span class="st">"reactome"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Database parameters</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.orgdb =</span> org.Hs.eg.db,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.keytype =</span> <span class="st">"ENTREZID"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">kegg.organism =</span> <span class="st">"hsa"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">kegg.keytype =</span> <span class="st">"kegg"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">reactome.organism =</span> <span class="st">"human"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># GSEA parameters</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Model organisms: use <code>variable_info</code> directly and package name for <code>go.orgdb</code></li>
+<li>Non-model organisms: use <code>variable_info$data</code> for parameter <code>variable_info</code> and <code>variable_info$orgdb</code> for <code>go.orgdb</code></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="metabolite-based-enrichment" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="metabolite-based-enrichment"><span class="header-section-number">3.2</span> Metabolite-based Enrichment</h2>
+<section id="supported-databases-and-keytypes-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="supported-databases-and-keytypes-1"><span class="header-section-number">3.2.1</span> Supported Databases and Keytypes</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Database</th>
+<th>Supported Organism</th>
+<th>Keytype Options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>KEGG</td>
+<td><a href="https://www.genome.jp/kegg/tables/br08606.html">All KEGG organisms</a></td>
+<td>KEGG compound IDs</td>
+</tr>
+<tr class="even">
+<td>HMDB</td>
+<td>Only for human</td>
+<td>HMDB IDs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="basic-usage-1" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="basic-usage-1"><span class="header-section-number">3.2.2</span> Basic Usage</h3>
+<p>For metabolite data, ensure your <code>variable_info</code> contains HMDB IDs and/or KEGG compound IDs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>met_enriched_pathways <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enrich_pathway</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable_info =</span> met_variable_info,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">query_type =</span> <span class="st">"metabolite"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"hmdb"</span>, <span class="st">"metkegg"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">met_organism =</span> <span class="st">"hsa"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_to_local =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="results-interpretation" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">3.3</span> Results interpretation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the enrichment analysis summary</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(enriched_pathways)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis method: enrich_pathway </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Variable information------------</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 119  features/markers in total</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of genes------------</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------GO------------</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1025 GO terms with p.adjust &lt; 0.05 </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># No GO modules</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG------------</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 KEGG pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Reactome------------</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 Reactome pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># No Reactome modules</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of metabolites------------</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------HMDB------------</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB results</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB modules</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG Metabolite------------</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG metabolite results</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Functional modules------------</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># No Functional modules</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------LLM module interpretation------------</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># No LLM module interpretation results</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing information</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 processings in total</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># enrich_pathway ---------- </span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa enrich_pathway() 2025-06-08 14:34:13</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access specific database results</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>go_results <span class="ot">&lt;-</span> enriched_pathways<span class="sc">@</span>enrichment_go_result</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kegg_results <span class="ot">&lt;-</span> enriched_pathways<span class="sc">@</span>enrichment_kegg_result</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(go_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># over-representation test</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#...@organism    Homo sapiens </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#...@ontology    GOALL </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#...@keytype     ENTREZID </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#...@gene    chr [1:119] "3956" "939" "7048" "55504" "8809" "1360" "1357" "6370" "3480" "58494" "27121" "56729" "27163" "3958" "286133" ...</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#...pvalues adjusted by 'BH' with cutoff &lt;0.05 </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#...0 enriched terms found</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#...Citation</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># S Xu, E Hu, Y Cai, Z Xie, X Luo, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, G Yu. Using clusterProfiler to characterize multiomics data. Nature Protocols. 2024, 19(11):3292-3320 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View results data frame</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(go_results<span class="sc">@</span>result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0035924       BP GO:0035924 cellular response to vascular endothelial growth factor stimulus    13/116 122/18805 0.10655738       17.27424 14.20752 5.888098e-13</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0006935       BP GO:0006935                                                       chemotaxis    21/116 466/18805 0.04506438        7.30548 10.85886 8.851862e-13</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0042330       BP GO:0042330                                                            taxis    21/116 468/18805 0.04487179        7.27426 10.82885 9.608949e-13</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0038145       BP GO:0038145           macrophage colony-stimulating factor signaling pathway    10/116  54/18805 0.18518519       30.02075 16.82498 1.024076e-12</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                p_adjust       qvalue                                                                                                       geneID Count</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0038084 5.859206e-11 3.635439e-11                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0036005 2.337791e-10 1.450520e-10                                                        3480/1435/1969/1956/6696/2050/5156/2064/5979/2324/780    11</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0035924 4.656131e-10 2.888971e-10                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0006935 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0042330 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0038145 4.656131e-10 2.888971e-10                                                             3480/1435/1969/1956/2050/5156/2064/5979/2324/780    10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Key columns in enrichment results:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Gene ORA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">GSEA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Metabolite ORA</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><strong>Core Information:</strong></p>
+<ul>
+<li><code>ID</code>: Pathway identifier (e.g., GO:0042060 for GO, hsa04060 for KEGG, R-HSA-5669034 for Reactome)</li>
+<li><code>Description</code>: Pathway name</li>
+<li><code>ONTOLOGY</code>: Biological ontology (for GO only: MF=molecular function, CC=cellular component, BP=biological process)</li>
+<li><code>category</code>/<code>subcategory</code>: KEGG pathway categories (for KEGG only)</li>
+</ul>
+<p><strong>Statistical Measures:</strong></p>
+<ul>
+<li><code>pvalue</code>: Raw p-value from hypergeometric test (equivalent to one-sided Fisher’s exact test)</li>
+<li><code>p_adjust</code>: Adjusted p-value after multiple testing correction (BH method by default)</li>
+<li><code>qvalue</code>: Q-value for FDR control. For more information, see <code>?qvalue::qvalue</code></li>
+</ul>
+<p><strong>Gene Mapping:</strong></p>
+<ul>
+<li><code>GeneRatio</code>: Ratio of input genes annotated to this pathway (format: “genes_in_pathway/total_input_genes”)</li>
+<li><code>BgRatio</code>: Ratio of all genes annotated to this pathway in the background universe (format: “pathway_genes/universe_genes”)</li>
+<li><code>Count</code>: Total number of genes from input list that match this pathway</li>
+<li><code>geneID</code>: Gene IDs that overlap between your gene list and the pathway (separated by “/”)</li>
+</ul>
+<p><strong>Enrichment Metrics:</strong></p>
+<ul>
+<li><code>RichFactor</code>: Ratio of input genes annotated to a pathway vs.&nbsp;all genes annotated to this pathway</li>
+<li><code>FoldEnrichment</code>: Enrichment fold change (GeneRatio divided by BgRatio)</li>
+<li><code>zScore</code>: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you’d expect by chance. Higher absolute z-score means more “surprising” or significant enrichment.)</li>
+</ul>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>For GSEA results, additional columns specific to ranked list analysis include:</p>
+<ul>
+<li><code>setSize</code>: Total number of genes in the gene set/pathway</li>
+<li><code>enrichmentScore</code>: Degree of overrepresentation at top/bottom of ranked list</li>
+<li><code>NES</code>: <strong>Normalized Enrichment Score - main metric for interpretation</strong>
+<ul>
+<li>Positive NES: pathway enriched in upregulated genes (pathway activation)</li>
+<li>Negative NES: pathway enriched in downregulated genes (pathway suppression)</li>
+</ul></li>
+<li><code>rank</code>: Position in ranked list where maximum enrichment score occurred</li>
+<li><code>leading_edge</code>: Statistics for the leading-edge subset of genes</li>
+<li><code>core_enrichment</code>: Core enriched genes that contribute most to the enrichment signal</li>
+<li><code>Count</code>: Number of core enriched genes</li>
+</ul>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>For metabolite ORA results, the result structure differs from gene-based analysis:</p>
+<p><strong>Pathway Information:</strong></p>
+<ul>
+<li><code>pathway_id</code>: Pathway identifier (e.g., SMP0000028 for HMDB pathways)</li>
+<li><code>pathway_name</code>: Name of the metabolic pathway (e.g., “Caffeine Metabolism”)</li>
+<li><code>describtion</code>: Detailed description of the pathway from the corresponding database</li>
+<li><code>pathway_class</code>: Classification of pathway (e.g., “Metabolic;primary_pathway”, “Disease;primary_pathway”)</li>
+</ul>
+<p><strong>Statistical Measures:</strong></p>
+<ul>
+<li><code>p_value</code>: Raw p-value from enrichment test</li>
+<li><code>p_adjust</code>: Adjusted p-value for multiple testing correction</li>
+</ul>
+<p><strong>Metabolite Mapping:</strong></p>
+<ul>
+<li><code>all_id</code>: All metabolite IDs in this pathway (separated by “;”)</li>
+<li><code>all_number</code>: Total number of metabolites in the pathway</li>
+<li><code>mapped_id</code>: Your input metabolite IDs that map to this pathway (separated by “;”)</li>
+<li><code>mapped_number</code>: Number of your metabolites that map to this pathway</li>
+<li><code>mapped_percentage</code>: Percentage of pathway metabolites covered by your input data</li>
+</ul>
+</div>
+</div>
+</div>
+<p>The enrichment results provide the foundation for downstream similarity analysis and functional module identification in the mapa workflow.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -854,4 +1254,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/03_enrichment_analysis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

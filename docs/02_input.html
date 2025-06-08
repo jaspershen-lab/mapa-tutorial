@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#input-data-preprocessing" id="toc-input-data-preprocessing" class="nav-link" data-scroll-target="#input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</a>
   <ul class="collapse">
-  <li><a href="#gene-id-conversion" id="toc-gene-id-conversion" class="nav-link" data-scroll-target="#gene-id-conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</a></li>
+  <li><a href="#sec-gene_id_conversion" id="toc-sec-gene_id_conversion" class="nav-link" data-scroll-target="#sec-gene_id_conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</a></li>
   <li><a href="#metabolite-id-conversion" id="toc-metabolite-id-conversion" class="nav-link" data-scroll-target="#metabolite-id-conversion"><span class="header-section-number">2.2.2</span> Metabolite ID Conversion</a></li>
   </ul></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">2.3</span> Next Steps</a></li>
@@ -450,8 +450,8 @@ Note
 <section id="input-data-preprocessing" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</h2>
 <p><strong>This step is required except for non-human metabolite analysis</strong> - mapa provides the <code>convert_id()</code> function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.</p>
-<section id="gene-id-conversion" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="gene-id-conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</h3>
+<section id="sec-gene_id_conversion" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-gene_id_conversion"><span class="header-section-number">2.2.1</span> Gene ID conversion</h3>
 <p>The <code>convert_id()</code> function converts between different ID types and <strong>always returns data with all four gene identifier columns</strong> (<code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, <code>symbol</code>), which are required for mapa to work properly. Since organism-specific annotation database are required for ID conversion and the following enrichment analysis, choose the ID conversion method based on your organism.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Model Organisms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Non-Model Organisms</a></li></ul>

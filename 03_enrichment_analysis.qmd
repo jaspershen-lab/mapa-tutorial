@@ -1,1 +1,299 @@
 # Enrichment Analysis
+
+The `mapa` package provides two powerful functions for pathway enrichment analysis: `enrich_pathway()` for Over-Representation Analysis (ORA) and `do_gsea()` for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports **ORA only**). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to analyze multiple databases simultaneously in a single function call.
+
+::: callout-important
+Prerequisites: Before running enrichment analysis, ensure your data has been properly preprocessed using the `convert_id()` function as described in Chapter 2 - Data Input and Preprocessing. The `variable_info` used in this chapter should be the output from the ID conversion step.
+:::
+
+```{r}
+#| eval: false
+
+library(mapa)
+```
+
+## Gene-based Enrichment
+
+### Supported Databases and Keytypes
+
+The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
+
+| Database | Supported Organism | Keytype Options |
+|------------------|---------------------------|---------------------------|
+| Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object |
+| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
+| Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only |
+
+::: callout-tip
+1.  To check available GO keytype for your organism:
+
+    For model organisms with Bioconductor annotation packages
+
+    ```{r}
+    #| message: false
+    ## For model organisms with Bioconductor annotation packages
+    library(org.Hs.eg.db)
+    AnnotationDbi::keytypes(org.Hs.eg.db)
+    ```
+
+    For non-model organisms with annotation OrgDb retrieved from AnnotationHub
+
+    ```{r}
+    #| eval: false
+    # variable_info is the output from the ID conversion step in Chapter 2 - Data Input and Preprocessing
+    AnnotationDbi::keytypes(variable_info$orgdb)
+    ```
+
+2.  For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) book. This book covers all the underlying methods that mapa uses and will help you make informed decisions about your analysis parameters.
+:::
+
+### Basic Usage
+
+::: panel-tabset
+##### Over-Representation Analysis (ORA)
+
+Use `enrich_pathway()` for Over-Representation Analysis.
+
+```{r}
+#| eval: false
+
+enriched_pathways <- 
+  enrich_pathway(
+    variable_info = variable_info,
+    query_type = "gene",
+    database = c("go", "kegg", "reactome"),
+    # GO parameters
+    go.orgdb = org.Hs.eg.db,
+    go.keytype = "ENTREZID",
+    go.ont = "ALL",
+    # KEGG parameters
+    kegg.organism = "hsa",
+    kegg.keytype = "kegg",
+    # Reactome parameters
+    reactome.organism = "human",
+    # Statistical parameters
+    pvalueCutoff = 0.05,
+    pAdjustMethod = "BH"
+  )
+```
+
+##### Gene Set Enrichment Analysis (GSEA)
+
+The `do_gsea()` function performs GSEA using ranked gene lists based on fold changes or other metrics.
+
+```{r}
+#| eval: false
+
+gsea_pathways <- 
+  do_gsea(
+    variable_info = variable_info,
+    query_type = "gene",
+    order_by = "fc",              # Column to rank genes by
+    database = c("go", "kegg", "reactome"),
+    # Database parameters
+    go.orgdb = org.Hs.eg.db,
+    go.ont = "ALL",
+    go.keytype = "ENTREZID",
+    kegg.organism = "hsa",
+    kegg.keytype = "kegg",
+    reactome.organism = "human",
+    # GSEA parameters
+    pvalueCutoff = 0.05,
+    pAdjustMethod = "BH"
+  )
+```
+:::
+
+::: callout-note
+-   Model organisms: use `variable_info` directly and package name for `go.orgdb`
+-   Non-model organisms: use `variable_info$data` for parameter `variable_info` and `variable_info$orgdb` for `go.orgdb`
+:::
+
+## Metabolite-based Enrichment
+
+### Supported Databases and Keytypes
+
+| Database | Supported Organism | Keytype Options |
+|------------------|---------------------------|---------------------------|
+| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
+| HMDB | Only for human | HMDB IDs |
+
+### Basic Usage
+
+For metabolite data, ensure your `variable_info` contains HMDB IDs and/or KEGG compound IDs.
+
+```{r}
+#| eval: false
+
+met_enriched_pathways <- 
+  enrich_pathway(
+    variable_info = met_variable_info,
+    query_type = "metabolite",
+    database = c("hmdb", "metkegg"),
+    met_organism = "hsa",
+    save_to_local = TRUE,
+    pvalueCutoff = 0.05,
+    pAdjustMethod = "BH"
+  )
+```
+
+## Results interpretation
+
+```{r}
+#| eval: false
+# View the enrichment analysis summary
+show(enriched_pathways)
+```
+
+```{r}
+# -------------------- 
+# Analysis method: enrich_pathway 
+# -------------------- 
+# -----------Variable information------------
+# 119  features/markers in total
+# -----------Enrichment results and modules of genes------------
+# -----------GO------------
+# 1025 GO terms with p.adjust < 0.05 
+# No GO modules
+# -----------KEGG------------
+# 48 KEGG pathways with p.adjust < 0.05 
+# No KEGG modules
+# -----------Reactome------------
+# 48 Reactome pathways with p.adjust < 0.05 
+# No Reactome modules
+# -----------Enrichment results and modules of metabolites------------
+# -----------HMDB------------
+# No HMDB results
+# No HMDB modules
+# -----------KEGG Metabolite------------
+# No KEGG metabolite results
+# No KEGG modules
+# -----------Functional modules------------
+# No Functional modules
+# -----------LLM module interpretation------------
+# No LLM module interpretation results
+# -------------------- 
+# Processing information
+# 1 processings in total
+# enrich_pathway ---------- 
+#   Package    Function.used                Time
+# 1    mapa enrich_pathway() 2025-06-08 14:34:13
+```
+
+```{r}
+#| eval: false
+# Access specific database results
+go_results <- enriched_pathways@enrichment_go_result
+kegg_results <- enriched_pathways@enrichment_kegg_result
+show(go_results)
+```
+
+```{r}
+# over-representation test
+#
+#...@organism 	 Homo sapiens 
+#...@ontology 	 GOALL 
+#...@keytype 	 ENTREZID 
+#...@gene 	 chr [1:119] "3956" "939" "7048" "55504" "8809" "1360" "1357" "6370" "3480" "58494" "27121" "56729" "27163" "3958" "286133" ...
+#...pvalues adjusted by 'BH' with cutoff <0.05 
+#...0 enriched terms found
+#...Citation
+# S Xu, E Hu, Y Cai, Z Xie, X Luo, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, G Yu. Using clusterProfiler to characterize multiomics data. Nature Protocols. 2024, 19(11):3292-3320 
+```
+
+```{r}
+#| eval: false
+
+# View results data frame
+head(go_results@result)
+```
+
+```{r}
+#            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue
+# GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14
+# GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13
+# GO:0035924       BP GO:0035924 cellular response to vascular endothelial growth factor stimulus    13/116 122/18805 0.10655738       17.27424 14.20752 5.888098e-13
+# GO:0006935       BP GO:0006935                                                       chemotaxis    21/116 466/18805 0.04506438        7.30548 10.85886 8.851862e-13
+# GO:0042330       BP GO:0042330                                                            taxis    21/116 468/18805 0.04487179        7.27426 10.82885 9.608949e-13
+# GO:0038145       BP GO:0038145           macrophage colony-stimulating factor signaling pathway    10/116  54/18805 0.18518519       30.02075 16.82498 1.024076e-12
+#                p_adjust       qvalue                                                                                                       geneID Count
+# GO:0038084 5.859206e-11 3.635439e-11                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13
+# GO:0036005 2.337791e-10 1.450520e-10                                                        3480/1435/1969/1956/6696/2050/5156/2064/5979/2324/780    11
+# GO:0035924 4.656131e-10 2.888971e-10                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13
+# GO:0006935 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21
+# GO:0042330 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21
+# GO:0038145 4.656131e-10 2.888971e-10                                                             3480/1435/1969/1956/2050/5156/2064/5979/2324/780    10
+```
+
+
+Key columns in enrichment results:
+
+::: panel-tabset
+##### Gene ORA
+
+**Core Information:**
+
+-   `ID`: Pathway identifier (e.g., GO:0042060 for GO, hsa04060 for KEGG, R-HSA-5669034 for Reactome)
+-   `Description`: Pathway name
+-   `ONTOLOGY`: Biological ontology (for GO only: MF=molecular function, CC=cellular component, BP=biological process)
+-   `category`/`subcategory`: KEGG pathway categories (for KEGG only)
+
+**Statistical Measures:**
+
+-   `pvalue`: Raw p-value from hypergeometric test (equivalent to one-sided Fisher's exact test)
+-   `p_adjust`: Adjusted p-value after multiple testing correction (BH method by default)
+-   `qvalue`: Q-value for FDR control. For more information, see `?qvalue::qvalue`
+
+**Gene Mapping:**
+
+-   `GeneRatio`: Ratio of input genes annotated to this pathway (format: "genes_in_pathway/total_input_genes")
+-   `BgRatio`: Ratio of all genes annotated to this pathway in the background universe (format: "pathway_genes/universe_genes")
+-   `Count`: Total number of genes from input list that match this pathway
+-   `geneID`: Gene IDs that overlap between your gene list and the pathway (separated by "/")
+
+**Enrichment Metrics:**
+
+-   `RichFactor`: Ratio of input genes annotated to a pathway vs. all genes annotated to this pathway
+-   `FoldEnrichment`: Enrichment fold change (GeneRatio divided by BgRatio)
+-   `zScore`: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you'd expect by chance. Higher absolute z-score means more "surprising" or significant enrichment.)
+
+##### GSEA
+
+For GSEA results, additional columns specific to ranked list analysis include:
+
+-   `setSize`: Total number of genes in the gene set/pathway
+-   `enrichmentScore`: Degree of overrepresentation at top/bottom of ranked list
+-   `NES`: **Normalized Enrichment Score - main metric for interpretation**
+    -   Positive NES: pathway enriched in upregulated genes (pathway activation)
+    -   Negative NES: pathway enriched in downregulated genes (pathway suppression)
+-   `rank`: Position in ranked list where maximum enrichment score occurred
+-   `leading_edge`: Statistics for the leading-edge subset of genes
+-   `core_enrichment`: Core enriched genes that contribute most to the enrichment signal
+-   `Count`: Number of core enriched genes
+
+##### Metabolite ORA
+
+For metabolite ORA results, the result structure differs from gene-based analysis:
+
+**Pathway Information:**
+
+-   `pathway_id`: Pathway identifier (e.g., SMP0000028 for HMDB pathways)
+-   `pathway_name`: Name of the metabolic pathway (e.g., "Caffeine Metabolism")
+-   `describtion`: Detailed description of the pathway from the corresponding database
+-   `pathway_class`: Classification of pathway (e.g., "Metabolic;primary_pathway", "Disease;primary_pathway")
+
+**Statistical Measures:**
+
+-   `p_value`: Raw p-value from enrichment test
+-   `p_adjust`: Adjusted p-value for multiple testing correction
+
+**Metabolite Mapping:**
+
+-   `all_id`: All metabolite IDs in this pathway (separated by ";")
+-   `all_number`: Total number of metabolites in the pathway
+-   `mapped_id`: Your input metabolite IDs that map to this pathway (separated by ";")
+-   `mapped_number`: Number of your metabolites that map to this pathway
+-   `mapped_percentage`: Percentage of pathway metabolites covered by your input data
+:::
+
+The enrichment results provide the foundation for downstream similarity analysis and functional module identification in the mapa workflow.
