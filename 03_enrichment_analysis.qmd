@@ -149,9 +149,10 @@ met_enriched_pathways <-
 
 ## Results interpretation
 
+After enrichment analysis, view the enrichment analysis summary:
+
 ```{r}
 #| eval: false
-# View the enrichment analysis summary
 enriched_pathways
 # -------------------- 
 # Analysis method: enrich_pathway 
@@ -187,33 +188,14 @@ enriched_pathways
 # 1    mapa enrich_pathway() 2025-06-08 14:34:13
 ```
 
-```{r}
-#| eval: false
-# Access specific database results
-go_results <- enriched_pathways@enrichment_go_result
-kegg_results <- enriched_pathways@enrichment_kegg_result
-go_results
-# over-representation test
-#
-#...@organism 	 Homo sapiens 
-#...@ontology 	 GOALL 
-#...@keytype 	 ENTREZID 
-#...@gene 	 chr [1:119] "3956" "939" "7048" "55504" "8809" "1360" "1357" "6370" "3480" "58494" "27121" "56729" "27163" "3958" "286133" ...
-#...pvalues adjusted by 'BH' with cutoff <0.05 
-#...0 enriched terms found
-#...Citation
-# S Xu, E Hu, Y Cai, Z Xie, X Luo, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, G Yu. Using clusterProfiler to characterize multiomics data. Nature Protocols. 2024, 19(11):3292-3320 
-```
+You can access specific database results via `@`:
 
 ::: panel-tabset
-
 ##### ORA enrichment result
 
 ```{r}
 #| eval: false
-
-# View results data frame
-head(go_results@result)
+head(enriched_pathways@enrichment_go_result@result)
 #            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue
 # GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14
 # GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13
@@ -234,7 +216,6 @@ head(go_results@result)
 
 ```{r}
 #| eval: false
-
 head(gsea_pathways@enrichment_kegg_result@result)
 #                ID                                       Description setSize enrichmentScore      NES       pvalue     p_adjust       qvalue rank
 # hsa05014 hsa05014                     Amyotrophic lateral sclerosis      11       0.6473595 2.500196 0.0001092759 0.0006556554 0.0003450818  218
