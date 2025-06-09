@@ -1,1 +1,1 @@
-# Embedding and Clustering
+# Embedding and Clustering {#sec-embed_cluster}

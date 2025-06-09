@@ -1,4 +1,4 @@
-# Enrichment Analysis
+# Enrichment Analysis {#sec-enrichment_analysis}
 
 The `mapa` package provides two powerful functions for pathway enrichment analysis: `enrich_pathway()` for Over-Representation Analysis (ORA) and `do_gsea()` for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports **ORA only**). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to **analyze multiple databases simultaneously in a single function call**.
 
