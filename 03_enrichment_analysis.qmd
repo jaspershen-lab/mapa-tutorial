@@ -1,6 +1,6 @@
 # Enrichment Analysis
 
-The `mapa` package provides two powerful functions for pathway enrichment analysis: `enrich_pathway()` for Over-Representation Analysis (ORA) and `do_gsea()` for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports **ORA only**). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to analyze multiple databases simultaneously in a single function call.
+The `mapa` package provides two powerful functions for pathway enrichment analysis: `enrich_pathway()` for Over-Representation Analysis (ORA) and `do_gsea()` for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports **ORA only**). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to **analyze multiple databases simultaneously in a single function call**.
 
 ::: callout-important
 Prerequisites: Before running enrichment analysis, ensure your data has been properly preprocessed using the `convert_id()` function as described in Chapter 2 - Data Input and Preprocessing. The `variable_info` used in this chapter should be the output from the ID conversion step.
@@ -30,10 +30,13 @@ The mapa package leverages the powerful enrichment functions from the [`clusterP
     For model organisms with Bioconductor annotation packages
 
     ```{r}
-    #| message: false
+    #| eval: false
     ## For model organisms with Bioconductor annotation packages
     library(org.Hs.eg.db)
     AnnotationDbi::keytypes(org.Hs.eg.db)
+    # [1] "ACCNUM" "ALIAS" "ENSEMBL" "ENSEMBLPROT" "ENSEMBLTRANS" "ENTREZID" "ENZYME"  "EVIDENCE" "EVIDENCEALL" "GENENAME"    
+    # [11] "GENETYPE" "GO" "GOALL" "IPI" "MAP" "OMIM" "ONTOLOGY" "ONTOLOGYALL" "PATH" "PFAM"        
+    # [21] "PMID" "PROSITE" "REFSEQ" "SYMBOL" "UCSCKG" "UNIPROT" 
     ```
 
     For non-model organisms with annotation OrgDb retrieved from AnnotationHub
@@ -75,6 +78,13 @@ enriched_pathways <-
     pvalueCutoff = 0.05,
     pAdjustMethod = "BH"
   )
+
+# GO database...
+# KEGG database...
+# Reading KEGG annotation online: "https://rest.kegg.jp/link/hsa/pathway"...
+# Reading KEGG annotation online: "https://rest.kegg.jp/list/pathway/hsa"...
+# Reactome database...
+# Done.
 ```
 
 ##### Gene Set Enrichment Analysis (GSEA)
@@ -142,10 +152,7 @@ met_enriched_pathways <-
 ```{r}
 #| eval: false
 # View the enrichment analysis summary
-show(enriched_pathways)
-```
-
-```{r}
+enriched_pathways
 # -------------------- 
 # Analysis method: enrich_pathway 
 # -------------------- 
@@ -185,10 +192,7 @@ show(enriched_pathways)
 # Access specific database results
 go_results <- enriched_pathways@enrichment_go_result
 kegg_results <- enriched_pathways@enrichment_kegg_result
-show(go_results)
-```
-
-```{r}
+go_results
 # over-representation test
 #
 #...@organism 	 Homo sapiens 
@@ -201,14 +205,15 @@ show(go_results)
 # S Xu, E Hu, Y Cai, Z Xie, X Luo, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, G Yu. Using clusterProfiler to characterize multiomics data. Nature Protocols. 2024, 19(11):3292-3320 
 ```
 
+::: panel-tabset
+
+##### ORA enrichment result
+
 ```{r}
 #| eval: false
 
 # View results data frame
 head(go_results@result)
-```
-
-```{r}
 #            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue
 # GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14
 # GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13
@@ -225,6 +230,22 @@ head(go_results@result)
 # GO:0038145 4.656131e-10 2.888971e-10                                                             3480/1435/1969/1956/2050/5156/2064/5979/2324/780    10
 ```
 
+##### GSEA enrichment result
+
+```{r}
+#| eval: false
+
+head(gsea_pathways@enrichment_kegg_result@result)
+#                ID                                       Description setSize enrichmentScore      NES       pvalue     p_adjust       qvalue rank
+# hsa05014 hsa05014                     Amyotrophic lateral sclerosis      11       0.6473595 2.500196 0.0001092759 0.0006556554 0.0003450818  218
+# hsa05022 hsa05022 Pathways of neurodegeneration - multiple diseases      11       0.4649904 1.795860 0.0102663060 0.0307989180 0.0162099568  232
+# hsa05010 hsa05010                                 Alzheimer disease      10       0.4709263 1.667865 0.0220601399 0.0441202798 0.0232211999  214
+#                             leading_edge                                            core_enrichment Count
+# hsa05014 tags=100%, list=36%, signal=65% 6390/23435/4720/5690/56893/6391/55706/842/5710/22926/55746    11
+# hsa05022  tags=91%, list=39%, signal=57%         6390/23435/4720/5690/6391/1435/842/5710/22926/9927    10
+# hsa05010  tags=90%, list=36%, signal=59%              6390/10000/4720/5690/6391/1435/842/5710/22926     9
+```
+:::
 
 Key columns in enrichment results:
 

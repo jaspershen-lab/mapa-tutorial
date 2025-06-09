@@ -4,7 +4,7 @@ project:
 
 book:
   title: "mapa tutorial"
-  date: "6/2/2025"
+  date: "6/8/2025"
   favicon: "/images/mapa_logo.png"
   description: Functional Module Annotation for Pathway Analysis Results Using LLM
   url: http://www.shen-lab.org/mapa-tutorial/
