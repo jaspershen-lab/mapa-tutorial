@@ -147,7 +147,7 @@ met_enriched_pathways <-
   )
 ```
 
-## Results interpretation
+## Results interpretation {#sec-enrichment_res_interpretation}
 
 After enrichment analysis, view the enrichment analysis summary:
 
