@@ -295,11 +295,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#analysis-control" id="toc-analysis-control" class="nav-link" data-scroll-target="#analysis-control"><span class="header-section-number">6.4.2</span> Analysis Control</a></li>
   <li><a href="#optional-enhancements" id="toc-optional-enhancements" class="nav-link" data-scroll-target="#optional-enhancements"><span class="header-section-number">6.4.3</span> Optional Enhancements</a></li>
   </ul></li>
-  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</a></li>
-  <li><a href="#updated-functional-module-results" id="toc-updated-functional-module-results" class="nav-link" data-scroll-target="#updated-functional-module-results"><span class="header-section-number">6.6</span> Updated Functional Module Results</a></li>
-  <li><a href="#result-components" id="toc-result-components" class="nav-link" data-scroll-target="#result-components"><span class="header-section-number">6.7</span> Result Components</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">6.8</span> Best Practices</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.9</span> Next Steps</a></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#updated-functional-module-results" id="toc-updated-functional-module-results" class="nav-link" data-scroll-target="#updated-functional-module-results"><span class="header-section-number">6.5.1</span> Updated Functional Module Results</a></li>
+  <li><a href="#result-components" id="toc-result-components" class="nav-link" data-scroll-target="#result-components"><span class="header-section-number">6.5.2</span> Result Components</a></li>
+  </ul></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">6.6</span> Best Practices</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -381,10 +383,30 @@ Important
 </figure>
 </div>
 <p>The Retrieval-Augmented Generation (RAG) strategy works in several stages:</p>
-<p><strong>Stage 1: Literature Search</strong> - Searches PubMed using pathway names and gene/metabolite information - Retrieves abstracts and titles for relevant papers - Includes reference papers cited in pathway databases</p>
-<p><strong>Stage 2: Embedding-based Similarity</strong> - Generates text embeddings for module descriptions (pathways + molecules) - Calculates similarity between module embeddings and paper abstracts - Filters top papers based on cosine similarity scores</p>
-<p><strong>Stage 3: GPT-powered Reranking</strong> - Uses LLM to assess relevance of each paper to the specific module - Assigns relevance scores (0-1) based on biological context - Cleans text by removing irrelevant metadata (author names, affiliations)</p>
-<p><strong>Stage 4: Final Generation</strong> - Combines module information with top-ranked papers - Generates biologically meaningful module names - Produces research summaries highlighting current knowledge</p>
+<p><strong>Stage 1: Literature Search</strong></p>
+<ul>
+<li>Searches PubMed using pathway names and gene/metabolite information</li>
+<li>Retrieves abstracts and titles for relevant papers</li>
+<li>Includes reference papers cited in pathway databases</li>
+</ul>
+<p><strong>Stage 2: Embedding-based Similarity</strong></p>
+<ul>
+<li>Generates text embeddings for module descriptions (pathways + molecules)</li>
+<li>Calculates similarity between module embeddings and paper abstracts</li>
+<li>Filters top papers based on cosine similarity scores</li>
+</ul>
+<p><strong>Stage 3: GPT-powered Reranking</strong></p>
+<ul>
+<li>Uses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules</li>
+<li>Select the most informative literature for final interpretation</li>
+</ul>
+<p><strong>Stage 4: Final Generation</strong></p>
+<ul>
+<li>Combines module information with top-ranked papers</li>
+<li>Generates biologically meaningful module names</li>
+<li>Produces research summaries highlighting current knowledge</li>
+<li>Assigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence</li>
+</ul>
 <p>This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.</p>
 </section>
 <section id="basic-usage" class="level2" data-number="6.3">
@@ -633,9 +655,8 @@ Note
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package          Function.used                Time</span></span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa llm_interpret_module() 2025-06-10 14:24:47</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="updated-functional-module-results" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="updated-functional-module-results"><span class="header-section-number">6.6</span> Updated Functional Module Results</h2>
+<section id="updated-functional-module-results" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="updated-functional-module-results"><span class="header-section-number">6.5.1</span> Updated Functional Module Results</h3>
 <p>The functional module results are automatically updated with a new column <code>llm_module_name</code>, which is the LLM-generated names:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View updated results with LLM names</span></span>
@@ -647,11 +668,11 @@ Note
 <li><strong>module_annotation</strong>: Original representative annotation (fallback if LLM interpretation unavailable)</li>
 </ul>
 </section>
-<section id="result-components" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="result-components"><span class="header-section-number">6.7</span> Result Components</h2>
+<section id="result-components" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="result-components"><span class="header-section-number">6.5.2</span> Result Components</h3>
 <p>For each interpreted module, the results include:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Basic LLM Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Phenotype-specific Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Retrieved Literature</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Processing Details</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">LLM Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Retrieved Literature</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Processing Details</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
@@ -667,15 +688,13 @@ Note
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Confidence score (0-1)  </span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>confidence_score <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>confidence_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>When phenotype parameter was specified, result contains phenotype-specific interpretation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>phenotype_result <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>phenotype_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When phenotype parameter was specified, results contain disease-specific interpretation and relevance</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>phenotype_result <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>phenotype_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Papers used for interpretation</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
@@ -693,7 +712,7 @@ Note
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "The Kit/stem cell factor receptor (Kit/SCF-R) is a transmembrane tyrosine kinase receptor of importance for the normal development of hemopoietic cells, melanoblasts, and germ cells. We recently reported that protein kinase C (PKC) is involved in a negative feedback loop regulating the Kit/SCF-R by direct phosphorylation on serine residues in the receptor... In conclusion, SCF-induced PI-3'-kinase activation paralleled the increased SCF-induced mitogenicity after inhibition of PKC."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>If output_prompt = TRUE, results contains the exact prompt sent to the LLM for transparency:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
@@ -703,8 +722,9 @@ Note
 </div>
 </div>
 </section>
-<section id="best-practices" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">6.8</span> Best Practices</h2>
+</section>
+<section id="best-practices" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">6.6</span> Best Practices</h2>
 <ol type="1">
 <li><strong>Start Small</strong>: Begin with a subset of modules to estimate costs and processing time</li>
 <li><strong>Optimize Parameters</strong>: Adjust filtering parameters based on your module complexity</li>
@@ -714,8 +734,8 @@ Note
 <li><strong>Iterate</strong>: Refine parameters based on initial results</li>
 </ol>
 </section>
-<section id="next-steps" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.9</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.7</span> Next Steps</h2>
 <p>Continue to <a href="./06_data_vis.html">Data Visualization</a> to create informative plots showcasing your LLM-interpreted modules.</p>
 
 
