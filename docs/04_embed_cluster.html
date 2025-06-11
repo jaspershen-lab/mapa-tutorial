@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>5&nbsp; Embedding and Clustering – mapa tutorial</title>
+<title>5&nbsp; EmbedCluster: Advanced Biotext Embedding-based Clustering – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,15 +281,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a></li>
+  <li><a href="#step-1-calculate-biotext-embedding-similarity" id="toc-step-1-calculate-biotext-embedding-similarity" class="nav-link" data-scroll-target="#step-1-calculate-biotext-embedding-similarity"><span class="header-section-number">5.2</span> Step 1: Calculate Biotext Embedding Similarity</a>
+  <ul class="collapse">
+  <li><a href="#how-embedcluster-works" id="toc-how-embedcluster-works" class="nav-link" data-scroll-target="#how-embedcluster-works"><span class="header-section-number">5.2.1</span> How EmbedCluster Works</a></li>
+  </ul></li>
+  <li><a href="#step-2-cluster-pathways-using-biotext-similarity" id="toc-step-2-cluster-pathways-using-biotext-similarity" class="nav-link" data-scroll-target="#step-2-cluster-pathways-using-biotext-similarity"><span class="header-section-number">5.3</span> Step 2: Cluster Pathways Using Biotext Similarity</a></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">5.4</span> Results Interpretation</a></li>
+  <li><a href="#advantages-and-considerations" id="toc-advantages-and-considerations" class="nav-link" data-scroll-target="#advantages-and-considerations"><span class="header-section-number">5.5</span> Advantages and Considerations</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">5.6</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_embed_cluster.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_embed_cluster.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-embed_cluster" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></h1>
+<h1 class="title"><span id="sec-embed_cluster" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></h1>
 </div>
 
 
@@ -272,8 +320,265 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>EmbedCluster is an advanced pathway clustering method in mapa that groups related pathways into functional modules based on biotext embedding similarity. This method leverages large language model (LLM) text embeddings to capture semantic relationships between pathway descriptions, enabling more nuanced clustering based on biological function rather than just gene overlap.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before running EmbedCluster analysis, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The <code>enriched_pathways</code> object used in this chapter should be the output from the enrichment analysis step.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't performed enrichment analysis yet, run:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- enrich_pathway(...)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- do_gsea(...)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load your enrichment results if saved previously:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load("path/to/your/enriched_pathways.RData")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="overview" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.1</span> Overview</h2>
+<p>EmbedCluster works in two main steps:</p>
+<p><strong>Step 1: <code>get_bioembedsim()</code></strong>: Extracts pathway text information, generates embeddings using LLM APIs, and calculates cosine similarity between pathways</p>
+<p><strong>Step 2: <code>merge_pathways_bioembedsim()</code></strong>: Groups pathways into functional modules based on biotext embedding similarity</p>
+<p>This approach captures semantic relationships that traditional gene overlap methods might miss, particularly useful for identifying functionally related pathways with different gene sets.</p>
+</section>
+<section id="step-1-calculate-biotext-embedding-similarity" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="step-1-calculate-biotext-embedding-similarity"><span class="header-section-number">5.2</span> Step 1: Calculate Biotext Embedding Similarity</h2>
+<p>The <code>get_bioembedsim()</code> function extracts pathway descriptions, generates text embeddings using text embedding model, and calculates pairwise cosine similarity between pathways.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Gene-based Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metabolite-based Analysis</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bioembed_similarity <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_bioembedsim</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> enriched_pathways,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_provider =</span> <span class="st">"openai"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_embedding_model =</span> <span class="st">"text-embedding-3-small"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"go"</span>, <span class="st">"kegg"</span>, <span class="st">"reactome"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistical cutoffs</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.go =</span> <span class="fl">0.05</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.kegg =</span> <span class="fl">0.05</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.reactome =</span> <span class="fl">0.05</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.go =</span> <span class="dv">5</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.kegg =</span> <span class="dv">5</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.reactome =</span> <span class="dv">5</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>API Key Setup:</strong></p>
+<ul>
+<li>For OpenAI: Obtain your API key from <a href="https://platform.openai.com/api-keys">OpenAI Platform</a></li>
+<li>For Gemini: Get your API key from <a href="https://makersuite.google.com/app/apikey">Google AI Studio</a></li>
+</ul>
+<p>Store your API key securely and never commit it to version control.</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>met_bioembed_similarity <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_bioembedsim</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_enriched_pathways,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_provider =</span> <span class="st">"openai"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_embedding_model =</span> <span class="st">"text-embedding-3-small"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"hmdb"</span>, <span class="st">"metkegg"</span>),  <span class="co"># human only for HMDB</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistical cutoffs for metabolites</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.hmdb =</span> <span class="fl">0.05</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.metkegg =</span> <span class="fl">0.05</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.hmdb =</span> <span class="dv">5</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.metkegg =</span> <span class="dv">5</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<section id="how-embedcluster-works" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="how-embedcluster-works"><span class="header-section-number">5.2.1</span> How EmbedCluster Works</h3>
+<p>The biotext embedding process involves several steps:</p>
+<ol type="1">
+<li><p><strong>Text Extraction</strong>: For each pathway, the function extracts:</p>
+<ul>
+<li><strong>GO terms</strong>: Term name + definition from QuickGO API</li>
+<li><strong>KEGG pathways</strong>: Pathway name + description from KEGG REST API<br>
+</li>
+<li><strong>Reactome pathways</strong>: Pathway name + summary from Reactome API</li>
+<li><strong>Metabolite pathways</strong>: Pathway name + description from respective databases</li>
+</ul></li>
+<li><p><strong>Text Embedding</strong>: The combined text information is sent to the specified text embedding model to generate high-dimensional vector representations</p></li>
+<li><p><strong>Similarity Calculation</strong>: Cosine similarity is calculated between all pathway embedding vectors</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Understanding Text Embeddings</strong>: Text embeddings convert text into numerical vectors that capture semantic meaning. For a comprehensive introduction to embeddings, including how they work, model details and best practices, see the <a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings Guide</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="step-2-cluster-pathways-using-biotext-similarity" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="step-2-cluster-pathways-using-biotext-similarity"><span class="header-section-number">5.3</span> Step 2: Cluster Pathways Using Biotext Similarity</h2>
+<p>The <code>merge_pathways_bioembedsim()</code> function uses the calculated biotext embedding similarity matrix to group pathways into functional modules.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>enriched_bioembed_modules <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">merge_pathways_bioembedsim</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> bioembed_similarity,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sim.cutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_method =</span> <span class="st">"girvan newman"</span>  <span class="co"># Options: "binary cut", "girvan newman", "hierarchical"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying funcitonal modules...</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Joining with `by = join_by(node)`</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>EmbedCluster uses the same three clustering algorithms as SimCluster. For detailed explanations of each clustering method and parameter interpretation, see <a href="04_sim_cluster.html#sec-cluster_method" class="quarto-xref"><span>Section 4.3</span></a> in SimCluster. The key difference is that EmbedCluster operates on biotext embedding similarity matrices rather than traditional gene/metabolite overlap similarity.</p>
+</section>
+<section id="results-interpretation" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">5.4</span> Results Interpretation</h2>
+<p>After running EmbedCluster, examine the results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View analysis summary</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>enriched_bioembed_modules</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis method: enrich_pathway </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Variable information------------</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 119  features/markers in total</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of genes------------</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------GO------------</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1025 GO terms with p.adjust &lt; 0.05 </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># No GO modules</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG------------</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 KEGG pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Reactome------------</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 Reactome pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># No Reactome modules</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of metabolites------------</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------HMDB------------</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB results</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB modules</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG Metabolite------------</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG metabolite results</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Functional modules------------</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 60 Functional modules</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------LLM module interpretation------------</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># No LLM module interpretation results</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing information</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 processings in total</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># enrich_pathway ---------- </span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa enrich_pathway() 2025-06-10 10:50:36</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_pathways ---------- </span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package     Function.used                Time</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa get_bioembedsim() 2025-06-10 11:27:59</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_modules ---------- </span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package                                      Function.used                Time</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa get_bioembedsim() and merge_pathways_bioembedsim() 2025-06-10 11:40:09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Access the biotext embedding-based functional modules:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View functional modules</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enriched_bioembed_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Access similarity matrix</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>similarity_matrix <span class="ot">&lt;-</span> bioembed_similarity<span class="sc">$</span>sim_matrix</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(similarity_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#            GO:0016049 GO:0031589 GO:1900046 GO:0071375 GO:0061900</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0016049  1.0000000  0.3779020  0.2286780  0.3376592  0.4369859</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0031589  0.3779020  1.0000000  0.2702301  0.3123477  0.3938414</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:1900046  0.2286780  0.2702301  1.0000000  0.3277389  0.2867548</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0071375  0.3376592  0.3123477  0.3277389  1.0000000  0.4493753</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0061900  0.4369859  0.3938414  0.2867548  0.4493753  1.0000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Key result columns:</p>
+<ul>
+<li><strong>module</strong>: Module identifier (e.g., “Functional_module_127”)</li>
+<li><strong>module_annotation</strong>: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest |NES| for GSEA) for the module</li>
+<li><strong>Description</strong>: Names of all the pathways in the module separated by <code>;</code></li>
+<li><strong>module_content</strong>: All pathways/terms (i.e.&nbsp;nodes) grouped in this module</li>
+<li><strong>Count</strong>: Number of genes/metabolites from the input genes/metabolites list in the module</li>
+<li><strong>p_adjust</strong>: Best (lowest) adjusted p-value among pathways in the module</li>
+</ul>
+</section>
+<section id="advantages-and-considerations" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="advantages-and-considerations"><span class="header-section-number">5.5</span> Advantages and Considerations</h2>
+<p><strong>Advantages of EmbedCluster</strong></p>
+<ol type="1">
+<li><strong>Semantic Understanding</strong>: Considers pathway descriptions and biological context, capturing functional relationships beyond gene overlap</li>
+<li><strong>Cross-database Integration</strong>: Better at combining pathways from different databases</li>
+<li><strong>Novel Discoveries</strong>: May identify functionally related pathways missed by traditional methods</li>
+</ol>
+<p><strong>Considerations</strong></p>
+<ol type="1">
+<li><strong>API Dependency</strong>: Requires internet connection and API access</li>
+<li><strong>Cost</strong>: API usage may incur costs for large analyses</li>
+<li><strong>Processing Time</strong>: Longer than traditional methods due to API calls</li>
+<li><strong>Reproducibility</strong>: Results may vary slightly due to API responses (though embedding vectors are typically stable)</li>
+</ol>
+<p><strong>When to Use EmbedCluster vs SimCluster</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Use EmbedCluster when:</th>
+<th>Use SimCluster when:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exploring novel functional relationships</td>
+<td>Working with limited internet/API access</td>
+</tr>
+<tr class="even">
+<td>Interested in semantic pathway similarity</td>
+<td>Need deterministic, reproducible results</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="next-steps" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">5.6</span> Next Steps</h2>
+<p>Continue to <a href="./05_llm_interpretation.html">LLM Interpretation</a> to add AI-powered functional annotations to your modules, or proceed to <a href="./06_data_vis.html">Data Visualization</a> to create informative plots of your clustering results.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -854,4 +1159,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_embed_cluster.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_embed_cluster.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_embed_cluster.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_embed_cluster.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

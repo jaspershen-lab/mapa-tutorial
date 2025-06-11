@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -160,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,15 +281,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
+  <li><a href="#sec-rag" id="toc-sec-rag" class="nav-link" data-scroll-target="#sec-rag"><span class="header-section-number">6.2</span> Understanding the RAG Strategy</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">6.3</span> Basic Usage</a></li>
+  <li><a href="#key-parameters" id="toc-key-parameters" class="nav-link" data-scroll-target="#key-parameters"><span class="header-section-number">6.4</span> Key Parameters</a>
+  <ul class="collapse">
+  <li><a href="#llm-and-api-settings" id="toc-llm-and-api-settings" class="nav-link" data-scroll-target="#llm-and-api-settings"><span class="header-section-number">6.4.1</span> LLM and API Settings</a></li>
+  <li><a href="#analysis-control" id="toc-analysis-control" class="nav-link" data-scroll-target="#analysis-control"><span class="header-section-number">6.4.2</span> Analysis Control</a></li>
+  <li><a href="#optional-enhancements" id="toc-optional-enhancements" class="nav-link" data-scroll-target="#optional-enhancements"><span class="header-section-number">6.4.3</span> Optional Enhancements</a></li>
+  </ul></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</a></li>
+  <li><a href="#updated-functional-module-results" id="toc-updated-functional-module-results" class="nav-link" data-scroll-target="#updated-functional-module-results"><span class="header-section-number">6.6</span> Updated Functional Module Results</a></li>
+  <li><a href="#result-components" id="toc-result-components" class="nav-link" data-scroll-target="#result-components"><span class="header-section-number">6.7</span> Result Components</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">6.8</span> Best Practices</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.9</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./05_llm_interpretation.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></h1>
+<h1 class="title"><span id="sec-llm_interpretation" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></h1>
 </div>
 
 
@@ -272,8 +325,401 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The <code>llm_interpret_module()</code> function provides AI-powered interpretation of functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. This approach combines pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation using either SimCluster (<code>merge_modules()</code>) or EmbedCluster (<code>merge_pathways_bioembedsim()</code>) as described in previous chapters. The <code>enriched_functional_modules</code> object used in this chapter should be the output from the module clustering step.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't performed module clustering yet, run:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_functional_modules &lt;- merge_modules(...)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_functional_modules &lt;- merge_pathways_bioembedsim(...)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load your clustering results if saved previously:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load("path/to/your/enriched_functional_modules.RData")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
+<p>The LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:</p>
+<ul>
+<li><p><strong>Information Sources:</strong></p>
+<ul>
+<li><strong>Pathway descriptions</strong> from GO, KEGG, Reactome, and metabolite databases</li>
+<li><strong>Gene/metabolite names</strong> from your input data<br>
+</li>
+<li><strong>Scientific literature</strong> retrieved from PubMed based on pathway and molecule relevance</li>
+<li><strong>Local documents</strong> (optional) - your own research papers or relevant literature</li>
+</ul></li>
+<li><p><strong>Analysis Pipeline:</strong></p>
+<ol type="1">
+<li><strong>Information Extraction</strong>: Extracts pathway descriptions and molecule information</li>
+<li><strong>Literature Retrieval</strong>: Searches PubMed for relevant scientific papers</li>
+<li><strong>RAG Strategy</strong>: Uses embeddings to find and rank the most relevant literature, see <a href="#sec-rag" class="quarto-xref"><span>Section 6.2</span></a></li>
+<li><strong>LLM Generation</strong>: Generates biological module names and research summaries</li>
+</ol></li>
+</ul>
+<p>This approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.</p>
+</section>
+<section id="sec-rag" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-rag"><span class="header-section-number">6.2</span> Understanding the RAG Strategy</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/RAG_frame.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="785"></p>
+</figure>
+</div>
+<p>The Retrieval-Augmented Generation (RAG) strategy works in several stages:</p>
+<p><strong>Stage 1: Literature Search</strong> - Searches PubMed using pathway names and gene/metabolite information - Retrieves abstracts and titles for relevant papers - Includes reference papers cited in pathway databases</p>
+<p><strong>Stage 2: Embedding-based Similarity</strong> - Generates text embeddings for module descriptions (pathways + molecules) - Calculates similarity between module embeddings and paper abstracts - Filters top papers based on cosine similarity scores</p>
+<p><strong>Stage 3: GPT-powered Reranking</strong> - Uses LLM to assess relevance of each paper to the specific module - Assigns relevance scores (0-1) based on biological context - Cleans text by removing irrelevant metadata (author names, affiliations)</p>
+<p><strong>Stage 4: Final Generation</strong> - Combines module information with top-ranked papers - Generates biologically meaningful module names - Produces research summaries highlighting current knowledge</p>
+<p>This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.</p>
+</section>
+<section id="basic-usage" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">6.3</span> Basic Usage</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Gene-based Module Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metabolite-based Module Interpretation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>llm_interpreted_modules <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">llm_interpret_module</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> enriched_functional_modules,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">llm_model =</span> <span class="st">"gpt-4o-mini-2024-07-18"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">embedding_model =</span> <span class="st">"text-embedding-3-small"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">embedding_output_dir =</span> <span class="st">"embedding_output/"</span>,  <span class="co"># Output directory to store embeddings generated during analysis</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">module_content_number_cutoff =</span> <span class="dv">1</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">orgdb =</span> org.Hs.eg.db                         <span class="co"># Necessary for gene annotation</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   |============================================================================================================================| 100%, Elapsed 00:42</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing module: Functional_module_2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Including PID number: 70</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   |============================================================================================================================| 100%, Elapsed 00:07</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing module 1/10: Functional_module_2</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># - Generating module embeddings...</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># - Reading and calculating PubMed similarity...</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># - Local documents not found, skipping local similarity calculation</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># - Reading document content...                                                                                                                        </span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># - Processing document content using GPT...                                                                                                           </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   |============================================================================================================================| 100%, Elapsed 00:35</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># - Filtering the most relevant results...</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Functional_module_2 processing completed</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># All modules processing completed!</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Start to generate name and summary for functional modules ...</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>met_llm_interpreted_modules <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">llm_interpret_module</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_enriched_functional_modules,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">llm_model =</span> <span class="st">"gpt-4o-mini-2024-07-18"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">embedding_model =</span> <span class="st">"text-embedding-3-small"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">embedding_output_dir =</span> <span class="st">"met_embedding_output/"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">module_content_number_cutoff =</span> <span class="dv">1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-parameters" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="key-parameters"><span class="header-section-number">6.4</span> Key Parameters</h2>
+<section id="llm-and-api-settings" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="llm-and-api-settings"><span class="header-section-number">6.4.1</span> LLM and API Settings</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>llm_model</code></td>
+<td>GPT model for text generation</td>
+<td><code>"gpt-4o-mini-2024-07-18"</code></td>
+<td>Currently supports OpenAI models only</td>
+</tr>
+<tr class="even">
+<td><code>embedding_model</code></td>
+<td>Model for text embeddings</td>
+<td><code>"text-embedding-3-small"</code></td>
+<td>Used for document similarity</td>
+</tr>
+<tr class="odd">
+<td><code>api_key</code></td>
+<td>OpenAI API key</td>
+<td>Required</td>
+<td>Store securely, never commit to version control</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="analysis-control" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="analysis-control"><span class="header-section-number">6.4.2</span> Analysis Control</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>module_content_number_cutoff</code></td>
+<td>Minimum pathways per module</td>
+<td>1</td>
+<td>Filter small modules to focus on substantial ones</td>
+</tr>
+<tr class="even">
+<td><code>years</code></td>
+<td>Years to search back in PubMed</td>
+<td>5</td>
+<td>Balance between recent findings and comprehensive coverage</td>
+</tr>
+<tr class="odd">
+<td><code>retmax</code></td>
+<td>Max papers per PubMed search</td>
+<td>10</td>
+<td>Control API usage and processing time</td>
+</tr>
+<tr class="even">
+<td><code>similarity_filter_num</code></td>
+<td>Papers kept after similarity ranking</td>
+<td>20</td>
+<td>First-stage filtering based on text similarity</td>
+</tr>
+<tr class="odd">
+<td><code>GPT_filter_num</code></td>
+<td>Papers kept after GPT ranking</td>
+<td>5</td>
+<td>Final selection of most relevant papers</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>API Usage &amp; Processing Time</strong>: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider using <code>module_content_number_cutoff</code> to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules, though progress is displayed during processing.</p>
+</div>
+</div>
+</section>
+<section id="optional-enhancements" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="optional-enhancements"><span class="header-section-number">6.4.3</span> Optional Enhancements</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+<th>Benefits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>phenotype</code></td>
+<td>Disease/condition context</td>
+<td><code>NULL</code></td>
+<td>Adds disease-specific interpretation</td>
+</tr>
+<tr class="even">
+<td><code>local_corpus_dir</code></td>
+<td>Local directory with your own <strong>PDF</strong> files</td>
+<td><code>NULL</code></td>
+<td>Incorporates your own research or relevant literature to enhance the interpretation</td>
+</tr>
+<tr class="odd">
+<td><code>output_prompt</code></td>
+<td>Include prompts in results</td>
+<td><code>TRUE</code></td>
+<td>Useful for understanding AI reasoning</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="results-interpretation" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</h2>
+<p>After running LLM interpretation, examine the results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View analysis summary</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>llm_interpreted_modules</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis method: enrich_pathway </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Variable information------------</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 119  features/markers in total</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of genes------------</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------GO------------</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1025 GO terms with p.adjust &lt; 0.05 </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 250 GO modules </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG------------</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 KEGG pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 29 KEGG modules</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Reactome------------</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 Reactome pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 13 Reactome modules</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of metabolites------------</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------HMDB------------</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB results</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB modules</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG Metabolite------------</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG metabolite results</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Functional modules------------</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 158 Functional modules</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------LLM module interpretation------------</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 LLM interpreted modules</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing information</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 processings in total</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># enrich_pathway ---------- </span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa enrich_pathway() 2025-06-10 10:50:36</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_pathways ---------- </span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa merge_pathways() 2025-06-10 10:57:22</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_modules ---------- </span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package   Function.used                Time</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa merge_modules() 2025-06-10 10:58:25</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># llm_interpret_module ---------- </span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package          Function.used                Time</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa llm_interpret_module() 2025-06-10 14:24:47</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="updated-functional-module-results" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="updated-functional-module-results"><span class="header-section-number">6.6</span> Updated Functional Module Results</h2>
+<p>The functional module results are automatically updated with a new column <code>llm_module_name</code>, which is the LLM-generated names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View updated results with LLM names</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(llm_interpreted_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Key result columns:</p>
+<ul>
+<li><strong>llm_module_name</strong>: AI-generated biological module name</li>
+<li><strong>module_annotation</strong>: Original representative annotation (fallback if LLM interpretation unavailable)</li>
+</ul>
+</section>
+<section id="result-components" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="result-components"><span class="header-section-number">6.7</span> Result Components</h2>
+<p>For each interpreted module, the results include:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Basic LLM Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Phenotype-specific Interpretation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Retrieved Literature</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Processing Details</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core interpretation results of a interpreted module</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Module name generated by LLM</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>module_name <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>module_name</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of current research</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>module_summary <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>summary</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Confidence score (0-1)  </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>confidence_score <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>confidence_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When phenotype parameter was specified, results contain disease-specific interpretation and relevance</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>phenotype_result <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>phenotype_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Papers used for interpretation</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>related_papers <span class="ot">&lt;-</span> module_result<span class="sc">$</span>related_paper</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Access individual papers</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>paper1 <span class="ot">&lt;-</span> related_papers[[<span class="dv">1</span>]]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>paper1<span class="sc">$</span>title           <span class="co"># Paper title and PubMedID</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "Modulation of Kit/stem cell factor receptor-induced signaling by protein kinase C. (PubMedID:7520444)"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>paper1<span class="sc">$</span>relevance_score <span class="co"># Relevance score assigned by GPT</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0.9</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>paper1<span class="sc">$</span>cleaned_text    <span class="co"># Cleaned abstract text</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "The Kit/stem cell factor receptor (Kit/SCF-R) is a transmembrane tyrosine kinase receptor of importance for the normal development of hemopoietic cells, melanoblasts, and germ cells. We recently reported that protein kinase C (PKC) is involved in a negative feedback loop regulating the Kit/SCF-R by direct phosphorylation on serine residues in the receptor... In conclusion, SCF-induced PI-3'-kinase activation paralleled the increased SCF-induced mitogenicity after inhibition of PKC."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>If output_prompt = TRUE, results contains the exact prompt sent to the LLM for transparency:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>module_result <span class="ot">&lt;-</span> llm_interpreted_modules<span class="sc">@</span>llm_module_interpretation<span class="sc">$</span>Functional_module_2</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>prompt_info <span class="ot">&lt;-</span> module_result<span class="sc">$</span>generated_name<span class="sc">$</span>prompt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="best-practices" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">6.8</span> Best Practices</h2>
+<ol type="1">
+<li><strong>Start Small</strong>: Begin with a subset of modules to estimate costs and processing time</li>
+<li><strong>Optimize Parameters</strong>: Adjust filtering parameters based on your module complexity</li>
+<li><strong>Use Phenotype Context</strong>: Specify relevant diseases/conditions for more targeted interpretations</li>
+<li><strong>Include Local Literature</strong>: Add your own papers for domain-specific insights</li>
+<li><strong>Review Results</strong>: Examine confidence scores and retrieved literature quality</li>
+<li><strong>Iterate</strong>: Refine parameters based on initial results</li>
+</ol>
+</section>
+<section id="next-steps" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.9</span> Next Steps</h2>
+<p>Continue to <a href="./06_data_vis.html">Data Visualization</a> to create informative plots showcasing your LLM-interpreted modules.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -839,8 +1285,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04_embed_cluster.html" class="pagination-link" aria-label="Embedding and Clustering">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span>
+      <a href="./04_embed_cluster.html" class="pagination-link" aria-label="EmbedCluster: Advanced Biotext Embedding-based Clustering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -854,4 +1300,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_llm_interpretation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

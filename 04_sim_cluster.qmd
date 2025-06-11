@@ -1,4 +1,4 @@
-# SimCluster: Traditional Similarity-based Clustering
+# SimCluster: Traditional Similarity-based Clustering {#sec-simcluster}
 
 SimCluster is the traditional pathway clustering method in mapa that groups related pathways into functional modules based on gene/metabolite overlap similarity. This method uses established similarity metrics (Jaccard, Dice, etc.) and semantic similarity measures to identify functionally related pathways.
 
@@ -9,7 +9,7 @@ library(mapa)
 ```
 
 ::: callout-important
-Prerequisites: Before running SimCluster analysis, ensure you have completed pathway enrichment analysis using either `enrich_pathway()` or `do_gsea()` as described in @sec-enrichment_analysis. The enriched_pathways object used in this chapter should be the output from the enrichment analysis step.
+Prerequisites: Before running SimCluster analysis, ensure you have completed pathway enrichment analysis using either `enrich_pathway()` or `do_gsea()` as described in @sec-enrichment_analysis. The `enriched_pathways` object used in this chapter should be the output from the enrichment analysis step.
 
 ```{r}
 #| eval: false
@@ -209,7 +209,7 @@ For KEGG, Reactome, and metabolite pathways:
 For detailed explanations of similarity methods, see the [simona documentation](https://jokergoo.github.io/simona/articles/v05_term_similarity.html#ic-based-or-node-based-methods).
 :::
 
-## Clustering Methods (For `merge_modules()`)
+## Clustering Methods (For `merge_modules()`) {#sec-cluster_method}
 
 SimCluster offers three clustering algorithms, please set parameters as follows:
 
@@ -328,14 +328,15 @@ head(enriched_functional_modules@merged_module$functional_module_result)
 #| eval: false
 
 # View modules within specific databases
-head(enriched_functional_modules@merged_pathway_go$module_result)
+head(enriched_functional_modules@merged_pathway_go$module_result, 1)
 ```
 
 Key result columns:
 
--   **module**: Module identifier (e.g., "Module_1", "go_Module_2")
--   **module_annotation**: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest |NES| for GSEA) for the module
--   **module_content**: All pathways/terms grouped in this module
+-   **module**: Module identifier (e.g., "go_Module_2", "Functional_module_127")
+-   **module_annotation**: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest \|NES\| for GSEA) for the module
+-   **Description**: Names of all the pathways in the module separated by `;`
+-   **module_content**: All pathways/terms (i.e. nodes) grouped in this module
 -   **Count**: Number of genes/metabolites from the input genes/metabolites list in the module
 -   **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
 

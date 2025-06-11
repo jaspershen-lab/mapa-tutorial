@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-2-merge-modules-across-databases" id="toc-step-2-merge-modules-across-databases" class="nav-link" data-scroll-target="#step-2-merge-modules-across-databases"><span class="header-section-number">4.1.2</span> Step 2: Merge Modules Across Databases</a></li>
   </ul></li>
   <li><a href="#similarity-methods-for-merged_pathways" id="toc-similarity-methods-for-merged_pathways" class="nav-link" data-scroll-target="#similarity-methods-for-merged_pathways"><span class="header-section-number">4.2</span> Similarity Methods (For <code>merged_pathways()</code>)</a></li>
-  <li><a href="#clustering-methods-for-merge_modules" id="toc-clustering-methods-for-merge_modules" class="nav-link" data-scroll-target="#clustering-methods-for-merge_modules"><span class="header-section-number">4.3</span> Clustering Methods (For <code>merge_modules()</code>)</a></li>
+  <li><a href="#sec-cluster_method" id="toc-sec-cluster_method" class="nav-link" data-scroll-target="#sec-cluster_method"><span class="header-section-number">4.3</span> Clustering Methods (For <code>merge_modules()</code>)</a></li>
   <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">4.4</span> Results Interpretation</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4.5</span> Next Steps</a></li>
   </ul>
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_sim_cluster.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></h1>
+<h1 class="title"><span id="sec-simcluster" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></h1>
 </div>
 
 
@@ -334,7 +334,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prerequisites: Before running SimCluster analysis, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The enriched_pathways object used in this chapter should be the output from the enrichment analysis step.</p>
+<p>Prerequisites: Before running SimCluster analysis, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The <code>enriched_pathways</code> object used in this chapter should be the output from the enrichment analysis step.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't performed enrichment analysis yet, run:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- enrich_pathway(...)</span></span>
@@ -630,8 +630,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="clustering-methods-for-merge_modules" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="clustering-methods-for-merge_modules"><span class="header-section-number">4.3</span> Clustering Methods (For <code>merge_modules()</code>)</h2>
+<section id="sec-cluster_method" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-cluster_method"><span class="header-section-number">4.3</span> Clustering Methods (For <code>merge_modules()</code>)</h2>
 <p>SimCluster offers three clustering algorithms, please set parameters as follows:</p>
 <ol type="1">
 <li><p>Girvan-Newman (Default)</p>
@@ -740,13 +740,14 @@ Note
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View modules within specific databases</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enriched_functional_modules<span class="sc">@</span>merged_pathway_go<span class="sc">$</span>module_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enriched_functional_modules<span class="sc">@</span>merged_pathway_go<span class="sc">$</span>module_result, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Key result columns:</p>
 <ul>
-<li><strong>module</strong>: Module identifier (e.g., “Module_1”, “go_Module_2”)</li>
+<li><strong>module</strong>: Module identifier (e.g., “go_Module_2”, “Functional_module_127”)</li>
 <li><strong>module_annotation</strong>: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest |NES| for GSEA) for the module</li>
-<li><strong>module_content</strong>: All pathways/terms grouped in this module</li>
+<li><strong>Description</strong>: Names of all the pathways in the module separated by <code>;</code></li>
+<li><strong>module_content</strong>: All pathways/terms (i.e.&nbsp;nodes) grouped in this module</li>
 <li><strong>Count</strong>: Number of genes/metabolites from the input genes/metabolites list in the module</li>
 <li><strong>p_adjust</strong>: Best (lowest) adjusted p-value among pathways in the module</li>
 </ul>
@@ -1327,8 +1328,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04_embed_cluster.html" class="pagination-link" aria-label="Embedding and Clustering">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04_embed_cluster.html" class="pagination-link" aria-label="EmbedCluster: Advanced Biotext Embedding-based Clustering">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
