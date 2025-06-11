@@ -162,8 +162,8 @@
     ]
   },
   {
-    "objectID": "04_sim_cluster.html#clustering-methods-for-merge_modules",
-    "href": "04_sim_cluster.html#clustering-methods-for-merge_modules",
+    "objectID": "04_sim_cluster.html#sec-cluster_method",
+    "href": "04_sim_cluster.html#sec-cluster_method",
     "title": "4  SimCluster: Traditional Similarity-based Clustering",
     "section": "4.3 Clustering Methods (For merge_modules())",
     "text": "4.3 Clustering Methods (For merge_modules())\nSimCluster offers three clustering algorithms, please set parameters as follows:\n\nGirvan-Newman (Default)\nCommunity detection based on edge betweenness - good for identifying natural communities in networks.\n\ncluster_method = \"girvan newman\"\nsim.cutoff = 0.5  # Only edges above this similarity are included\n\nBinary Cut\nUses the simplifyEnrichment algorithm - efficient for large datasets.\n\ncluster_method = \"binary cut\"\nsim.cutoff = 0.5  # Cutoff for cutting the dendrogram (Higher values: More permissive, larger modules)\n\nHierarchical Clustering\nTraditional hierarchical clustering with distance thresholds.\n\ncluster_method = \"hierarchical\"\nhclust.method = \"complete\"  # Linkage method\nsim.cutoff = 0.5           # Height for cutting dendrogram (Higher values: More permissive, larger modules)\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe interpretation of sim.cutoff depends on your chosen clustering method:\n\nFor Girvan-Newman Clustering\nsim.cutoff acts as an edge filter - only pathway pairs with similarity above this threshold are connected in the network.\n\n0.5: Good starting point, moderate connectivity\nLower values (0.3-0.4): More permissive, denser networks, larger modules\nHigher values (0.6-0.8): More stringent, sparser networks, smaller modules\n\nFor Binary Cut and Hierarchical Clustering\nsim.cutoff acts as a dendrogram cutting height - determines where to cut the clustering tree.\n\n0.5: Moderate module granularity\nLower values (0.3-0.4): Cut lower in tree, more fine-grained modules\nHigher values (0.6-0.8): Cut higher in tree, fewer but larger modules\n\n\nKey Difference:\n\nIn \"girvan newman\", higher cutoffs = smaller modules.\nIn \"binary cut\"/\"hierarchical\", higher cutoffs = larger modules. Always examine your results and adjust based on the biological interpretability of resulting modules.",
@@ -195,17 +195,6 @@
     ]
   },
   {
-    "objectID": "01_shinyapp_installation.html",
-    "href": "01_shinyapp_installation.html",
-    "title": "9  Installation",
-    "section": "",
-    "text": "Follow the steps below to install the latest development version of mapa shinyapp from GitHub (the script first installs BiocManager, remotes, and mapa if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\nremotes::install_github(\n  \"jaspershen-lab/mapashiny\",\n  dependencies = TRUE,\n  repos        = BiocManager::repositories(),\n  upgrade      = \"ask\"\n)",
-    "crumbs": [
-      "mapa Shiny App",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installation</span>"
-    ]
-  },
-  {
     "objectID": "04_embed_cluster.html",
     "href": "04_embed_cluster.html",
     "title": "5  EmbedCluster: Advanced Biotext Embedding-based Clustering",
@@ -214,17 +203,6 @@
     "crumbs": [
       "mapa R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>EmbedCluster: Advanced Biotext Embedding-based Clustering</span>"
-    ]
-  },
-  {
-    "objectID": "04_embed_cluster.html#overview",
-    "href": "04_embed_cluster.html#overview",
-    "title": "5  Embedding and Clustering",
-    "section": "6.1 Overview",
-    "text": "6.1 Overview\nEmbedCluster works in two main steps:\nStep 1: get_bioembedsim(): Extracts pathway text information, generates embeddings using LLM APIs, and calculates cosine similarity between pathways\nStep 2: merge_pathways_bioembedsim(): Groups pathways into functional modules based on biotext embedding similarity\n\n\n\n\n\n\n\n\n\nFunction\nSimilarity Calculation\nClustering Method\nSim.cutoff Role\n\n\n\n\nget_bioembedsim()\nCosine similarity between text embeddings from: | N/A (similarity calculation only) | N/A | | | - OpenAI embedding models (text-embedding-3-small, etc.) | | | | | - Google Gemini embedding models (text-embedding-004) | | |\n\n\nmerge_pathways_bioembedsim()\nUses precomputed biotext embedding similarity matrix | Binary Cut, Girvan-Newman, Hierarchical | Binary Cut/Hierarchical: Dendrogram cutting height | | | | | Girvan-Newman: Edge filter\n\n\n\nThis approach captures semantic relationships that traditional gene overlap methods might miss, particularly useful for identifying functionally related pathways with different gene sets.",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Embedding and Clustering</span>"
     ]
   },
   {
@@ -244,28 +222,6 @@
     "title": "5  EmbedCluster: Advanced Biotext Embedding-based Clustering",
     "section": "5.3 Step 2: Cluster Pathways Using Biotext Similarity",
     "text": "5.3 Step 2: Cluster Pathways Using Biotext Similarity\nThe merge_pathways_bioembedsim() function uses the calculated biotext embedding similarity matrix to group pathways into functional modules.\n\nenriched_bioembed_modules &lt;- \n  merge_pathways_bioembedsim(\n    object = bioembed_similarity,\n    sim.cutoff = 0.5,\n    cluster_method = \"girvan newman\"  # Options: \"binary cut\", \"girvan newman\", \"hierarchical\"\n  )\n\n# Identifying funcitonal modules...\n# Joining with `by = join_by(node)`\n# Done\n\nEmbedCluster uses the same three clustering algorithms as SimCluster. For detailed explanations of each clustering method and parameter interpretation, see Section 4.3 in SimCluster. The key difference is that EmbedCluster operates on biotext embedding similarity matrices rather than traditional gene/metabolite overlap similarity.",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>EmbedCluster: Advanced Biotext Embedding-based Clustering</span>"
-    ]
-  },
-  {
-    "objectID": "04_embed_cluster.html#clustering-methods",
-    "href": "04_embed_cluster.html#clustering-methods",
-    "title": "5  EmbedCluster: Advanced Biotext Embedding-based Clustering",
-    "section": "5.4 Clustering Methods",
-    "text": "5.4 Clustering Methods\nEmbedCluster supports the same three clustering algorithms as SimCluster:\n\n5.4.1 1. Binary Cut (Recommended)\nUses the simplifyEnrichment algorithm - efficient and well-suited for biological pathway clustering.\n\ncluster_method = \"binary cut\"\nsim.cutoff = 0.5  # Cutoff for cutting the dendrogram\n\n\n\n5.4.2 2. Girvan-Newman\nCommunity detection based on edge betweenness - identifies natural communities in pathway networks.\n\ncluster_method = \"girvan newman\" \nsim.cutoff = 0.5  # Only edges above this similarity are included\n\n\n\n5.4.3 3. Hierarchical Clustering\nTraditional hierarchical clustering with customizable linkage methods.\n\ncluster_method = \"hierarchical\"\nhclust.method = \"complete\"  # Linkage method: \"complete\", \"average\", \"single\", etc.\nsim.cutoff = 0.5           # Height for cutting dendrogram\n\n\n\n\n\n\n\nNote\n\n\n\nSimilarity Cutoff Interpretation:\nThe meaning of sim.cutoff depends on your clustering method:\n\nBinary Cut & Hierarchical: Higher values create larger modules (cut higher in dendrogram)\n\n0.3-0.4: Fine-grained, many small modules\n0.5-0.6: Moderate module sizes (recommended starting point)\n\n0.7-0.8: Fewer, larger modules\n\nGirvan-Newman: Higher values create smaller modules (stricter edge filtering)\n\n0.3-0.4: More connections, larger modules\n0.5-0.6: Moderate connectivity (recommended)\n0.7-0.8: Sparse networks, smaller modules\n\n\nThis is opposite to SimCluster behavior for some methods, so always examine your results!",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>EmbedCluster: Advanced Biotext Embedding-based Clustering</span>"
-    ]
-  },
-  {
-    "objectID": "04_embed_cluster.html#embedding-model-selection",
-    "href": "04_embed_cluster.html#embedding-model-selection",
-    "title": "5  EmbedCluster: Advanced Biotext Embedding-based Clustering",
-    "section": "5.4 Embedding Model Selection",
-    "text": "5.4 Embedding Model Selection\nChoose your embedding model based on your needs:\n\n5.4.1 OpenAI Models\n\n\n\n\n\n\n\n\n\n\nModel\nDimensions\nPerformance\nCost\nUse Case\n\n\n\n\ntext-embedding-3-small\n1,536\nGood\nLower\nRecommended for most analyses\n\n\ntext-embedding-3-large\n3,072\nBetter\nHigher\nHigh-accuracy applications\n\n\n\n\n\n5.4.2 Gemini Models\n\n\n\n\n\n\n\n\n\nModel\nDimensions\nFeatures\nUse Case\n\n\n\n\ntext-embedding-004\n768\nAuto-summarization for long text\nAlternative when OpenAI unavailable\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nModel Recommendations: - Start with text-embedding-3-small for cost-effective, high-quality results - Use text-embedding-3-large when you need maximum accuracy - Consider text-embedding-004 if you prefer Google’s ecosystem or need automatic text summarization",
     "crumbs": [
       "mapa R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>EmbedCluster: Advanced Biotext Embedding-based Clustering</span>"
@@ -305,17 +261,6 @@
     ]
   },
   {
-    "objectID": "04_sim_cluster.html#sec-cluster_method",
-    "href": "04_sim_cluster.html#sec-cluster_method",
-    "title": "4  SimCluster: Traditional Similarity-based Clustering",
-    "section": "4.3 Clustering Methods (For merge_modules())",
-    "text": "4.3 Clustering Methods (For merge_modules())\nSimCluster offers three clustering algorithms, please set parameters as follows:\n\nGirvan-Newman (Default)\nCommunity detection based on edge betweenness - good for identifying natural communities in networks.\n\ncluster_method = \"girvan newman\"\nsim.cutoff = 0.5  # Only edges above this similarity are included\n\nBinary Cut\nUses the simplifyEnrichment algorithm - efficient for large datasets.\n\ncluster_method = \"binary cut\"\nsim.cutoff = 0.5  # Cutoff for cutting the dendrogram (Higher values: More permissive, larger modules)\n\nHierarchical Clustering\nTraditional hierarchical clustering with distance thresholds.\n\ncluster_method = \"hierarchical\"\nhclust.method = \"complete\"  # Linkage method\nsim.cutoff = 0.5           # Height for cutting dendrogram (Higher values: More permissive, larger modules)\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe interpretation of sim.cutoff depends on your chosen clustering method:\n\nFor Girvan-Newman Clustering\nsim.cutoff acts as an edge filter - only pathway pairs with similarity above this threshold are connected in the network.\n\n0.5: Good starting point, moderate connectivity\nLower values (0.3-0.4): More permissive, denser networks, larger modules\nHigher values (0.6-0.8): More stringent, sparser networks, smaller modules\n\nFor Binary Cut and Hierarchical Clustering\nsim.cutoff acts as a dendrogram cutting height - determines where to cut the clustering tree.\n\n0.5: Moderate module granularity\nLower values (0.3-0.4): Cut lower in tree, more fine-grained modules\nHigher values (0.6-0.8): Cut higher in tree, fewer but larger modules\n\n\nKey Difference:\n\nIn \"girvan newman\", higher cutoffs = smaller modules.\nIn \"binary cut\"/\"hierarchical\", higher cutoffs = larger modules. Always examine your results and adjust based on the biological interpretability of resulting modules.",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SimCluster: Traditional Similarity-based Clustering</span>"
-    ]
-  },
-  {
     "objectID": "05_llm_interpretation.html",
     "href": "05_llm_interpretation.html",
     "title": "6  LLM Interpretation",
@@ -332,6 +277,17 @@
     "title": "6  LLM Interpretation",
     "section": "",
     "text": "Information Sources:\n\nPathway descriptions from GO, KEGG, Reactome, and metabolite databases\nGene/metabolite names from your input data\n\nScientific literature retrieved from PubMed based on pathway and molecule relevance\nLocal documents (optional) - your own research papers or relevant literature\n\nAnalysis Pipeline:\n\nInformation Extraction: Extracts pathway descriptions and molecule information\nLiterature Retrieval: Searches PubMed for relevant scientific papers\nRAG Strategy: Uses embeddings to find and rank the most relevant literature, see Section 6.2\nLLM Generation: Generates biological module names and research summaries",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "05_llm_interpretation.html#sec-rag",
+    "href": "05_llm_interpretation.html#sec-rag",
+    "title": "6  LLM Interpretation",
+    "section": "6.2 Understanding the RAG Strategy",
+    "text": "6.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
     "crumbs": [
       "mapa R Package",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -360,44 +316,11 @@
     ]
   },
   {
-    "objectID": "05_llm_interpretation.html#understanding-the-rag-strategy",
-    "href": "05_llm_interpretation.html#understanding-the-rag-strategy",
-    "title": "6  LLM Interpretation",
-    "section": "6.2 Understanding the RAG Strategy",
-    "text": "6.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search - Searches PubMed using pathway names and gene/metabolite information - Retrieves abstracts and titles for relevant papers - Includes reference papers cited in pathway databases\nStage 2: Embedding-based Similarity - Generates text embeddings for module descriptions (pathways + molecules) - Calculates similarity between module embeddings and paper abstracts - Filters top papers based on cosine similarity scores\nStage 3: GPT-powered Reranking - Uses LLM to assess relevance of each paper to the specific module - Assigns relevance scores (0-1) based on biological context - Cleans text by removing irrelevant metadata (author names, affiliations)\nStage 4: Final Generation - Combines module information with top-ranked papers - Generates biologically meaningful module names - Produces research summaries highlighting current knowledge\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
-    ]
-  },
-  {
     "objectID": "05_llm_interpretation.html#results-interpretation",
     "href": "05_llm_interpretation.html#results-interpretation",
     "title": "6  LLM Interpretation",
     "section": "6.5 Results Interpretation",
     "text": "6.5 Results Interpretation\nAfter running LLM interpretation, examine the results:\n\n# View analysis summary\nllm_interpreted_modules\n# -------------------- \n# Analysis method: enrich_pathway \n# -------------------- \n# -----------Variable information------------\n# 119  features/markers in total\n# -----------Enrichment results and modules of genes------------\n# -----------GO------------\n# 1025 GO terms with p.adjust &lt; 0.05 \n# 250 GO modules \n# -----------KEGG------------\n# 48 KEGG pathways with p.adjust &lt; 0.05 \n# 29 KEGG modules\n# -----------Reactome------------\n# 48 Reactome pathways with p.adjust &lt; 0.05 \n# 13 Reactome modules\n# -----------Enrichment results and modules of metabolites------------\n# -----------HMDB------------\n# No HMDB results\n# No HMDB modules\n# -----------KEGG Metabolite------------\n# No KEGG metabolite results\n# No KEGG modules\n# -----------Functional modules------------\n# 158 Functional modules\n# -----------LLM module interpretation------------\n# 10 LLM interpreted modules\n# -------------------- \n# Processing information\n# 4 processings in total\n# enrich_pathway ---------- \n#   Package    Function.used                Time\n# 1    mapa enrich_pathway() 2025-06-10 10:50:36\n# merge_pathways ---------- \n#   Package    Function.used                Time\n# 1    mapa merge_pathways() 2025-06-10 10:57:22\n# merge_modules ---------- \n#   Package   Function.used                Time\n# 1    mapa merge_modules() 2025-06-10 10:58:25\n# llm_interpret_module ---------- \n#   Package          Function.used                Time\n# 1    mapa llm_interpret_module() 2025-06-10 14:24:47\n\n\n6.5.1 Updated Functional Module Results\nThe functional module results are automatically updated with a new column llm_module_name, which is the LLM-generated names:\n\n# View updated results with LLM names\nhead(llm_interpreted_modules@merged_module$functional_module_result)\n\nKey result columns:\n\nllm_module_name: AI-generated biological module name\nmodule_annotation: Original representative annotation (fallback if LLM interpretation unavailable)\n\n\n\n6.5.2 Result Components\nFor each interpreted module, the results include:\n\nLLM InterpretationRetrieved LiteratureProcessing Details\n\n\n\n# Core interpretation results of a interpreted module\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\n\n# Module name generated by LLM\nmodule_name &lt;- module_result$generated_name$module_name\n\n# Summary of current research\nmodule_summary &lt;- module_result$generated_name$summary\n\n# Confidence score (0-1)  \nconfidence_score &lt;- module_result$generated_name$confidence_score\n\nWhen phenotype parameter was specified, result contains phenotype-specific interpretation.\n\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nphenotype_result &lt;- module_result$generated_name$phenotype_analysis\n\n\n\n\n# Papers used for interpretation\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nrelated_papers &lt;- module_result$related_paper\n\n# Access individual papers\npaper1 &lt;- related_papers[[1]]\npaper1$title           # Paper title and PubMedID\n# [1] \"Modulation of Kit/stem cell factor receptor-induced signaling by protein kinase C. (PubMedID:7520444)\"\n\npaper1$relevance_score # Relevance score assigned by GPT\n# [1] 0.9\n\npaper1$cleaned_text    # Cleaned abstract text\n# [1] \"The Kit/stem cell factor receptor (Kit/SCF-R) is a transmembrane tyrosine kinase receptor of importance for the normal development of hemopoietic cells, melanoblasts, and germ cells. We recently reported that protein kinase C (PKC) is involved in a negative feedback loop regulating the Kit/SCF-R by direct phosphorylation on serine residues in the receptor... In conclusion, SCF-induced PI-3'-kinase activation paralleled the increased SCF-induced mitogenicity after inhibition of PKC.\"\n\n\n\nIf output_prompt = TRUE, results contains the exact prompt sent to the LLM for transparency:\n\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nprompt_info &lt;- module_result$generated_name$prompt",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
-    ]
-  },
-  {
-    "objectID": "05_llm_interpretation.html#result-components",
-    "href": "05_llm_interpretation.html#result-components",
-    "title": "6  LLM Interpretation",
-    "section": "6.7 Result Components",
-    "text": "6.7 Result Components\nFor each interpreted module, the results include:\n\nBasic LLM InterpretationPhenotype-specific InterpretationRetrieved LiteratureProcessing Details\n\n\n\n# Core interpretation results of a interpreted module\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\n\n# Module name generated by LLM\nmodule_name &lt;- module_result$generated_name$module_name\n\n# Summary of current research\nmodule_summary &lt;- module_result$generated_name$summary\n\n# Confidence score (0-1)  \nconfidence_score &lt;- module_result$generated_name$confidence_score\n\n\n\n\n# When phenotype parameter was specified, results contain disease-specific interpretation and relevance\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nphenotype_result &lt;- module_result$generated_name$phenotype_analysis\n\n\n\n\n# Papers used for interpretation\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nrelated_papers &lt;- module_result$related_paper\n\n# Access individual papers\npaper1 &lt;- related_papers[[1]]\npaper1$title           # Paper title and PubMedID\n# [1] \"Modulation of Kit/stem cell factor receptor-induced signaling by protein kinase C. (PubMedID:7520444)\"\n\npaper1$relevance_score # Relevance score assigned by GPT\n# [1] 0.9\n\npaper1$cleaned_text    # Cleaned abstract text\n# [1] \"The Kit/stem cell factor receptor (Kit/SCF-R) is a transmembrane tyrosine kinase receptor of importance for the normal development of hemopoietic cells, melanoblasts, and germ cells. We recently reported that protein kinase C (PKC) is involved in a negative feedback loop regulating the Kit/SCF-R by direct phosphorylation on serine residues in the receptor... In conclusion, SCF-induced PI-3'-kinase activation paralleled the increased SCF-induced mitogenicity after inhibition of PKC.\"\n\n\n\nIf output_prompt = TRUE, results contains the exact prompt sent to the LLM for transparency:\n\nmodule_result &lt;- llm_interpreted_modules@llm_module_interpretation$Functional_module_2\nprompt_info &lt;- module_result$generated_name$prompt",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
-    ]
-  },
-  {
-    "objectID": "05_llm_interpretation.html#cost-and-performance-considerations",
-    "href": "05_llm_interpretation.html#cost-and-performance-considerations",
-    "title": "6  LLM Interpretation",
-    "section": "6.7 Cost and Performance Considerations",
-    "text": "6.7 Cost and Performance Considerations\nAPI Usage: - Each module requires multiple API calls (embedding + LLM generation) - Costs scale with number of modules and literature volume - Consider using module_content_number_cutoff to focus on important modules\nProcessing Time: - Typical processing: 2-5 minutes per module - Time increases with more literature and larger modules - Progress is displayed during processing\nQuality vs. Efficiency Trade-offs:\n\n\n\n\n\n\n\n\n\nSetting\nSpeed\nQuality\nUse Case\n\n\n\n\nsimilarity_filter_num = 10, GPT_filter_num = 3\nFast\nGood\nQuick exploration\n\n\nsimilarity_filter_num = 20, GPT_filter_num = 5\nMedium\nBetter\nStandard analysis\n\n\nsimilarity_filter_num = 30, GPT_filter_num = 8\nSlow\nBest\nComprehensive study",
     "crumbs": [
       "mapa R Package",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -426,25 +349,14 @@
     ]
   },
   {
-    "objectID": "05_llm_interpretation.html#sec-rag",
-    "href": "05_llm_interpretation.html#sec-rag",
-    "title": "6  LLM Interpretation",
-    "section": "6.2 Understanding the RAG Strategy",
-    "text": "6.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
+    "objectID": "01_shinyapp_installation.html",
+    "href": "01_shinyapp_installation.html",
+    "title": "9  Installation",
+    "section": "",
+    "text": "Follow the steps below to install the latest development version of mapa shinyapp from GitHub (the script first installs BiocManager, remotes, and mapa if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\nremotes::install_github(\n  \"jaspershen-lab/mapashiny\",\n  dependencies = TRUE,\n  repos        = BiocManager::repositories(),\n  upgrade      = \"ask\"\n)",
     "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
-    ]
-  },
-  {
-    "objectID": "05_llm_interpretation.html#updated-functional-module-results",
-    "href": "05_llm_interpretation.html#updated-functional-module-results",
-    "title": "6  LLM Interpretation",
-    "section": "6.6 Updated Functional Module Results",
-    "text": "6.6 Updated Functional Module Results\nThe functional module results are automatically updated with a new column llm_module_name, which is the LLM-generated names:\n\n# View updated results with LLM names\nhead(llm_interpreted_modules@merged_module$functional_module_result)\n\nKey result columns:\n\nllm_module_name: AI-generated biological module name\nmodule_annotation: Original representative annotation (fallback if LLM interpretation unavailable)",
-    "crumbs": [
-      "mapa R Package",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>LLM Interpretation</span>"
+      "mapa Shiny App",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installation</span>"
     ]
   }
 ]
