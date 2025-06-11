@@ -485,7 +485,7 @@
     "href": "07_res_report.html#troubleshooting-common-issues",
     "title": "8  Results Report",
     "section": "8.4 Troubleshooting Common Issues",
-    "text": "8.4 Troubleshooting Common Issues\nLaTeX/PDF Issues:\n\n# Check LaTeX installation\nSys.which(\"pdflatex\")\n\n# Install TinyTeX if empty result\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()\n\n# Alternative: use HTML for immediate results\nreport_functional_module(object, type = \"html\")\n\nMissing Dependencies: The function will provide informative error messages about missing packages and suggest installation commands.",
+    "text": "8.4 Troubleshooting Common Issues\n\nLaTeX/PDF Issues:\n\n# Check LaTeX installation\nSys.which(\"pdflatex\")\n\n# Install TinyTeX if empty result\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()\n\n# Alternative: use HTML for immediate results\nreport_functional_module(object, type = \"html\")\n\nMissing Dependencies: The function will provide informative error messages about missing packages and suggest installation commands.",
     "crumbs": [
       "mapa R Package",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"

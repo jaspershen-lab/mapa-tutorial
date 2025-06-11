@@ -23,7 +23,7 @@ The functions in this chapter work with the final `functional_module` object fro
 The reporting functions serve different purposes:
 
 | Function | Purpose | Output |
-|----------------------|----------------------------|----------------------|
+|----|----|----|
 | `export_functional_module()` | Export analysis results to CSV files | Individual UTF-8 CSV files for each analysis component |
 | `report_functional_module()` | Generate comprehensive analysis reports | HTML/PDF/Word/Markdown reports with embedded plots and tables |
 
@@ -100,21 +100,21 @@ reports/Report/
 
 The generated report automatically includes:
 
-**Analysis Summary:** 
+**Analysis Summary:**
 
-- `Parameters`: Overview of enrichment analysis parameters and results 
-- `Object information`: Summary statistics for each database and analysis level, and processing timeline and method details
+-   `Parameters`: Overview of enrichment analysis parameters and results
+-   `Object information`: Summary statistics for each database and analysis level, and processing timeline and method details
 
-**Visualizations:** 
+**Visualizations:**
 
-- Top enriched pathways bar charts
-- Database-specific module bar charts (if applicable) 
-- Functional module bar charts with LLM names (if available) 
-- Similarity networks for all analysis levels
+-   Top enriched pathways bar charts
+-   Database-specific module bar charts (if applicable)
+-   Functional module bar charts with LLM names (if available)
+-   Similarity networks for all analysis levels
 
 **Data Tables:**
 
-- One of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)
+-   One of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)
 
 ### Directory Management
 
@@ -140,23 +140,23 @@ This prevents accidental overwrites while maintaining organized output.
 
 ## Troubleshooting Common Issues
 
-**LaTeX/PDF Issues:**
+-   **LaTeX/PDF Issues:**
 
-```{r}
-#| eval: false
+    ```{r}
+    #| eval: false
 
-# Check LaTeX installation
-Sys.which("pdflatex")
+    # Check LaTeX installation
+    Sys.which("pdflatex")
 
-# Install TinyTeX if empty result
-install.packages("tinytex")
-tinytex::install_tinytex()
+    # Install TinyTeX if empty result
+    install.packages("tinytex")
+    tinytex::install_tinytex()
 
-# Alternative: use HTML for immediate results
-report_functional_module(object, type = "html")
-```
+    # Alternative: use HTML for immediate results
+    report_functional_module(object, type = "html")
+    ```
 
-**Missing Dependencies:** The function will provide informative error messages about missing packages and suggest installation commands.
+-   **Missing Dependencies:** The function will provide informative error messages about missing packages and suggest installation commands.
 
 ## Integration with Analysis Workflow
 

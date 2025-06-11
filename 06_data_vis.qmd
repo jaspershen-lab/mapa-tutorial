@@ -306,17 +306,17 @@ plot_relationship_network(
 
 **Common Issues and Solutions:**
 
-1.  **Empty plots or warnings about no data**
+-   **Empty plots or warnings about no data**
     -   Check that your cutoffs (`p.adjust.cutoff`, `count.cutoff`) aren't too stringent
     -   Verify that modules exist at the specified level
-2.  **Text labels overlapping or unreadable**
+-   **Text labels overlapping or unreadable**
     -   Adjust `y_label_width` parameter
     -   Use `text_all = FALSE` to show only representative labels
     -   Increase plot dimensions when saving
-3.  **EmbedCluster results at module level**
+-   **EmbedCluster results at module level**
     -   Use `level = "functional_module"` for EmbedCluster results
     -   EmbedCluster bypasses database-specific modules
-4.  **LLM text not appearing**
+-   **LLM text not appearing**
     -   Ensure `llm_interpret_module()` was run successfully
     -   Check that the object contains LLM interpretation results
 
