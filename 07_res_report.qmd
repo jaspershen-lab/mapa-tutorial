@@ -1,1 +1,209 @@
-# Result Report
+# Results Report {#sec-res_report}
+
+The `mapa` package provides two powerful functions for exporting and reporting your functional module analysis results: `export_functional_module()` for data export and `report_functional_module()` for comprehensive report generation. These functions help you share your findings through structured data files and professional reports.
+
+```{r}
+#| eval: false
+
+library(mapa)
+```
+
+::: callout-important
+Prerequisites: Before generating reports, ensure you have completed your mapa analysis workflow including:
+
+-   Enrichment analysis: `enrich_pathway()` or `do_gsea()`
+-   Module clustering: SimCluster or EmbedCluster
+-   Optional: LLM interpretation: `llm_interpret_module()`
+
+The functions in this chapter work with the final `functional_module` object from your analysis.
+:::
+
+## Overview
+
+The reporting functions serve different purposes:
+
+| Function | Purpose | Output |
+|----------------------|----------------------------|----------------------|
+| `export_functional_module()` | Export analysis results to CSV files | Individual UTF-8 CSV files for each analysis component |
+| `report_functional_module()` | Generate comprehensive analysis reports | HTML/PDF/Word/Markdown reports with embedded plots and tables |
+
+## Data Export with `export_functional_module()`
+
+The `export_functional_module()` function exports all analysis results to individual CSV files, making your data easily accessible for further analysis or sharing with collaborators.
+
+### Basic Usage
+
+```{r}
+#| eval: false
+
+# Export all results to CSV files
+export_functional_module(
+  object = llm_interpreted_modules,
+  path = "mapa_results"
+)
+```
+
+This creates a directory structure with individual CSV files for each analysis component:
+
+```         
+mapa_results/
+├── enriched_pathway_go.csv
+├── enriched_pathway_kegg.csv  
+├── enriched_pathway_reactome.csv
+├── enriched_module_go.csv
+├── enriched_module_kegg.csv
+├── enriched_module_reactome.csv
+├── enriched_functional_module.csv
+└── llm_module_interpretation.csv
+```
+
+### Output Files Description
+
+**Pathway-Level Results:** `enriched_pathway_*.csv`: enrichment analysis results from ORA or GSEA
+
+**Module-Level Results:** `enriched_module_*.csv`: modules from database-specific clustering (SimCluster)
+
+**Functional Module Results:**
+
+-   `enriched_functional_module.csv`: Cross-database functional modules
+-   `llm_module_interpretation.csv`: LLM-generated module interpretations (if available)
+
+::: callout-tip
+**Working with Exported Data**: The CSV files can be easily imported into Excel, R, Python, or other analysis tools. Column names and data types are preserved for seamless downstream analysis.
+:::
+
+## Comprehensive Report Generation with `report_functional_module()`
+
+The `report_functional_module()` function creates professional, publication-ready reports that combine your analysis results with automated visualizations and interpretations.
+
+### Basic Usage
+
+```{r}
+#| eval: false
+
+# Generate an HTML report
+report_functional_module(
+  object = llm_interpreted_modules,
+  path = "reports",
+  type = "html"
+)
+```
+
+This creates a report directory:
+
+```         
+reports/Report/
+├── mapa_report.html
+```
+
+### Report Contents
+
+The generated report automatically includes:
+
+**Analysis Summary:** 
+
+- `Parameters`: Overview of enrichment analysis parameters and results 
+- `Object information`: Summary statistics for each database and analysis level, and processing timeline and method details
+
+**Visualizations:** 
+
+- Top enriched pathways bar charts
+- Database-specific module bar charts (if applicable) 
+- Functional module bar charts with LLM names (if available) 
+- Similarity networks for all analysis levels
+
+**Data Tables:**
+
+- One of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)
+
+### Directory Management
+
+The function automatically manages output directories:
+
+```{r}
+#| eval: false
+
+# First report
+report_functional_module(object, path = "results")
+# Creates: results/Report/
+
+# Second report  
+report_functional_module(object, path = "results") 
+# Creates: results/Report_2/
+
+# Third report
+report_functional_module(object, path = "results")
+# Creates: results/Report_3/
+```
+
+This prevents accidental overwrites while maintaining organized output.
+
+## Troubleshooting Common Issues
+
+**LaTeX/PDF Issues:**
+
+```{r}
+#| eval: false
+
+# Check LaTeX installation
+Sys.which("pdflatex")
+
+# Install TinyTeX if empty result
+install.packages("tinytex")
+tinytex::install_tinytex()
+
+# Alternative: use HTML for immediate results
+report_functional_module(object, type = "html")
+```
+
+**Missing Dependencies:** The function will provide informative error messages about missing packages and suggest installation commands.
+
+## Integration with Analysis Workflow
+
+**Complete Workflow Example**
+
+```{r}
+#| eval: false
+
+# Complete mapa analysis workflow
+library(mapa)
+
+# 1. Data preprocessing
+variable_info <- convert_id(data = gene_data, ...)
+
+# 2. Enrichment analysis  
+enriched_results <- enrich_pathway(variable_info = variable_info, ...)
+
+# 3. Module clustering
+clustered_modules <- merge_pathways(object = enriched_results, ...)
+functional_modules <- merge_modules(object = clustered_modules, ...)
+
+# 4. LLM interpretation (optional)
+interpreted_modules <- llm_interpret_module(object = functional_modules, ...)
+
+# 5. Export data
+export_functional_module(
+  object = interpreted_modules,
+  path = "analysis_results"
+)
+
+# 6. Generate comprehensive report
+report_functional_module(
+  object = interpreted_modules, 
+  path = "final_reports",
+  type = "html"
+)
+```
+
+This workflow ensures you have both the raw data for further analysis and professional reports for communication and publication.
+
+## Next Steps
+
+With your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:
+
+-   **Further Analysis**: Use exported CSV files for custom analyses or integration with other tools
+-   **Collaboration**: Share HTML reports with colleagues for easy viewing and discussion\
+-   **Publication**: Use PDF reports and exported data for manuscript preparation
+-   **Presentation**: Extract visualizations and key findings for presentations
+
+The mapa workflow is now complete, providing you with actionable insights into the functional organization of your biological data.

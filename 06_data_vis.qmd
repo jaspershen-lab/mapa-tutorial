@@ -167,9 +167,7 @@ go_plots$barplot
 go_plots$wordcloud
 ```
 
-::: {layout="[40, 30, 30]"}
-![](images/network_go_25.png){width="242"} ![](images/barplot_go_25.png){width="197"} ![](images/wordcloud_go_25.png){width="198"}
-:::
+![](images/network_go_25.png){width="258"} ![](images/barplot_go_25.png){width="211"} ![](images/wordcloud_go_25.png){width="204"}
 
 ## Similarity Network Visualization
 
@@ -290,19 +288,19 @@ plot_relationship_network(
 
 ### Customization Options
 
-+-------------------+--------------------------------+-------------------+
-| Parameter         | Description                    | Default           |
-+===================+================================+===================+
-| `include_*`       | Include specific node types    | All `TRUE`        |
-+-------------------+--------------------------------+-------------------+
-| `*_color`         | Node colors by type            | Predefined colors |
-+-------------------+--------------------------------+-------------------+
-| `*_text`          | Show text labels               | Varies by type    |
-+-------------------+--------------------------------+-------------------+
-| `*_text_size`     | Label font size                | 3                 |
-+-------------------+--------------------------------+-------------------+
-| `circular_plot`   | Circular vs. horizontal layout | `FALSE`           |
-+-------------------+--------------------------------+-------------------+
++-----------------+--------------------------------+-------------------+
+| Parameter       | Description                    | Default           |
++=================+================================+===================+
+| `include_*`     | Include specific node types    | All `TRUE`        |
++-----------------+--------------------------------+-------------------+
+| `*_color`       | Node colors by type            | Predefined colors |
++-----------------+--------------------------------+-------------------+
+| `*_text`        | Show text labels               | Varies by type    |
++-----------------+--------------------------------+-------------------+
+| `*_text_size`   | Label font size                | 3                 |
++-----------------+--------------------------------+-------------------+
+| `circular_plot` | Circular vs. horizontal layout | `FALSE`           |
++-----------------+--------------------------------+-------------------+
 
 ## Troubleshooting Visualization Issues
 

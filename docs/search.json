@@ -437,6 +437,83 @@
     ]
   },
   {
+    "objectID": "07_res_report.html",
+    "href": "07_res_report.html",
+    "title": "8  Results Report",
+    "section": "",
+    "text": "8.1 Overview\nThe mapa package provides two powerful functions for exporting and reporting your functional module analysis results: export_functional_module() for data export and report_functional_module() for comprehensive report generation. These functions help you share your findings through structured data files and professional reports.\nThe reporting functions serve different purposes:",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#overview",
+    "href": "07_res_report.html#overview",
+    "title": "8  Results Report",
+    "section": "",
+    "text": "Function\nPurpose\nOutput\n\n\n\n\nexport_functional_module()\nExport analysis results to CSV files\nIndividual UTF-8 CSV files for each analysis component\n\n\nreport_functional_module()\nGenerate comprehensive analysis reports\nHTML/PDF/Word/Markdown reports with embedded plots and tables",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#data-export-with-export_functional_module",
+    "href": "07_res_report.html#data-export-with-export_functional_module",
+    "title": "8  Results Report",
+    "section": "8.2 Data Export with export_functional_module()",
+    "text": "8.2 Data Export with export_functional_module()\nThe export_functional_module() function exports all analysis results to individual CSV files, making your data easily accessible for further analysis or sharing with collaborators.\n\n8.2.1 Basic Usage\n\n# Export all results to CSV files\nexport_functional_module(\n  object = llm_interpreted_modules,\n  path = \"mapa_results\"\n)\n\nThis creates a directory structure with individual CSV files for each analysis component:\nmapa_results/\n├── enriched_pathway_go.csv\n├── enriched_pathway_kegg.csv  \n├── enriched_pathway_reactome.csv\n├── enriched_module_go.csv\n├── enriched_module_kegg.csv\n├── enriched_module_reactome.csv\n├── enriched_functional_module.csv\n└── llm_module_interpretation.csv\n\n\n8.2.2 Output Files Description\nPathway-Level Results: enriched_pathway_*.csv: enrichment analysis results from ORA or GSEA\nModule-Level Results: enriched_module_*.csv: modules from database-specific clustering (SimCluster)\nFunctional Module Results:\n\nenriched_functional_module.csv: Cross-database functional modules\nllm_module_interpretation.csv: LLM-generated module interpretations (if available)\n\n\n\n\n\n\n\nTip\n\n\n\nWorking with Exported Data: The CSV files can be easily imported into Excel, R, Python, or other analysis tools. Column names and data types are preserved for seamless downstream analysis.",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#comprehensive-report-generation-with-report_functional_module",
+    "href": "07_res_report.html#comprehensive-report-generation-with-report_functional_module",
+    "title": "8  Results Report",
+    "section": "8.3 Comprehensive Report Generation with report_functional_module()",
+    "text": "8.3 Comprehensive Report Generation with report_functional_module()\nThe report_functional_module() function creates professional, publication-ready reports that combine your analysis results with automated visualizations and interpretations.\n\n8.3.1 Basic Usage\n\n# Generate an HTML report\nreport_functional_module(\n  object = llm_interpreted_modules,\n  path = \"reports\",\n  type = \"html\"\n)\n\nThis creates a report directory:\nreports/Report/\n├── mapa_report.html\n\n\n8.3.2 Report Contents\nThe generated report automatically includes:\nAnalysis Summary:\n\nParameters: Overview of enrichment analysis parameters and results\nObject information: Summary statistics for each database and analysis level, and processing timeline and method details\n\nVisualizations:\n\nTop enriched pathways bar charts\nDatabase-specific module bar charts (if applicable)\nFunctional module bar charts with LLM names (if available)\nSimilarity networks for all analysis levels\n\nData Tables:\n\nOne of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)\n\n\n\n8.3.3 Directory Management\nThe function automatically manages output directories:\n\n# First report\nreport_functional_module(object, path = \"results\")\n# Creates: results/Report/\n\n# Second report  \nreport_functional_module(object, path = \"results\") \n# Creates: results/Report_2/\n\n# Third report\nreport_functional_module(object, path = \"results\")\n# Creates: results/Report_3/\n\nThis prevents accidental overwrites while maintaining organized output.",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#troubleshooting-common-issues",
+    "href": "07_res_report.html#troubleshooting-common-issues",
+    "title": "8  Results Report",
+    "section": "8.4 Troubleshooting Common Issues",
+    "text": "8.4 Troubleshooting Common Issues\nLaTeX/PDF Issues:\n\n# Check LaTeX installation\nSys.which(\"pdflatex\")\n\n# Install TinyTeX if empty result\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()\n\n# Alternative: use HTML for immediate results\nreport_functional_module(object, type = \"html\")\n\nMissing Dependencies: The function will provide informative error messages about missing packages and suggest installation commands.",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#integration-with-analysis-workflow",
+    "href": "07_res_report.html#integration-with-analysis-workflow",
+    "title": "8  Results Report",
+    "section": "8.5 Integration with Analysis Workflow",
+    "text": "8.5 Integration with Analysis Workflow\nComplete Workflow Example\n\n# Complete mapa analysis workflow\nlibrary(mapa)\n\n# 1. Data preprocessing\nvariable_info &lt;- convert_id(data = gene_data, ...)\n\n# 2. Enrichment analysis  \nenriched_results &lt;- enrich_pathway(variable_info = variable_info, ...)\n\n# 3. Module clustering\nclustered_modules &lt;- merge_pathways(object = enriched_results, ...)\nfunctional_modules &lt;- merge_modules(object = clustered_modules, ...)\n\n# 4. LLM interpretation (optional)\ninterpreted_modules &lt;- llm_interpret_module(object = functional_modules, ...)\n\n# 5. Export data\nexport_functional_module(\n  object = interpreted_modules,\n  path = \"analysis_results\"\n)\n\n# 6. Generate comprehensive report\nreport_functional_module(\n  object = interpreted_modules, \n  path = \"final_reports\",\n  type = \"html\"\n)\n\nThis workflow ensures you have both the raw data for further analysis and professional reports for communication and publication.",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "07_res_report.html#next-steps",
+    "href": "07_res_report.html#next-steps",
+    "title": "8  Results Report",
+    "section": "8.6 Next Steps",
+    "text": "8.6 Next Steps\nWith your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:\n\nFurther Analysis: Use exported CSV files for custom analyses or integration with other tools\nCollaboration: Share HTML reports with colleagues for easy viewing and discussion\n\nPublication: Use PDF reports and exported data for manuscript preparation\nPresentation: Extract visualizations and key findings for presentations\n\nThe mapa workflow is now complete, providing you with actionable insights into the functional organization of your biological data.",
+    "crumbs": [
+      "mapa R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
     "objectID": "01_shinyapp_installation.html",
     "href": "01_shinyapp_installation.html",
     "title": "9  Installation",
