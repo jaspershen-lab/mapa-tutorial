@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>References – mapa tutorial</title>
+<title>10&nbsp; Data Input and Preprocessing – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,7 +65,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07_res_report_shiny.html" rel="prev">
+<link href="./03_enrichment_analysis_shiny.html" rel="next">
+<link href="./01_shinyapp_installation.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -104,7 +120,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./02_input_shiny.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,7 +234,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
@@ -262,7 +278,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -271,15 +287,34 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#launching-the-mapa-shiny-app" id="toc-launching-the-mapa-shiny-app" class="nav-link active" data-scroll-target="#launching-the-mapa-shiny-app"><span class="header-section-number">10.1</span> Launching the mapa Shiny App</a></li>
+  <li><a href="#accessing-the-upload-data-interface" id="toc-accessing-the-upload-data-interface" class="nav-link" data-scroll-target="#accessing-the-upload-data-interface"><span class="header-section-number">10.2</span> Accessing the Upload Data Interface</a></li>
+  <li><a href="#input-data-requirements" id="toc-input-data-requirements" class="nav-link" data-scroll-target="#input-data-requirements"><span class="header-section-number">10.3</span> Input Data Requirements</a></li>
+  <li><a href="#step-by-step-guide" id="toc-step-by-step-guide" class="nav-link" data-scroll-target="#step-by-step-guide"><span class="header-section-number">10.4</span> Step-by-Step Guide</a>
+  <ul class="collapse">
+  <li><a href="#step-1-select-query-type" id="toc-step-1-select-query-type" class="nav-link" data-scroll-target="#step-1-select-query-type"><span class="header-section-number">10.4.1</span> Step 1: Select Query Type</a></li>
+  <li><a href="#step-2-load-your-data" id="toc-step-2-load-your-data" class="nav-link" data-scroll-target="#step-2-load-your-data"><span class="header-section-number">10.4.2</span> Step 2: Load Your Data</a></li>
+  <li><a href="#step-3-configure-id-conversion-parameters" id="toc-step-3-configure-id-conversion-parameters" class="nav-link" data-scroll-target="#step-3-configure-id-conversion-parameters"><span class="header-section-number">10.4.3</span> Step 3: Configure ID Conversion Parameters</a></li>
+  <li><a href="#step-4-process-your-data" id="toc-step-4-process-your-data" class="nav-link" data-scroll-target="#step-4-process-your-data"><span class="header-section-number">10.4.4</span> Step 4: Process Your Data</a></li>
+  <li><a href="#step-5-review-and-download-results" id="toc-step-5-review-and-download-results" class="nav-link" data-scroll-target="#step-5-review-and-download-results"><span class="header-section-number">10.4.5</span> Step 5: Review and Download Results</a></li>
+  </ul></li>
+  <li><a href="#understanding-the-results" id="toc-understanding-the-results" class="nav-link" data-scroll-target="#understanding-the-results"><span class="header-section-number">10.5</span> Understanding the Results</a></li>
+  <li><a href="#troubleshooting-common-issues" id="toc-troubleshooting-common-issues" class="nav-link" data-scroll-target="#troubleshooting-common-issues"><span class="header-section-number">10.6</span> Troubleshooting Common Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.7</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./02_input_shiny.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></h1>
 </div>
 
 
@@ -296,11 +331,332 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<p>This chapter covers how to input and preprocess your data using the mapa Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.</p>
+<section id="launching-the-mapa-shiny-app" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="launching-the-mapa-shiny-app"><span class="header-section-number">10.1</span> Launching the mapa Shiny App</h2>
+<p>Before you can input and process your data, you need to launch the mapa Shiny application.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Ensure you have installed both the <code>mapa</code> package and <code>mapashiny</code> package as described in <a href="01_shinyapp_installation.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+</div>
+</div>
+<p>To launch the mapa Shiny app, run the following command in your R console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapashiny)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">run_app</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once launched, you’ll see the mapa interface with:</p>
+<ul>
+<li><strong>Header</strong>: Application title and navigation</li>
+<li><strong>Sidebar</strong>: Menu with different analysis steps</li>
+<li><strong>Main Panel</strong>: Content area for each analysis step</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_introduction.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<p>The sidebar contains the following sections:</p>
+<ul>
+<li><strong>Introduction</strong>: Overview of mapa functionality</li>
+<li><strong>Upload Data</strong>: File upload and ID conversion (covered in this chapter)</li>
+<li><strong>Enrich Pathways</strong>: Pathway enrichment analysis</li>
+<li><strong>Pathway Clustering</strong>: Two methods for grouping related pathways</li>
+<li><strong>LLM Interpretation</strong>: AI-powered functional module annotation</li>
+<li><strong>Data Visualization</strong>: Results plotting and visualization</li>
+<li><strong>Results &amp; Report</strong>: Final results and report generation</li>
+</ul>
+</section>
+<section id="accessing-the-upload-data-interface" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="accessing-the-upload-data-interface"><span class="header-section-number">10.2</span> Accessing the Upload Data Interface</h2>
+<p>After launching the mapa Shiny app, navigate to the <strong>Upload Data</strong> tab in the sidebar. The interface is divided into two main sections:</p>
+<ul>
+<li><strong>Left Panel</strong>: File upload, data type selection, and processing parameters</li>
+<li><strong>Right Panel</strong>: Data preview and download options</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="input-data-requirements" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="input-data-requirements"><span class="header-section-number">10.3</span> Input Data Requirements</h2>
+<p>The Shiny app accepts <strong>CSV files</strong> (<code>.csv</code>) and <strong>Excel files</strong> (<code>.xlsx</code>, <code>.xls</code>). For more details and examples, see <a href="02_input.html#sec-input_data_requirement" class="quarto-xref"><span>Section 2.1</span></a>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Gene Expression Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metabolite Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>For Over-Representation Analysis (ORA), your data must contain <strong>one</strong> of the following identifier columns (column names must be lowercase):</p>
+<ul>
+<li><code>ensembl</code>: Ensembl gene IDs (e.g., “ENSG00000141510”)</li>
+<li><code>entrezid</code>: NCBI Entrez gene IDs (e.g., “7157”)</li>
+<li><code>uniprot</code>: UniProtKB accession numbers (e.g., “P04637”)</li>
+<li><code>symbol</code>: Gene symbols (e.g., “TP53”)</li>
+</ul>
+<p>For Gene Set Enrichment Analysis (GSEA), you need:</p>
+<ol type="1">
+<li><strong>One identifier column</strong> (ensembl, entrezid, uniprot, or symbol)</li>
+<li><strong>An <code>order_by</code> column</strong> containing numeric values to rank genes (This is used to create the <strong>ranked gene list</strong> required for GSEA. Common choices like Log2 fold change values, pvalue)</li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>For metabolite analysis, your data must contain <strong>one</strong> of the following identifier columns:</p>
+<ul>
+<li><code>hmdbid</code>: Human Metabolome Database IDs (e.g., “HMDB0000001”) - <strong>Human only</strong></li>
+<li><code>keggid</code>: KEGG Compound IDs (e.g., “C00001”) - <strong>All organisms</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="step-by-step-guide" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="step-by-step-guide"><span class="header-section-number">10.4</span> Step-by-Step Guide</h2>
+<section id="step-1-select-query-type" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="step-1-select-query-type"><span class="header-section-number">10.4.1</span> Step 1: Select Query Type</h3>
+<p>First, choose your data type using the radio buttons:</p>
+<ul>
+<li><strong>Gene</strong>: For gene expression or proteomic data</li>
+<li><strong>Metabolite</strong>: For metabolomic data</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_query_type.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="step-2-load-your-data" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="step-2-load-your-data"><span class="header-section-number">10.4.2</span> Step 2: Load Your Data</h3>
+<p>You have two options for loading data:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Option A: Upload Your Own Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Option B: Use Example Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ol type="1">
+<li>Click <strong>“Browse”</strong> to upload your file</li>
+<li>Select a CSV or Excel file from your computer</li>
+<li>The data will be automatically loaded and displayed in the preview table</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_browse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>For quick testing, select from the available example datasets:</p>
+<p><strong>Gene Examples:</strong></p>
+<ul>
+<li><strong>Pathway Enrichment Example</strong>: Sample data for Over-Representation Analysis (ORA)</li>
+<li><strong>GSEA Example</strong>: Sample data with fold change values for Gene Set Enrichment Analysis</li>
+</ul>
+<p><strong>Metabolite Examples:</strong></p>
+<ul>
+<li><strong>Pathway Enrichment Example</strong>: Sample metabolite data for pathway analysis</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_example_dt.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-configure-id-conversion-parameters" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="step-3-configure-id-conversion-parameters"><span class="header-section-number">10.4.3</span> Step 3: Configure ID Conversion Parameters</h3>
+<section id="for-gene-data" class="level4" data-number="10.4.3.1">
+<h4 data-number="10.4.3.1" class="anchored" data-anchor-id="for-gene-data"><span class="header-section-number">10.4.3.1</span> For Gene Data</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Model Organisms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Non-Model Organisms</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>If working with common model organisms:</p>
+<ol type="1">
+<li><strong>Select Organism</strong>: Choose from the dropdown menu</li>
+<li><strong>Input ID Type</strong>: Select the identifier type in your data</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_param.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>For organisms without standard Bioconductor packages:</p>
+<ol type="1">
+<li><strong>AnnotationHub ID</strong>: Enter the AnnotationHub identifier (e.g., “AH119900”)</li>
+<li><strong>Return OrgDb</strong>: Check this box to return the organism database for downstream analysis</li>
+<li><strong>Input ID Type</strong>: Select your input identifier type</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_param_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Finding AnnotationHub IDs:</strong></p>
+<p>To find the correct AnnotationHub ID for your organism:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Search by taxonomy ID (e.g., 9541 for Macaca fascicularis)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> AnnotationHub<span class="sc">::</span><span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"OrgDb"</span>, <span class="st">"9541"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>query_result<span class="sc">$</span>ah_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="for-metabolite-data" class="level4" data-number="10.4.3.2">
+<h4 data-number="10.4.3.2" class="anchored" data-anchor-id="for-metabolite-data"><span class="header-section-number">10.4.3.2</span> For Metabolite Data</h4>
+<ol type="1">
+<li><strong>Organism</strong>: Select from <a href="https://www.genome.jp/kegg/tables/br08606.html">KEGG organism codes</a></li>
+<li><strong>Input ID Type</strong>: Choose the identifier type in your data: KEGG ID (available for all organisms), HMDB ID (human only)</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_met_org.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Organism Limitations for Metabolites:</strong></p>
+<ul>
+<li>HMDB IDs are only supported for human data</li>
+<li>For non-human organisms, only KEGG IDs are available</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="step-4-process-your-data" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="step-4-process-your-data"><span class="header-section-number">10.4.4</span> Step 4: Process Your Data</h3>
+<ol type="1">
+<li>Click the <strong>“Submit”</strong> button to start ID conversion</li>
+<li>The app will validate your inputs and perform the conversion</li>
+<li>Success or error messages will appear as notifications</li>
+<li>Processed data will be displayed in the preview table</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_02_upload_data_submit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="step-5-review-and-download-results" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="step-5-review-and-download-results"><span class="header-section-number">10.4.5</span> Step 5: Review and Download Results</h3>
+<p>After successful processing:</p>
+<ol type="1">
+<li><strong>Preview</strong>: Review the converted data in the <strong>“Marker information”</strong> tab</li>
+<li><strong>Download</strong>: Click the <strong>“Download”</strong> button to save the processed data as a CSV file</li>
+<li><strong>View Code</strong>: Click the <strong>“Code”</strong> button to see the R code that replicates your conversion</li>
+</ol>
+</section>
+</section>
+<section id="understanding-the-results" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="understanding-the-results"><span class="header-section-number">10.5</span> Understanding the Results</h2>
+<p>After ID conversion, your data will contain all necessary identifier columns:</p>
+<p><strong>For Genes:</strong></p>
+<ul>
+<li>Original columns from your input data</li>
+<li><code>ensembl</code>: Ensembl gene IDs</li>
+<li><code>entrezid</code>: NCBI Entrez gene IDs<br>
+</li>
+<li><code>uniprot</code>: UniProtKB accession numbers</li>
+<li><code>symbol</code>: Gene symbols</li>
+</ul>
+<p><strong>For Metabolites:</strong></p>
+<ul>
+<li>Original columns from your input data</li>
+<li><code>hmdbid</code>: HMDB IDs (human only)</li>
+<li><code>keggid</code>: KEGG compound IDs</li>
+</ul>
+</section>
+<section id="troubleshooting-common-issues" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="troubleshooting-common-issues"><span class="header-section-number">10.6</span> Troubleshooting Common Issues</h2>
+<ul>
+<li><p>File Upload Problems</p>
+<p><strong>Issue</strong>: “Unsupported file format” error</p>
+<p><strong>Solution</strong>: Ensure your file is in CSV (.csv) or Excel (.xlsx, .xls) format</p></li>
+<li><p>ID Conversion Errors</p>
+<p><strong>Issue</strong>: “Invalid OrgDb package name” error</p>
+<p><strong>Solution</strong>: Ensure the organism package name follows the format <code>org.XX.eg.db</code></p>
+<p><strong>Issue</strong>: “Package not installed” error</p>
+<p><strong>Solution</strong>: Install the required Bioconductor package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">'org.Hs.eg.db'</span>)  <span class="co"># Example for human</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Issue</strong>: High percentage of failed ID mappings</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Verify your input ID type selection matches your data</li>
+<li>Check for typos or formatting issues in your identifiers</li>
+<li>Some ID loss is normal during conversion</li>
+</ul></li>
+<li><p>Non-Model Organism Issues</p>
+<p><strong>Issue</strong>: AnnotationHub ID not found</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Verify the AnnotationHub ID is correct</li>
+<li>Check internet connection for AnnotationHub access</li>
+<li>Use the search method provided in the tip above</li>
+</ul>
+<p><strong>Issue</strong>: Blank columns appear for some identifier types after ID conversion</p>
+<p><strong>Solution</strong>: Some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.</p></li>
+</ul>
+</section>
+<section id="next-steps" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.7</span> Next Steps</h2>
+<p>Once your data is successfully processed:</p>
+<ol type="1">
+<li>Click the <strong>“Next”</strong> button to proceed to <strong>Enrich Pathways</strong></li>
+<li>Or navigate manually to the <strong>Enrich Pathways</strong> tab in the sidebar</li>
+</ol>
+<p>The processed data will automatically be available for pathway enrichment analysis in the next step.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Before Proceeding</strong>: Ensure your data conversion was successful and all necessary identifier columns are present. The enrichment analysis requires properly formatted identifier information to function correctly.</p>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -866,11 +1222,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07_res_report_shiny.html" class="pagination-link" aria-label="Result Report">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Result Report</span></span>
+      <a href="./01_shinyapp_installation.html" class="pagination-link" aria-label="Installation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./03_enrichment_analysis_shiny.html" class="pagination-link" aria-label="Enrichment Analysis">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -878,4 +1237,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/references.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/02_input_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/02_input_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

@@ -52,8 +52,8 @@
     ]
   },
   {
-    "objectID": "02_input.html#input-data-format-requirements",
-    "href": "02_input.html#input-data-format-requirements",
+    "objectID": "02_input.html#sec-input_data_requirement",
+    "href": "02_input.html#sec-input_data_requirement",
     "title": "2  Data input and preprocessing",
     "section": "",
     "text": "2.1.1 Gene Expression Data\nmapa accepts gene expression data with flexible identifier requirements, depending on your analysis type. Your input data must contain at least one of the following identifier columns:\n\nensembl: Ensembl gene IDs (e.g., “ENSG00000141510”)\nentrezid: NCBI Entrez gene IDs (e.g., “7157”)\nuniprot: UniProtKB accession numbers (e.g., “P04637”)\nsymbol: Gene symbols (e.g., “TP53”)\n\n\n\n\n\n\n\nImportant\n\n\n\nColumn names must be in lowercase.\n\n\n\nOver-Representation Analysis (ORA)Gene Set Enrichment Analysis (GSEA)\n\n\nFor ORA, you only need one identifier column plus any additional metadata:\n\n# Example ORA input data\nora_data &lt;- readr::read_csv(\"examples/example_ora_gene_data.csv\")\nhead(ora_data)\n# # A tibble: 6 × 2\n#   variable_id ensembl        \n#   &lt;chr&gt;       &lt;chr&gt;          \n# 1 gene_1      ENSG00000100097\n# 2 gene_2      ENSG00000139193\n# 3 gene_3      ENSG00000163513\n# 4 gene_4      ENSG00000127863\n# 5 gene_5      ENSG00000115604\n# 6 gene_6      ENSG00000153002\n\n\n\nFor GSEA, you need:\n\nOne identifier column (ensembl, entrezid, uniprot, or symbol)\nAn order_by column containing numeric values to rank genes (This is used to create the ranked gene list required for GSEA. Common choices like Log2 fold change values, pvalue)\n\n\n# Example GSEA input data\ngsea_data &lt;- readr::read_csv(\"examples/example_gsea_data.csv\")\nhead(gsea_data)\n# # A tibble: 6 × 8\n#   variable_id ensembl         genename                                                 genetype       length     fc  p_value p_value_adjust\n#   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;                                                    &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;\n# 1 gene_1      ENSG00000160072 ATPase family AAA domain containing 3B                   protein-coding  26084 0.358  0.00517         0.0202 \n# 2 gene_11     ENSG00000157911 peroxisomal biogenesis factor 10                         protein-coding   9834 0.234  0.000261        0.00514\n# 3 gene_12     ENSG00000269896 small nuclear ribonucleoprotein polypeptide N pseudogene pseudo            214 0.0665 0.00884         0.0277 \n# 4 gene_16     ENSG00000157933 SKI proto-oncogene                                       protein-coding  82826 0.232  0.000220        0.00490\n# 5 gene_29     ENSG00000149527 phospholipase C eta 2                                    protein-coding  79553 0.0373 0.00720         0.0244 \n# 6 gene_31     ENSG00000171621 splA/ryanodine receptor domain and SOCS box containing 1 protein-coding  76639 2.68   0.00636         0.0226 \n\n\n\n\n\n\n2.1.2 Metabolite Data\nFor metabolite analysis, mapa currently supports Over-Representation Analysis (ORA) only. You only need one identifier column plus any additional metadata (Column names must be in lowercase):\n\nhmdbid: Human Metabolome Database IDs (e.g., “HMDB0000001”, “HMDB0000002”) - Human only\nkeggid: KEGG Compound IDs (e.g., “C00001”, “C00002”) - All organisms\n\n\n\n\n\n\n\nNote\n\n\n\n\nFor human metabolites: You can use either hmdbid or keggid as input\nFor other organisms: Only keggid is supported\nGSEA for metabolites is not currently supported\n\n\n\n\n# Example metabolite input data with HMDB IDs (human only)\nmetabolite_data &lt;- readr::read_csv(\"examples/example_metabolite_data.csv\")\nhead(metabolite_data)\n# # A tibble: 6 × 4\n#   variable_id    keggid      fdr score\n#   &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;\n# 1 M441T680_2_NEG NA     3.59e-16  1.11\n# 2 M448T566_NEG   C05466 5.12e- 3  1.13\n# 3 M229T462_NEG   C02678 7.43e- 4  1.20\n# 4 M367T590_NEG   C04555 2.28e- 4  1.34\n# 5 M221T50_POS    C13008 7.99e- 3  1.36\n# 6 M544T604_POS   C04230 1.19e-18  1.53",
@@ -522,6 +522,94 @@
     "crumbs": [
       "mapa Shiny App",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html",
+    "href": "02_input_shiny.html",
+    "title": "10  Data Input and Preprocessing",
+    "section": "",
+    "text": "10.1 Launching the mapa Shiny App\nThis chapter covers how to input and preprocess your data using the mapa Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.\nBefore you can input and process your data, you need to launch the mapa Shiny application.\nTo launch the mapa Shiny app, run the following command in your R console:\nlibrary(mapashiny)\nrun_app()\nOnce launched, you’ll see the mapa interface with:\nThe sidebar contains the following sections:",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#launching-the-mapa-shiny-app",
+    "href": "02_input_shiny.html#launching-the-mapa-shiny-app",
+    "title": "10  Data Input and Preprocessing",
+    "section": "",
+    "text": "Important\n\n\n\nPrerequisites: Ensure you have installed both the mapa package and mapashiny package as described in Chapter 9.\n\n\n\n\n\n\nHeader: Application title and navigation\nSidebar: Menu with different analysis steps\nMain Panel: Content area for each analysis step\n\n\n\n\n\n\n\n\nIntroduction: Overview of mapa functionality\nUpload Data: File upload and ID conversion (covered in this chapter)\nEnrich Pathways: Pathway enrichment analysis\nPathway Clustering: Two methods for grouping related pathways\nLLM Interpretation: AI-powered functional module annotation\nData Visualization: Results plotting and visualization\nResults & Report: Final results and report generation",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#accessing-the-upload-data-interface",
+    "href": "02_input_shiny.html#accessing-the-upload-data-interface",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.2 Accessing the Upload Data Interface",
+    "text": "10.2 Accessing the Upload Data Interface\nAfter launching the mapa Shiny app, navigate to the Upload Data tab in the sidebar. The interface is divided into two main sections:\n\nLeft Panel: File upload, data type selection, and processing parameters\nRight Panel: Data preview and download options",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#input-data-requirements",
+    "href": "02_input_shiny.html#input-data-requirements",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.3 Input Data Requirements",
+    "text": "10.3 Input Data Requirements\nThe Shiny app accepts CSV files (.csv) and Excel files (.xlsx, .xls). For more details and examples, see Section 2.1.\n\nGene Expression DataMetabolite Data\n\n\nFor Over-Representation Analysis (ORA), your data must contain one of the following identifier columns (column names must be lowercase):\n\nensembl: Ensembl gene IDs (e.g., “ENSG00000141510”)\nentrezid: NCBI Entrez gene IDs (e.g., “7157”)\nuniprot: UniProtKB accession numbers (e.g., “P04637”)\nsymbol: Gene symbols (e.g., “TP53”)\n\nFor Gene Set Enrichment Analysis (GSEA), you need:\n\nOne identifier column (ensembl, entrezid, uniprot, or symbol)\nAn order_by column containing numeric values to rank genes (This is used to create the ranked gene list required for GSEA. Common choices like Log2 fold change values, pvalue)\n\n\n\nFor metabolite analysis, your data must contain one of the following identifier columns:\n\nhmdbid: Human Metabolome Database IDs (e.g., “HMDB0000001”) - Human only\nkeggid: KEGG Compound IDs (e.g., “C00001”) - All organisms",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#step-by-step-guide",
+    "href": "02_input_shiny.html#step-by-step-guide",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.4 Step-by-Step Guide",
+    "text": "10.4 Step-by-Step Guide\n\n10.4.1 Step 1: Select Query Type\nFirst, choose your data type using the radio buttons:\n\nGene: For gene expression or proteomic data\nMetabolite: For metabolomic data\n\n\n\n\n\n\n\n\n10.4.2 Step 2: Load Your Data\nYou have two options for loading data:\n\nOption A: Upload Your Own DataOption B: Use Example Data\n\n\n\nClick “Browse” to upload your file\nSelect a CSV or Excel file from your computer\nThe data will be automatically loaded and displayed in the preview table\n\n\n\n\n\n\n\n\nFor quick testing, select from the available example datasets:\nGene Examples:\n\nPathway Enrichment Example: Sample data for Over-Representation Analysis (ORA)\nGSEA Example: Sample data with fold change values for Gene Set Enrichment Analysis\n\nMetabolite Examples:\n\nPathway Enrichment Example: Sample metabolite data for pathway analysis\n\n\n\n\n\n\n\n\n\n\n\n10.4.3 Step 3: Configure ID Conversion Parameters\n\n10.4.3.1 For Gene Data\n\nModel OrganismsNon-Model Organisms\n\n\nIf working with common model organisms:\n\nSelect Organism: Choose from the dropdown menu\nInput ID Type: Select the identifier type in your data\n\n\n\n\n\n\n\n\nFor organisms without standard Bioconductor packages:\n\nAnnotationHub ID: Enter the AnnotationHub identifier (e.g., “AH119900”)\nReturn OrgDb: Check this box to return the organism database for downstream analysis\nInput ID Type: Select your input identifier type\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFinding AnnotationHub IDs:\nTo find the correct AnnotationHub ID for your organism:\n\nlibrary(AnnotationHub)\nah &lt;- AnnotationHub()\n# Search by taxonomy ID (e.g., 9541 for Macaca fascicularis)\nquery_result &lt;- AnnotationHub::query(ah, c(\"OrgDb\", \"9541\"))\nquery_result$ah_id\n\n\n\n\n\n\n\n\n10.4.3.2 For Metabolite Data\n\nOrganism: Select from KEGG organism codes\nInput ID Type: Choose the identifier type in your data: KEGG ID (available for all organisms), HMDB ID (human only)\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nOrganism Limitations for Metabolites:\n\nHMDB IDs are only supported for human data\nFor non-human organisms, only KEGG IDs are available\n\n\n\n\n\n\n10.4.4 Step 4: Process Your Data\n\nClick the “Submit” button to start ID conversion\nThe app will validate your inputs and perform the conversion\nSuccess or error messages will appear as notifications\nProcessed data will be displayed in the preview table\n\n\n\n\n\n\n\n\n10.4.5 Step 5: Review and Download Results\nAfter successful processing:\n\nPreview: Review the converted data in the “Marker information” tab\nDownload: Click the “Download” button to save the processed data as a CSV file\nView Code: Click the “Code” button to see the R code that replicates your conversion",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#understanding-the-results",
+    "href": "02_input_shiny.html#understanding-the-results",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.5 Understanding the Results",
+    "text": "10.5 Understanding the Results\nAfter ID conversion, your data will contain all necessary identifier columns:\nFor Genes:\n\nOriginal columns from your input data\nensembl: Ensembl gene IDs\nentrezid: NCBI Entrez gene IDs\n\nuniprot: UniProtKB accession numbers\nsymbol: Gene symbols\n\nFor Metabolites:\n\nOriginal columns from your input data\nhmdbid: HMDB IDs (human only)\nkeggid: KEGG compound IDs",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#troubleshooting-common-issues",
+    "href": "02_input_shiny.html#troubleshooting-common-issues",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.6 Troubleshooting Common Issues",
+    "text": "10.6 Troubleshooting Common Issues\n\nFile Upload Problems\nIssue: “Unsupported file format” error\nSolution: Ensure your file is in CSV (.csv) or Excel (.xlsx, .xls) format\nID Conversion Errors\nIssue: “Invalid OrgDb package name” error\nSolution: Ensure the organism package name follows the format org.XX.eg.db\nIssue: “Package not installed” error\nSolution: Install the required Bioconductor package:\n\nBiocManager::install('org.Hs.eg.db')  # Example for human\n\nIssue: High percentage of failed ID mappings\nSolution:\n\nVerify your input ID type selection matches your data\nCheck for typos or formatting issues in your identifiers\nSome ID loss is normal during conversion\n\nNon-Model Organism Issues\nIssue: AnnotationHub ID not found\nSolution:\n\nVerify the AnnotationHub ID is correct\nCheck internet connection for AnnotationHub access\nUse the search method provided in the tip above\n\nIssue: Blank columns appear for some identifier types after ID conversion\nSolution: Some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "02_input_shiny.html#next-steps",
+    "href": "02_input_shiny.html#next-steps",
+    "title": "10  Data Input and Preprocessing",
+    "section": "10.7 Next Steps",
+    "text": "10.7 Next Steps\nOnce your data is successfully processed:\n\nClick the “Next” button to proceed to Enrich Pathways\nOr navigate manually to the Enrich Pathways tab in the sidebar\n\nThe processed data will automatically be available for pathway enrichment analysis in the next step.\n\n\n\n\n\n\nImportant\n\n\n\nBefore Proceeding: Ensure your data conversion was successful and all necessary identifier columns are present. The enrichment analysis requires properly formatted identifier information to function correctly.",
+    "crumbs": [
+      "mapa Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
     ]
   }
 ]

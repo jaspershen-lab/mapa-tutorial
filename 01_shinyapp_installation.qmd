@@ -1,4 +1,4 @@
-# Installation
+# Installation {#sec-shinyapp_installation}
 
 Follow the steps below to install the latest development version of **mapa shinyapp** from GitHub (the script first installs *BiocManager*, *remotes*, and *mapa* if you don’t have them):
 

@@ -9,7 +9,7 @@ This chapter covers the input data requirements for mapa analysis, including the
 library(mapa)
 ```
 
-## Input Data Format Requirements
+## Input Data Format Requirements {#sec-input_data_requirement}
 
 ### Gene Expression Data
 

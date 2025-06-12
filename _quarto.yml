@@ -32,6 +32,7 @@ book:
     - part: "mapa Shiny App"
       chapters:
         - 01_shinyapp_installation.qmd
+        - 02_input_shiny.qmd
         - 03_enrichment_analysis_shiny.qmd
         - 04_sim_cluster_shiny.qmd
         - 04_embed_cluster_shiny.qmd
