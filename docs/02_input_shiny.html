@@ -397,10 +397,10 @@ Important
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>For Over-Representation Analysis (ORA), your data must contain <strong>one</strong> of the following identifier columns (column names must be lowercase):</p>
 <ul>
-<li><code>ensembl</code>: Ensembl gene IDs (e.g., “ENSG00000141510”)</li>
-<li><code>entrezid</code>: NCBI Entrez gene IDs (e.g., “7157”)</li>
-<li><code>uniprot</code>: UniProtKB accession numbers (e.g., “P04637”)</li>
-<li><code>symbol</code>: Gene symbols (e.g., “TP53”)</li>
+<li><code>ensembl</code>: <a href="https://asia.ensembl.org/info/genome/stable_ids/index.html">Ensembl gene IDs</a> (e.g., “ENSG00000141510”)</li>
+<li><code>entrezid</code>: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1761442/">NCBI Entrez gene IDs</a> (e.g., “7157”)</li>
+<li><code>uniprot</code>: <a href="https://www.uniprot.org/help/accession_numbers">UniProtKB accession numbers</a> (e.g., “P04637”)</li>
+<li><code>symbol</code>: <a href="https://www.pnas.org/doi/full/10.1073/pnas.2025207118">Gene symbols</a> (e.g., “TP53”)</li>
 </ul>
 <p>For Gene Set Enrichment Analysis (GSEA), you need:</p>
 <ol type="1">
@@ -411,8 +411,8 @@ Important
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>For metabolite analysis, your data must contain <strong>one</strong> of the following identifier columns:</p>
 <ul>
-<li><code>hmdbid</code>: Human Metabolome Database IDs (e.g., “HMDB0000001”) - <strong>Human only</strong></li>
-<li><code>keggid</code>: KEGG Compound IDs (e.g., “C00001”) - <strong>All organisms</strong></li>
+<li><code>hmdbid</code>: <a href="https://www.hmdb.ca">Human Metabolome Database IDs</a> (e.g., “HMDB0000001”) - <strong>Human only</strong></li>
+<li><code>keggid</code>: <a href="https://www.genome.jp/kegg/compound/">KEGG Compound IDs</a> (e.g., “C00001”) - <strong>All organisms</strong></li>
 </ul>
 </div>
 </div>
@@ -481,8 +481,21 @@ Important
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>If working with common model organisms:</p>
 <ol type="1">
-<li><strong>Select Organism</strong>: Choose from the dropdown menu</li>
-<li><strong>Input ID Type</strong>: Select the identifier type in your data</li>
+<li><p><strong>Select Organism</strong>: Choose from the dropdown menu for standard organism database Bioconductor packages.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and select the one that matches your species of interest <a href="https://bioconductor.org/packages/release/BiocViews.html#___OrgDb">here</a>.</p>
+</div>
+</div></li>
+<li><p><strong>Input ID Type</strong>: Select the identifier type in your data</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -538,23 +551,6 @@ Tip
 <p><img src="images/shinyapp_02_upload_data_met_org.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Organism Limitations for Metabolites:</strong></p>
-<ul>
-<li>HMDB IDs are only supported for human data</li>
-<li>For non-human organisms, only KEGG IDs are available</li>
-</ul>
-</div>
-</div>
 </section>
 </section>
 <section id="step-4-process-your-data" class="level3" data-number="10.4.4">
@@ -593,6 +589,19 @@ Note
 <li><code>uniprot</code>: UniProtKB accession numbers</li>
 <li><code>symbol</code>: Gene symbols</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Blank columns might appear for some identifier types after ID conversion. Because some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.</p>
+</div>
+</div>
 <p><strong>For Metabolites:</strong></p>
 <ul>
 <li>Original columns from your input data</li>
@@ -628,9 +637,7 @@ Note
 <li>Verify the AnnotationHub ID is correct</li>
 <li>Check internet connection for AnnotationHub access</li>
 <li>Use the search method provided in the tip above</li>
-</ul>
-<p><strong>Issue</strong>: Blank columns appear for some identifier types after ID conversion</p>
-<p><strong>Solution</strong>: Some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="next-steps" class="level2" data-number="10.7">

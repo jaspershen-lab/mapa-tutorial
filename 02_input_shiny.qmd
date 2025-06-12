@@ -55,10 +55,10 @@ The Shiny app accepts **CSV files** (`.csv`) and **Excel files** (`.xlsx`, `.xls
 
 For Over-Representation Analysis (ORA), your data must contain **one** of the following identifier columns (column names must be lowercase):
 
--   `ensembl`: Ensembl gene IDs (e.g., "ENSG00000141510")
--   `entrezid`: NCBI Entrez gene IDs (e.g., "7157")
--   `uniprot`: UniProtKB accession numbers (e.g., "P04637")
--   `symbol`: Gene symbols (e.g., "TP53")
+-   `ensembl`: [Ensembl gene IDs](https://asia.ensembl.org/info/genome/stable_ids/index.html) (e.g., "ENSG00000141510")
+-   `entrezid`: [NCBI Entrez gene IDs](https://pmc.ncbi.nlm.nih.gov/articles/PMC1761442/) (e.g., "7157")
+-   `uniprot`: [UniProtKB accession numbers](https://www.uniprot.org/help/accession_numbers) (e.g., "P04637")
+-   `symbol`: [Gene symbols](https://www.pnas.org/doi/full/10.1073/pnas.2025207118) (e.g., "TP53")
 
 For Gene Set Enrichment Analysis (GSEA), you need:
 
@@ -69,8 +69,8 @@ For Gene Set Enrichment Analysis (GSEA), you need:
 
 For metabolite analysis, your data must contain **one** of the following identifier columns:
 
--   `hmdbid`: Human Metabolome Database IDs (e.g., "HMDB0000001") - **Human only**
--   `keggid`: KEGG Compound IDs (e.g., "C00001") - **All organisms**
+-   `hmdbid`: [Human Metabolome Database IDs](https://www.hmdb.ca) (e.g., "HMDB0000001") - **Human only**
+-   `keggid`: [KEGG Compound IDs](https://www.genome.jp/kegg/compound/) (e.g., "C00001") - **All organisms**
 :::
 
 ## Step-by-Step Guide
@@ -122,7 +122,12 @@ For quick testing, select from the available example datasets:
 
 If working with common model organisms:
 
-1.  **Select Organism**: Choose from the dropdown menu
+1.  **Select Organism**: Choose from the dropdown menu for standard organism database Bioconductor packages.
+
+    ::: callout-note
+    For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and select the one that matches your species of interest [here](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb).
+    :::
+    
 2.  **Input ID Type**: Select the identifier type in your data
 
 ![](images/shinyapp_02_upload_data_param.png){fig-align="center" width="750"}
@@ -161,13 +166,6 @@ query_result$ah_id
 
 ![](images/shinyapp_02_upload_data_met_org.png){fig-align="center" width="750"}
 
-::: callout-note
-**Organism Limitations for Metabolites:**
-
--   HMDB IDs are only supported for human data
--   For non-human organisms, only KEGG IDs are available
-:::
-
 ### Step 4: Process Your Data
 
 1.  Click the **"Submit"** button to start ID conversion
@@ -196,6 +194,10 @@ After ID conversion, your data will contain all necessary identifier columns:
 -   `entrezid`: NCBI Entrez gene IDs\
 -   `uniprot`: UniProtKB accession numbers
 -   `symbol`: Gene symbols
+
+::: callout-note
+Blank columns might appear for some identifier types after ID conversion. Because some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.
+:::
 
 **For Metabolites:**
 
@@ -244,10 +246,6 @@ After ID conversion, your data will contain all necessary identifier columns:
     - Verify the AnnotationHub ID is correct 
     - Check internet connection for AnnotationHub access
     - Use the search method provided in the tip above
-    
-    **Issue**: Blank columns appear for some identifier types after ID conversion
-    
-    **Solution**: Some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.
 
 ## Next Steps
 
