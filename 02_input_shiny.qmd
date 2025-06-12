@@ -127,7 +127,7 @@ If working with common model organisms:
     ::: callout-note
     For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and select the one that matches your species of interest [here](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb).
     :::
-    
+
 2.  **Input ID Type**: Select the identifier type in your data
 
 ![](images/shinyapp_02_upload_data_param.png){fig-align="center" width="750"}
@@ -229,23 +229,23 @@ Blank columns might appear for some identifier types after ID conversion. Becaus
     BiocManager::install('org.Hs.eg.db')  # Example for human
     ```
 
-    **Issue**: High percentage of failed ID mappings 
-    
+    **Issue**: High percentage of failed ID mappings
+
     **Solution**:
 
     -   Verify your input ID type selection matches your data
     -   Check for typos or formatting issues in your identifiers
     -   Some ID loss is normal during conversion
 
-- Non-Model Organism Issues
+-   Non-Model Organism Issues
 
-    **Issue**: AnnotationHub ID not found 
-    
-    **Solution**: 
-    
-    - Verify the AnnotationHub ID is correct 
-    - Check internet connection for AnnotationHub access
-    - Use the search method provided in the tip above
+    **Issue**: AnnotationHub ID not found
+
+    **Solution**:
+
+    -   Verify the AnnotationHub ID is correct
+    -   Check internet connection for AnnotationHub access
+    -   Use the search method provided in the tip above
 
 ## Next Steps
 

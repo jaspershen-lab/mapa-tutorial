@@ -19,7 +19,7 @@ library(mapa)
 The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
 
 | Database | Supported Organism | Keytype Options |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object |
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
 | Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only |
@@ -124,7 +124,7 @@ gsea_pathways <-
 ### Supported Databases and Keytypes
 
 | Database | Supported Organism | Keytype Options |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
 | HMDB | Only for human | HMDB IDs |
 
@@ -279,7 +279,7 @@ For metabolite ORA results, the result structure differs from gene-based analysi
 
 **Pathway Information:**
 
--   `pathway_id`: Pathway identifier (e.g., SMP0000028 for HMDB pathways)
+-   `pathway_id`: [Small Molecule Pathway Database](https://smpdb.ca) Pathway identifier (e.g., SMP0000028)
 -   `pathway_name`: Name of the metabolic pathway (e.g., "Caffeine Metabolism")
 -   `describtion`: Detailed description of the pathway from the corresponding database
 -   `pathway_class`: Classification of pathway (e.g., "Metabolic;primary_pathway", "Disease;primary_pathway")
