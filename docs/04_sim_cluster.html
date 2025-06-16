@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Similarity Calculation and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,7 +355,7 @@ Important
 <section id="overview" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">4.1</span> Overview</h2>
 <p>SimCluster works in two main steps:</p>
-<p><strong>Step1: <code>merge_pathways()</code></strong>: Groups pathways within each database (GO, KEGG, Reactome) based on their similarity</p>
+<p><strong>Step1: <code>merge_pathways()</code></strong>: Groups pathways within each database (GO, KEGG, Reactome, HMDB) based on their similarity</p>
 <p><strong>Step2: <code>merge_modules()</code></strong>: Combines modules across different databases to create final functional modules</p>
 <table class="caption-top table">
 <thead>
@@ -370,7 +370,7 @@ Important
 <tr class="odd">
 <td><strong><code>merge_pathways()</code></strong></td>
 <td><p>For GO, all similarity methods provided by <a href="https://jokergoo.github.io/simona/">simona</a> package</p>
-<p>For KEGG and Reactome, gene/metabolite overlap</p></td>
+<p>For KEGG, Reactome, and HMDB, gene/metabolite overlap</p></td>
 <td>Girvan-Newman only</td>
 <td>Edge filter</td>
 </tr>

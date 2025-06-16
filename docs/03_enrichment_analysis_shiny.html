@@ -213,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Similarity Calculation and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -265,16 +265,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-2-configure-database-parameters" id="toc-step-2-configure-database-parameters" class="nav-link" data-scroll-target="#step-2-configure-database-parameters"><span class="header-section-number">11.2.2</span> Step 2: Configure Database Parameters</a></li>
   <li><a href="#step-3-set-statistical-parameters" id="toc-step-3-set-statistical-parameters" class="nav-link" data-scroll-target="#step-3-set-statistical-parameters"><span class="header-section-number">11.2.3</span> Step 3: Set Statistical Parameters</a></li>
   </ul></li>
-  <li><a href="#metabolite-based-enrichment-analysis" id="toc-metabolite-based-enrichment-analysis" class="nav-link" data-scroll-target="#metabolite-based-enrichment-analysis"><span class="header-section-number">11.3</span> Metabolite-based Enrichment Analysis</a></li>
-  <li><a href="#running-the-analysis" id="toc-running-the-analysis" class="nav-link" data-scroll-target="#running-the-analysis"><span class="header-section-number">11.4</span> Running the Analysis</a>
+  <li><a href="#metabolite-based-enrichment-analysis" id="toc-metabolite-based-enrichment-analysis" class="nav-link" data-scroll-target="#metabolite-based-enrichment-analysis"><span class="header-section-number">11.3</span> Metabolite-based Enrichment Analysis</a>
   <ul class="collapse">
-  <li><a href="#step-1-submit-analysis" id="toc-step-1-submit-analysis" class="nav-link" data-scroll-target="#step-1-submit-analysis"><span class="header-section-number">11.4.1</span> Step 1: Submit Analysis</a></li>
-  <li><a href="#step-2-review-results" id="toc-step-2-review-results" class="nav-link" data-scroll-target="#step-2-review-results"><span class="header-section-number">11.4.2</span> Step 2: Review Results</a></li>
+  <li><a href="#step-1-submit-analysis" id="toc-step-1-submit-analysis" class="nav-link" data-scroll-target="#step-1-submit-analysis"><span class="header-section-number">11.3.1</span> Step 1: Submit Analysis</a></li>
+  <li><a href="#step-2-review-results" id="toc-step-2-review-results" class="nav-link" data-scroll-target="#step-2-review-results"><span class="header-section-number">11.3.2</span> Step 2: Review Results</a></li>
   </ul></li>
-  <li><a href="#downloading-results" id="toc-downloading-results" class="nav-link" data-scroll-target="#downloading-results"><span class="header-section-number">11.5</span> Downloading Results</a></li>
-  <li><a href="#understanding-the-results" id="toc-understanding-the-results" class="nav-link" data-scroll-target="#understanding-the-results"><span class="header-section-number">11.6</span> Understanding the Results</a></li>
-  <li><a href="#viewing-the-analysis-code" id="toc-viewing-the-analysis-code" class="nav-link" data-scroll-target="#viewing-the-analysis-code"><span class="header-section-number">11.7</span> Viewing the Analysis Code</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">11.8</span> Next Steps</a></li>
+  <li><a href="#downloading-results" id="toc-downloading-results" class="nav-link" data-scroll-target="#downloading-results"><span class="header-section-number">11.4</span> Downloading Results</a></li>
+  <li><a href="#understanding-the-results" id="toc-understanding-the-results" class="nav-link" data-scroll-target="#understanding-the-results"><span class="header-section-number">11.5</span> Understanding the Results</a></li>
+  <li><a href="#viewing-the-analysis-code" id="toc-viewing-the-analysis-code" class="nav-link" data-scroll-target="#viewing-the-analysis-code"><span class="header-section-number">11.6</span> Viewing the Analysis Code</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">11.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/03_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/03_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -503,11 +502,8 @@ Note
 <p><img src="images/shinyapp_03_metabolite_db.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
 </figure>
 </div>
-</section>
-<section id="running-the-analysis" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="running-the-analysis"><span class="header-section-number">11.4</span> Running the Analysis</h2>
-<section id="step-1-submit-analysis" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="step-1-submit-analysis"><span class="header-section-number">11.4.1</span> Step 1: Submit Analysis</h3>
+<section id="step-1-submit-analysis" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="step-1-submit-analysis"><span class="header-section-number">11.3.1</span> Step 1: Submit Analysis</h3>
 <ol type="1">
 <li>Review your parameter selections</li>
 <li>Click the <strong>“Submit”</strong> button to start the enrichment analysis</li>
@@ -533,8 +529,8 @@ Note
 </div>
 </div>
 </section>
-<section id="step-2-review-results" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="step-2-review-results"><span class="header-section-number">11.4.2</span> Step 2: Review Results</h3>
+<section id="step-2-review-results" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="step-2-review-results"><span class="header-section-number">11.3.2</span> Step 2: Review Results</h3>
 <p>After successful completion, results will appear in the right panel with separate tabs for each database:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Gene Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Metabolite Results</a></li></ul>
@@ -571,8 +567,8 @@ Note
 </div>
 </section>
 </section>
-<section id="downloading-results" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="downloading-results"><span class="header-section-number">11.5</span> Downloading Results</h2>
+<section id="downloading-results" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="downloading-results"><span class="header-section-number">11.4</span> Downloading Results</h2>
 <p>Each results tab includes a <strong>“Download”</strong> button to save results as CSV files:</p>
 <ol type="1">
 <li>Navigate to the desired results tab</li>
@@ -585,8 +581,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="understanding-the-results" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="understanding-the-results"><span class="header-section-number">11.6</span> Understanding the Results</h2>
+<section id="understanding-the-results" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="understanding-the-results"><span class="header-section-number">11.5</span> Understanding the Results</h2>
 <p>Key columns in enrichment results:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Gene ORA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">GSEA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Metabolite ORA</a></li></ul>
@@ -661,8 +657,8 @@ Note
 </div>
 </div>
 </section>
-<section id="viewing-the-analysis-code" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="viewing-the-analysis-code"><span class="header-section-number">11.7</span> Viewing the Analysis Code</h2>
+<section id="viewing-the-analysis-code" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="viewing-the-analysis-code"><span class="header-section-number">11.6</span> Viewing the Analysis Code</h2>
 <p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis: This code can be copied and used in your own R scripts for reproducible analysis.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -670,8 +666,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="next-steps" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">11.8</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">11.7</span> Next Steps</h2>
 <p>Once your enrichment analysis is complete:</p>
 <ol type="1">
 <li><p><strong>Review Results</strong>: Examine the significance and biological relevance of enriched pathways</p></li>
@@ -1256,8 +1252,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04_sim_cluster_shiny.html" class="pagination-link" aria-label="Similarity Calculation and Clustering">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Similarity Calculation and Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04_sim_cluster_shiny.html" class="pagination-link" aria-label="SimCluster: Traditional Similarity-based Clustering">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

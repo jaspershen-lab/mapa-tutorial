@@ -14,7 +14,7 @@ The mapa Shiny app leverages the powerful enrichment functions from the [`cluste
 ##### For Gene Data
 
 | Database | Supported Organism | Keytype Options | Analysis Types |
-|------------------|-------------------|------------------|------------------|
+|----|----|----|----|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub) | `ENTREZID`, `SYMBOL`, `ENSEMBL`, `UNIPROT` | ORA, GSEA |
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `kegg`, `ncbi-geneid`, `ncbi-proteinid`, `uniprot` | ORA, GSEA |
 | Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only | ORA, GSEA |
@@ -22,7 +22,7 @@ The mapa Shiny app leverages the powerful enrichment functions from the [`cluste
 ##### For Metabolite Data
 
 | Database | Supported Organism | Keytype Options | Analysis Types |
-|------------------|-------------------|------------------|------------------|
+|----|----|----|----|
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs | ORA only |
 | HMDB | Human only | HMDB IDs | ORA only |
 :::
@@ -105,8 +105,6 @@ For metabolite data, the interface automatically switches to metabolite-specific
 
 ![](images/shinyapp_03_metabolite_db.png){fig-align="center" width="750"}
 
-## Running the Analysis
-
 ### Step 1: Submit Analysis
 
 1.  Review your parameter selections
@@ -115,7 +113,6 @@ For metabolite data, the interface automatically switches to metabolite-specific
 4.  Success or error messages will appear as notifications
 
 ![](images/shinyapp_03_submit.png){fig-align="center" width="750"}
-
 
 ::: callout-note
 Processing Time: Metabolite enrichment analysis may take several minutes to complete. Please wait patiently while the analysis runs.
@@ -241,7 +238,9 @@ Click the **"Code"** button to see the exact R code that replicates your analysi
 Once your enrichment analysis is complete:
 
 1.  **Review Results**: Examine the significance and biological relevance of enriched pathways
+
 2.  **Download Data**: Save results (especially R Object from R Object tab) for further analysis
+
 3.  **Proceed to Clustering**: Click the **"Next"** button to move to pathway clustering analysis. Based on your data type and analysis goals, you can proceed to:
 
     -   **SimCluster Method**: Traditional similarity-based clustering (Step 1: Merge Pathways)

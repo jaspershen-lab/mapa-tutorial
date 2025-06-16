@@ -1,1 +1,269 @@
-# Similarity Calculation and Clustering
+# SimCluster: Traditional Similarity-based Clustering
+
+This chapter covers how to perform pathway clustering using the SimCluster method in the mapa Shiny application. SimCluster groups related pathways into functional modules using traditional similarity metrics (Jaccard, Dice, etc.) and semantic similarity measures. The Shiny app provides an intuitive interface for the two-step SimCluster workflow.
+
+::: callout-important
+Prerequisites: Before running SimCluster analysis, ensure you have successfully completed pathway enrichment analysis using the **Enrich Pathways** interface as described in the previous chapter.
+:::
+
+## SimCluster Overview
+
+SimCluster works in two main steps in the Shiny app:
+
+**Step 1: Merge Pathways** - Groups pathways within each database (GO, KEGG, Reactome) based on their similarity
+
+**Step 2: Merge Modules** - Combines modules across different databases to create final functional modules
+
++----------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+|                            | Similarity Calculation                                                                          | Clustering Method                          | Sim.cutoff Role                                    |
++============================+=================================================================================================+============================================+====================================================+
+| **Step 1: Merge Pathways** | For GO, all similarity methods provided by [simona](https://jokergoo.github.io/simona/) package | Girvan-Newman only                         | Edge filter                                        |
+|                            |                                                                                                 |                                            |                                                    |
+|                            | For KEGG, Reactome and HMDB, gene/metabolite overlap                                            |                                            |                                                    |
++----------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+| **Step 2: Merge Modules**  | Jaccard index based on overlapping genes from input list                                        | Girvan-Newman, Binary Cut, or Hierarchical | Girvan-Newman: Edge filter                         |
+|                            |                                                                                                 |                                            |                                                    |
+|                            |                                                                                                 |                                            | Binary Cut/Hierarchical: Dendrogram cutting height |
++----------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+
+The Shiny app guides you through both steps sequentially, with separate interfaces for each step.
+
+## Step 1: Merge Pathways
+
+Navigate to **Pathway Clustering → Method1: SimCluster → Step1: Merge Pathways** in the sidebar.
+
+![](images/shinyapp_04_merge_pathways.png){fig-align="center" width="750"}
+
+### Running Merge Pathways Analysis
+
+#### Step1: Loading Enrichment Data
+
+You have two options for loading your enrichment analysis results:
+
+::: panel-tabset
+##### Option A: Automatic Data Loading
+
+If you completed the enrichment analysis in the previous step of the same Shiny session, your data will be **automatically available** for clustering. The app will:
+
+1.  Detect your query type (gene or metabolite)
+2.  Identify available databases from your enrichment results
+3.  Load organism information automatically
+4.  Display appropriate parameter panels
+
+No additional action is required - proceed directly to database selection.
+
+##### Option B: Upload Previous Results
+
+If you want to upload enrichment results from a previous session:
+
+1.  **Click "Browse"** in the "Upload Enrichment Result" section
+2.  **Select your .rda file** containing enrichment results (downloaded from the "R object" tab in the enrichment analysis step)
+3.  **Wait for processing** - the app will extract query type, organism, and available databases
+4.  **Verify data loading** - parameter panels will appear based on your data
+
+![](images/shinyapp_04_upload_enrichment.png){fig-align="center" width="400"}
+:::
+
+#### Step2: Choose the databases you want to include in the analysis
+
+:::: panel-tabset
+The app automatically detects available databases from your enrichment results and displays checkboxes for selection:
+
+##### For Gene Data
+
+-   **GO**: Gene Ontology analysis
+-   **KEGG**: KEGG pathway analysis\
+-   **Reactome**: Reactome pathway analysis
+
+##### For Metabolite Data
+
+-   **HMDB Network**: Human Metabolome Database (human only)
+-   **KEGG Network**: KEGG metabolic pathways
+
+::: callout-note
+**Metabolite Limitations**: SimCluster for metabolites is recommended only for human studies where you can cluster pathways from both KEGG and HMDB databases. For non-human organisms with only KEGG data, consider using EmbedCluster instead.
+:::
+::::
+
+#### Step3: Set similarity methods and cutoffs for each database
+
+::: panel-tabset
+##### For Gene Data
+
+**GO Semantic Similarity Methods**
+
+For GO terms, mapa calculates GO term similarity using the [simona](https://jokergoo.github.io/simona/) package, which supports multiple semantic similarity measures, such as:
+
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| Method               | Type                      | Description                                             | Use Case                              |
++======================+===========================+=========================================================+=======================================+
+| `Sim_XGraSM_2013`    | Hybrid                    | Combines multiple similarity aspects                    | **Default**, good overall performance |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Wang_2007`      | Structure-based           | Based on GO graph structure and relationships           | Emphasizes hierarchical relationships |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Lin_1998`       | Information content-based | Uses information content of terms                       | Good for well-annotated organisms     |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Resnik_1999`    | Information content-based | Information content of most informative common ancestor | Conservative similarity measure       |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_FaITH_2010`     | Hybrid                    | Functional annotation-based                             | Incorporates functional annotations   |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Relevance_2006` | Information content-based | Relevance-based semantic similarity                     | Balances specificity and generality   |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+
+**Gene Overlap Similarity**
+
+For KEGG and Reactome pathways:
+
++-------------+---------------------------------+---------------------+--------------------------------------+
+| Method      | Formula                         | Description         | Use Case                             |
++=============+=================================+=====================+======================================+
+| `jaccard`   | \|A ∩ B\| / \|A ∪ B\|           | Jaccard index       | **Default**, most commonly used      |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `dice`      | 2 × \|A ∩ B\| / (\|A\| + \|B\|) | Dice coefficient    | Emphasizes shared elements           |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `overlap`   | \|A ∩ B\| / min(\|A\|, \|B\|)   | Overlap coefficient | Good for pathways of different sizes |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `kappa`     | (Po - Pe) / (1 - Pe)            | Cohen's kappa       | Accounts for chance agreement        |
++-------------+---------------------------------+---------------------+--------------------------------------+
+
+##### For Metabolite Data
+
+**Gene Overlap Similarity**
+
+For KEGG and Reactome pathways:
+
++-------------+---------------------------------+---------------------+--------------------------------------+
+| Method      | Formula                         | Description         | Use Case                             |
++=============+=================================+=====================+======================================+
+| `jaccard`   | \|A ∩ B\| / \|A ∪ B\|           | Jaccard index       | **Default**, most commonly used      |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `dice`      | 2 × \|A ∩ B\| / (\|A\| + \|B\|) | Dice coefficient    | Emphasizes shared elements           |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `overlap`   | \|A ∩ B\| / min(\|A\|, \|B\|)   | Overlap coefficient | Good for pathways of different sizes |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `kappa`     | (Po - Pe) / (1 - Pe)            | Cohen's kappa       | Accounts for chance agreement        |
++-------------+---------------------------------+---------------------+--------------------------------------+
+:::
+
+::: callout-tip
+For detailed explanations of similarity methods, see the [simona documentation](https://jokergoo.github.io/simona/articles/v05_term_similarity.html#ic-based-or-node-based-methods).
+:::
+
+For each selected database, configure the clustering parameters:
+
+-   **P-adjust cutoff**: Significance threshold for pathways (default: 0.05)
+-   **Gene count cutoff**: Minimum genes from input gene list per pathway (default: 5)
+-   **Similarity method**: pathway similarity method
+-   **Similarity cutoff**: Edge filter threshold for clustering (default: 0.5)
+
+**Finally, click the "Submit" button to start pathway merging.**
+
+![](images/shinyapp_04_submit_merge_pathways.png){fig-align="center" width="400"}
+
+### Viewing Merge Pathways Results
+
+After successful completion, results appear in the right panel:
+
+::: panel-tabset
+##### Table View
+
+The **Table** tab shows database-specific module results in separate sub-tabs, and each results tab includes a "Download" button to save results as CSV files.
+
+Key result columns:
+
+-   **module**: Module identifier (e.g., "go_Module_2", "kegg_Module_15")
+-   **module_annotation**: Representative pathway name for the module
+-   **Description**: Names of all pathways in the module (separated by `;`)
+-   **module_content**: All pathway IDs grouped in this module
+-   **Count**: Number of genes/metabolites from input data in the module
+-   **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
+
+![](images/shinyapp_04_table_results.png){fig-align="center" width="750"}
+
+##### Data Visualization
+
+The **Data visualization** tab provides network plots for each database:
+
+1.  **Select Database Tab**
+2.  **Configure Plot Options**:
+    -   **Text**: Show representative module names
+    -   **Text all**: Show all pathway names
+    -   **Degree cutoff**: Filter small modules (minimum pathways per module)
+3.  **Generate Plot**: Click **"Generate plot"** to create the network visualization
+
+![](images/shinyapp_04_visualization.png){fig-align="center" width="750"}
+
+##### R Object
+
+The **R object** tab shows a summary of the complete results object and provides a download button to save the results as an .rda file for further analysis in R.
+
+![](images/shinyapp_04_r_object.png){fig-align="center" width="750"}
+:::
+
+## Step 2: Merge Modules
+
+After completing pathway merging, navigate to **Pathway Clustering → Method1: SimCluster → Step2: Merge Modules** in the sidebar, or click the **"Next"** button.
+
+### Running Module Merging Analysis
+
+1.  Set similarity method, cutoff, and clustering algorithm. The merge modules interface provides options for combining database-specific modules:
+
+-   **Similarity method**: Method for calculating module similarity
+-   **Similarity cutoff**: Threshold for clustering
+-   **Clustering method**: Algorithm for grouping modules, see @sec-cluster_method for detailed explanation
+    -   **Binary cut**: Uses [simplifyEnrichment algorithm](https://doi.org/10.1016/j.gpb.2022.04.008)
+    -   **Girvan Newman**: Community detection based on edge betweenness
+    -   **Hierarchical**: Traditional hierarchical clustering. When **Hierarchical** is selected, an additional **Linkage methods** dropdown appears with options like "complete", "average", "ward.D2", etc.
+
+2.  Click **"Submit"** to start module merging
+
+### Viewing Functional Module Results
+
+Results appear in three tabs:
+
+::: panel-tabset
+##### Table View
+
+Shows the final functional modules with cross-database integration:
+
+-   **module**: Functional module identifier (e.g., "Functional_module_1")
+-   **module_annotation**: Representative annotation for the module
+-   **Description**: All pathways from different databases in the module
+-   **module_content**: Database-specific module IDs that comprise this functional module
+-   **Count**: Total genes/metabolites from the input list in the functional module
+-   **p_adjust**: Best p-value among all constituent pathways
+
+![](images/shinyapp_04_functional_modules_table.png){fig-align="center" width="750"}
+
+##### Data Visualization
+
+Network visualization of functional modules:
+
+1.  **Configure Options**:
+    -   **Text**: Show module representative names
+    -   **Text all**: Show all pathway information
+    -   **Degree cutoff**: Filter small modules
+2.  **Generate Plot**: Create network showing module relationships
+
+![](images/shinyapp_04_functional_modules_plot.png){fig-align="center" width="750"}
+
+##### R Object
+
+The **R object** tab shows a summary of the complete results object and provides a download button to save the results as an .rda file for further analysis in R.
+
+![](images/shinyapp_04_r_functional_res_object.png){fig-align="center" width="750"}
+:::
+
+## Viewing Analysis Code
+
+Both interfaces provide **"Code"** buttons to view the exact R code that replicates your analysis: 
+
+![](images/shinyapp_04_code.png){fig-align="center" width="750"}
+
+## Next Steps
+
+After completing SimCluster analysis, you can:
+
+1.  **Proceed to LLM Interpretation**: Add AI-powered functional annotations to your modules
+2.  **Compare with EmbedCluster**: Try the alternative clustering method for comparison
+3.  **Download Results**: Save your functional modules for further analysis

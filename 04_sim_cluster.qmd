@@ -27,7 +27,7 @@ Prerequisites: Before running SimCluster analysis, ensure you have completed pat
 
 SimCluster works in two main steps:
 
-**Step1: `merge_pathways()`**: Groups pathways within each database (GO, KEGG, Reactome) based on their similarity
+**Step1: `merge_pathways()`**: Groups pathways within each database (GO, KEGG, Reactome, HMDB) based on their similarity
 
 **Step2: `merge_modules()`**: Combines modules across different databases to create final functional modules
 
@@ -36,7 +36,7 @@ SimCluster works in two main steps:
 +========================+=================================================================================================+============================================+====================================================+
 | **`merge_pathways()`** | For GO, all similarity methods provided by [simona](https://jokergoo.github.io/simona/) package | Girvan-Newman only                         | Edge filter                                        |
 |                        |                                                                                                 |                                            |                                                    |
-|                        | For KEGG and Reactome, gene/metabolite overlap                                                  |                                            |                                                    |
+|                        | For KEGG, Reactome, and HMDB, gene/metabolite overlap                                           |                                            |                                                    |
 +------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
 | **`merge_modules()`**  | Jaccard index based on overlapping genes from input list                                        | Girvan-Newman, Binary Cut, or Hierarchical | Girvan-Newman: Edge filter                         |
 |                        |                                                                                                 |                                            |                                                    |
