@@ -23,11 +23,12 @@ book:
         - 01_package_installation.qmd
         - 02_input.qmd
         - 03_enrichment_analysis.qmd
-        - 04_sim_cluster.qmd
-        - 04_embed_cluster.qmd
-        - 05_llm_interpretation.qmd
-        - 06_data_vis.qmd
-        - 07_res_report.qmd
+        - 04_pathway_similarity.qmd
+        - 05_determine_optimal_clustering_params.qmd
+        - 06_get_functional_modules.qmd
+        - 07_llm_interpretation.qmd
+        - 08_data_vis.qmd
+        - 09_res_report.qmd
     
     - part: "mapa Shiny App"
       chapters:

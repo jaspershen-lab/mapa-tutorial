@@ -1,0 +1,166 @@
+# Determining Optimal Clustering Parameters {#sec-optimal_clustering}
+
+This chapter describes how to systematically evaluate different clustering parameters to find the optimal settings for grouping your pathway similarity results into functional modules.
+
+::: callout-important
+Prerequisites: Before determining optimal clustering parameters, ensure you have calculated pathway similarity using either `merge_pathways()` or `get_bioembedsim()` as described in @sec-pathway_similarity. The similarity results will be used as input for this analysis.
+:::
+
+## Overview
+
+The `determine_optimal_clusters()` function systematically evaluates various clustering strategies to identify the optimal parameters for grouping pathway enrichment results. It tests different clustering methods and similarity cutoffs, using modularity and silhouette scores to assess clustering quality.
+
+This analysis helps you make informed decisions about clustering parameters before proceeding to functional module identification, potentially saving time and improving the biological interpretability of your results.
+
+## Supported Input Types
+
+The function accepts two types of input objects:
+
+1. **Traditional similarity objects**: Results from `merge_pathways()` (functional_module class)
+2. **Biotext embedding objects**: Results from `get_bioembedsim()` (list with sim_matrix and enriched_pathway)
+
+For traditional similarity objects, the function internally calculates Jaccard similarity between modules from different databases. For biotext embedding objects, it uses the pre-computed semantic similarity matrix.
+
+## Basic Usage
+
+::::: panel-tabset
+##### Traditional Similarity Results
+
+```{r}
+#| eval: false
+
+cluster_evaluation <- 
+  determine_optimal_clusters(
+    object = met_similarity_result,
+    cutoff_increment = 0.05  # Test cutoffs from 0.2 to 0.9 in steps of 0.05
+  )
+
+# Starting optimal cluster determination...
+# Extracting similarity matrix and pathway data...
+# Calculating the similarity matrix...
+# Starting clustering evaluation across methods and cutoffs...
+# Processing method: hierarchical ...
+# Processing method: binary_cut ...
+# Processing method: girvan_newman ...
+# Clustering evaluation completed! Generating plots and finding optimal parameters...
+# Analysis complete!
+```
+
+##### Biotext Embedding Results
+
+```{r}
+#| eval: false
+
+cluster_evaluation <- 
+  determine_optimal_clusters(
+    object = met_biotext_similarity,
+    cutoff_increment = 0.05
+  )
+```
+:::::
+
+## Clustering Methods Evaluated
+
+The function tests three clustering algorithms:
+
+1. **Hierarchical Clustering**: Traditional agglomerative clustering with specified linkage method (default linkage method is "complete")
+2. **Binary Cut**: Uses the [simplifyEnrichment](https://doi.org/10.1016/j.gpb.2022.04.008) algorithm
+3. **Girvan-Newman**: Community detection based on edge betweenness
+
+Each method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation.
+
+## Evaluation Metrics
+
+**Modularity**: Measures the strength of division of a network into modules. Higher values indicate better defined community structure.
+
+**Silhouette Score**: Measures how similar objects are to their own cluster compared to other clusters. Values range from -1 to 1, with higher values indicating better clustering.
+
+## Similarity Cutoff Interpretation
+
+The meaning of `sim.cutoff` depends on your clustering method:
+
+::: panel-tabset
+##### Girvan-Newman
+
+**Edge Filter**: Only pathway pairs with similarity above this threshold are connected.
+
+- **Lower values (0.3-0.4)**: More permissive, denser networks, larger modules
+- **Higher values (0.6-0.8)**: More stringent, sparser networks, smaller modules
+
+##### Binary Cut & Hierarchical
+
+**Dendrogram Cutting Height**: Determines where to cut the clustering tree.
+
+- **Lower values (0.3-0.4)**: Cut lower in tree, more fine-grained modules  
+- **Higher values (0.6-0.8)**: Cut higher in tree, fewer but larger modules
+:::
+
+::: callout-note
+**Key Difference in Cutoff Interpretation**:
+
+- In **Girvan-Newman**, higher cutoffs = smaller modules
+- In **Binary Cut/Hierarchical**, higher cutoffs = larger modules
+
+Always examine your results and adjust based on the biological interpretability of resulting modules.
+:::
+
+## Parameter Customization
+
+```{r}
+#| eval: false
+
+# Fine-grained parameter search
+detailed_evaluation <- 
+  determine_optimal_clusters(
+    object = similarity_results,
+    cutoff_increment = 0.01,  # Smaller steps for more detailed analysis
+    hclust_method = "ward.D2"  # Different hierarchical clustering method
+  )
+
+# Available hierarchical clustering methods:
+# "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid"
+```
+
+## Results Interpretation
+
+The function returns a comprehensive evaluation with three components:
+
+```{r}
+#| eval: false
+
+# View the evaluation plot
+cluster_evaluation$evaluation_plot
+
+# Examine detailed results
+head(cluster_evaluation$cluster_result)
+# # A tibble: 6 × 4
+#   method       cutoff metric     value
+#   <chr>         <dbl> <chr>      <dbl>
+# 1 hierarchical   0.2  modularity   0  
+# 2 hierarchical   0.2  silhouette   0.4
+# 3 hierarchical   0.25 modularity   0  
+# 4 hierarchical   0.25 silhouette   0.4
+# 5 hierarchical   0.3  modularity   0  
+
+# Find the best parameter combinations
+cluster_evaluation$best_combination
+# # A tibble: 22 × 4
+#    method        cutoff metric     value
+#    <chr>          <dbl> <chr>      <dbl>
+#  1 binary_cut      0.85 modularity 0.375
+#  2 binary_cut      0.9  modularity 0.375
+#  3 girvan_newman   0.2  modularity 0.375
+# ...
+```
+
+**Evaluation Plot**: Shows how clustering quality metrics change across similarity cutoffs for each method. Look for:
+
+- **Peaks in modularity**: Indicate good community structure
+- **High silhouette scores**: Indicate well-separated clusters
+- **Consistent performance**: Methods that perform well across multiple cutoffs
+
+**Best Combination**: Identifies the optimal method and cutoff for each metric.
+
+## Next Steps
+
+Use the optimal parameters identified in this analysis for functional module identification in [Functional Module Identification](06_get_functional_modules.qmd). The recommended method and cutoff values will help ensure high-quality, biologically meaningful pathway modules.

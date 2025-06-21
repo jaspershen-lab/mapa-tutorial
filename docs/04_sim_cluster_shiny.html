@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>12&nbsp; SimCluster: Traditional Similarity-based Clustering – mapa tutorial</title>
+<title>13&nbsp; SimCluster: Traditional Similarity-based Clustering – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./04_sim_cluster_shiny.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./04_sim_cluster_shiny.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,32 +153,38 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_sim_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+  <a href="./04_pathway_similarity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
+  <a href="./05_determine_optimal_clustering_params.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_llm_interpretation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+  <a href="./06_get_functional_modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_data_vis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  <a href="./07_llm_interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_res_report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
+  <a href="./08_data_vis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_res_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -195,49 +201,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_res_report_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -258,28 +264,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simcluster-overview" id="toc-simcluster-overview" class="nav-link active" data-scroll-target="#simcluster-overview"><span class="header-section-number">12.1</span> SimCluster Overview</a></li>
-  <li><a href="#step-1-merge-pathways" id="toc-step-1-merge-pathways" class="nav-link" data-scroll-target="#step-1-merge-pathways"><span class="header-section-number">12.2</span> Step 1: Merge Pathways</a>
+  <li><a href="#simcluster-overview" id="toc-simcluster-overview" class="nav-link active" data-scroll-target="#simcluster-overview"><span class="header-section-number">13.1</span> SimCluster Overview</a></li>
+  <li><a href="#step-1-merge-pathways" id="toc-step-1-merge-pathways" class="nav-link" data-scroll-target="#step-1-merge-pathways"><span class="header-section-number">13.2</span> Step 1: Merge Pathways</a>
   <ul class="collapse">
-  <li><a href="#running-merge-pathways-analysis" id="toc-running-merge-pathways-analysis" class="nav-link" data-scroll-target="#running-merge-pathways-analysis"><span class="header-section-number">12.2.1</span> Running Merge Pathways Analysis</a></li>
-  <li><a href="#viewing-merge-pathways-results" id="toc-viewing-merge-pathways-results" class="nav-link" data-scroll-target="#viewing-merge-pathways-results"><span class="header-section-number">12.2.2</span> Viewing Merge Pathways Results</a></li>
+  <li><a href="#running-merge-pathways-analysis" id="toc-running-merge-pathways-analysis" class="nav-link" data-scroll-target="#running-merge-pathways-analysis"><span class="header-section-number">13.2.1</span> Running Merge Pathways Analysis</a></li>
+  <li><a href="#viewing-merge-pathways-results" id="toc-viewing-merge-pathways-results" class="nav-link" data-scroll-target="#viewing-merge-pathways-results"><span class="header-section-number">13.2.2</span> Viewing Merge Pathways Results</a></li>
   </ul></li>
-  <li><a href="#step-2-merge-modules" id="toc-step-2-merge-modules" class="nav-link" data-scroll-target="#step-2-merge-modules"><span class="header-section-number">12.3</span> Step 2: Merge Modules</a>
+  <li><a href="#step-2-merge-modules" id="toc-step-2-merge-modules" class="nav-link" data-scroll-target="#step-2-merge-modules"><span class="header-section-number">13.3</span> Step 2: Merge Modules</a>
   <ul class="collapse">
-  <li><a href="#running-module-merging-analysis" id="toc-running-module-merging-analysis" class="nav-link" data-scroll-target="#running-module-merging-analysis"><span class="header-section-number">12.3.1</span> Running Module Merging Analysis</a></li>
-  <li><a href="#viewing-functional-module-results" id="toc-viewing-functional-module-results" class="nav-link" data-scroll-target="#viewing-functional-module-results"><span class="header-section-number">12.3.2</span> Viewing Functional Module Results</a></li>
+  <li><a href="#running-module-merging-analysis" id="toc-running-module-merging-analysis" class="nav-link" data-scroll-target="#running-module-merging-analysis"><span class="header-section-number">13.3.1</span> Running Module Merging Analysis</a></li>
+  <li><a href="#viewing-functional-module-results" id="toc-viewing-functional-module-results" class="nav-link" data-scroll-target="#viewing-functional-module-results"><span class="header-section-number">13.3.2</span> Viewing Functional Module Results</a></li>
   </ul></li>
-  <li><a href="#viewing-analysis-code" id="toc-viewing-analysis-code" class="nav-link" data-scroll-target="#viewing-analysis-code"><span class="header-section-number">12.4</span> Viewing Analysis Code</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">12.5</span> Next Steps</a></li>
+  <li><a href="#viewing-analysis-code" id="toc-viewing-analysis-code" class="nav-link" data-scroll-target="#viewing-analysis-code"><span class="header-section-number">13.4</span> Viewing Analysis Code</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">13.5</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_sim_cluster_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_sim_cluster_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./04_sim_cluster_shiny.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./04_sim_cluster_shiny.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></h1>
 </div>
 
 
@@ -310,8 +316,8 @@ Important
 <p>Prerequisites: Before running SimCluster analysis, ensure you have successfully completed pathway enrichment analysis using the <strong>Enrich Pathways</strong> interface as described in the previous chapter.</p>
 </div>
 </div>
-<section id="simcluster-overview" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="simcluster-overview"><span class="header-section-number">12.1</span> SimCluster Overview</h2>
+<section id="simcluster-overview" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="simcluster-overview"><span class="header-section-number">13.1</span> SimCluster Overview</h2>
 <p>SimCluster works in two main steps in the Shiny app:</p>
 <p><strong>Step 1: Merge Pathways</strong> - Groups pathways within each database (GO, KEGG, Reactome) based on their similarity</p>
 <p><strong>Step 2: Merge Modules</strong> - Combines modules across different databases to create final functional modules</p>
@@ -343,18 +349,18 @@ Important
 </table>
 <p>The Shiny app guides you through both steps sequentially, with separate interfaces for each step.</p>
 </section>
-<section id="step-1-merge-pathways" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="step-1-merge-pathways"><span class="header-section-number">12.2</span> Step 1: Merge Pathways</h2>
+<section id="step-1-merge-pathways" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="step-1-merge-pathways"><span class="header-section-number">13.2</span> Step 1: Merge Pathways</h2>
 <p>Navigate to <strong>Pathway Clustering → Method1: SimCluster → Step1: Merge Pathways</strong> in the sidebar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/shinyapp_04_merge_pathways.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
 </figure>
 </div>
-<section id="running-merge-pathways-analysis" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="running-merge-pathways-analysis"><span class="header-section-number">12.2.1</span> Running Merge Pathways Analysis</h3>
-<section id="step1-loading-enrichment-data" class="level4" data-number="12.2.1.1">
-<h4 data-number="12.2.1.1" class="anchored" data-anchor-id="step1-loading-enrichment-data"><span class="header-section-number">12.2.1.1</span> Step1: Loading Enrichment Data</h4>
+<section id="running-merge-pathways-analysis" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="running-merge-pathways-analysis"><span class="header-section-number">13.2.1</span> Running Merge Pathways Analysis</h3>
+<section id="step1-loading-enrichment-data" class="level4" data-number="13.2.1.1">
+<h4 data-number="13.2.1.1" class="anchored" data-anchor-id="step1-loading-enrichment-data"><span class="header-section-number">13.2.1.1</span> Step1: Loading Enrichment Data</h4>
 <p>You have two options for loading your enrichment analysis results:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Option A: Automatic Data Loading</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Option B: Upload Previous Results</a></li></ul>
@@ -386,8 +392,8 @@ Important
 </div>
 </div>
 </section>
-<section id="step2-choose-the-databases-you-want-to-include-in-the-analysis" class="level4" data-number="12.2.1.2">
-<h4 data-number="12.2.1.2" class="anchored" data-anchor-id="step2-choose-the-databases-you-want-to-include-in-the-analysis"><span class="header-section-number">12.2.1.2</span> Step2: Choose the databases you want to include in the analysis</h4>
+<section id="step2-choose-the-databases-you-want-to-include-in-the-analysis" class="level4" data-number="13.2.1.2">
+<h4 data-number="13.2.1.2" class="anchored" data-anchor-id="step2-choose-the-databases-you-want-to-include-in-the-analysis"><span class="header-section-number">13.2.1.2</span> Step2: Choose the databases you want to include in the analysis</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">For Gene Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">For Metabolite Data</a></li></ul>
 <div class="tab-content">
@@ -421,8 +427,8 @@ Note
 </div>
 </div>
 </section>
-<section id="step3-set-similarity-methods-and-cutoffs-for-each-database" class="level4" data-number="12.2.1.3">
-<h4 data-number="12.2.1.3" class="anchored" data-anchor-id="step3-set-similarity-methods-and-cutoffs-for-each-database"><span class="header-section-number">12.2.1.3</span> Step3: Set similarity methods and cutoffs for each database</h4>
+<section id="step3-set-similarity-methods-and-cutoffs-for-each-database" class="level4" data-number="13.2.1.3">
+<h4 data-number="13.2.1.3" class="anchored" data-anchor-id="step3-set-similarity-methods-and-cutoffs-for-each-database"><span class="header-section-number">13.2.1.3</span> Step3: Set similarity methods and cutoffs for each database</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">For Gene Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">For Metabolite Data</a></li></ul>
 <div class="tab-content">
@@ -604,8 +610,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="viewing-merge-pathways-results" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="viewing-merge-pathways-results"><span class="header-section-number">12.2.2</span> Viewing Merge Pathways Results</h3>
+<section id="viewing-merge-pathways-results" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="viewing-merge-pathways-results"><span class="header-section-number">13.2.2</span> Viewing Merge Pathways Results</h3>
 <p>After successful completion, results appear in the right panel:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Table View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Data Visualization</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">R Object</a></li></ul>
@@ -657,18 +663,18 @@ Tip
 </div>
 </section>
 </section>
-<section id="step-2-merge-modules" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="step-2-merge-modules"><span class="header-section-number">12.3</span> Step 2: Merge Modules</h2>
+<section id="step-2-merge-modules" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="step-2-merge-modules"><span class="header-section-number">13.3</span> Step 2: Merge Modules</h2>
 <p>After completing pathway merging, navigate to <strong>Pathway Clustering → Method1: SimCluster → Step2: Merge Modules</strong> in the sidebar, or click the <strong>“Next”</strong> button.</p>
-<section id="running-module-merging-analysis" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="running-module-merging-analysis"><span class="header-section-number">12.3.1</span> Running Module Merging Analysis</h3>
+<section id="running-module-merging-analysis" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="running-module-merging-analysis"><span class="header-section-number">13.3.1</span> Running Module Merging Analysis</h3>
 <ol type="1">
 <li>Set similarity method, cutoff, and clustering algorithm. The merge modules interface provides options for combining database-specific modules:</li>
 </ol>
 <ul>
 <li><strong>Similarity method</strong>: Method for calculating module similarity</li>
 <li><strong>Similarity cutoff</strong>: Threshold for clustering</li>
-<li><strong>Clustering method</strong>: Algorithm for grouping modules, see <a href="04_sim_cluster.html#sec-cluster_method" class="quarto-xref"><span>Section 4.3</span></a> for detailed explanation
+<li><strong>Clustering method</strong>: Algorithm for grouping modules, see <span class="quarto-unresolved-ref">?sec-cluster_method</span> for detailed explanation
 <ul>
 <li><strong>Binary cut</strong>: Uses <a href="https://doi.org/10.1016/j.gpb.2022.04.008">simplifyEnrichment algorithm</a></li>
 <li><strong>Girvan Newman</strong>: Community detection based on edge betweenness</li>
@@ -679,8 +685,8 @@ Tip
 <li>Click <strong>“Submit”</strong> to start module merging</li>
 </ol>
 </section>
-<section id="viewing-functional-module-results" class="level3" data-number="12.3.2">
-<h3 data-number="12.3.2" class="anchored" data-anchor-id="viewing-functional-module-results"><span class="header-section-number">12.3.2</span> Viewing Functional Module Results</h3>
+<section id="viewing-functional-module-results" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="viewing-functional-module-results"><span class="header-section-number">13.3.2</span> Viewing Functional Module Results</h3>
 <p>Results appear in three tabs:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Table View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Data Visualization</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">R Object</a></li></ul>
@@ -730,8 +736,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="viewing-analysis-code" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="viewing-analysis-code"><span class="header-section-number">12.4</span> Viewing Analysis Code</h2>
+<section id="viewing-analysis-code" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="viewing-analysis-code"><span class="header-section-number">13.4</span> Viewing Analysis Code</h2>
 <p>Both interfaces provide <strong>“Code”</strong> buttons to view the exact R code that replicates your analysis:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -739,8 +745,8 @@ Tip
 </figure>
 </div>
 </section>
-<section id="next-steps" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">12.5</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">13.5</span> Next Steps</h2>
 <p>After completing SimCluster analysis, you can:</p>
 <ol type="1">
 <li><strong>Proceed to LLM Interpretation</strong>: Add AI-powered functional annotations to your modules</li>
@@ -1316,12 +1322,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./03_enrichment_analysis_shiny.html" class="pagination-link" aria-label="Enrichment Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04_embed_cluster_shiny.html" class="pagination-link" aria-label="Embedding and Clustering">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -51,27 +51,27 @@ The Retrieval-Augmented Generation (RAG) strategy works in several stages:
 
 **Stage 1: Literature Search**
 
-- Searches PubMed using pathway names and gene/metabolite information
-- Retrieves abstracts and titles for relevant papers
-- Includes reference papers cited in pathway databases
+-   Searches PubMed using pathway names and gene/metabolite information
+-   Retrieves abstracts and titles for relevant papers
+-   Includes reference papers cited in pathway databases
 
 **Stage 2: Embedding-based Similarity**
 
-- Generates text embeddings for module descriptions (pathways + molecules)
-- Calculates similarity between module embeddings and paper abstracts
-- Filters top papers based on cosine similarity scores
+-   Generates text embeddings for module descriptions (pathways + molecules)
+-   Calculates similarity between module embeddings and paper abstracts
+-   Filters top papers based on cosine similarity scores
 
 **Stage 3: GPT-powered Reranking**
 
-- Uses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules
-- Select the most informative literature for final interpretation
+-   Uses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules
+-   Select the most informative literature for final interpretation
 
 **Stage 4: Final Generation**
 
-- Combines module information with top-ranked papers
-- Generates biologically meaningful module names
-- Produces research summaries highlighting current knowledge
-- Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence
+-   Combines module information with top-ranked papers
+-   Generates biologically meaningful module names
+-   Produces research summaries highlighting current knowledge
+-   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence
 
 This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.
 

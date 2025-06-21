@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-08">
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>mapa tutorial</title>
+<title>5&nbsp; Determining Optimal Clustering Parameters – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01_package_installation.html" rel="next">
+<link href="./06_get_functional_modules.html" rel="next">
+<link href="./04_pathway_similarity.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./05_determine_optimal_clustering_params.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -120,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -159,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_determine_optimal_clustering_params.html" class="sidebar-item-text sidebar-link">
+  <a href="./05_determine_optimal_clustering_params.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span></a>
   </div>
 </li>
@@ -264,38 +298,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
-  <ul class="collapse">
-  <li><a href="#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" id="toc-mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" class="nav-link" data-scroll-target="#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm">mapa: Functional Module Annotation for Pathway Analysis Results Using LLM</a></li>
-  <li><a href="#aim-of-this-tutorial" id="toc-aim-of-this-tutorial" class="nav-link" data-scroll-target="#aim-of-this-tutorial">Aim of This Tutorial</a></li>
-  </ul></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a></li>
+  <li><a href="#supported-input-types" id="toc-supported-input-types" class="nav-link" data-scroll-target="#supported-input-types"><span class="header-section-number">5.2</span> Supported Input Types</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">5.3</span> Basic Usage</a></li>
+  <li><a href="#clustering-methods-evaluated" id="toc-clustering-methods-evaluated" class="nav-link" data-scroll-target="#clustering-methods-evaluated"><span class="header-section-number">5.4</span> Clustering Methods Evaluated</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">5.5</span> Evaluation Metrics</a></li>
+  <li><a href="#similarity-cutoff-interpretation" id="toc-similarity-cutoff-interpretation" class="nav-link" data-scroll-target="#similarity-cutoff-interpretation"><span class="header-section-number">5.6</span> Similarity Cutoff Interpretation</a></li>
+  <li><a href="#parameter-customization" id="toc-parameter-customization" class="nav-link" data-scroll-target="#parameter-customization"><span class="header-section-number">5.7</span> Parameter Customization</a></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">5.8</span> Results Interpretation</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">5.9</span> Next Steps</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_determine_optimal_clustering_params.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_determine_optimal_clustering_params.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./05_determine_optimal_clustering_params.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">mapa tutorial</h1>
+<h1 class="title"><span id="sec-optimal_clustering" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span></h1>
 </div>
 
-<div>
-  <div class="description">
-    Functional Module Annotation for Pathway Analysis Results Using LLM
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 8, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -305,31 +332,183 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1 unnumbered">
-<h1 class="unnumbered">Overview</h1>
-<section id="mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" class="level2">
-<h2 class="anchored" data-anchor-id="mapa-functional-module-annotation-for-pathway-analysis-results-using-llm">mapa: Functional Module Annotation for Pathway Analysis Results Using LLM</h2>
-<p><strong>mapa</strong> is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:</p>
-<ol type="1">
-<li><strong>Detects enriched pathways</strong> from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).</li>
-<li><strong>Clusters overlapping or functional-related pathways</strong> into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.</li>
-<li><strong>Summarises each module with large-language models (LLM)</strong> (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.</li>
-</ol>
-<p>The outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.</p>
+<p>This chapter describes how to systematically evaluate different clustering parameters to find the optimal settings for grouping your pathway similarity results into functional modules.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before determining optimal clustering parameters, ensure you have calculated pathway similarity using either <code>merge_pathways()</code> or <code>get_bioembedsim()</code> as described in <a href="04_pathway_similarity.html" class="quarto-xref"><span>Chapter 4</span></a>. The similarity results will be used as input for this analysis.</p>
+</div>
+</div>
+<section id="overview" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.1</span> Overview</h2>
+<p>The <code>determine_optimal_clusters()</code> function systematically evaluates various clustering strategies to identify the optimal parameters for grouping pathway enrichment results. It tests different clustering methods and similarity cutoffs, using modularity and silhouette scores to assess clustering quality.</p>
+<p>This analysis helps you make informed decisions about clustering parameters before proceeding to functional module identification, potentially saving time and improving the biological interpretability of your results.</p>
 </section>
-<section id="aim-of-this-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="aim-of-this-tutorial">Aim of This Tutorial</h2>
-<p>This guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:</p>
+<section id="supported-input-types" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="supported-input-types"><span class="header-section-number">5.2</span> Supported Input Types</h2>
+<p>The function accepts two types of input objects:</p>
 <ol type="1">
-<li>Merge overlapping enriched pathways into informative functional modules.</li>
-<li>Generate biological interpretations of each module with large-language models.</li>
-<li>Create publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.</li>
-<li>Export a comprehensive report that gathers every table, figure, and LLM-based summary in one place.</li>
+<li><strong>Traditional similarity objects</strong>: Results from <code>merge_pathways()</code> (functional_module class)</li>
+<li><strong>Biotext embedding objects</strong>: Results from <code>get_bioembedsim()</code> (list with sim_matrix and enriched_pathway)</li>
 </ol>
-<p>Whether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.</p>
+<p>For traditional similarity objects, the function internally calculates Jaccard similarity between modules from different databases. For biotext embedding objects, it uses the pre-computed semantic similarity matrix.</p>
+</section>
+<section id="basic-usage" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">5.3</span> Basic Usage</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Traditional Similarity Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Biotext Embedding Results</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cluster_evaluation <span class="ot">&lt;-</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">determine_optimal_clusters</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_similarity_result,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cutoff_increment =</span> <span class="fl">0.05</span>  <span class="co"># Test cutoffs from 0.2 to 0.9 in steps of 0.05</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Starting optimal cluster determination...</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting similarity matrix and pathway data...</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the similarity matrix...</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Starting clustering evaluation across methods and cutoffs...</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing method: hierarchical ...</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing method: binary_cut ...</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing method: girvan_newman ...</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Clustering evaluation completed! Generating plots and finding optimal parameters...</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis complete!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cluster_evaluation <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">determine_optimal_clusters</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_biotext_similarity,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cutoff_increment =</span> <span class="fl">0.05</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="clustering-methods-evaluated" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="clustering-methods-evaluated"><span class="header-section-number">5.4</span> Clustering Methods Evaluated</h2>
+<p>The function tests three clustering algorithms:</p>
+<ol type="1">
+<li><strong>Hierarchical Clustering</strong>: Traditional agglomerative clustering with specified linkage method (default linkage method is “complete”)</li>
+<li><strong>Binary Cut</strong>: Uses the <a href="https://doi.org/10.1016/j.gpb.2022.04.008">simplifyEnrichment</a> algorithm</li>
+<li><strong>Girvan-Newman</strong>: Community detection based on edge betweenness</li>
+</ol>
+<p>Each method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation.</p>
+</section>
+<section id="evaluation-metrics" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="evaluation-metrics"><span class="header-section-number">5.5</span> Evaluation Metrics</h2>
+<p><strong>Modularity</strong>: Measures the strength of division of a network into modules. Higher values indicate better defined community structure.</p>
+<p><strong>Silhouette Score</strong>: Measures how similar objects are to their own cluster compared to other clusters. Values range from -1 to 1, with higher values indicating better clustering.</p>
+</section>
+<section id="similarity-cutoff-interpretation" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="similarity-cutoff-interpretation"><span class="header-section-number">5.6</span> Similarity Cutoff Interpretation</h2>
+<p>The meaning of <code>sim.cutoff</code> depends on your clustering method:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Girvan-Newman</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Binary Cut &amp; Hierarchical</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><strong>Edge Filter</strong>: Only pathway pairs with similarity above this threshold are connected.</p>
+<ul>
+<li><strong>Lower values (0.3-0.4)</strong>: More permissive, denser networks, larger modules</li>
+<li><strong>Higher values (0.6-0.8)</strong>: More stringent, sparser networks, smaller modules</li>
+</ul>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><strong>Dendrogram Cutting Height</strong>: Determines where to cut the clustering tree.</p>
+<ul>
+<li><strong>Lower values (0.3-0.4)</strong>: Cut lower in tree, more fine-grained modules<br>
+</li>
+<li><strong>Higher values (0.6-0.8)</strong>: Cut higher in tree, fewer but larger modules</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Key Difference in Cutoff Interpretation</strong>:</p>
+<ul>
+<li>In <strong>Girvan-Newman</strong>, higher cutoffs = smaller modules</li>
+<li>In <strong>Binary Cut/Hierarchical</strong>, higher cutoffs = larger modules</li>
+</ul>
+<p>Always examine your results and adjust based on the biological interpretability of resulting modules.</p>
+</div>
+</div>
+</section>
+<section id="parameter-customization" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="parameter-customization"><span class="header-section-number">5.7</span> Parameter Customization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fine-grained parameter search</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>detailed_evaluation <span class="ot">&lt;-</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">determine_optimal_clusters</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> similarity_results,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cutoff_increment =</span> <span class="fl">0.01</span>,  <span class="co"># Smaller steps for more detailed analysis</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">hclust_method =</span> <span class="st">"ward.D2"</span>  <span class="co"># Different hierarchical clustering method</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Available hierarchical clustering methods:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="results-interpretation" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">5.8</span> Results Interpretation</h2>
+<p>The function returns a comprehensive evaluation with three components:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the evaluation plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cluster_evaluation<span class="sc">$</span>evaluation_plot</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine detailed results</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cluster_evaluation<span class="sc">$</span>cluster_result)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 4</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   method       cutoff metric     value</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 hierarchical   0.2  modularity   0  </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 hierarchical   0.2  silhouette   0.4</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 hierarchical   0.25 modularity   0  </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 hierarchical   0.25 silhouette   0.4</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 hierarchical   0.3  modularity   0  </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the best parameter combinations</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>cluster_evaluation<span class="sc">$</span>best_combination</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 22 × 4</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#    method        cutoff metric     value</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 binary_cut      0.85 modularity 0.375</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 binary_cut      0.9  modularity 0.375</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#  3 girvan_newman   0.2  modularity 0.375</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Evaluation Plot</strong>: Shows how clustering quality metrics change across similarity cutoffs for each method. Look for:</p>
+<ul>
+<li><strong>Peaks in modularity</strong>: Indicate good community structure</li>
+<li><strong>High silhouette scores</strong>: Indicate well-separated clusters</li>
+<li><strong>Consistent performance</strong>: Methods that perform well across multiple cutoffs</li>
+</ul>
+<p><strong>Best Combination</strong>: Identifies the optimal method and cutoff for each metric.</p>
+</section>
+<section id="next-steps" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">5.9</span> Next Steps</h2>
+<p>Use the optimal parameters identified in this analysis for functional module identification in <a href="./06_get_functional_modules.html">Functional Module Identification</a>. The recommended method and cutoff values will help ensure high-quality, biologically meaningful pathway modules.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -896,10 +1075,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./04_pathway_similarity.html" class="pagination-link" aria-label="Pathway Similarity Calculation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01_package_installation.html" class="pagination-link" aria-label="Installation">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06_get_functional_modules.html" class="pagination-link" aria-label="Functional Module Identification">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -908,4 +1090,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/05_determine_optimal_clustering_params.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/05_determine_optimal_clustering_params.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

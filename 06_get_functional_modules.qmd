@@ -1,0 +1,209 @@
+# Functional Module Identification {#sec-get_functional_modules}
+
+This chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.
+
+::: callout-important
+Prerequisites: 
+
+1. **Similarity calculation**: Complete pathway similarity calculation using either `merge_pathways()` or `get_bioembedsim()` (@sec-pathway_similarity)
+2. **Parameter optimization** (recommended): Determine optimal clustering parameters using `determine_optimal_clusters()` (@sec-optimal_clustering)
+:::
+
+## Overview
+
+The `get_functional_modules()` function is a generic function that identifies functional modules from pathway similarity results. It automatically detects the type of input object and applies the appropriate clustering method:
+
+- **Traditional similarity objects**: Uses Jaccard similarity between modules from different databases
+- **Biotext embedding objects**: Uses pre-computed semantic similarity matrices
+
+## Basic Usage
+
+The function automatically detects your input type and applies the appropriate clustering strategy:
+
+::::: panel-tabset
+##### Traditional Similarity Results
+
+```{r}
+#| eval: false
+
+functional_modules <- 
+  get_functional_modules(
+    object = met_similarity_result,
+    sim.cutoff = 0.5,
+    cluster_method = "girvan newman"
+  )
+
+# Get functional modules from traditional pathway similarity calculation results ...
+# Calculating the similarity matrix...
+# Identifying functional modules...
+# Done
+```
+
+##### Biotext Embedding Results
+
+```{r}
+#| eval: false
+
+functional_modules <- 
+  get_functional_modules(
+    object = met_biotext_similarity,
+    sim.cutoff = 0.5,
+    cluster_method = "binary cut"
+  )
+
+# Get functional modules from Biotext embedding results ...
+# Identifying functional modules...
+# Joining with `by = join_by(node)`
+# Done
+```
+:::::
+
+## Using Optimal Parameters
+
+Apply the parameters identified in your clustering evaluation:
+
+```{r}
+#| eval: false
+
+# Extract optimal parameters from your evaluation
+best_params <- cluster_evaluation$best_combination
+
+# Use modularity-optimized parameters
+modularity_optimal <- best_params[best_params$metric == "modularity", ]
+optimal_method <- modularity_optimal$method[1]
+optimal_cutoff <- modularity_optimal$cutoff[1]
+
+# Apply optimal parameters
+functional_modules <- 
+  get_functional_modules(
+    object = similarity_results,
+    sim.cutoff = optimal_cutoff,
+    cluster_method = optimal_method
+  )
+
+# Alternatively, use silhouette-optimized parameters for better separation
+silhouette_optimal <- best_params[best_params$metric == "silhouette", ]
+```
+
+## Similarity Cutoff Interpretation
+
+The meaning of `sim.cutoff` depends on your clustering method:
+
+::: panel-tabset
+##### Girvan-Newman
+
+**Edge Filter**: Only pathway pairs with similarity above this threshold are connected.
+
+- **Lower values (0.3-0.4)**: More permissive, denser networks, larger modules
+- **Higher values (0.6-0.8)**: More stringent, sparser networks, smaller modules
+
+##### Binary Cut & Hierarchical
+
+**Dendrogram Cutting Height**: Determines where to cut the clustering tree.
+
+- **Lower values (0.3-0.4)**: Cut lower in tree, more fine-grained modules  
+- **Higher values (0.6-0.8)**: Cut higher in tree, fewer but larger modules
+:::
+
+::: callout-note
+**Key Difference in Cutoff Interpretation**:
+
+- In **Girvan-Newman**, higher cutoffs = smaller modules
+- In **Binary Cut/Hierarchical**, higher cutoffs = larger modules
+
+Always examine your results and adjust based on the biological interpretability of resulting modules.
+:::
+
+
+## Results Interpretation
+
+After functional module identification, examine your results:
+
+```{r}
+#| eval: false
+
+# View analysis summary
+functional_modules
+# -------------------- 
+# Analysis method: enrich_pathway 
+# -------------------- 
+# -----------Variable information------------
+# 119  features/markers in total
+# -----------Enrichment results and modules of genes------------
+# -----------GO------------
+# 1025 GO terms with p.adjust < 0.05 
+# 250 GO modules 
+# -----------KEGG------------
+# 48 KEGG pathways with p.adjust < 0.05 
+# 29 KEGG modules
+# -----------Reactome------------
+# 48 Reactome pathways with p.adjust < 0.05 
+# 13 Reactome modules
+# -----------Functional modules------------
+# 158 Functional modules
+# -----------LLM module interpretation------------
+# No LLM module interpretation results
+# -------------------- 
+# Processing information
+# 4 processings in total
+# enrich_pathway ---------- 
+#   Package    Function.used                Time
+# 1    mapa enrich_pathway() 2025-06-09 21:32:51
+# merge_pathways ---------- 
+#   Package    Function.used                Time
+# 1    mapa merge_pathways() 2025-06-09 21:34:00
+# merge_modules ---------- 
+#   Package   Function.used                Time
+# 1    mapa merge_modules() 2025-06-09 21:34:56
+
+# Access functional modules
+head(functional_modules@merged_module$functional_module_result)
+```
+
+### Key Result Columns
+
+- **module**: Functional Module identifier (e.g., "Functional_module_127")
+- **module_annotation**: Representative pathway name (lowest p-value for ORA, highest |NES| for GSEA)
+- **Description**: Names of all pathways in the module (separated by `;`)
+- **module_content**: All pathway/term IDs grouped in this module
+- **Count**: Number of genes/metabolites from input list in the module
+- **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
+
+For **GSEA results**, additional columns include:
+- **NES**: Normalized Enrichment Score of the representative pathway
+- **core_enrichment**: Core enriched genes contributing to the module
+
+## Quality Assessment
+
+Evaluate the quality of your functional modules:
+
+```{r}
+#| eval: false
+
+# Check module size distribution
+module_results <- functional_modules@merged_module$functional_module_result
+module_sizes <- table(module_results$Count)
+
+# Plot module size distribution
+barplot(module_sizes, 
+        main = "Distribution of Module Sizes", 
+        xlab = "Number of Genes/Metabolites per Module",
+        ylab = "Number of Modules")
+
+# Examine top modules by significance
+top_modules <- 
+  module_results %>%
+  arrange(p_adjust) %>%
+  head(10)
+
+print(top_modules[, c("module_annotation", "Count", "p_adjust")])
+
+# Check for singleton modules (modules with only one pathway)
+singleton_count <- sum(sapply(strsplit(module_results$module_content, ";"), length) == 1)
+cat("Number of singleton modules:", singleton_count, "\n")
+cat("Percentage of singleton modules:", round(singleton_count/nrow(module_results)*100, 1), "%\n")
+```
+
+## Next Steps
+
+Continue to [LLM Interpretation](07_llm_interpretation.qmd) to add AI-powered functional annotations to your modules, or proceed to [Data Visualization](08_data_vis.qmd) to create informative plots of your functional modules.

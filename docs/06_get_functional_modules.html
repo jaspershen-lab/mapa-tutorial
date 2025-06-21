@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>5&nbsp; EmbedCluster: Advanced Biotext Embedding-based Clustering – mapa tutorial</title>
+<title>6&nbsp; Functional Module Identification – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05_llm_interpretation.html" rel="next">
-<link href="./04_sim_cluster.html" rel="prev">
+<link href="./07_llm_interpretation.html" rel="next">
+<link href="./05_determine_optimal_clustering_params.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./06_get_functional_modules.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,32 +187,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_sim_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+  <a href="./04_pathway_similarity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
+  <a href="./05_determine_optimal_clustering_params.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_llm_interpretation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+  <a href="./06_get_functional_modules.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_data_vis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  <a href="./07_llm_interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_res_report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
+  <a href="./08_data_vis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_res_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,49 +235,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_res_report_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,24 +298,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a></li>
-  <li><a href="#step-1-calculate-biotext-embedding-similarity" id="toc-step-1-calculate-biotext-embedding-similarity" class="nav-link" data-scroll-target="#step-1-calculate-biotext-embedding-similarity"><span class="header-section-number">5.2</span> Step 1: Calculate Biotext Embedding Similarity</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">6.2</span> Basic Usage</a></li>
+  <li><a href="#using-optimal-parameters" id="toc-using-optimal-parameters" class="nav-link" data-scroll-target="#using-optimal-parameters"><span class="header-section-number">6.3</span> Using Optimal Parameters</a></li>
+  <li><a href="#similarity-cutoff-interpretation" id="toc-similarity-cutoff-interpretation" class="nav-link" data-scroll-target="#similarity-cutoff-interpretation"><span class="header-section-number">6.4</span> Similarity Cutoff Interpretation</a></li>
+  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</a>
   <ul class="collapse">
-  <li><a href="#how-embedcluster-works" id="toc-how-embedcluster-works" class="nav-link" data-scroll-target="#how-embedcluster-works"><span class="header-section-number">5.2.1</span> How EmbedCluster Works</a></li>
+  <li><a href="#key-result-columns" id="toc-key-result-columns" class="nav-link" data-scroll-target="#key-result-columns"><span class="header-section-number">6.5.1</span> Key Result Columns</a></li>
   </ul></li>
-  <li><a href="#step-2-cluster-pathways-using-biotext-similarity" id="toc-step-2-cluster-pathways-using-biotext-similarity" class="nav-link" data-scroll-target="#step-2-cluster-pathways-using-biotext-similarity"><span class="header-section-number">5.3</span> Step 2: Cluster Pathways Using Biotext Similarity</a></li>
-  <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">5.4</span> Results Interpretation</a></li>
-  <li><a href="#advantages-and-considerations" id="toc-advantages-and-considerations" class="nav-link" data-scroll-target="#advantages-and-considerations"><span class="header-section-number">5.5</span> Advantages and Considerations</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">5.6</span> Next Steps</a></li>
+  <li><a href="#quality-assessment" id="toc-quality-assessment" class="nav-link" data-scroll-target="#quality-assessment"><span class="header-section-number">6.6</span> Quality Assessment</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.7</span> Next Steps</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_embed_cluster.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_embed_cluster.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/06_get_functional_modules.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/06_get_functional_modules.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./04_embed_cluster.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./06_get_functional_modules.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-embed_cluster" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></h1>
+<h1 class="title"><span id="sec-get_functional_modules" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></h1>
 </div>
 
 
@@ -326,10 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>EmbedCluster is an advanced pathway clustering method in mapa that groups related pathways into functional modules based on biotext embedding similarity. This method leverages large language model (LLM) text embeddings to capture semantic relationships between pathway descriptions, enabling more nuanced clustering based on biological function rather than just gene overlap.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>This chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -340,248 +344,211 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prerequisites: Before running EmbedCluster analysis, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The <code>enriched_pathways</code> object used in this chapter should be the output from the enrichment analysis step.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't performed enrichment analysis yet, run:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- enrich_pathway(...)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- do_gsea(...)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load your enrichment results if saved previously:</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load("path/to/your/enriched_pathways.RData")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Prerequisites:</p>
+<ol type="1">
+<li><strong>Similarity calculation</strong>: Complete pathway similarity calculation using either <code>merge_pathways()</code> or <code>get_bioembedsim()</code> (<a href="04_pathway_similarity.html" class="quarto-xref"><span>Chapter 4</span></a>)</li>
+<li><strong>Parameter optimization</strong> (recommended): Determine optimal clustering parameters using <code>determine_optimal_clusters()</code> (<a href="05_determine_optimal_clustering_params.html" class="quarto-xref"><span>Chapter 5</span></a>)</li>
+</ol>
 </div>
 </div>
-</div>
-<section id="overview" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.1</span> Overview</h2>
-<p>EmbedCluster works in two main steps:</p>
-<p><strong>Step 1: <code>get_bioembedsim()</code></strong>: Extracts pathway text information, generates embeddings using LLM APIs, and calculates cosine similarity between pathways</p>
-<p><strong>Step 2: <code>merge_pathways_bioembedsim()</code></strong>: Groups pathways into functional modules based on biotext embedding similarity</p>
-<p>This approach captures semantic relationships that traditional gene overlap methods might miss, particularly useful for identifying functionally related pathways with different gene sets.</p>
+<section id="overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
+<p>The <code>get_functional_modules()</code> function is a generic function that identifies functional modules from pathway similarity results. It automatically detects the type of input object and applies the appropriate clustering method:</p>
+<ul>
+<li><strong>Traditional similarity objects</strong>: Uses Jaccard similarity between modules from different databases</li>
+<li><strong>Biotext embedding objects</strong>: Uses pre-computed semantic similarity matrices</li>
+</ul>
 </section>
-<section id="step-1-calculate-biotext-embedding-similarity" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="step-1-calculate-biotext-embedding-similarity"><span class="header-section-number">5.2</span> Step 1: Calculate Biotext Embedding Similarity</h2>
-<p>The <code>get_bioembedsim()</code> function extracts pathway descriptions, generates text embeddings using text embedding model, and calculates pairwise cosine similarity between pathways.</p>
+<section id="basic-usage" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">6.2</span> Basic Usage</h2>
+<p>The function automatically detects your input type and applies the appropriate clustering strategy:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Gene-based Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metabolite-based Analysis</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Traditional Similarity Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Biotext Embedding Results</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bioembed_similarity <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_bioembedsim</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> enriched_pathways,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_provider =</span> <span class="st">"openai"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_embedding_model =</span> <span class="st">"text-embedding-3-small"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"go"</span>, <span class="st">"kegg"</span>, <span class="st">"reactome"</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistical cutoffs</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.go =</span> <span class="fl">0.05</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.kegg =</span> <span class="fl">0.05</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.reactome =</span> <span class="fl">0.05</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.go =</span> <span class="dv">5</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.kegg =</span> <span class="dv">5</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.reactome =</span> <span class="dv">5</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>API Key Setup:</strong></p>
-<ul>
-<li>For OpenAI: Obtain your API key from <a href="https://platform.openai.com/api-keys">OpenAI Platform</a></li>
-<li>For Gemini: Get your API key from <a href="https://makersuite.google.com/app/apikey">Google AI Studio</a></li>
-</ul>
-<p>Store your API key securely and never commit it to version control.</p>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>functional_modules <span class="ot">&lt;-</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_functional_modules</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_similarity_result,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sim.cutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_method =</span> <span class="st">"girvan newman"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get functional modules from traditional pathway similarity calculation results ...</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the similarity matrix...</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying functional modules...</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>met_bioembed_similarity <span class="ot">&lt;-</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_bioembedsim</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_enriched_pathways,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_provider =</span> <span class="st">"openai"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_embedding_model =</span> <span class="st">"text-embedding-3-small"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">api_key =</span> <span class="st">"your_openai_api_key"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">database =</span> <span class="fu">c</span>(<span class="st">"hmdb"</span>, <span class="st">"metkegg"</span>),  <span class="co"># human only for HMDB</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistical cutoffs for metabolites</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.hmdb =</span> <span class="fl">0.05</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.adjust.cutoff.metkegg =</span> <span class="fl">0.05</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.hmdb =</span> <span class="dv">5</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.metkegg =</span> <span class="dv">5</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>functional_modules <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_functional_modules</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> met_biotext_similarity,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sim.cutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_method =</span> <span class="st">"binary cut"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get functional modules from Biotext embedding results ...</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying functional modules...</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Joining with `by = join_by(node)`</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<section id="how-embedcluster-works" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="how-embedcluster-works"><span class="header-section-number">5.2.1</span> How EmbedCluster Works</h3>
-<p>The biotext embedding process involves several steps:</p>
-<ol type="1">
-<li><p><strong>Text Extraction</strong>: For each pathway, the function extracts:</p>
+</section>
+<section id="using-optimal-parameters" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="using-optimal-parameters"><span class="header-section-number">6.3</span> Using Optimal Parameters</h2>
+<p>Apply the parameters identified in your clustering evaluation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract optimal parameters from your evaluation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>best_params <span class="ot">&lt;-</span> cluster_evaluation<span class="sc">$</span>best_combination</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use modularity-optimized parameters</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>modularity_optimal <span class="ot">&lt;-</span> best_params[best_params<span class="sc">$</span>metric <span class="sc">==</span> <span class="st">"modularity"</span>, ]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>optimal_method <span class="ot">&lt;-</span> modularity_optimal<span class="sc">$</span>method[<span class="dv">1</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>optimal_cutoff <span class="ot">&lt;-</span> modularity_optimal<span class="sc">$</span>cutoff[<span class="dv">1</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply optimal parameters</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>functional_modules <span class="ot">&lt;-</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_functional_modules</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> similarity_results,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sim.cutoff =</span> optimal_cutoff,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_method =</span> optimal_method</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, use silhouette-optimized parameters for better separation</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>silhouette_optimal <span class="ot">&lt;-</span> best_params[best_params<span class="sc">$</span>metric <span class="sc">==</span> <span class="st">"silhouette"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="similarity-cutoff-interpretation" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="similarity-cutoff-interpretation"><span class="header-section-number">6.4</span> Similarity Cutoff Interpretation</h2>
+<p>The meaning of <code>sim.cutoff</code> depends on your clustering method:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Girvan-Newman</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Binary Cut &amp; Hierarchical</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><strong>Edge Filter</strong>: Only pathway pairs with similarity above this threshold are connected.</p>
 <ul>
-<li><strong>GO terms</strong>: Term name + definition from QuickGO API</li>
-<li><strong>KEGG pathways</strong>: Pathway name + description from KEGG REST API<br>
+<li><strong>Lower values (0.3-0.4)</strong>: More permissive, denser networks, larger modules</li>
+<li><strong>Higher values (0.6-0.8)</strong>: More stringent, sparser networks, smaller modules</li>
+</ul>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><strong>Dendrogram Cutting Height</strong>: Determines where to cut the clustering tree.</p>
+<ul>
+<li><strong>Lower values (0.3-0.4)</strong>: Cut lower in tree, more fine-grained modules<br>
 </li>
-<li><strong>Reactome pathways</strong>: Pathway name + summary from Reactome API</li>
-<li><strong>Metabolite pathways</strong>: Pathway name + description from respective databases</li>
-</ul></li>
-<li><p><strong>Text Embedding</strong>: The combined text information is sent to the specified text embedding model to generate high-dimensional vector representations</p></li>
-<li><p><strong>Similarity Calculation</strong>: Cosine similarity is calculated between all pathway embedding vectors</p></li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
+<li><strong>Higher values (0.6-0.8)</strong>: Cut higher in tree, fewer but larger modules</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Understanding Text Embeddings</strong>: Text embeddings convert text into numerical vectors that capture semantic meaning. For a comprehensive introduction to embeddings, including how they work, model details and best practices, see the <a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings Guide</a>.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="step-2-cluster-pathways-using-biotext-similarity" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="step-2-cluster-pathways-using-biotext-similarity"><span class="header-section-number">5.3</span> Step 2: Cluster Pathways Using Biotext Similarity</h2>
-<p>The <code>merge_pathways_bioembedsim()</code> function uses the calculated biotext embedding similarity matrix to group pathways into functional modules.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>enriched_bioembed_modules <span class="ot">&lt;-</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">merge_pathways_bioembedsim</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> bioembed_similarity,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sim.cutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_method =</span> <span class="st">"girvan newman"</span>  <span class="co"># Options: "binary cut", "girvan newman", "hierarchical"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying funcitonal modules...</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Joining with `by = join_by(node)`</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>EmbedCluster uses the same three clustering algorithms as SimCluster. For detailed explanations of each clustering method and parameter interpretation, see <a href="04_sim_cluster.html#sec-cluster_method" class="quarto-xref"><span>Section 4.3</span></a> in SimCluster. The key difference is that EmbedCluster operates on biotext embedding similarity matrices rather than traditional gene/metabolite overlap similarity.</p>
-</section>
-<section id="results-interpretation" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">5.4</span> Results Interpretation</h2>
-<p>After running EmbedCluster, examine the results:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View analysis summary</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>enriched_bioembed_modules</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis method: enrich_pathway </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Variable information------------</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 119  features/markers in total</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of genes------------</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------GO------------</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1025 GO terms with p.adjust &lt; 0.05 </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># No GO modules</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG------------</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 KEGG pathways with p.adjust &lt; 0.05 </span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Reactome------------</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 Reactome pathways with p.adjust &lt; 0.05 </span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># No Reactome modules</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of metabolites------------</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------HMDB------------</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB results</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># No HMDB modules</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG Metabolite------------</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG metabolite results</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># No KEGG modules</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Functional modules------------</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 60 Functional modules</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------LLM module interpretation------------</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># No LLM module interpretation results</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing information</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 processings in total</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># enrich_pathway ---------- </span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa enrich_pathway() 2025-06-10 10:50:36</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_pathways ---------- </span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package     Function.used                Time</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa get_bioembedsim() 2025-06-10 11:27:59</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_modules ---------- </span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package                                      Function.used                Time</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa get_bioembedsim() and merge_pathways_bioembedsim() 2025-06-10 11:40:09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Access the biotext embedding-based functional modules:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View functional modules</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enriched_bioembed_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Access similarity matrix</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>similarity_matrix <span class="ot">&lt;-</span> bioembed_similarity<span class="sc">$</span>sim_matrix</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(similarity_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#            GO:0016049 GO:0031589 GO:1900046 GO:0071375 GO:0061900</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0016049  1.0000000  0.3779020  0.2286780  0.3376592  0.4369859</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0031589  0.3779020  1.0000000  0.2702301  0.3123477  0.3938414</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:1900046  0.2286780  0.2702301  1.0000000  0.3277389  0.2867548</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0071375  0.3376592  0.3123477  0.3277389  1.0000000  0.4493753</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0061900  0.4369859  0.3938414  0.2867548  0.4493753  1.0000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Key result columns:</p>
+<p><strong>Key Difference in Cutoff Interpretation</strong>:</p>
 <ul>
-<li><strong>module</strong>: Module identifier (e.g., “Functional_module_127”)</li>
-<li><strong>module_annotation</strong>: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest |NES| for GSEA) for the module</li>
-<li><strong>Description</strong>: Names of all the pathways in the module separated by <code>;</code></li>
-<li><strong>module_content</strong>: All pathways/terms (i.e.&nbsp;nodes) grouped in this module</li>
-<li><strong>Count</strong>: Number of genes/metabolites from the input genes/metabolites list in the module</li>
+<li>In <strong>Girvan-Newman</strong>, higher cutoffs = smaller modules</li>
+<li>In <strong>Binary Cut/Hierarchical</strong>, higher cutoffs = larger modules</li>
+</ul>
+<p>Always examine your results and adjust based on the biological interpretability of resulting modules.</p>
+</div>
+</div>
+</section>
+<section id="results-interpretation" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">6.5</span> Results Interpretation</h2>
+<p>After functional module identification, examine your results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View analysis summary</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>functional_modules</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis method: enrich_pathway </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Variable information------------</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 119  features/markers in total</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Enrichment results and modules of genes------------</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------GO------------</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1025 GO terms with p.adjust &lt; 0.05 </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 250 GO modules </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------KEGG------------</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 KEGG pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 29 KEGG modules</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Reactome------------</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 48 Reactome pathways with p.adjust &lt; 0.05 </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 13 Reactome modules</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------Functional modules------------</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 158 Functional modules</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------LLM module interpretation------------</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># No LLM module interpretation results</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------- </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Processing information</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 processings in total</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># enrich_pathway ---------- </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa enrich_pathway() 2025-06-09 21:32:51</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_pathways ---------- </span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package    Function.used                Time</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa merge_pathways() 2025-06-09 21:34:00</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># merge_modules ---------- </span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#   Package   Function.used                Time</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    mapa merge_modules() 2025-06-09 21:34:56</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Access functional modules</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(functional_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="key-result-columns" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="key-result-columns"><span class="header-section-number">6.5.1</span> Key Result Columns</h3>
+<ul>
+<li><strong>module</strong>: Functional Module identifier (e.g., “Functional_module_127”)</li>
+<li><strong>module_annotation</strong>: Representative pathway name (lowest p-value for ORA, highest |NES| for GSEA)</li>
+<li><strong>Description</strong>: Names of all pathways in the module (separated by <code>;</code>)</li>
+<li><strong>module_content</strong>: All pathway/term IDs grouped in this module</li>
+<li><strong>Count</strong>: Number of genes/metabolites from input list in the module</li>
 <li><strong>p_adjust</strong>: Best (lowest) adjusted p-value among pathways in the module</li>
 </ul>
+<p>For <strong>GSEA results</strong>, additional columns include: - <strong>NES</strong>: Normalized Enrichment Score of the representative pathway - <strong>core_enrichment</strong>: Core enriched genes contributing to the module</p>
 </section>
-<section id="advantages-and-considerations" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="advantages-and-considerations"><span class="header-section-number">5.5</span> Advantages and Considerations</h2>
-<p><strong>Advantages of EmbedCluster</strong></p>
-<ol type="1">
-<li><strong>Semantic Understanding</strong>: Considers pathway descriptions and biological context, capturing functional relationships beyond gene overlap</li>
-<li><strong>Cross-database Integration</strong>: Better at combining pathways from different databases</li>
-<li><strong>Novel Discoveries</strong>: May identify functionally related pathways missed by traditional methods</li>
-</ol>
-<p><strong>Considerations</strong></p>
-<ol type="1">
-<li><strong>API Dependency</strong>: Requires internet connection and API access</li>
-<li><strong>Cost</strong>: API usage may incur costs for large analyses</li>
-<li><strong>Processing Time</strong>: Longer than traditional methods due to API calls</li>
-<li><strong>Reproducibility</strong>: Results may vary slightly due to API responses (though embedding vectors are typically stable)</li>
-</ol>
-<p><strong>When to Use EmbedCluster vs SimCluster</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 52%">
-<col style="width: 47%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Use EmbedCluster when:</th>
-<th>Use SimCluster when:</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Exploring novel functional relationships</td>
-<td>Working with limited internet/API access</td>
-</tr>
-<tr class="even">
-<td>Interested in semantic pathway similarity</td>
-<td>Need deterministic, reproducible results</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="next-steps" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">5.6</span> Next Steps</h2>
-<p>Continue to <a href="./05_llm_interpretation.html">LLM Interpretation</a> to add AI-powered functional annotations to your modules, or proceed to <a href="./06_data_vis.html">Data Visualization</a> to create informative plots of your clustering results.</p>
+<section id="quality-assessment" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="quality-assessment"><span class="header-section-number">6.6</span> Quality Assessment</h2>
+<p>Evaluate the quality of your functional modules:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check module size distribution</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>module_results <span class="ot">&lt;-</span> functional_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>module_sizes <span class="ot">&lt;-</span> <span class="fu">table</span>(module_results<span class="sc">$</span>Count)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot module size distribution</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(module_sizes, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribution of Module Sizes"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Number of Genes/Metabolites per Module"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Number of Modules"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine top modules by significance</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>top_modules <span class="ot">&lt;-</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  module_results <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p_adjust) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_modules[, <span class="fu">c</span>(<span class="st">"module_annotation"</span>, <span class="st">"Count"</span>, <span class="st">"p_adjust"</span>)])</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for singleton modules (modules with only one pathway)</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>singleton_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">sapply</span>(<span class="fu">strsplit</span>(module_results<span class="sc">$</span>module_content, <span class="st">";"</span>), length) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number of singleton modules:"</span>, singleton_count, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of singleton modules:"</span>, <span class="fu">round</span>(singleton_count<span class="sc">/</span><span class="fu">nrow</span>(module_results)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="next-steps" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.7</span> Next Steps</h2>
+<p>Continue to <a href="./07_llm_interpretation.html">LLM Interpretation</a> to add AI-powered functional annotations to your modules, or proceed to <a href="./08_data_vis.html">Data Visualization</a> to create informative plots of your functional modules.</p>
 
 
 </section>
@@ -1150,13 +1117,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04_sim_cluster.html" class="pagination-link" aria-label="SimCluster: Traditional Similarity-based Clustering">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span>
+      <a href="./05_determine_optimal_clustering_params.html" class="pagination-link" aria-label="Determining Optimal Clustering Parameters">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05_llm_interpretation.html" class="pagination-link" aria-label="LLM Interpretation">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07_llm_interpretation.html" class="pagination-link" aria-label="LLM Interpretation">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1165,4 +1132,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_embed_cluster.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_embed_cluster.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/06_get_functional_modules.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/06_get_functional_modules.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

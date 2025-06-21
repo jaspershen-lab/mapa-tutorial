@@ -47,7 +47,7 @@ The mapa package leverages the powerful enrichment functions from the [`clusterP
     AnnotationDbi::keytypes(variable_info$orgdb)
     ```
 
-2.  For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) book. This book covers all the underlying methods that mapa uses and will help you make informed decisions about your analysis parameters.
+2.  For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) book. This book covers all the underlying methods that MAPA uses and will help you make informed decisions about your analysis parameters.
 :::
 
 ### Basic Usage
@@ -298,4 +298,4 @@ For metabolite ORA results, the result structure differs from gene-based analysi
 -   `mapped_percentage`: Percentage of pathway metabolites covered by your input data
 :::
 
-The enrichment results provide the foundation for downstream similarity analysis and functional module identification in the mapa workflow.
+The enrichment results provide the foundation for downstream similarity analysis and functional module identification in the MAPA workflow.

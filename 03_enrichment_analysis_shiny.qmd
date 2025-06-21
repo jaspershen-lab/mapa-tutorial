@@ -1,6 +1,6 @@
 # Enrichment Analysis
 
-This chapter covers how to perform pathway enrichment analysis using the mapa Shiny application. The Shiny app provides an intuitive interface for running both **Over-Representation Analysis (ORA)** and **Gene Set Enrichment Analysis (GSEA)** for genes, and ORA for metabolites across multiple databases.
+This chapter covers how to perform pathway enrichment analysis using the MAPA Shiny application. The Shiny app provides an intuitive interface for running both **Over-Representation Analysis (ORA)** and **Gene Set Enrichment Analysis (GSEA)** for genes, and ORA for metabolites across multiple databases.
 
 ::: callout-important
 Prerequisites: Before running enrichment analysis, ensure you have successfully uploaded and processed your data using the **Upload Data** interface as described in the previous chapter. The processed data from the ID conversion step will automatically be available for enrichment analysis.
@@ -8,7 +8,7 @@ Prerequisites: Before running enrichment analysis, ensure you have successfully 
 
 ## Supported Databases and Analysis Types
 
-The mapa Shiny app leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis:
+The MAPA Shiny app leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis:
 
 ::: panel-tabset
 ##### For Gene Data
@@ -28,7 +28,7 @@ The mapa Shiny app leverages the powerful enrichment functions from the [`cluste
 :::
 
 ::: callout-tip
-For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) book. This book covers all the underlying methods that mapa uses and will help you make informed decisions about your analysis parameters.
+For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) book. This book covers all the underlying methods that MAPA uses and will help you make informed decisions about your analysis parameters.
 :::
 
 ## Gene-based Enrichment Analysis

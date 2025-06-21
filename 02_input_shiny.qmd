@@ -1,25 +1,25 @@
 # Data Input and Preprocessing
 
-This chapter covers how to input and preprocess your data using the mapa Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.
+This chapter covers how to input and preprocess your data using the MAPA Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.
 
-## Launching the mapa Shiny App
+## Launching the MAPA Shiny App
 
-Before you can input and process your data, you need to launch the mapa Shiny application.
+Before you can input and process your data, you need to launch the MAPA Shiny application.
 
 ::: callout-important
 Prerequisites: Ensure you have installed both the `mapa` package and `mapashiny` package as described in @sec-shinyapp_installation.
 :::
 
-To launch the mapa Shiny app, run the following command in your R console:
+To launch the MAPA Shiny app, run the following command in your R console:
 
 ```{r}
 #| eval: false
 
 library(mapashiny)
-run_app()
+run_mapa_shiny()
 ```
 
-Once launched, you'll see the mapa interface with:
+Once launched, you'll see the MAPA interface with:
 
 -   **Header**: Application title and navigation
 -   **Sidebar**: Menu with different analysis steps
@@ -29,7 +29,7 @@ Once launched, you'll see the mapa interface with:
 
 The sidebar contains the following sections:
 
--   **Introduction**: Overview of mapa functionality
+-   **Introduction**: Overview of MAPA functionality
 -   **Upload Data**: File upload and ID conversion (covered in this chapter)
 -   **Enrich Pathways**: Pathway enrichment analysis
 -   **Pathway Clustering**: Two methods for grouping related pathways
@@ -39,7 +39,7 @@ The sidebar contains the following sections:
 
 ## Accessing the Upload Data Interface
 
-After launching the mapa Shiny app, navigate to the **Upload Data** tab in the sidebar. The interface is divided into two main sections:
+After launching the MAPA Shiny app, navigate to the **Upload Data** tab in the sidebar. The interface is divided into two main sections:
 
 -   **Left Panel**: File upload, data type selection, and processing parameters
 -   **Right Panel**: Data preview and download options
@@ -196,7 +196,7 @@ After ID conversion, your data will contain all necessary identifier columns:
 -   `symbol`: Gene symbols
 
 ::: callout-note
-Blank columns might appear for some identifier types after ID conversion. Because some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). mapa will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.
+Blank columns might appear for some identifier types after ID conversion. Because some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). MAPA will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.
 :::
 
 **For Metabolites:**

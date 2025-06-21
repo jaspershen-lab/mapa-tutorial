@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>7&nbsp; Data Visualization – mapa tutorial</title>
+<title>8&nbsp; Data Visualization – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07_res_report.html" rel="next">
-<link href="./05_llm_interpretation.html" rel="prev">
+<link href="./09_res_report.html" rel="next">
+<link href="./07_llm_interpretation.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./06_data_vis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./08_data_vis.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,32 +187,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_sim_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+  <a href="./04_pathway_similarity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_embed_cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">EmbedCluster: Advanced Biotext Embedding-based Clustering</span></span></a>
+  <a href="./05_determine_optimal_clustering_params.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Determining Optimal Clustering Parameters</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_llm_interpretation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+  <a href="./06_get_functional_modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_data_vis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  <a href="./07_llm_interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_res_report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
+  <a href="./08_data_vis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_res_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,49 +235,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_embed_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_res_report_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,41 +298,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview-of-visualization-functions" id="toc-overview-of-visualization-functions" class="nav-link active" data-scroll-target="#overview-of-visualization-functions"><span class="header-section-number">7.1</span> Overview of Visualization Functions</a></li>
-  <li><a href="#bar-chart-visualization" id="toc-bar-chart-visualization" class="nav-link" data-scroll-target="#bar-chart-visualization"><span class="header-section-number">7.2</span> Bar Chart Visualization</a>
+  <li><a href="#overview-of-visualization-functions" id="toc-overview-of-visualization-functions" class="nav-link active" data-scroll-target="#overview-of-visualization-functions"><span class="header-section-number">8.1</span> Overview of Visualization Functions</a></li>
+  <li><a href="#bar-chart-visualization" id="toc-bar-chart-visualization" class="nav-link" data-scroll-target="#bar-chart-visualization"><span class="header-section-number">8.2</span> Bar Chart Visualization</a>
   <ul class="collapse">
-  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">7.2.1</span> Basic Usage</a></li>
-  <li><a href="#key-parameters" id="toc-key-parameters" class="nav-link" data-scroll-target="#key-parameters"><span class="header-section-number">7.2.2</span> Key Parameters</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">8.2.1</span> Basic Usage</a></li>
+  <li><a href="#key-parameters" id="toc-key-parameters" class="nav-link" data-scroll-target="#key-parameters"><span class="header-section-number">8.2.2</span> Key Parameters</a></li>
   </ul></li>
-  <li><a href="#module-information-plots" id="toc-module-information-plots" class="nav-link" data-scroll-target="#module-information-plots"><span class="header-section-number">7.3</span> Module Information Plots</a>
+  <li><a href="#module-information-plots" id="toc-module-information-plots" class="nav-link" data-scroll-target="#module-information-plots"><span class="header-section-number">8.3</span> Module Information Plots</a>
   <ul class="collapse">
-  <li><a href="#for-functional-modules" id="toc-for-functional-modules" class="nav-link" data-scroll-target="#for-functional-modules"><span class="header-section-number">7.3.1</span> For Functional Modules</a></li>
-  <li><a href="#for-database-specific-modules" id="toc-for-database-specific-modules" class="nav-link" data-scroll-target="#for-database-specific-modules"><span class="header-section-number">7.3.2</span> For Database-Specific Modules</a></li>
+  <li><a href="#for-functional-modules" id="toc-for-functional-modules" class="nav-link" data-scroll-target="#for-functional-modules"><span class="header-section-number">8.3.1</span> For Functional Modules</a></li>
+  <li><a href="#for-database-specific-modules" id="toc-for-database-specific-modules" class="nav-link" data-scroll-target="#for-database-specific-modules"><span class="header-section-number">8.3.2</span> For Database-Specific Modules</a></li>
   </ul></li>
-  <li><a href="#similarity-network-visualization" id="toc-similarity-network-visualization" class="nav-link" data-scroll-target="#similarity-network-visualization"><span class="header-section-number">7.4</span> Similarity Network Visualization</a>
+  <li><a href="#similarity-network-visualization" id="toc-similarity-network-visualization" class="nav-link" data-scroll-target="#similarity-network-visualization"><span class="header-section-number">8.4</span> Similarity Network Visualization</a>
   <ul class="collapse">
-  <li><a href="#basic-usage-1" id="toc-basic-usage-1" class="nav-link" data-scroll-target="#basic-usage-1"><span class="header-section-number">7.4.1</span> Basic Usage</a></li>
-  <li><a href="#database-specific-networks" id="toc-database-specific-networks" class="nav-link" data-scroll-target="#database-specific-networks"><span class="header-section-number">7.4.2</span> Database-Specific Networks</a></li>
-  <li><a href="#focus-on-specific-modules" id="toc-focus-on-specific-modules" class="nav-link" data-scroll-target="#focus-on-specific-modules"><span class="header-section-number">7.4.3</span> Focus on Specific Modules</a></li>
-  <li><a href="#key-parameters-1" id="toc-key-parameters-1" class="nav-link" data-scroll-target="#key-parameters-1"><span class="header-section-number">7.4.4</span> Key Parameters</a></li>
+  <li><a href="#basic-usage-1" id="toc-basic-usage-1" class="nav-link" data-scroll-target="#basic-usage-1"><span class="header-section-number">8.4.1</span> Basic Usage</a></li>
+  <li><a href="#database-specific-networks" id="toc-database-specific-networks" class="nav-link" data-scroll-target="#database-specific-networks"><span class="header-section-number">8.4.2</span> Database-Specific Networks</a></li>
+  <li><a href="#focus-on-specific-modules" id="toc-focus-on-specific-modules" class="nav-link" data-scroll-target="#focus-on-specific-modules"><span class="header-section-number">8.4.3</span> Focus on Specific Modules</a></li>
+  <li><a href="#key-parameters-1" id="toc-key-parameters-1" class="nav-link" data-scroll-target="#key-parameters-1"><span class="header-section-number">8.4.4</span> Key Parameters</a></li>
   </ul></li>
-  <li><a href="#relationship-network-visualization" id="toc-relationship-network-visualization" class="nav-link" data-scroll-target="#relationship-network-visualization"><span class="header-section-number">7.5</span> Relationship Network Visualization</a>
+  <li><a href="#relationship-network-visualization" id="toc-relationship-network-visualization" class="nav-link" data-scroll-target="#relationship-network-visualization"><span class="header-section-number">8.5</span> Relationship Network Visualization</a>
   <ul class="collapse">
-  <li><a href="#basic-usage-2" id="toc-basic-usage-2" class="nav-link" data-scroll-target="#basic-usage-2"><span class="header-section-number">7.5.1</span> Basic Usage</a></li>
-  <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">7.5.2</span> Circular Layout</a></li>
-  <li><a href="#customization-options" id="toc-customization-options" class="nav-link" data-scroll-target="#customization-options"><span class="header-section-number">7.5.3</span> Customization Options</a></li>
+  <li><a href="#basic-usage-2" id="toc-basic-usage-2" class="nav-link" data-scroll-target="#basic-usage-2"><span class="header-section-number">8.5.1</span> Basic Usage</a></li>
+  <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">8.5.2</span> Circular Layout</a></li>
+  <li><a href="#customization-options" id="toc-customization-options" class="nav-link" data-scroll-target="#customization-options"><span class="header-section-number">8.5.3</span> Customization Options</a></li>
   </ul></li>
-  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">7.6</span> Troubleshooting Visualization Issues</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">7.7</span> Next Steps</a></li>
+  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">8.6</span> Troubleshooting Visualization Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">8.7</span> Next Steps</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/06_data_vis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/06_data_vis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/08_data_vis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/08_data_vis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./06_data_vis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_package_installation.html">mapa R Package</a></li><li class="breadcrumb-item"><a href="./08_data_vis.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-data_vis" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
+<h1 class="title"><span id="sec-data_vis" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
 </div>
 
 
@@ -365,8 +371,8 @@ Important
 </ul>
 </div>
 </div>
-<section id="overview-of-visualization-functions" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="overview-of-visualization-functions"><span class="header-section-number">7.1</span> Overview of Visualization Functions</h2>
+<section id="overview-of-visualization-functions" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="overview-of-visualization-functions"><span class="header-section-number">8.1</span> Overview of Visualization Functions</h2>
 <p>mapa provides four main visualization functions:</p>
 <table class="caption-top table">
 <colgroup>
@@ -405,11 +411,11 @@ Important
 </tbody>
 </table>
 </section>
-<section id="bar-chart-visualization" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="bar-chart-visualization"><span class="header-section-number">7.2</span> Bar Chart Visualization</h2>
+<section id="bar-chart-visualization" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="bar-chart-visualization"><span class="header-section-number">8.2</span> Bar Chart Visualization</h2>
 <p>The <code>plot_pathway_bar()</code> function creates horizontal bar charts showing the top enriched pathways, modules, or functional modules. This is ideal for presenting enrichment results in publications.</p>
-<section id="basic-usage" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">7.2.1</span> Basic Usage</h3>
+<section id="basic-usage" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">8.2.1</span> Basic Usage</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic pathway-level bar chart</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_pathway_bar</span>(</span>
@@ -426,8 +432,8 @@ Important
 </figure>
 </div>
 </section>
-<section id="key-parameters" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="key-parameters"><span class="header-section-number">7.2.2</span> Key Parameters</h3>
+<section id="key-parameters" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="key-parameters"><span class="header-section-number">8.2.2</span> Key Parameters</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -496,8 +502,8 @@ Note
 </div>
 </section>
 </section>
-<section id="module-information-plots" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="module-information-plots"><span class="header-section-number">7.3</span> Module Information Plots</h2>
+<section id="module-information-plots" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="module-information-plots"><span class="header-section-number">8.3</span> Module Information Plots</h2>
 <p>The <code>plot_module_info()</code> function provides detailed, multi-panel visualizations of individual modules, including network topology, pathway rankings, and word clouds. The content of each plot depends on the analysis level:</p>
 <table class="caption-top table">
 <colgroup>
@@ -549,8 +555,8 @@ Note
 </ul>
 </div>
 </div>
-<section id="for-functional-modules" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="for-functional-modules"><span class="header-section-number">7.3.1</span> For Functional Modules</h3>
+<section id="for-functional-modules" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="for-functional-modules"><span class="header-section-number">8.3.1</span> For Functional Modules</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get available module IDs first</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>enriched_functional_modules<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result<span class="sc">$</span>module</span>
@@ -592,8 +598,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="for-database-specific-modules" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="for-database-specific-modules"><span class="header-section-number">7.3.2</span> For Database-Specific Modules</h3>
+<section id="for-database-specific-modules" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="for-database-specific-modules"><span class="header-section-number">8.3.2</span> For Database-Specific Modules</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine a specific KEGG module</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>go_plots <span class="ot">&lt;-</span> <span class="fu">plot_module_info</span>(</span>
@@ -611,11 +617,11 @@ Note
 <p><img src="images/network_go_25.png" class="img-fluid" width="258"> <img src="images/barplot_go_25.png" class="img-fluid" width="211"> <img src="images/wordcloud_go_25.png" class="img-fluid" width="204"></p>
 </section>
 </section>
-<section id="similarity-network-visualization" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="similarity-network-visualization"><span class="header-section-number">7.4</span> Similarity Network Visualization</h2>
+<section id="similarity-network-visualization" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="similarity-network-visualization"><span class="header-section-number">8.4</span> Similarity Network Visualization</h2>
 <p>The <code>plot_similarity_network()</code> function visualizes how pathways or modules cluster together based on similarity metrics.</p>
-<section id="basic-usage-1" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="basic-usage-1"><span class="header-section-number">7.4.1</span> Basic Usage</h3>
+<section id="basic-usage-1" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="basic-usage-1"><span class="header-section-number">8.4.1</span> Basic Usage</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Functional module similarity network</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_similarity_network</span>(</span>
@@ -631,8 +637,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="database-specific-networks" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="database-specific-networks"><span class="header-section-number">7.4.2</span> Database-Specific Networks</h3>
+<section id="database-specific-networks" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="database-specific-networks"><span class="header-section-number">8.4.2</span> Database-Specific Networks</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GO module network</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_similarity_network</span>(</span>
@@ -649,8 +655,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="focus-on-specific-modules" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="focus-on-specific-modules"><span class="header-section-number">7.4.3</span> Focus on Specific Modules</h3>
+<section id="focus-on-specific-modules" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="focus-on-specific-modules"><span class="header-section-number">8.4.3</span> Focus on Specific Modules</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine specific modules only</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_similarity_network</span>(</span>
@@ -666,8 +672,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="key-parameters-1" class="level3" data-number="7.4.4">
-<h3 data-number="7.4.4" class="anchored" data-anchor-id="key-parameters-1"><span class="header-section-number">7.4.4</span> Key Parameters</h3>
+<section id="key-parameters-1" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="key-parameters-1"><span class="header-section-number">8.4.4</span> Key Parameters</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -711,11 +717,11 @@ Note
 </table>
 </section>
 </section>
-<section id="relationship-network-visualization" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="relationship-network-visualization"><span class="header-section-number">7.5</span> Relationship Network Visualization</h2>
+<section id="relationship-network-visualization" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="relationship-network-visualization"><span class="header-section-number">8.5</span> Relationship Network Visualization</h2>
 <p>The <code>plot_relationship_network()</code> function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.</p>
-<section id="basic-usage-2" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="basic-usage-2"><span class="header-section-number">7.5.1</span> Basic Usage</h3>
+<section id="basic-usage-2" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="basic-usage-2"><span class="header-section-number">8.5.1</span> Basic Usage</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>object <span class="ot">&lt;-</span> enriched_functional_modules</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>object<span class="sc">@</span>merged_module<span class="sc">$</span>functional_module_result <span class="ot">&lt;-</span> </span>
@@ -739,8 +745,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="circular-layout" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="circular-layout"><span class="header-section-number">7.5.2</span> Circular Layout</h3>
+<section id="circular-layout" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="circular-layout"><span class="header-section-number">8.5.2</span> Circular Layout</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Circular layout for better visualization of complex networks</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_relationship_network</span>(</span>
@@ -760,8 +766,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="customization-options" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="customization-options"><span class="header-section-number">7.5.3</span> Customization Options</h3>
+<section id="customization-options" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="customization-options"><span class="header-section-number">8.5.3</span> Customization Options</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -805,8 +811,8 @@ Note
 </table>
 </section>
 </section>
-<section id="troubleshooting-visualization-issues" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">7.6</span> Troubleshooting Visualization Issues</h2>
+<section id="troubleshooting-visualization-issues" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">8.6</span> Troubleshooting Visualization Issues</h2>
 <p><strong>Common Issues and Solutions:</strong></p>
 <ul>
 <li><strong>Empty plots or warnings about no data</strong>
@@ -832,9 +838,9 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">7.7</span> Next Steps</h2>
-<p>Continue to <a href="./07_res_report.html">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
+<section id="next-steps" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">8.7</span> Next Steps</h2>
+<p>Continue to <a href="07_res_report.qmd">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
 
 
 </section>
@@ -1403,13 +1409,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05_llm_interpretation.html" class="pagination-link" aria-label="LLM Interpretation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span>
+      <a href="./07_llm_interpretation.html" class="pagination-link" aria-label="LLM Interpretation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_res_report.html" class="pagination-link" aria-label="Results Report">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results Report</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09_res_report.html" class="pagination-link" aria-label="Results Report">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results Report</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1418,4 +1424,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/06_data_vis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/06_data_vis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/08_data_vis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/08_data_vis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

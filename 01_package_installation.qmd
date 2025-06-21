@@ -1,6 +1,6 @@
 # Installation
 
-Follow the steps below to install the latest development version of **mapa** from GitHub (the script first installs *BiocManager* and *remotes* if you don’t have them):
+Follow the steps below to install the latest development version of **MAPA** from GitHub (the script first installs *BiocManager* and *remotes* if you don’t have them):
 
 ```{r}
 #| eval=FALSE
