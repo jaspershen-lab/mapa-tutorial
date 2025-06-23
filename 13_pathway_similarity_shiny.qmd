@@ -11,7 +11,7 @@ Prerequisites: Before calculating pathway similarity, ensure you have either:
 The processed enrichment data is required for similarity calculation to proceed.
 :::
 
-## Step1: Load Your Data
+## Step 1: Load Your Data
 
 - **Option 1: Continue from Previous Step**
 
@@ -21,11 +21,11 @@ The processed enrichment data is required for similarity calculation to proceed.
 
     If you have previously saved enrichment results, you can upload them:
     
-    1.  **Click "Browse"** at the top of the left panel to upload your enrichment results file (.rda format)
+    1.  **Click "Browse"** at the top of the left panel **"Upload Enriched Pathways Result (.rda)"** to upload your enrichment results file (.rda format)
     2.  **Select your file**
     3.  **Wait for validation** - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)
 
-## Step2: Select Method
+## Step 2: Select Method
 
 Once your data is loaded, choose your similarity calculation method using the radio buttons:
 
@@ -95,7 +95,7 @@ Configure which databases to include and set filtering parameters:
 **Database Availability**: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.
 :::
 
-## Step3: Run the Analysis
+## Step 3: Run the Analysis
 
 1.  **Verify your data is loaded** - either from the current session or uploaded file
 2.  **Select your similarity method** - Traditional or Biotext embedding
@@ -157,7 +157,7 @@ For biotext embedding results, you'll see a simplified results panel to download
 :::
 ::::
 
-## Step5: View Analysis Code
+## Step 5: View Analysis Code
 
 Click the **"Code"** button to see the exact R code that replicates your analysis. This feature provides: 
 

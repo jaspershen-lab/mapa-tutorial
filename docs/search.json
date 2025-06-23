@@ -826,40 +826,40 @@
     "href": "13_pathway_similarity_shiny.html",
     "title": "13  Pathway Similarity Calculation",
     "section": "",
-    "text": "13.1 Step1: Load Your Data\nThis chapter covers how to calculate pathway similarity using the MAPA Shiny application. The Shiny app computes pathway similarity using two powerful methods: traditional similarity and biotext embedding similarity. Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.",
+    "text": "13.1 Step 1: Load Your Data\nThis chapter covers how to calculate pathway similarity using the MAPA Shiny application. The Shiny app computes pathway similarity using two powerful methods: traditional similarity and biotext embedding similarity. Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
   {
-    "objectID": "13_pathway_similarity_shiny.html#step1-load-your-data",
-    "href": "13_pathway_similarity_shiny.html#step1-load-your-data",
+    "objectID": "13_pathway_similarity_shiny.html#step-1-load-your-data",
+    "href": "13_pathway_similarity_shiny.html#step-1-load-your-data",
     "title": "13  Pathway Similarity Calculation",
     "section": "",
-    "text": "Option 1: Continue from Previous Step\nIf you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.\nOption 2: Upload Existing Results\nIf you have previously saved enrichment results, you can upload them:\n\nClick “Browse” at the top of the left panel to upload your enrichment results file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)",
+    "text": "Option 1: Continue from Previous Step\nIf you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.\nOption 2: Upload Existing Results\nIf you have previously saved enrichment results, you can upload them:\n\nClick “Browse” at the top of the left panel “Upload Enriched Pathways Result (.rda)” to upload your enrichment results file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
   {
-    "objectID": "13_pathway_similarity_shiny.html#step2-select-method",
-    "href": "13_pathway_similarity_shiny.html#step2-select-method",
+    "objectID": "13_pathway_similarity_shiny.html#step-2-select-method",
+    "href": "13_pathway_similarity_shiny.html#step-2-select-method",
     "title": "13  Pathway Similarity Calculation",
-    "section": "13.2 Step2: Select Method",
-    "text": "13.2 Step2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see Section 12.1)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
+    "section": "13.2 Step 2: Select Method",
+    "text": "13.2 Step 2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see Section 12.1)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
   {
-    "objectID": "13_pathway_similarity_shiny.html#step3-run-the-analysis",
-    "href": "13_pathway_similarity_shiny.html#step3-run-the-analysis",
+    "objectID": "13_pathway_similarity_shiny.html#step-3-run-the-analysis",
+    "href": "13_pathway_similarity_shiny.html#step-3-run-the-analysis",
     "title": "13  Pathway Similarity Calculation",
-    "section": "13.3 Step3: Run the Analysis",
-    "text": "13.3 Step3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing",
+    "section": "13.3 Step 3: Run the Analysis",
+    "text": "13.3 Step 3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
@@ -877,11 +877,11 @@
     ]
   },
   {
-    "objectID": "13_pathway_similarity_shiny.html#step5-view-analysis-code",
-    "href": "13_pathway_similarity_shiny.html#step5-view-analysis-code",
+    "objectID": "13_pathway_similarity_shiny.html#step-5-view-analysis-code",
+    "href": "13_pathway_similarity_shiny.html#step-5-view-analysis-code",
     "title": "13  Pathway Similarity Calculation",
-    "section": "13.5 Step5: View Analysis Code",
-    "text": "13.5 Step5: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis. This feature provides:\n\nReproducibility: Copy and paste code into R scripts\nLearning: Understand the underlying MAPA functions and parameters\nCustomization: Modify parameters for batch processing or additional analyses",
+    "section": "13.5 Step 5: View Analysis Code",
+    "text": "13.5 Step 5: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis. This feature provides:\n\nReproducibility: Copy and paste code into R scripts\nLearning: Understand the underlying MAPA functions and parameters\nCustomization: Modify parameters for batch processing or additional analyses",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
@@ -912,89 +912,111 @@
   {
     "objectID": "14_get_functional_modules_shiny.html",
     "href": "14_get_functional_modules_shiny.html",
-    "title": "14  Functional Module Identification",
+    "title": "14  Pathway Clustering",
     "section": "",
-    "text": "14.1 Overview\nThis chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.\nThe get_functional_modules() function is a generic function that identifies functional modules from pathway similarity results. It automatically detects the type of input object and applies the appropriate clustering method:",
+    "text": "14.1 Overview\nThis chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny app provides an intuitive interface for grouping related pathways into functional modules using optimal clustering parameters.\nThe Pathway Clustering section in the MAPA Shiny app provides a comprehensive workflow for identifying functional modules from pathway similarity results. It includes two main steps:\nThis two-step approach helps ensure high-quality, biologically meaningful pathway modules.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#overview",
     "href": "14_get_functional_modules_shiny.html#overview",
-    "title": "14  Functional Module Identification",
+    "title": "14  Pathway Clustering",
     "section": "",
-    "text": "Traditional similarity objects: Uses Jaccard similarity between modules from different databases\nBiotext embedding objects: Uses pre-computed semantic similarity matrices",
+    "text": "(Optional) Find Optimal Parameters: Systematically evaluate different clustering algorithms and a series of similarity cutoffs to identify optimal parameters\nPerform Clustering: Apply the optimal parameters to generate functional modules",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
-    "objectID": "14_get_functional_modules_shiny.html#basic-usage",
-    "href": "14_get_functional_modules_shiny.html#basic-usage",
-    "title": "14  Functional Module Identification",
-    "section": "14.2 Basic Usage",
-    "text": "14.2 Basic Usage\nThe function automatically detects your input type and applies the appropriate clustering strategy:\n\nTraditional Similarity ResultsBiotext Embedding Results\n\n\n\nfunctional_modules &lt;- \n  get_functional_modules(\n    object = met_similarity_result,\n    sim.cutoff = 0.5,\n    cluster_method = \"girvan newman\"\n  )\n\n# Get functional modules from traditional pathway similarity calculation results ...\n# Calculating the similarity matrix...\n# Identifying functional modules...\n# Done\n\n\n\n\nfunctional_modules &lt;- \n  get_functional_modules(\n    object = met_biotext_similarity,\n    sim.cutoff = 0.5,\n    cluster_method = \"binary cut\"\n  )\n\n# Get functional modules from Biotext embedding results ...\n# Identifying functional modules...\n# Joining with `by = join_by(node)`\n# Done",
+    "objectID": "14_get_functional_modules_shiny.html#step-1-load-your-data",
+    "href": "14_get_functional_modules_shiny.html#step-1-load-your-data",
+    "title": "14  Pathway Clustering",
+    "section": "14.2 Step 1: Load Your Data",
+    "text": "14.2 Step 1: Load Your Data\n\nOption 1: Continue from Previous Step\nIf you have completed pathway similarity calculation in the current session, your data will automatically be available for clustering analysis.\nOption 2: Upload Existing Results\nIf you have previously saved similarity results, you can upload them:\n\nClick “Browse” at the top of the left panel “Upload Similarity Result (.rda)” to upload your similarity results file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect the input type and prepare for clustering analysis",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
-    "objectID": "14_get_functional_modules_shiny.html#using-optimal-parameters",
-    "href": "14_get_functional_modules_shiny.html#using-optimal-parameters",
-    "title": "14  Functional Module Identification",
-    "section": "14.3 Using Optimal Parameters",
-    "text": "14.3 Using Optimal Parameters\nApply the parameters identified in your clustering evaluation:\n\n# Extract optimal parameters from your evaluation\nbest_params &lt;- cluster_evaluation$best_combination\n\n# Use modularity-optimized parameters\nmodularity_optimal &lt;- best_params[best_params$metric == \"modularity\", ]\noptimal_method &lt;- modularity_optimal$method[1]\noptimal_cutoff &lt;- modularity_optimal$cutoff[1]\n\n# Apply optimal parameters\nfunctional_modules &lt;- \n  get_functional_modules(\n    object = similarity_results,\n    sim.cutoff = optimal_cutoff,\n    cluster_method = optimal_method\n  )\n\n# Alternatively, use silhouette-optimized parameters for better separation\nsilhouette_optimal &lt;- best_params[best_params$metric == \"silhouette\", ]",
+    "objectID": "14_get_functional_modules_shiny.html#step-2-find-optimal-parameters",
+    "href": "14_get_functional_modules_shiny.html#step-2-find-optimal-parameters",
+    "title": "14  Pathway Clustering",
+    "section": "14.3 Step 2: Find Optimal Parameters",
+    "text": "14.3 Step 2: Find Optimal Parameters\nBefore performing the final clustering, it’s highly recommended to systematically evaluate different clustering parameters to find the optimal settings. The optimal parameter analysis tests three clustering algorithms:\n\nBinary cut: Uses the simplifyEnrichment algorithm\nGirvan Newman: Community detection based on edge betweenness\nHierarchical: Traditional agglomerative clustering\n\nEach method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation. You can set the evaluation parameters:\n\nCutoff Increment: Step size for the similarity cutoff sequence (default: 0.1)\n\nSmaller values (e.g., 0.05) provide more detailed analysis but take longer\nLarger values (e.g., 0.1) provide faster analysis with broader evaluation\n\nHierarchical Linkage (for hierarchical method): Agglomeration method options\n\nThen run optimal parameter analysis:\n\nReview your cutoff increment setting\nClick the “Submit” button to start the parameter evaluation\nMonitor progress - the analysis will test multiple clustering methods and similarity cutoffs\nWait for completion - processing typically takes 1-3 minutes depending on data complexity and cutoff increment",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
-    "objectID": "14_get_functional_modules_shiny.html#similarity-cutoff-interpretation",
-    "href": "14_get_functional_modules_shiny.html#similarity-cutoff-interpretation",
-    "title": "14  Functional Module Identification",
-    "section": "14.4 Similarity Cutoff Interpretation",
-    "text": "14.4 Similarity Cutoff Interpretation\nThe meaning of sim.cutoff depends on your clustering method:\n\nGirvan-NewmanBinary Cut & Hierarchical\n\n\nEdge Filter: Only pathway pairs with similarity above this threshold are connected.\n\nLower values (0.3-0.4): More permissive, denser networks, larger modules\nHigher values (0.6-0.8): More stringent, sparser networks, smaller modules\n\n\n\nDendrogram Cutting Height: Determines where to cut the clustering tree.\n\nLower values (0.3-0.4): Cut lower in tree, more fine-grained modules\n\nHigher values (0.6-0.8): Cut higher in tree, fewer but larger modules\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nKey Difference in Cutoff Interpretation:\n\nIn Girvan-Newman, higher cutoffs = smaller modules\nIn Binary Cut/Hierarchical, higher cutoffs = larger modules\n\nAlways examine your results and adjust based on the biological interpretability of resulting modules.",
+    "objectID": "14_get_functional_modules_shiny.html#step-3-review-optimal-parameter-results",
+    "href": "14_get_functional_modules_shiny.html#step-3-review-optimal-parameter-results",
+    "title": "14  Pathway Clustering",
+    "section": "14.4 Step 3: Review Optimal Parameter Results",
+    "text": "14.4 Step 3: Review Optimal Parameter Results\nAfter completion, results will appear in the “Optimal Parameter Analysis” tab which includes Evaluation Plot and Best Recommended Combinations:\n\nEvaluation Plot\nThe plot shows how clustering quality metrics change across similarity cutoffs for different clustering methods. Look for:\n\nPeaks in modularity: Indicate good community structure (higher = stronger community structure with clearer boundaries between clusters)\nHigh silhouette scores: Indicate well-separated clusters (higher = better separated clusters)\nConsistent performance: Methods that perform well across multiple cutoffs\n\n\n\n\n\n\nBest Recommended Combinations\nThe table identifies the optimal method and cutoff combinations for each metric:\n\nMethod: Clustering algorithm (hierarchical, binary_cut, girvan_newman)\nCutoff: Optimal similarity cutoff value\nMetric: Evaluation criterion (modularity and silhouette)\nValue: Maximum achieved score for that metric",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
-    "objectID": "14_get_functional_modules_shiny.html#results-interpretation",
-    "href": "14_get_functional_modules_shiny.html#results-interpretation",
-    "title": "14  Functional Module Identification",
-    "section": "14.5 Results Interpretation",
-    "text": "14.5 Results Interpretation\nAfter functional module identification, examine your results:\n\n# View analysis summary\nfunctional_modules\n# -------------------- \n# Analysis method: enrich_pathway \n# -------------------- \n# -----------Variable information------------\n# 119  features/markers in total\n# -----------Enrichment results and modules of genes------------\n# -----------GO------------\n# 1025 GO terms with p.adjust &lt; 0.05 \n# 250 GO modules \n# -----------KEGG------------\n# 48 KEGG pathways with p.adjust &lt; 0.05 \n# 29 KEGG modules\n# -----------Reactome------------\n# 48 Reactome pathways with p.adjust &lt; 0.05 \n# 13 Reactome modules\n# -----------Functional modules------------\n# 158 Functional modules\n# -----------LLM module interpretation------------\n# No LLM module interpretation results\n# -------------------- \n# Processing information\n# 4 processings in total\n# enrich_pathway ---------- \n#   Package    Function.used                Time\n# 1    mapa enrich_pathway() 2025-06-09 21:32:51\n# merge_pathways ---------- \n#   Package    Function.used                Time\n# 1    mapa merge_pathways() 2025-06-09 21:34:00\n# merge_modules ---------- \n#   Package   Function.used                Time\n# 1    mapa merge_modules() 2025-06-09 21:34:56\n\n# Access functional modules\nhead(functional_modules@merged_module$functional_module_result)\n\n\n14.5.1 Key Result Columns\n\nmodule: Functional Module identifier (e.g., “Functional_module_127”)\nmodule_annotation: Representative pathway name (lowest p-value for ORA, highest |NES| for GSEA)\nDescription: Names of all pathways in the module (separated by ;)\nmodule_content: All pathway/term IDs grouped in this module\nCount: Number of genes/metabolites from input list in the module\np_adjust: Best (lowest) adjusted p-value among pathways in the module\n\nFor GSEA results, additional columns include: - NES: Normalized Enrichment Score of the representative pathway - core_enrichment: Core enriched genes contributing to the module",
+    "objectID": "14_get_functional_modules_shiny.html#step-4-run-final-clustering-parameters",
+    "href": "14_get_functional_modules_shiny.html#step-4-run-final-clustering-parameters",
+    "title": "14  Pathway Clustering",
+    "section": "14.5 Step 4: Run Final Clustering Parameters",
+    "text": "14.5 Step 4: Run Final Clustering Parameters\n\nUse the insights from the optimal parameter analysis to set your final clustering parameters:\n\nSimilarity Cutoff: Use the recommended cutoff from your evaluation (default: 0.5). The meaning of the cutoff depends on your clustering method:\n\nGirvan-Newman: Edge filter (higher cutoffs = smaller modules)\nBinary Cut & Hierarchical: Dendrogram cutting height (higher cutoffs = larger modules)\n\nClustering Method: Choose from the three available methods: Binary cut, Girvan Newman, and Hierarchical cluserting\nHierarchical Linkage (only for hierarchical method): Agglomeration method options\n\nClick the “Submit” button to perform the final clustering\nMonitor progress - clustering typically completes within minutes\nReview results in the “Final Clustering Result” tab",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
-    "objectID": "14_get_functional_modules_shiny.html#quality-assessment",
-    "href": "14_get_functional_modules_shiny.html#quality-assessment",
-    "title": "14  Functional Module Identification",
-    "section": "14.6 Quality Assessment",
-    "text": "14.6 Quality Assessment\nEvaluate the quality of your functional modules:\n\n# Check module size distribution\nmodule_results &lt;- functional_modules@merged_module$functional_module_result\nmodule_sizes &lt;- table(module_results$Count)\n\n# Plot module size distribution\nbarplot(module_sizes, \n        main = \"Distribution of Module Sizes\", \n        xlab = \"Number of Genes/Metabolites per Module\",\n        ylab = \"Number of Modules\")\n\n# Examine top modules by significance\ntop_modules &lt;- \n  module_results %&gt;%\n  arrange(p_adjust) %&gt;%\n  head(10)\n\nprint(top_modules[, c(\"module_annotation\", \"Count\", \"p_adjust\")])\n\n# Check for singleton modules (modules with only one pathway)\nsingleton_count &lt;- sum(sapply(strsplit(module_results$module_content, \";\"), length) == 1)\ncat(\"Number of singleton modules:\", singleton_count, \"\\n\")\ncat(\"Percentage of singleton modules:\", round(singleton_count/nrow(module_results)*100, 1), \"%\\n\")",
+    "objectID": "14_get_functional_modules_shiny.html#step-5-review-final-clustering-results",
+    "href": "14_get_functional_modules_shiny.html#step-5-review-final-clustering-results",
+    "title": "14  Pathway Clustering",
+    "section": "14.6 Step 5: Review Final Clustering Results",
+    "text": "14.6 Step 5: Review Final Clustering Results\nAfter successful clustering, examine your results in the “Final Clustering Result” tab with three sub-tabs:\n\nTable TabData Visualization TabR Object Tab\n\n\nBrowse the functional module results and download as CSV:\n\nView: Complete functional module results table with key metrics\nDownload: Click “Download” button to save results as CSV for further analysis\n\nKey result columns:\n\nmodule: Functional Module identifier (e.g., “Functional_module_127”)\nmodule_annotation: Representative pathway name (lowest p-value for ORA, highest |NES| for GSEA)\nDescription: Names of all pathways in the module (separated by ;)\nmodule_content: All pathway/term IDs grouped in this module\nCount: Number of genes/metabolites from input list in the module\np_adjust: Best (lowest) adjusted p-value among pathways in the module\n\n\n\n\n\n\n\n\nGenerate similarity network plots to visualize functional modules:\n\nConfigure plot parameters:\n\nDegree cutoff: Minimum pathways per module to display\nText: Show representative module names\nText all: Show all pathway names\n\nClick “Generate plot” to create the network visualization\nExamine the network to understand module relationships and structure\n\n\n\n\n\n\n\n\nAccess the complete results object for further analysis:\n\nView: Summary of the complete functional module analysis\nDownload: Save the complete object (.rda format) for use in R",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+    ]
+  },
+  {
+    "objectID": "14_get_functional_modules_shiny.html#step-6-view-analysis-code",
+    "href": "14_get_functional_modules_shiny.html#step-6-view-analysis-code",
+    "title": "14  Pathway Clustering",
+    "section": "14.7 Step 6: View Analysis Code",
+    "text": "14.7 Step 6: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nOptimal Parameter Analysis Code: Shows determine_optimal_clusters() function usage\nFinal Clustering Code: Shows get_functional_modules() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+    ]
+  },
+  {
+    "objectID": "14_get_functional_modules_shiny.html#clustering-quality-assessment",
+    "href": "14_get_functional_modules_shiny.html#clustering-quality-assessment",
+    "title": "14  Pathway Clustering",
+    "section": "14.8 Clustering Quality Assessment",
+    "text": "14.8 Clustering Quality Assessment\nEvaluate the quality of your functional modules by examining:\n\nModule Size Distribution: Check if modules have reasonable sizes (not too many singleton modules or one dominant large module) and investigate clusters that are major outliers.\nSilhouette score plot\nBiological Interpretation: Most importantly, examine whether the grouped pathways represent coherent biological processes or functions. Statistical optimization alone doesn’t guarantee biological meaningfulness - modules should tell a clear biological story.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#next-steps",
     "href": "14_get_functional_modules_shiny.html#next-steps",
-    "title": "14  Functional Module Identification",
-    "section": "14.7 Next Steps",
-    "text": "14.7 Next Steps\nContinue to LLM Interpretation to add AI-powered functional annotations to your modules, or proceed to Data Visualization to create informative plots of your functional modules.",
+    "title": "14  Pathway Clustering",
+    "section": "14.9 Next Steps",
+    "text": "14.9 Next Steps\nOnce your functional module identification is complete:\n\nDownload Results: Save both the table and R object for backup and further analysis\nProceed to LLM Interpretation: Click the “Next” button to move to LLM Interpretation for AI-powered functional annotations of your modules\n\nThe functional modules will automatically be available for the next step in your MAPA analysis workflow, where you can add biological context and interpretations using large language models.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
     ]
   }
 ]

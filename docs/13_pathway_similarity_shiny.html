@@ -225,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_get_functional_modules_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Pathway Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,15 +264,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#step1-load-your-data" id="toc-step1-load-your-data" class="nav-link active" data-scroll-target="#step1-load-your-data"><span class="header-section-number">13.1</span> Step1: Load Your Data</a></li>
-  <li><a href="#step2-select-method" id="toc-step2-select-method" class="nav-link" data-scroll-target="#step2-select-method"><span class="header-section-number">13.2</span> Step2: Select Method</a>
+  <li><a href="#step-1-load-your-data" id="toc-step-1-load-your-data" class="nav-link active" data-scroll-target="#step-1-load-your-data"><span class="header-section-number">13.1</span> Step 1: Load Your Data</a></li>
+  <li><a href="#step-2-select-method" id="toc-step-2-select-method" class="nav-link" data-scroll-target="#step-2-select-method"><span class="header-section-number">13.2</span> Step 2: Select Method</a>
   <ul class="collapse">
   <li><a href="#method-1-traditional-methods" id="toc-method-1-traditional-methods" class="nav-link" data-scroll-target="#method-1-traditional-methods"><span class="header-section-number">13.2.1</span> Method 1: Traditional Methods</a></li>
   <li><a href="#method-2-biotext-embedding" id="toc-method-2-biotext-embedding" class="nav-link" data-scroll-target="#method-2-biotext-embedding"><span class="header-section-number">13.2.2</span> Method 2: Biotext Embedding</a></li>
   </ul></li>
-  <li><a href="#step3-run-the-analysis" id="toc-step3-run-the-analysis" class="nav-link" data-scroll-target="#step3-run-the-analysis"><span class="header-section-number">13.3</span> Step3: Run the Analysis</a></li>
+  <li><a href="#step-3-run-the-analysis" id="toc-step-3-run-the-analysis" class="nav-link" data-scroll-target="#step-3-run-the-analysis"><span class="header-section-number">13.3</span> Step 3: Run the Analysis</a></li>
   <li><a href="#step-4-review-results" id="toc-step-4-review-results" class="nav-link" data-scroll-target="#step-4-review-results"><span class="header-section-number">13.4</span> Step 4: Review Results</a></li>
-  <li><a href="#step5-view-analysis-code" id="toc-step5-view-analysis-code" class="nav-link" data-scroll-target="#step5-view-analysis-code"><span class="header-section-number">13.5</span> Step5: View Analysis Code</a></li>
+  <li><a href="#step-5-view-analysis-code" id="toc-step-5-view-analysis-code" class="nav-link" data-scroll-target="#step-5-view-analysis-code"><span class="header-section-number">13.5</span> Step 5: View Analysis Code</a></li>
   <li><a href="#method-comparison" id="toc-method-comparison" class="nav-link" data-scroll-target="#method-comparison"><span class="header-section-number">13.6</span> Method Comparison</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">13.7</span> Next Steps</a></li>
   </ul>
@@ -319,22 +319,22 @@ Important
 <p>The processed enrichment data is required for similarity calculation to proceed.</p>
 </div>
 </div>
-<section id="step1-load-your-data" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="step1-load-your-data"><span class="header-section-number">13.1</span> Step1: Load Your Data</h2>
+<section id="step-1-load-your-data" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="step-1-load-your-data"><span class="header-section-number">13.1</span> Step 1: Load Your Data</h2>
 <ul>
 <li><p><strong>Option 1: Continue from Previous Step</strong></p>
 <p>If you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.</p></li>
 <li><p><strong>Option 2: Upload Existing Results</strong></p>
 <p>If you have previously saved enrichment results, you can upload them:</p>
 <ol type="1">
-<li><strong>Click “Browse”</strong> at the top of the left panel to upload your enrichment results file (.rda format)</li>
+<li><strong>Click “Browse”</strong> at the top of the left panel <strong>“Upload Enriched Pathways Result (.rda)”</strong> to upload your enrichment results file (.rda format)</li>
 <li><strong>Select your file</strong></li>
 <li><strong>Wait for validation</strong> - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)</li>
 </ol></li>
 </ul>
 </section>
-<section id="step2-select-method" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="step2-select-method"><span class="header-section-number">13.2</span> Step2: Select Method</h2>
+<section id="step-2-select-method" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="step-2-select-method"><span class="header-section-number">13.2</span> Step 2: Select Method</h2>
 <p>Once your data is loaded, choose your similarity calculation method using the radio buttons:</p>
 <ul>
 <li><strong>Traditional methods</strong>: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see <a href="12_enrichment_analysis_shiny.html#sec-supported_db" class="quarto-xref"><span>Section 12.1</span></a>)</li>
@@ -515,8 +515,8 @@ Note
 </section>
 </section>
 </section>
-<section id="step3-run-the-analysis" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="step3-run-the-analysis"><span class="header-section-number">13.3</span> Step3: Run the Analysis</h2>
+<section id="step-3-run-the-analysis" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="step-3-run-the-analysis"><span class="header-section-number">13.3</span> Step 3: Run the Analysis</h2>
 <ol type="1">
 <li><strong>Verify your data is loaded</strong> - either from the current session or uploaded file</li>
 <li><strong>Select your similarity method</strong> - Traditional or Biotext embedding</li>
@@ -607,8 +607,8 @@ Note
 </div>
 </div>
 </section>
-<section id="step5-view-analysis-code" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="step5-view-analysis-code"><span class="header-section-number">13.5</span> Step5: View Analysis Code</h2>
+<section id="step-5-view-analysis-code" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="step-5-view-analysis-code"><span class="header-section-number">13.5</span> Step 5: View Analysis Code</h2>
 <p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis. This feature provides:</p>
 <ul>
 <li><strong>Reproducibility</strong>: Copy and paste code into R scripts</li>
@@ -1251,8 +1251,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./14_get_functional_modules_shiny.html" class="pagination-link" aria-label="Functional Module Identification">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./14_get_functional_modules_shiny.html" class="pagination-link" aria-label="Pathway Clustering">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Pathway Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
