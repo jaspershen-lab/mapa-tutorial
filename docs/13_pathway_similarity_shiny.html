@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>17&nbsp; Result Report – mapa tutorial</title>
+<title>13&nbsp; Pathway Similarity Calculation – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./06_data_vis_shiny.html" rel="prev">
+<link href="./14_get_functional_modules_shiny.html" rel="next">
+<link href="./12_enrichment_analysis_shiny.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./07_res_report_shiny.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./13_pathway_similarity_shiny.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">mapa R Package</span></a>
+ <span class="menu-text">MAPA R Package</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">mapa Shiny App</span></a>
+ <span class="menu-text">MAPA Shiny App</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,49 +200,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
+  <a href="./10_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./11_input_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./12_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+  <a href="./13_pathway_similarity_shiny.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_embed_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+  <a href="./14_get_functional_modules_shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./15_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./16_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_res_report_shiny.html" class="sidebar-item-text sidebar-link active">
+  <a href="./17_res_report_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
   </div>
 </li>
@@ -259,15 +259,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#step1-load-your-data" id="toc-step1-load-your-data" class="nav-link active" data-scroll-target="#step1-load-your-data"><span class="header-section-number">13.1</span> Step1: Load Your Data</a></li>
+  <li><a href="#step2-select-method" id="toc-step2-select-method" class="nav-link" data-scroll-target="#step2-select-method"><span class="header-section-number">13.2</span> Step2: Select Method</a>
+  <ul class="collapse">
+  <li><a href="#method-1-traditional-methods" id="toc-method-1-traditional-methods" class="nav-link" data-scroll-target="#method-1-traditional-methods"><span class="header-section-number">13.2.1</span> Method 1: Traditional Methods</a></li>
+  <li><a href="#method-2-biotext-embedding" id="toc-method-2-biotext-embedding" class="nav-link" data-scroll-target="#method-2-biotext-embedding"><span class="header-section-number">13.2.2</span> Method 2: Biotext Embedding</a></li>
+  </ul></li>
+  <li><a href="#step3-run-the-analysis" id="toc-step3-run-the-analysis" class="nav-link" data-scroll-target="#step3-run-the-analysis"><span class="header-section-number">13.3</span> Step3: Run the Analysis</a></li>
+  <li><a href="#step-4-review-results" id="toc-step-4-review-results" class="nav-link" data-scroll-target="#step-4-review-results"><span class="header-section-number">13.4</span> Step 4: Review Results</a></li>
+  <li><a href="#step5-view-analysis-code" id="toc-step5-view-analysis-code" class="nav-link" data-scroll-target="#step5-view-analysis-code"><span class="header-section-number">13.5</span> Step5: View Analysis Code</a></li>
+  <li><a href="#method-comparison" id="toc-method-comparison" class="nav-link" data-scroll-target="#method-comparison"><span class="header-section-number">13.6</span> Method Comparison</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">13.7</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./07_res_report_shiny.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./13_pathway_similarity_shiny.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></h1>
+<h1 class="title"><span id="sec-shiny_pathway_similarity" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></h1>
 </div>
 
 
@@ -284,8 +300,387 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This chapter covers how to calculate pathway similarity using the MAPA Shiny application. The Shiny app computes pathway similarity using two powerful methods: traditional similarity and biotext embedding similarity. Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before calculating pathway similarity, ensure you have either:</p>
+<ol type="1">
+<li><strong>Completed pathway enrichment analysis</strong> in the current session using the <strong>Pathway Enrichment</strong> section as described in the previous chapter, OR</li>
+<li><strong>Upload existing enrichment results</strong> using the file upload option at the top of the interface</li>
+</ol>
+<p>The processed enrichment data is required for similarity calculation to proceed.</p>
+</div>
+</div>
+<section id="step1-load-your-data" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="step1-load-your-data"><span class="header-section-number">13.1</span> Step1: Load Your Data</h2>
+<ul>
+<li><p><strong>Option 1: Continue from Previous Step</strong></p>
+<p>If you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.</p></li>
+<li><p><strong>Option 2: Upload Existing Results</strong></p>
+<p>If you have previously saved enrichment results, you can upload them:</p>
+<ol type="1">
+<li><strong>Click “Browse”</strong> at the top of the left panel to upload your enrichment results file (.rda format)</li>
+<li><strong>Select your file</strong></li>
+<li><strong>Wait for validation</strong> - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)</li>
+</ol></li>
+</ul>
+</section>
+<section id="step2-select-method" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="step2-select-method"><span class="header-section-number">13.2</span> Step2: Select Method</h2>
+<p>Once your data is loaded, choose your similarity calculation method using the radio buttons:</p>
+<ul>
+<li><strong>Traditional methods</strong>: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see <a href="12_enrichment_analysis_shiny.html#sec-supported_db" class="quarto-xref"><span>Section 12.1</span></a>)</li>
+<li><strong>Biotext embedding</strong>: Uses large language model (LLM) text embeddings to capture semantic relationships</li>
+</ul>
+<section id="method-1-traditional-methods" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="method-1-traditional-methods"><span class="header-section-number">13.2.1</span> Method 1: Traditional Methods</h3>
+<p>When you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Purpose</th>
+<th>Default</th>
+<th>Gene Databases</th>
+<th>Metabolite Databases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P-adjust cutoff</strong></td>
+<td>Significance threshold for pathway inclusion</td>
+<td>0.05</td>
+<td>GO, KEGG, Reactome</td>
+<td>SMPDB, KEGG</td>
+</tr>
+<tr class="even">
+<td><strong>Count cutoff</strong></td>
+<td>Minimum genes/metabolites per pathway</td>
+<td>5</td>
+<td>GO, KEGG, Reactome</td>
+<td>SMPDB, KEGG</td>
+</tr>
+<tr class="odd">
+<td><strong>Similarity method</strong></td>
+<td>Algorithm for calculating pathway similarity</td>
+<td>See below</td>
+<td>GO, KEGG, Reactome</td>
+<td>SMPDB, KEGG</td>
+</tr>
+<tr class="even">
+<td><strong>Similarity cutoff</strong></td>
+<td>Threshold for intra-database pathway clustering</td>
+<td>0.5</td>
+<td>GO, KEGG, Reactome</td>
+<td>SMPDB, KEGG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Similarity Method Options:</strong></p>
+<ul>
+<li><strong>Only GO terms</strong>: Semantic similarity using the <a href="https://jokergoo.github.io/simona/">simona</a> package</li>
+<li><strong>GO/KEGG/Reactome/SMPDB pathways</strong>: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_simcluster_params_gene.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Parameter Selection Guide</strong>:</p>
+<ul>
+<li><strong>Lower p-adjust cutoff</strong> (e.g., 0.01) = More stringent, fewer pathways</li>
+<li><strong>Higher count cutoff</strong> (e.g., 10) = Focus on larger, more established pathways</li>
+<li><strong>Similarity cutoff</strong> = Balance between intra-database module granularity (lower values) and specificity (higher values)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="method-2-biotext-embedding" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="method-2-biotext-embedding"><span class="header-section-number">13.2.2</span> Method 2: Biotext Embedding</h3>
+<p>When you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.</p>
+<section id="api-configuration" class="level4" data-number="13.2.2.1">
+<h4 data-number="13.2.2.1" class="anchored" data-anchor-id="api-configuration"><span class="header-section-number">13.2.2.1</span> API Configuration</h4>
+<p>Set up your API connection:</p>
+<ul>
+<li><strong>API provider</strong>: Choose between OpenAI or Gemini</li>
+<li><strong>Embedding model</strong>: Specify the text embedding model (e.g., “text-embedding-3-small”)</li>
+<li><strong>API key</strong>: Enter your API key for the selected provider</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>API Key Setup:</strong></p>
+<ul>
+<li>For OpenAI: Obtain your API key from <a href="https://platform.openai.com/api-keys">OpenAI Platform</a></li>
+<li>For Gemini: Get your API key from <a href="https://makersuite.google.com/app/apikey">Google AI Studio</a></li>
+</ul>
+<p>Store your API key securely and never commit it to version control.</p>
+</div>
+</div>
+</section>
+<section id="database-selection-and-filtering" class="level4" data-number="13.2.2.2">
+<h4 data-number="13.2.2.2" class="anchored" data-anchor-id="database-selection-and-filtering"><span class="header-section-number">13.2.2.2</span> Database Selection and Filtering</h4>
+<p>Configure which databases to include and set filtering parameters:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 23%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Purpose</th>
+<th>Default</th>
+<th>Gene Analysis</th>
+<th>Metabolite Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Available Database</strong></td>
+<td>Select databases for embedding analysis</td>
+<td>Auto-detected</td>
+<td>GO, KEGG, Reactome</td>
+<td>SMPDB, KEGG</td>
+</tr>
+<tr class="even">
+<td><strong>P-adjust cutoff</strong></td>
+<td>Significance threshold for pathway inclusion</td>
+<td>0.05</td>
+<td>All selected databases</td>
+<td>All selected databases</td>
+</tr>
+<tr class="odd">
+<td><strong>Count cutoff</strong></td>
+<td>Minimum genes/metabolites per pathway</td>
+<td>5</td>
+<td>All selected databases</td>
+<td>All selected databases</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_embed_params_gene.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Database Availability</strong>: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="step3-run-the-analysis" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="step3-run-the-analysis"><span class="header-section-number">13.3</span> Step3: Run the Analysis</h2>
+<ol type="1">
+<li><strong>Verify your data is loaded</strong> - either from the current session or uploaded file</li>
+<li><strong>Select your similarity method</strong> - Traditional or Biotext embedding</li>
+<li><strong>Review all parameter selections</strong> to ensure they match your analysis goals</li>
+<li><strong>Click the “Submit” button</strong> to start the similarity calculation</li>
+<li><strong>Monitor progress</strong> - a progress indicator will show the analysis is running</li>
+<li><strong>Wait for completion</strong> - processing time varies by method:
+<ul>
+<li>Traditional methods: Usually complete within minutes</li>
+<li>Biotext embedding: May take longer due to API calls and text processing</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_submit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="step-4-review-results" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="step-4-review-results"><span class="header-section-number">13.4</span> Step 4: Review Results</h2>
+<p>After successful completion, results will appear in the right panel with different content based on your selected method:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Traditional Methods Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Biotext Embedding Results</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Table Tab</strong>: View database-specific module results</p>
+<ul>
+<li>Browse enriched pathway intra-database modules generated based on pathway similarity</li>
+<li>Examine module composition</li>
+<li>Download individual database results as CSV files</li>
+</ul>
+<p>Key result columns in the module tables:</p>
+<ul>
+<li><strong>module</strong>: Intra-database module identifier (e.g., “go_Module_2”, “kegg_Module_15”)</li>
+<li><strong>module_annotation</strong>: Representative pathway name for the module (pathway with lowest p-adjust for ORA or highest |NES| for GSEA)</li>
+<li><strong>Description</strong>: Names of all pathways in the module (separated by <code>;</code>)</li>
+<li><strong>module_content</strong>: All pathway/term IDs grouped in this module</li>
+<li><strong>Count</strong>: Number of genes/metabolites from input list in the module</li>
+<li><strong>p_adjust</strong>: Best (lowest) adjusted p-value among pathways in the module</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_simcluster_table_gene.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<p><strong>Data Visualization Tab</strong>: Generate similarity network plots</p>
+<ul>
+<li>Click “Generate plot” to create network visualizations for modules from each database</li>
+<li>Customize plot parameters (degree cutoff, text display options)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_simcluster_plots.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<p><strong>R Object Tab</strong>: Access the complete results object</p>
+<ul>
+<li>View a summary of the analysis results</li>
+<li>Download the complete functional module object (.rda format) for further analysis in R</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_simcluster_object.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>For biotext embedding results, you’ll see a simplified results panel to download the results (.rda format) which include a similarity matrix and your enrichment analysis result for use in downstream clustering analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_embedcluster_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Embedding Results</strong>: The similarity matrix from biotext embedding is typically large and computationally intensive to display. Instead of showing the full matrix in the interface, you can download it for use in subsequent analysis steps or external tools.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step5-view-analysis-code" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="step5-view-analysis-code"><span class="header-section-number">13.5</span> Step5: View Analysis Code</h2>
+<p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis. This feature provides:</p>
+<ul>
+<li><strong>Reproducibility</strong>: Copy and paste code into R scripts</li>
+<li><strong>Learning</strong>: Understand the underlying MAPA functions and parameters</li>
+<li><strong>Customization</strong>: Modify parameters for batch processing or additional analyses</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_13_code.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="method-comparison" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="method-comparison"><span class="header-section-number">13.6</span> Method Comparison</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 31%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Traditional Methods</th>
+<th>Biotext Embedding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Speed</strong></td>
+<td>Fast, deterministic</td>
+<td>Slower, requires API calls</td>
+</tr>
+<tr class="even">
+<td><strong>Cost</strong></td>
+<td>Free</td>
+<td>API usage costs</td>
+</tr>
+<tr class="odd">
+<td><strong>Reproducibility</strong></td>
+<td>Fully reproducible</td>
+<td>Highly reproducible (minor API variations)</td>
+</tr>
+<tr class="even">
+<td><strong>Novel discoveries</strong></td>
+<td>Based on known annotations</td>
+<td>Can identify functional relationships beyond overlap</td>
+</tr>
+<tr class="odd">
+<td><strong>Internet dependency</strong></td>
+<td>Minimal (for database updates)</td>
+<td>Required for API access</td>
+</tr>
+<tr class="even">
+<td><strong>Cross-database integration</strong></td>
+<td>Limited by annotation overlap</td>
+<td>Excellent semantic integration</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="next-steps" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">13.7</span> Next Steps</h2>
+<p>Once your similarity calculation is complete:</p>
+<ol type="1">
+<li><p><strong>Review and Download Results</strong>: Examine the similarity patterns and download results for further analysis and as backup copies so that you can restart from this point if needed.</p></li>
+<li><p><strong>Proceed to Clustering</strong>: Click the <strong>“Next”</strong> button to move to the <strong>Pathway Clustering</strong> section</p></li>
+</ol>
+<p>The similarity results will automatically be available for the next step in your MAPA analysis workflow in this current session, where you’ll group related pathways into functional modules.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -851,13 +1246,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06_data_vis_shiny.html" class="pagination-link" aria-label="Data Visualization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span>
+      <a href="./12_enrichment_analysis_shiny.html" class="pagination-link" aria-label="Enrichment Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./14_get_functional_modules_shiny.html" class="pagination-link" aria-label="Functional Module Identification">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -866,4 +1261,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/07_res_report_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/07_res_report_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

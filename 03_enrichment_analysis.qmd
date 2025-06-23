@@ -126,7 +126,7 @@ gsea_pathways <-
 | Database | Supported Organism | Keytype Options |
 |------------------------|------------------------|------------------------|
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
-| HMDB | Only for human | HMDB IDs |
+| SMPDB | Only for human | HMDB IDs |
 
 ### Basic Usage
 

@@ -9,10 +9,12 @@ library(mapa)
 ```
 
 ::: callout-important
-Prerequisites: Before generating reports, ensure you have completed your mapa analysis workflow including:
+Prerequisites: Before generating reports, ensure you have completed your MAPA analysis workflow including:
 
 -   Enrichment analysis: `enrich_pathway()` or `do_gsea()`
--   Module clustering: SimCluster or EmbedCluster
+-   Pathway similarity calculation: `merge_pathways()` or `get_bioembedsim()`
+-   Optional: Optimal clustering parameters determination: `determine_optimal_clusters()`
+-   Clustering: `get_functional_modules()`
 -   Optional: LLM interpretation: `llm_interpret_module()`
 
 The functions in this chapter work with the final `functional_module` object from your analysis.
@@ -23,7 +25,7 @@ The functions in this chapter work with the final `functional_module` object fro
 The reporting functions serve different purposes:
 
 | Function | Purpose | Output |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | `export_functional_module()` | Export analysis results to CSV files | Individual UTF-8 CSV files for each analysis component |
 | `report_functional_module()` | Generate comprehensive analysis reports | HTML/PDF/Word/Markdown reports with embedded plots and tables |
 
@@ -38,12 +40,12 @@ The `export_functional_module()` function exports all analysis results to indivi
 
 # Export all results to CSV files
 export_functional_module(
-  object = llm_interpreted_modules,
+  object = functional_modules,
   path = "mapa_results"
 )
 ```
 
-This creates a directory structure with individual CSV files for each analysis component:
+This creates a directory structure with individual CSV files for each analysis component in your current working directory:
 
 ```         
 mapa_results/
@@ -83,13 +85,13 @@ The `report_functional_module()` function creates professional, publication-read
 
 # Generate an HTML report
 report_functional_module(
-  object = llm_interpreted_modules,
+  object = functional_modules,
   path = "reports",
   type = "html"
 )
 ```
 
-This creates a report directory:
+This creates a report directory in your current working directory:
 
 ```         
 reports/Report/
@@ -158,45 +160,6 @@ This prevents accidental overwrites while maintaining organized output.
 
 -   **Missing Dependencies:** The function will provide informative error messages about missing packages and suggest installation commands.
 
-## Integration with Analysis Workflow
-
-**Complete Workflow Example**
-
-```{r}
-#| eval: false
-
-# Complete mapa analysis workflow
-library(mapa)
-
-# 1. Data preprocessing
-variable_info <- convert_id(data = gene_data, ...)
-
-# 2. Enrichment analysis  
-enriched_results <- enrich_pathway(variable_info = variable_info, ...)
-
-# 3. Module clustering
-clustered_modules <- merge_pathways(object = enriched_results, ...)
-functional_modules <- merge_modules(object = clustered_modules, ...)
-
-# 4. LLM interpretation (optional)
-interpreted_modules <- llm_interpret_module(object = functional_modules, ...)
-
-# 5. Export data
-export_functional_module(
-  object = interpreted_modules,
-  path = "analysis_results"
-)
-
-# 6. Generate comprehensive report
-report_functional_module(
-  object = interpreted_modules, 
-  path = "final_reports",
-  type = "html"
-)
-```
-
-This workflow ensures you have both the raw data for further analysis and professional reports for communication and publication.
-
 ## Next Steps
 
 With your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:
@@ -206,4 +169,4 @@ With your results exported and reports generated, you now have comprehensive doc
 -   **Publication**: Use PDF reports and exported data for manuscript preparation
 -   **Presentation**: Extract visualizations and key findings for presentations
 
-The mapa workflow is now complete, providing you with actionable insights into the functional organization of your biological data.
+The MAPA workflow is now complete, providing you with actionable insights into the functional organization of your biological data.

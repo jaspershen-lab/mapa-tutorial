@@ -1,4 +1,4 @@
-# Enrichment Analysis
+# Enrichment Analysis {#sec-enrichment_analysis_shiny}
 
 This chapter covers how to perform pathway enrichment analysis using the MAPA Shiny application. The Shiny app provides an intuitive interface for running both **Over-Representation Analysis (ORA)** and **Gene Set Enrichment Analysis (GSEA)** for genes, and ORA for metabolites across multiple databases.
 
@@ -6,7 +6,7 @@ This chapter covers how to perform pathway enrichment analysis using the MAPA Sh
 Prerequisites: Before running enrichment analysis, ensure you have successfully uploaded and processed your data using the **Upload Data** interface as described in the previous chapter. The processed data from the ID conversion step will automatically be available for enrichment analysis.
 :::
 
-## Supported Databases and Analysis Types
+## Supported Databases and Analysis Types {#sec-supported_db}
 
 The MAPA Shiny app leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis:
 
@@ -14,7 +14,7 @@ The MAPA Shiny app leverages the powerful enrichment functions from the [`cluste
 ##### For Gene Data
 
 | Database | Supported Organism | Keytype Options | Analysis Types |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub) | `ENTREZID`, `SYMBOL`, `ENSEMBL`, `UNIPROT` | ORA, GSEA |
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `kegg`, `ncbi-geneid`, `ncbi-proteinid`, `uniprot` | ORA, GSEA |
 | Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only | ORA, GSEA |
@@ -22,9 +22,9 @@ The MAPA Shiny app leverages the powerful enrichment functions from the [`cluste
 ##### For Metabolite Data
 
 | Database | Supported Organism | Keytype Options | Analysis Types |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs | ORA only |
-| HMDB | Human only | HMDB IDs | ORA only |
+| SMPDB | Human only | HMDB IDs | ORA only |
 :::
 
 ::: callout-tip

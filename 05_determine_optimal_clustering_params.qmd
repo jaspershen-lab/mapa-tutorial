@@ -16,14 +16,14 @@ This analysis helps you make informed decisions about clustering parameters befo
 
 The function accepts two types of input objects:
 
-1. **Traditional similarity objects**: Results from `merge_pathways()` (functional_module class)
-2. **Biotext embedding objects**: Results from `get_bioembedsim()` (list with sim_matrix and enriched_pathway)
+1.  **Traditional similarity objects**: Results from `merge_pathways()` (functional_module class)
+2.  **Biotext embedding objects**: Results from `get_bioembedsim()` (list with sim_matrix and enriched_pathway)
 
 For traditional similarity objects, the function internally calculates Jaccard similarity between modules from different databases. For biotext embedding objects, it uses the pre-computed semantic similarity matrix.
 
 ## Basic Usage
 
-::::: panel-tabset
+::: panel-tabset
 ##### Traditional Similarity Results
 
 ```{r}
@@ -57,15 +57,15 @@ cluster_evaluation <-
     cutoff_increment = 0.05
   )
 ```
-:::::
+:::
 
 ## Clustering Methods Evaluated
 
 The function tests three clustering algorithms:
 
-1. **Hierarchical Clustering**: Traditional agglomerative clustering with specified linkage method (default linkage method is "complete")
-2. **Binary Cut**: Uses the [simplifyEnrichment](https://doi.org/10.1016/j.gpb.2022.04.008) algorithm
-3. **Girvan-Newman**: Community detection based on edge betweenness
+1.  **Hierarchical Clustering**: Traditional agglomerative clustering with specified linkage method (default linkage method is "complete")
+2.  **Binary Cut**: Uses the [simplifyEnrichment](https://doi.org/10.1016/j.gpb.2022.04.008) algorithm
+3.  **Girvan-Newman**: Community detection based on edge betweenness
 
 Each method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation.
 
@@ -84,22 +84,22 @@ The meaning of `sim.cutoff` depends on your clustering method:
 
 **Edge Filter**: Only pathway pairs with similarity above this threshold are connected.
 
-- **Lower values (0.3-0.4)**: More permissive, denser networks, larger modules
-- **Higher values (0.6-0.8)**: More stringent, sparser networks, smaller modules
+-   **Lower values (0.3-0.4)**: More permissive, denser networks, larger modules
+-   **Higher values (0.6-0.8)**: More stringent, sparser networks, smaller modules
 
 ##### Binary Cut & Hierarchical
 
 **Dendrogram Cutting Height**: Determines where to cut the clustering tree.
 
-- **Lower values (0.3-0.4)**: Cut lower in tree, more fine-grained modules  
-- **Higher values (0.6-0.8)**: Cut higher in tree, fewer but larger modules
+-   **Lower values (0.3-0.4)**: Cut lower in tree, more fine-grained modules\
+-   **Higher values (0.6-0.8)**: Cut higher in tree, fewer but larger modules
 :::
 
 ::: callout-note
 **Key Difference in Cutoff Interpretation**:
 
-- In **Girvan-Newman**, higher cutoffs = smaller modules
-- In **Binary Cut/Hierarchical**, higher cutoffs = larger modules
+-   In **Girvan-Newman**, higher cutoffs = smaller modules
+-   In **Binary Cut/Hierarchical**, higher cutoffs = larger modules
 
 Always examine your results and adjust based on the biological interpretability of resulting modules.
 :::
@@ -155,9 +155,9 @@ cluster_evaluation$best_combination
 
 **Evaluation Plot**: Shows how clustering quality metrics change across similarity cutoffs for each method. Look for:
 
-- **Peaks in modularity**: Indicate good community structure
-- **High silhouette scores**: Indicate well-separated clusters
-- **Consistent performance**: Methods that perform well across multiple cutoffs
+-   **Peaks in modularity**: Indicate good community structure
+-   **High silhouette scores**: Indicate well-separated clusters
+-   **Consistent performance**: Methods that perform well across multiple cutoffs
 
 **Best Combination**: Identifies the optimal method and cutoff for each metric.
 

@@ -30,8 +30,8 @@ Both methods prepare your data for downstream clustering analysis, allowing you 
 
 The `merge_pathways()` function calculates similarity using established methods:
 
--   **GO terms**: Semantic similarity using the [simona](https://jokergoo.github.io/simona/) package
--   **KEGG/Reactome/SMPDB pathways**: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)
+-   **Only GO terms**: Semantic similarity using the [simona](https://jokergoo.github.io/simona/) package
+-   **GO/KEGG/Reactome/SMPDB pathways**: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)
 
 ::::: panel-tabset
 ##### Gene-based Analysis
@@ -148,7 +148,7 @@ met_similarity_result <-
 For GO terms, MAPA uses the [simona](https://jokergoo.github.io/simona/) package:
 
 | Method | Type | Description |
-|---------------------|---------------------|------------------------------|
+|------------------------|------------------------|------------------------|
 | `Sim_XGraSM_2013` | Hybrid | Combines multiple similarity aspects |
 | `Sim_Wang_2007` | Structure-based | Based on GO graph structure |
 | `Sim_Lin_1998` | Information content-based | Uses information content of terms |
@@ -159,7 +159,7 @@ For GO terms, MAPA uses the [simona](https://jokergoo.github.io/simona/) package
 For KEGG, Reactome, and metabolite pathways:
 
 | Method | Formula | Description | Use Case |
-|------------------|------------------|--------------------|------------------|
+|------------------|------------------|------------------|------------------|
 | `jaccard` | \|A ∩ B\| / \|A ∪ B\| | Jaccard index | **Default**, most commonly used |
 | `dice` | 2 × \|A ∩ B\| / (\|A\| + \|B\|) | Dice coefficient | Emphasizes shared elements |
 | `overlap` | \|A ∩ B\| / min(\|A\|, \|B\|) | Overlap coefficient | Good for pathways of different sizes |
@@ -245,7 +245,7 @@ The biotext embedding process involves several steps:
 ## Method Comparison
 
 | Aspect | Traditional Similarity | Biotext Embedding Similarity |
-|------------------|-----------------------|-------------------------------|
+|------------------------|------------------------|------------------------|
 | **Basis** | Gene/metabolite overlap + semantic structure | Text semantic meaning |
 | **Speed** | Fast, deterministic | Slower, requires API calls |
 | **Cost** | Free | API usage costs |

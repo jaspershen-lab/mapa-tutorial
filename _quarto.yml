@@ -18,7 +18,7 @@ book:
   chapters:
     - index.qmd
     
-    - part: "mapa R Package"
+    - part: "MAPA R Package"
       chapters:
         - 01_package_installation.qmd
         - 02_input.qmd
@@ -30,16 +30,16 @@ book:
         - 08_data_vis.qmd
         - 09_res_report.qmd
     
-    - part: "mapa Shiny App"
+    - part: "MAPA Shiny App"
       chapters:
-        - 01_shinyapp_installation.qmd
-        - 02_input_shiny.qmd
-        - 03_enrichment_analysis_shiny.qmd
-        - 04_sim_cluster_shiny.qmd
-        - 04_embed_cluster_shiny.qmd
-        - 05_llm_interpretation_shiny.qmd
-        - 06_data_vis_shiny.qmd
-        - 07_res_report_shiny.qmd
+        - 10_shinyapp_installation.qmd
+        - 11_input_shiny.qmd
+        - 12_enrichment_analysis_shiny.qmd
+        - 13_pathway_similarity_shiny.qmd
+        - 14_get_functional_modules_shiny.qmd
+        - 15_llm_interpretation_shiny.qmd
+        - 16_data_vis_shiny.qmd
+        - 17_res_report_shiny.qmd
 
     - references.qmd
 

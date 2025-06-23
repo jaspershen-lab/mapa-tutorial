@@ -9,18 +9,7 @@ library(mapa)
 ```
 
 ::: callout-important
-Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation using either SimCluster (`merge_modules()`) or EmbedCluster (`merge_pathways_bioembedsim()`) as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
-
-```{r}
-#| eval: false
-# If you haven't performed module clustering yet, run:
-# enriched_functional_modules <- merge_modules(...)
-# or 
-# enriched_functional_modules <- merge_pathways_bioembedsim(...)
-
-# Load your clustering results if saved previously:
-# load("path/to/your/enriched_functional_modules.RData")
-```
+Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation using `get_functional_modules()` as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
 :::
 
 ## Overview
@@ -30,7 +19,7 @@ The LLM interpretation process integrates multiple information sources to provid
 -   **Information Sources:**
 
     -   **Pathway descriptions** from GO, KEGG, Reactome, and metabolite databases
-    -   **Gene/metabolite names** from your input data\
+    -   **Gene/metabolite names** from your input data
     -   **Scientific literature** retrieved from PubMed based on pathway and molecule relevance
     -   **Local documents** (optional) - your own research papers or relevant literature
 
@@ -71,7 +60,7 @@ The Retrieval-Augmented Generation (RAG) strategy works in several stages:
 -   Combines module information with top-ranked papers
 -   Generates biologically meaningful module names
 -   Produces research summaries highlighting current knowledge
--   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence menas strong literature support and clear biological coherence
+-   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
 
 This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.
 
@@ -301,4 +290,4 @@ prompt_info <- module_result$generated_name$prompt
 
 ## Next Steps
 
-Continue to [Data Visualization](06_data_vis.qmd) to create informative plots showcasing your LLM-interpreted modules.
+Continue to [Data Visualization](08_data_vis.qmd) to create informative plots showcasing your LLM-interpreted modules.

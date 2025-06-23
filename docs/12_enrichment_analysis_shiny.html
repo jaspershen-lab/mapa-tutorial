@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
 
-<title>10&nbsp; Installation – mapa tutorial</title>
+<title>12&nbsp; Enrichment Analysis – mapa tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02_input_shiny.html" rel="next">
-<link href="./09_res_report.html" rel="prev">
+<link href="./13_pathway_similarity_shiny.html" rel="next">
+<link href="./11_input_shiny.html" rel="prev">
 <link href=".//images/mapa_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./12_enrichment_analysis_shiny.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">mapa R Package</span></a>
+ <span class="menu-text">MAPA R Package</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -226,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">mapa Shiny App</span></a>
+ <span class="menu-text">MAPA Shiny App</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,49 +200,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_shinyapp_installation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./10_shinyapp_installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_input_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./11_input_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./12_enrichment_analysis_shiny.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_sim_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">SimCluster: Traditional Similarity-based Clustering</span></span></a>
+  <a href="./13_pathway_similarity_shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_embed_cluster_shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Embedding and Clustering</span></span></a>
+  <a href="./14_get_functional_modules_shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./15_llm_interpretation_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LLM Interpretation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./16_data_vis_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_res_report_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./17_res_report_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></a>
   </div>
 </li>
@@ -293,15 +259,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-supported_db" id="toc-sec-supported_db" class="nav-link active" data-scroll-target="#sec-supported_db"><span class="header-section-number">12.1</span> Supported Databases and Analysis Types</a></li>
+  <li><a href="#gene-based-enrichment-analysis" id="toc-gene-based-enrichment-analysis" class="nav-link" data-scroll-target="#gene-based-enrichment-analysis"><span class="header-section-number">12.2</span> Gene-based Enrichment Analysis</a>
+  <ul class="collapse">
+  <li><a href="#step-1-select-analysis-type" id="toc-step-1-select-analysis-type" class="nav-link" data-scroll-target="#step-1-select-analysis-type"><span class="header-section-number">12.2.1</span> Step 1: Select Analysis Type</a></li>
+  <li><a href="#step-2-configure-database-parameters" id="toc-step-2-configure-database-parameters" class="nav-link" data-scroll-target="#step-2-configure-database-parameters"><span class="header-section-number">12.2.2</span> Step 2: Configure Database Parameters</a></li>
+  <li><a href="#step-3-set-statistical-parameters" id="toc-step-3-set-statistical-parameters" class="nav-link" data-scroll-target="#step-3-set-statistical-parameters"><span class="header-section-number">12.2.3</span> Step 3: Set Statistical Parameters</a></li>
+  </ul></li>
+  <li><a href="#metabolite-based-enrichment-analysis" id="toc-metabolite-based-enrichment-analysis" class="nav-link" data-scroll-target="#metabolite-based-enrichment-analysis"><span class="header-section-number">12.3</span> Metabolite-based Enrichment Analysis</a>
+  <ul class="collapse">
+  <li><a href="#step-1-submit-analysis" id="toc-step-1-submit-analysis" class="nav-link" data-scroll-target="#step-1-submit-analysis"><span class="header-section-number">12.3.1</span> Step 1: Submit Analysis</a></li>
+  <li><a href="#step-2-review-results" id="toc-step-2-review-results" class="nav-link" data-scroll-target="#step-2-review-results"><span class="header-section-number">12.3.2</span> Step 2: Review Results</a></li>
+  </ul></li>
+  <li><a href="#downloading-results" id="toc-downloading-results" class="nav-link" data-scroll-target="#downloading-results"><span class="header-section-number">12.4</span> Downloading Results</a></li>
+  <li><a href="#understanding-the-results" id="toc-understanding-the-results" class="nav-link" data-scroll-target="#understanding-the-results"><span class="header-section-number">12.5</span> Understanding the Results</a></li>
+  <li><a href="#viewing-the-analysis-code" id="toc-viewing-the-analysis-code" class="nav-link" data-scroll-target="#viewing-the-analysis-code"><span class="header-section-number">12.6</span> Viewing the Analysis Code</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">12.7</span> Next Steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/12_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/12_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html">mapa Shiny App</a></li><li class="breadcrumb-item"><a href="./01_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./12_enrichment_analysis_shiny.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-shinyapp_installation" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></h1>
+<h1 class="title"><span id="sec-enrichment_analysis_shiny" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enrichment Analysis</span></span></h1>
 </div>
 
 
@@ -318,32 +305,389 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Follow the steps below to install the latest development version of <strong>MAPA shinyapp</strong> from GitHub (the script first installs <em>BiocManager</em>, <em>remotes</em>, and <em>MAPA</em> if you don’t have them):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>) </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(<span class="st">"remotes"</span>) </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"jaspershen-lab/mapa"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dependencies =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> BiocManager<span class="sc">::</span><span class="fu">repositories</span>(),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">upgrade =</span> <span class="st">"ask"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"jaspershen-lab/mapashiny"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">dependencies =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos        =</span> BiocManager<span class="sc">::</span><span class="fu">repositories</span>(),</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">upgrade      =</span> <span class="st">"ask"</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This chapter covers how to perform pathway enrichment analysis using the MAPA Shiny application. The Shiny app provides an intuitive interface for running both <strong>Over-Representation Analysis (ORA)</strong> and <strong>Gene Set Enrichment Analysis (GSEA)</strong> for genes, and ORA for metabolites across multiple databases.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before running enrichment analysis, ensure you have successfully uploaded and processed your data using the <strong>Upload Data</strong> interface as described in the previous chapter. The processed data from the ID conversion step will automatically be available for enrichment analysis.</p>
+</div>
+</div>
+<section id="sec-supported_db" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="sec-supported_db"><span class="header-section-number">12.1</span> Supported Databases and Analysis Types</h2>
+<p>The MAPA Shiny app leverages the powerful enrichment functions from the <a href="https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"><code>clusterProfiler</code></a> package for pathway analysis:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">For Gene Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">For Metabolite Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Database</th>
+<th>Supported Organism</th>
+<th>Keytype Options</th>
+<th>Analysis Types</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gene Ontology (GO)</td>
+<td>Any organism with OrgDb object (<a href="https://bioconductor.org/packages/release/BiocViews.html#___OrgDb">organism annotation database package from Bioconductor</a> or OrgDb object retrieved from AnnotationHub)</td>
+<td><code>ENTREZID</code>, <code>SYMBOL</code>, <code>ENSEMBL</code>, <code>UNIPROT</code></td>
+<td>ORA, GSEA</td>
+</tr>
+<tr class="even">
+<td>KEGG</td>
+<td><a href="https://www.genome.jp/kegg/tables/br08606.html">All KEGG organisms</a></td>
+<td><code>kegg</code>, <code>ncbi-geneid</code>, <code>ncbi-proteinid</code>, <code>uniprot</code></td>
+<td>ORA, GSEA</td>
+</tr>
+<tr class="odd">
+<td>Reactome</td>
+<td>human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken</td>
+<td><code>ENTREZID</code> only</td>
+<td>ORA, GSEA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Database</th>
+<th>Supported Organism</th>
+<th>Keytype Options</th>
+<th>Analysis Types</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>KEGG</td>
+<td><a href="https://www.genome.jp/kegg/tables/br08606.html">All KEGG organisms</a></td>
+<td>KEGG compound IDs</td>
+<td>ORA only</td>
+</tr>
+<tr class="even">
+<td>SMPDB</td>
+<td>Human only</td>
+<td>HMDB IDs</td>
+<td>ORA only</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the <a href="https://yulab-smu.top/biomedical-knowledge-mining-book/index.html">Biomedical Knowledge Mining using GOSemSim and clusterProfiler</a> book. This book covers all the underlying methods that MAPA uses and will help you make informed decisions about your analysis parameters.</p>
+</div>
+</div>
+</section>
+<section id="gene-based-enrichment-analysis" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="gene-based-enrichment-analysis"><span class="header-section-number">12.2</span> Gene-based Enrichment Analysis</h2>
+<section id="step-1-select-analysis-type" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="step-1-select-analysis-type"><span class="header-section-number">12.2.1</span> Step 1: Select Analysis Type</h3>
+<p>The app automatically detects your data type (whether “gene” or “metabolite”) from the previous step. For gene data, choose between:</p>
+<ul>
+<li><strong>Pathway enrichment analysis (ORA)</strong>: Tests for over-representation of your genes in predefined pathways</li>
+<li><strong>Gene set enrichment analysis (GSEA)</strong>: Analyzes the entire ranked gene list to identify enriched pathways</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>GSEA Requirements</strong>: If you select GSEA, an additional “Order by” field will appear. This should correspond to a numeric column in your data (like fold change or p-values) that will be used to rank genes.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_gene_analysis_type.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="step-2-configure-database-parameters" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="step-2-configure-database-parameters"><span class="header-section-number">12.2.2</span> Step 2: Configure Database Parameters</h3>
+<p>The app <strong>automatically detects available databases</strong> based on your organism and displays relevant parameter options:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">GO Parameters</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">KEGG Parameters</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Reactome Parameters</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>When GO is selected, configure:</p>
+<ul>
+<li><strong>GO Keytype</strong>: Choose the identifier type for GO analysis
+<ul>
+<li><code>ENTREZID</code>: Entrez Gene IDs</li>
+<li><code>SYMBOL</code>: Gene symbols</li>
+<li><code>ENSEMBL</code>: Ensembl gene IDs</li>
+<li><code>UNIPROT</code>: UniProt IDs</li>
+</ul></li>
+<li><strong>GO Ontology</strong>: Select which Gene Ontology aspects to analyze
+<ul>
+<li><code>ALL</code>: All three ontologies (recommended)</li>
+<li><code>BP</code>: Biological Process only</li>
+<li><code>CC</code>: Cellular Component only</li>
+<li><code>MF</code>: Molecular Function only</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_go_params.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>When KEGG is selected, configure:</p>
+<ul>
+<li><strong>KEGG Keytype</strong>: Choose the identifier type for KEGG analysis
+<ul>
+<li><code>kegg</code>: KEGG gene IDs (recommended)</li>
+<li><code>ncbi-geneid</code>: NCBI Gene IDs</li>
+<li><code>ncbi-proteinid</code>: NCBI Protein IDs</li>
+<li><code>uniprot</code>: UniProt IDs</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_kegg_params.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="256"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Reactome analysis uses <code>ENTREZID</code> only and requires no additional configuration.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-set-statistical-parameters" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="step-3-set-statistical-parameters"><span class="header-section-number">12.2.3</span> Step 3: Set Statistical Parameters</h3>
+<p>Configure the statistical thresholds for your analysis:</p>
+<ul>
+<li><strong>P-value cutoff</strong>: Significance threshold for raw p-values (default: 0.05)</li>
+<li><strong>P-adjust method</strong>: Multiple testing correction method (default: BH - Benjamini-Hochberg)</li>
+<li><strong>Q-value cutoff</strong>: False Discovery Rate threshold (default: 0.2)</li>
+<li><strong>Gene set size</strong>: Minimum and maximum pathway sizes to consider (default: 10-500)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_statistical_params.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="metabolite-based-enrichment-analysis" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="metabolite-based-enrichment-analysis"><span class="header-section-number">12.3</span> Metabolite-based Enrichment Analysis</h2>
+<p>For metabolite data, the interface automatically switches to metabolite-specific options and shows available databases based on your organism:</p>
+<ul>
+<li><strong>Human</strong>: Both HMDB and KEGG databases available</li>
+<li><strong>Other organisms</strong>: Only KEGG database available</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_metabolite_db.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<section id="step-1-submit-analysis" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="step-1-submit-analysis"><span class="header-section-number">12.3.1</span> Step 1: Submit Analysis</h3>
+<ol type="1">
+<li>Review your parameter selections</li>
+<li>Click the <strong>“Submit”</strong> button to start the enrichment analysis</li>
+<li>A progress indicator will show the analysis is running</li>
+<li>Success or error messages will appear as notifications</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_submit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Processing Time: Metabolite enrichment analysis may take several minutes to complete. Please wait patiently while the analysis runs.</p>
+</div>
+</div>
+</section>
+<section id="step-2-review-results" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="step-2-review-results"><span class="header-section-number">12.3.2</span> Step 2: Review Results</h3>
+<p>After successful completion, results will appear in the right panel with separate tabs for each database:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Gene Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Metabolite Results</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>For gene enrichment analysis, you’ll see tabs for:</p>
+<ul>
+<li><strong>GO</strong>: Gene Ontology enrichment results</li>
+<li><strong>KEGG</strong>: KEGG pathway enrichment results<br>
+</li>
+<li><strong>Reactome</strong>: Reactome pathway enrichment results</li>
+<li><strong>R object</strong>: Summary of the complete results object</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_gene_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>For metabolite enrichment analysis, you’ll see tabs for:</p>
+<ul>
+<li><strong>KEGG Metabolite</strong>: KEGG metabolic pathway results</li>
+<li><strong>HMDB</strong>: <a href="https://smpdb.ca">Small Molecule Pathway Database</a> pathway results (human only)</li>
+<li><strong>R object</strong>: Summary of the complete results object</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_metabolite_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="downloading-results" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="downloading-results"><span class="header-section-number">12.4</span> Downloading Results</h2>
+<p>Each results tab includes a <strong>“Download”</strong> button to save results as CSV files:</p>
+<ol type="1">
+<li>Navigate to the desired results tab</li>
+<li>Click <strong>“Download”</strong> to save the table</li>
+<li>The <strong>“R object”</strong> tab allows downloading the complete results object for further analysis in R</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="understanding-the-results" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="understanding-the-results"><span class="header-section-number">12.5</span> Understanding the Results</h2>
+<p>Key columns in enrichment results:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Gene ORA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">GSEA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Metabolite ORA</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p><strong>Core Information:</strong></p>
+<ul>
+<li><code>ID</code>: Pathway identifier (e.g., GO:0042060 for GO, hsa04060 for KEGG, R-HSA-5669034 for Reactome)</li>
+<li><code>Description</code>: Pathway name</li>
+<li><code>ONTOLOGY</code>: Biological ontology (for GO only: MF=molecular function, CC=cellular component, BP=biological process)</li>
+<li><code>category</code>/<code>subcategory</code>: KEGG pathway categories (for KEGG only)</li>
+</ul>
+<p><strong>Statistical Measures:</strong></p>
+<ul>
+<li><code>pvalue</code>: Raw p-value from hypergeometric test (equivalent to one-sided Fisher’s exact test)</li>
+<li><code>p_adjust</code>: Adjusted p-value after multiple testing correction (BH method by default)</li>
+<li><code>qvalue</code>: Q-value for FDR control. For more information, see <code>?qvalue::qvalue</code></li>
+</ul>
+<p><strong>Gene Mapping:</strong></p>
+<ul>
+<li><code>GeneRatio</code>: Ratio of input genes annotated to this pathway (format: “genes_in_pathway/total_input_genes”)</li>
+<li><code>BgRatio</code>: Ratio of all genes annotated to this pathway in the background universe (format: “pathway_genes/universe_genes”)</li>
+<li><code>Count</code>: Total number of genes from input list that match this pathway</li>
+<li><code>geneID</code>: Gene IDs that overlap between your gene list and the pathway (separated by “/”)</li>
+</ul>
+<p><strong>Enrichment Metrics:</strong></p>
+<ul>
+<li><code>RichFactor</code>: Ratio of input genes annotated to a pathway vs.&nbsp;all genes annotated to this pathway</li>
+<li><code>FoldEnrichment</code>: Enrichment fold change (GeneRatio divided by BgRatio)</li>
+<li><code>zScore</code>: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you’d expect by chance. Higher absolute z-score means more “surprising” or significant enrichment.)</li>
+</ul>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>For GSEA results, additional columns specific to ranked list analysis include:</p>
+<ul>
+<li><code>setSize</code>: Total number of genes in the gene set/pathway</li>
+<li><code>enrichmentScore</code>: Degree of overrepresentation at top/bottom of ranked list</li>
+<li><code>NES</code>: <strong>Normalized Enrichment Score - main metric for interpretation</strong>
+<ul>
+<li>Positive NES: pathway enriched in upregulated genes (pathway activation)</li>
+<li>Negative NES: pathway enriched in downregulated genes (pathway suppression)</li>
+</ul></li>
+<li><code>rank</code>: Position in ranked list where maximum enrichment score occurred</li>
+<li><code>leading_edge</code>: Statistics for the leading-edge subset of genes</li>
+<li><code>core_enrichment</code>: Core enriched genes that contribute most to the enrichment signal</li>
+<li><code>Count</code>: Number of core enriched genes</li>
+</ul>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>For metabolite ORA results, the result structure differs from gene-based analysis:</p>
+<p><strong>Pathway Information:</strong></p>
+<ul>
+<li><code>pathway_id</code>: KEGG pathway ID or <a href="https://smpdb.ca">Small Molecule Pathway Database</a> pathway ID (e.g., SMP0000028)</li>
+<li><code>pathway_name</code>: Name of the metabolic pathway (e.g., “Caffeine Metabolism”)</li>
+<li><code>describtion</code>: Detailed description of the pathway from the corresponding database</li>
+<li><code>pathway_class</code>: Classification of pathway (e.g., “Metabolic;primary_pathway”, “Disease;primary_pathway”)</li>
+</ul>
+<p><strong>Statistical Measures:</strong></p>
+<ul>
+<li><code>p_value</code>: Raw p-value from enrichment test</li>
+<li><code>p_adjust</code>: Adjusted p-value for multiple testing correction</li>
+</ul>
+<p><strong>Metabolite Mapping:</strong></p>
+<ul>
+<li><code>all_id</code>: All metabolite IDs in this pathway (separated by “;”)</li>
+<li><code>all_number</code>: Total number of metabolites in the pathway</li>
+<li><code>mapped_id</code>: Your input metabolite IDs that map to this pathway (separated by “;”)</li>
+<li><code>mapped_number</code>: Number of your metabolites that map to this pathway</li>
+<li><code>mapped_percentage</code>: Percentage of pathway metabolites covered by your input data</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="viewing-the-analysis-code" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="viewing-the-analysis-code"><span class="header-section-number">12.6</span> Viewing the Analysis Code</h2>
+<p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis: This code can be copied and used in your own R scripts for reproducible analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_03_code.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="next-steps" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">12.7</span> Next Steps</h2>
+<p>Once your enrichment analysis is complete:</p>
+<ol type="1">
+<li><p><strong>Review Results</strong>: Examine the significance and biological relevance of enriched pathways</p></li>
+<li><p><strong>Download Data</strong>: Save results (especially R Object from R Object tab) for further analysis</p></li>
+<li><p><strong>Proceed to Clustering</strong>: Click the <strong>“Next”</strong> button to move to pathway clustering analysis. Based on your data type and analysis goals, you can proceed to:</p>
+<ul>
+<li><strong>SimCluster Method</strong>: Traditional similarity-based clustering (Step 1: Merge Pathways)</li>
+<li><strong>EmbedCluster Method</strong>: Advanced biotext embedding-based clustering</li>
+</ul>
+<p>For metabolite analyses in non-human organisms, the app will automatically direct you to the EmbedCluster method, as it’s more suitable for single-database analyses.</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -909,13 +1253,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./09_res_report.html" class="pagination-link" aria-label="Results Report">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results Report</span></span>
+      <a href="./11_input_shiny.html" class="pagination-link" aria-label="Data Input and Preprocessing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02_input_shiny.html" class="pagination-link" aria-label="Data Input and Preprocessing">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Input and Preprocessing</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./13_pathway_similarity_shiny.html" class="pagination-link" aria-label="Pathway Similarity Calculation">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pathway Similarity Calculation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -924,4 +1268,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/01_shinyapp_installation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/01_shinyapp_installation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/12_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/12_enrichment_analysis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
