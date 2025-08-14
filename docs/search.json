@@ -45,7 +45,7 @@
     "href": "02_input.html",
     "title": "2  Data input and preprocessing",
     "section": "",
-    "text": "2.1 Input Data Format Requirements\nThis chapter covers the input data requirements for mapa analysis, including the expected data formats and data preprocessing for converting your data to the required format.",
+    "text": "2.1 Input Data Format Requirements",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data input and preprocessing</span>"
@@ -397,7 +397,7 @@
     "href": "07_llm_interpretation.html",
     "title": "7  LLM Interpretation",
     "section": "",
-    "text": "7.1 Overview\nThe llm_interpret_module() function provides AI-powered interpretation of functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. This approach combines pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.\nThe LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:\nThis approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.",
+    "text": "7.1 Overview\nThe LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:\nThis approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -1057,7 +1057,7 @@
     "href": "15_llm_interpretation_shiny.html#step-1-load-your-data",
     "title": "15  LLM Interpretation",
     "section": "15.3 Step 1: Load Your Data",
-    "text": "15.3 Step 1: Load Your Data",
+    "text": "15.3 Step 1: Load Your Data\nUpload previously saved results:\n\nClick “Browse” at the top of the left panel “Upload functional module (.rda)” to upload your analyzed functional module file (.rda format)\nSelect your file",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -1101,7 +1101,7 @@
     "href": "15_llm_interpretation_shiny.html#step-5-run-the-analysis",
     "title": "15  LLM Interpretation",
     "section": "15.7 Step 5: Run the Analysis",
-    "text": "15.7 Step 5: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing",
+    "text": "15.7 Step 5: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing\n\n\n\n\n\n\n\n\nNote\n\n\n\nProcessing Time: LLM request processing may take at least around 20 minutes to complete. Please wait patiently while the analysis runs.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -1111,8 +1111,8 @@
     "objectID": "15_llm_interpretation_shiny.html#step-6-review-results",
     "href": "15_llm_interpretation_shiny.html#step-6-review-results",
     "title": "15  LLM Interpretation",
-    "section": "15.8 Step 6: Review Results",
-    "text": "15.8 Step 6: Review Results\nAfter successful completion, results will appear in the right panel with different content based on your selected method:",
+    "section": "15.6 Step 6: Review Results",
+    "text": "15.6 Step 6: Review Results\nAfter successful completion, results will appear in the right panel with different content based on your selected method:",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -1122,8 +1122,8 @@
     "objectID": "15_llm_interpretation_shiny.html#step-7-view-analysis-code",
     "href": "15_llm_interpretation_shiny.html#step-7-view-analysis-code",
     "title": "15  LLM Interpretation",
-    "section": "15.9 Step 7: View Analysis Code",
-    "text": "15.9 Step 7: View Analysis Code",
+    "section": "15.7 Step 7: View Analysis Code",
+    "text": "15.7 Step 7: View Analysis Code",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -1133,8 +1133,118 @@
     "objectID": "15_llm_interpretation_shiny.html#next-steps",
     "href": "15_llm_interpretation_shiny.html#next-steps",
     "title": "15  LLM Interpretation",
-    "section": "15.10 Next Steps",
-    "text": "15.10 Next Steps",
+    "section": "15.9 Next Steps",
+    "text": "15.9 Next Steps\nContinue to Data Visualization to create informative plots showcasing your LLM-interpreted modules.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-2-configure-models-and-parameters",
+    "href": "15_llm_interpretation_shiny.html#step-2-configure-models-and-parameters",
+    "title": "15  LLM Interpretation",
+    "section": "15.4 Step 2: Configure Models and Parameters",
+    "text": "15.4 Step 2: Configure Models and Parameters\n13.2.2.1 API Configuration\nBest practices\n\n\n\n\n\n\nImportant\n\n\n\nModel Selection: Due to changes in how requests are processed in GPT-5 model series, we strongly recommend using the default option (gpt-4o-mini-2024-07-18) for the best performance and quality.\n\n\n\n\n\n\n\n\nNote\n\n\n\nProcessing Time: LLM request processing may take at least around 20 minutes to complete. Please wait patiently while the analysis runs.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-2-configure-llm-and-api-settings",
+    "href": "15_llm_interpretation_shiny.html#step-2-configure-llm-and-api-settings",
+    "title": "15  LLM Interpretation",
+    "section": "15.4 Step 2: Configure LLM and API Settings",
+    "text": "15.4 Step 2: Configure LLM and API Settings\n\n15.4.1 LLM Model Settings\nConfigure your LLM and text embedding models settings with references to the table below:\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nNotes\n\n\n\n\nAPI provider\nGPT model for text generation\n\"gpt-4o-mini-2024-07-18\"\nCurrently supports OpenAI models only\n\n\nEmbedding model\nModel for text embeddings\n\"text-embedding-3-small\"\nUsed for document similarity\n\n\nAPI key\nOpenAI API key\nRequired\nStore securely, never commit to version control\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nModel Selection: Due to changes in how requests are processed in GPT-5 model series, we strongly recommend using the default option (gpt-4o-mini-2024-07-18) for the best performance and quality.\n\n\n\n\n15.4.2 Literature Search Settings\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nUse Case\n\n\n\n\nModule size cutoff\nMinimum pathways per module\n1\nFilter small modules to focus on substantial ones\n\n\nYears to search\nYears to search back in PubMed\n5\nBalance between recent findings and comprehensive coverage\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAPI Usage & Processing Time: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking Module size cutoff to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.\n\n\n\n\n15.4.3 Optional Enhancements\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nBenefits\n\n\n\n\nDisease or phenotype\nDisease/condition context\nNULL\nAdds disease-specific interpretation\n\n\nLocal corpus directory\nLocal directory with your own PDF files\nNULL\nIncorporates your own research or relevant literature to enhance the interpretation\n\n\n\n\n\n15.4.4 Required Parameters\nTwo parameters are required before submit to LLM interpretation:\n\nEmbeddings output directory: The analyzed results will be displayed here, as shown below.\n\n\n\n\n\n\n\nOrganism gene annotation database: Select the organism of your omic data. You can refer to Data Input Chapter for detailed instruction.\n\n\n\n\n\n\n\nImportant\n\n\n\nDouble Check: Please DO NOT select a directory that contains any of your files, as this step will erase everything inside the chosen directory. Make sure the output directory you select is completely empty.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-3",
+    "href": "15_llm_interpretation_shiny.html#step-3",
+    "title": "15  LLM Interpretation",
+    "section": "15.5 Step 3:",
+    "text": "15.5 Step 3:",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-4-choosing-file-input-route",
+    "href": "15_llm_interpretation_shiny.html#step-4-choosing-file-input-route",
+    "title": "15  LLM Interpretation",
+    "section": "15.6 Step 4: Choosing File Input Route",
+    "text": "15.6 Step 4: Choosing File Input Route",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-5-choosing-result-output-route",
+    "href": "15_llm_interpretation_shiny.html#step-5-choosing-result-output-route",
+    "title": "15  LLM Interpretation",
+    "section": "15.7 Step 5: Choosing Result Output Route",
+    "text": "15.7 Step 5: Choosing Result Output Route\n\n\n\n\n\n\nImportant\n\n\n\nImportant: Please DO NOT select a directory that contains any of your files, as this step will erase everything inside the chosen directory. Make sure the output directory you select is completely empty.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-6-run-the-analysis",
+    "href": "15_llm_interpretation_shiny.html#step-6-run-the-analysis",
+    "title": "15  LLM Interpretation",
+    "section": "15.5 Step 6: Run the Analysis",
+    "text": "15.5 Step 6: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-3-run-the-analysis",
+    "href": "15_llm_interpretation_shiny.html#step-3-run-the-analysis",
+    "title": "15  LLM Interpretation",
+    "section": "15.5 Step 3: Run the Analysis",
+    "text": "15.5 Step 3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the LLM interpretation progress\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time usually takes more than 10 minutes, wait patiently",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#best-practices",
+    "href": "15_llm_interpretation_shiny.html#best-practices",
+    "title": "15  LLM Interpretation",
+    "section": "15.8 Best Practices",
+    "text": "15.8 Best Practices\n\nStart Small: Begin with a subset of modules to estimate costs and processing time\nOptimize Parameters: Adjust filtering parameters based on your module complexity\nUse Phenotype Context: Specify relevant diseases/conditions for more targeted interpretations\nInclude Local Literature: Add your own papers for domain-specific insights\nReview Results: Examine confidence scores and retrieved literature quality\nIterate: Refine parameters based on initial results",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-4-review-results",
+    "href": "15_llm_interpretation_shiny.html#step-4-review-results",
+    "title": "15  LLM Interpretation",
+    "section": "15.6 Step 4: Review Results",
+    "text": "15.6 Step 4: Review Results\nAfter successful completion, results will appear in the right panel with updated functional module.\nKey result elements:\n\nllm_module_name: AI-generated biological module name\nmodule_annotation: Original representative annotation (fallback if LLM interpretation unavailable)\n\n\n15.6.1 Result Components\nFor each interpreted module, the results include:\n\nLLM InterpretationRetrieved LiteratureProcessing Details",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-5-view-analysis-code",
+    "href": "15_llm_interpretation_shiny.html#step-5-view-analysis-code",
+    "title": "15  LLM Interpretation",
+    "section": "15.7 Step 5: View Analysis Code",
+    "text": "15.7 Step 5: View Analysis Code",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"

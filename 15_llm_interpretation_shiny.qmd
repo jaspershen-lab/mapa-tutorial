@@ -60,47 +60,109 @@ This multi-stage approach ensures that generated annotations are both scientific
 
 ## Step 1: Load Your Data
 
-## Step 2: Configure Models and Customize Input
+Upload previously saved results:
 
-13.2.2.1 API Configuration
+1.  **Click "Browse"** at the top of the left panel **"Upload functional module (.rda)"** to upload your analyzed functional module file (.rda format)
+2.  **Select your file**
 
-Best practices
+## Step 2: Configure LLM and API Settings
+
+### LLM Model Settings
+
+Configure your LLM and text embedding models settings with references to the table below:
+
+| Parameter         | Description                   | Default                    | Notes                                           |
+|------------------|-------------------|------------------|------------------|
+| `API provider`       | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
+| `Embedding model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
+| `API key`         | OpenAI API key                | Required                   | Store securely, never commit to version control |
 
 ::: callout-important
 Model Selection: Due to changes in how requests are processed in GPT-5 model series, we **strongly** recommend using the default option (`gpt-4o-mini-2024-07-18`) for the best performance and quality.
 :::
 
+### Literature Search Settings
+
+| Parameter                      | Description                          | Default | Use Case                                                   |
+|------------------|-------------------|------------------|------------------|
+| `Module size cutoff` | Minimum pathways per module          | 1       | Filter small modules to focus on substantial ones          |
+| `Years to search`                        | Years to search back in PubMed       | 5       | Balance between recent findings and comprehensive coverage |
+
 ::: callout-note
-Processing Time: LLM request processing may take at least around 20 minutes to complete. Please wait patiently while the analysis runs.
+API Usage & Processing Time: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking `Module size cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.
 :::
 
-## Step 3: Choosing File Input Route
+### Optional Enhancements
 
+| Parameter          | Description                                 | Default | Benefits                                                                            |
+|------------------|-------------------|------------------|------------------|
+| `Disease or phenotype`        | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
+| `Local corpus directory` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
 
+### Required Parameters
 
-## Step 4: Choosing Result Output Route
+Two parameters are required before submit to LLM interpretation:
+
+1. **Embeddings output directory**: The analyzed results will be displayed here, as shown below.
+
+![](images/shinyapp_15_outdir.png){fig-align="center" width="350"}
+
+2. **Organism gene annotation database**: Select the organism of your omic data. You can refer to [Data Input Chapter](11_input_shiny.qmd) for detailed instruction.
+
 
 ::: callout-important
-Important: Please DO NOT select a directory that contains any of your files, as this step will erase **everything** inside the chosen directory. Make sure the output directory you select is **completely empty.**
+Double Check: Please DO NOT select a directory that contains any of your files, as this step will erase **everything** inside the chosen directory. Make sure the output directory you select is **completely empty.**
 :::
 
-## Step 5: Run the Analysis
+## Step 3: Run the Analysis
 
 1.  **Verify your data is loaded** - either from the current session or uploaded file
-2.  **Select your similarity method** - Traditional or Biotext embedding
-3.  **Review all parameter selections** to ensure they match your analysis goals
-4.  **Click the "Submit" button** to start the similarity calculation
-5.  **Monitor progress** - a progress indicator will show the analysis is running
-6.  **Wait for completion** - processing time varies by method:
-    -   Traditional methods: Usually complete within minutes
-    -   Biotext embedding: May take longer due to API calls and text processing
+2.  **Review all parameter selections** to ensure they match your analysis goals
+3.  **Click the "Submit" button** to start the LLM interpretation progress
+4.  **Monitor progress** - a progress indicator will show the analysis is running
+5.  **Wait for completion** - processing time usually takes more than 10 minutes, wait patiently
 
-![](images/shinyapp_13_submit.png){fig-align="center" width="750"}
 
-## Step 6: Review Results
+![](images/shinyapp_15_submit.png){fig-align="center" width="750"}
 
-After successful completion, results will appear in the right panel with different content based on your selected method:
+## Step 4: Review Results
 
-## Step 7: View Analysis Code
+After successful completion, results will appear in the right panel with updated functional module.
+
+Key result elements:
+
+-   **llm_module_name**: AI-generated biological module name
+-   **module_annotation**: Original representative annotation (fallback if LLM interpretation unavailable)
+
+### Result Components
+
+For each interpreted module, the results include:
+
+::: panel-tabset
+##### LLM Interpretation
+
+
+##### Retrieved Literature
+
+
+##### Processing Details
+
+:::
+
+
+
+## Step 5: View Analysis Code
+
+## Best Practices
+
+1.  **Start Small**: Begin with a subset of modules to estimate costs and processing time
+2.  **Optimize Parameters**: Adjust filtering parameters based on your module complexity
+3.  **Use Phenotype Context**: Specify relevant diseases/conditions for more targeted interpretations
+4.  **Include Local Literature**: Add your own papers for domain-specific insights
+5.  **Review Results**: Examine confidence scores and retrieved literature quality
+6.  **Iterate**: Refine parameters based on initial results
 
 ## Next Steps
+
+Continue to [Data Visualization](16_data_vis_shiny.qmd) to create informative plots showcasing your LLM-interpreted modules.
+
