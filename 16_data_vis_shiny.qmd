@@ -1,1 +1,24 @@
-# Data Visualization
+# Data Visualization {#sec-shiny_data_visualization_shiny}
+
+This chaper details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Four main visualization approaches are covered: pathway bar charts, module information plots, similarity networks, and relationship networks.
+
+::: callout-important
+Prerequisites: Before creating visualizations, make sure you have completed the previous analysis steps. The visualization functions require objects from:
+
+-   Enrichment analysis: [Chapter 12](12_enrichment_analysis_shiny.qmd)
+-   Module clustering: [Chapter 13](13_pathway_similarity_shiny.qmd) and [Chapter 14](14_get_functional_modules_shiny.qmd)
+-   Optional: LLM interpretation: [Chapter 15](15_llm_interpretation_shiny.qmd)
+:::
+
+## Option 1: Pathway Bar Chart
+
+## Option 2: Module Information Plot
+
+## Option 3: Similarity Network
+
+## Option 4: Relationship Network
+
+## Next Steps
+
+Continue to [Results Report](17_res_report_shiny.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.
+

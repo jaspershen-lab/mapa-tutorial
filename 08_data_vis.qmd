@@ -1,6 +1,6 @@
 # Data Visualization {#sec-data_vis}
 
-The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers three main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
+The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers four main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
 
 ```{r}
 #| eval: false

@@ -1249,5 +1249,60 @@
       "MAPA Shiny App",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
     ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html",
+    "href": "16_data_vis_shiny.html",
+    "title": "16  Data Visualization",
+    "section": "",
+    "text": "16.1 Option 1: Pathway Bar Chart",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-2-module-information-plot",
+    "href": "16_data_vis_shiny.html#option-2-module-information-plot",
+    "title": "16  Data Visualization",
+    "section": "16.2 Option 2: Module Information Plot",
+    "text": "16.2 Option 2: Module Information Plot",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-3-similarity-network",
+    "href": "16_data_vis_shiny.html#option-3-similarity-network",
+    "title": "16  Data Visualization",
+    "section": "16.3 Option 3: Similarity Network",
+    "text": "16.3 Option 3: Similarity Network",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-4-relationship-network",
+    "href": "16_data_vis_shiny.html#option-4-relationship-network",
+    "title": "16  Data Visualization",
+    "section": "16.4 Option 4: Relationship Network",
+    "text": "16.4 Option 4: Relationship Network",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#next-steps",
+    "href": "16_data_vis_shiny.html#next-steps",
+    "title": "16  Data Visualization",
+    "section": "16.5 Next Steps",
+    "text": "16.5 Next Steps\nContinue to Results Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
   }
 ]
