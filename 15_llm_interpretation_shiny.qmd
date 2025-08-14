@@ -1,1 +1,106 @@
-# LLM Interpretation
+# LLM Interpretation {#sec-shiny_llm_interpretation_shiny}
+
+This chapter describes how to interpret the functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. The Shiny app provides an approach to combine pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.
+
+::: callout-important
+Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
+:::
+
+## Overview
+
+The LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:
+
+-   **Information Sources:**
+
+    -   **Pathway descriptions** from GO, KEGG, Reactome, and metabolite databases
+    -   **Gene/metabolite names** from your input data
+    -   **Scientific literature** retrieved from PubMed based on pathway and molecule relevance
+    -   **Local documents** (optional) - your own research papers or relevant literature
+
+-   **Analysis Pipeline:**
+
+    1.  **Information Extraction**: Extracts pathway descriptions and molecule information
+    2.  **Literature Retrieval**: Searches PubMed for relevant scientific papers
+    3.  **RAG Strategy**: Uses embeddings to find and rank the most relevant literature, see @sec-rag-shiny
+    4.  **LLM Generation**: Generates biological module names and research summaries
+
+This approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.
+
+## Understanding the RAG Strategy {#sec-rag-shiny}
+
+![](images/RAG_frame.png){fig-align="center" width="785"}
+
+The Retrieval-Augmented Generation (RAG) strategy works in several stages:
+
+**Stage 1: Literature Search**
+
+-   Searches PubMed using pathway names and gene/metabolite information
+-   Retrieves abstracts and titles for relevant papers
+-   Includes reference papers cited in pathway databases
+
+**Stage 2: Embedding-based Similarity**
+
+-   Generates text embeddings for module descriptions (pathways + molecules)
+-   Calculates similarity between module embeddings and paper abstracts
+-   Filters top papers based on cosine similarity scores
+
+**Stage 3: GPT-powered Reranking**
+
+-   Uses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules
+-   Select the most informative literature for final interpretation
+
+**Stage 4: Final Generation**
+
+-   Combines module information with top-ranked papers
+-   Generates biologically meaningful module names
+-   Produces research summaries highlighting current knowledge
+-   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
+
+This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.
+
+## Step 1: Load Your Data
+
+## Step 2: Configure Models and Customize Input
+
+13.2.2.1 API Configuration
+
+Best practices
+
+::: callout-important
+Model Selection: Due to changes in how requests are processed in GPT-5 model series, we **strongly** recommend using the default option (`gpt-4o-mini-2024-07-18`) for the best performance and quality.
+:::
+
+::: callout-note
+Processing Time: LLM request processing may take at least around 20 minutes to complete. Please wait patiently while the analysis runs.
+:::
+
+## Step 3: Choosing File Input Route
+
+
+
+## Step 4: Choosing Result Output Route
+
+::: callout-important
+Important: Please DO NOT select a directory that contains any of your files, as this step will erase **everything** inside the chosen directory. Make sure the output directory you select is **completely empty.**
+:::
+
+## Step 5: Run the Analysis
+
+1.  **Verify your data is loaded** - either from the current session or uploaded file
+2.  **Select your similarity method** - Traditional or Biotext embedding
+3.  **Review all parameter selections** to ensure they match your analysis goals
+4.  **Click the "Submit" button** to start the similarity calculation
+5.  **Monitor progress** - a progress indicator will show the analysis is running
+6.  **Wait for completion** - processing time varies by method:
+    -   Traditional methods: Usually complete within minutes
+    -   Biotext embedding: May take longer due to API calls and text processing
+
+![](images/shinyapp_13_submit.png){fig-align="center" width="750"}
+
+## Step 6: Review Results
+
+After successful completion, results will appear in the right panel with different content based on your selected method:
+
+## Step 7: View Analysis Code
+
+## Next Steps
