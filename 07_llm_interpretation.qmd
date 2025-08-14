@@ -60,7 +60,7 @@ The Retrieval-Augmented Generation (RAG) strategy works in several stages:
 -   Combines module information with top-ranked papers
 -   Generates biologically meaningful module names
 -   Produces research summaries highlighting current knowledge
--   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
+-   Assigns confidence scores (0-1) reflecting LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
 
 This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.
 
