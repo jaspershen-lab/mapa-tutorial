@@ -14,17 +14,12 @@ Prerequisites: Before creating visualizations, make sure you have completed the 
 
 mapa provides four main visualization functions:
 
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
 | Function tab              | Purpose                                                | Best Used For                                       |
-+===========================+========================================================+=====================================================+
+|---------------------------|--------------------------------------------------------|-----------------------------------------------------|
 | Barplot                   | Horizontal bar charts of top enriched items            | Showing enrichment strength across pathways/modules |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
 | Module Information        | Multi-panel module details (network + bar + wordcloud) | Detailed examination of specific modules            |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
 | Module Similarity Network | Similarity-based networks                              | Understanding pathway relationships and clustering  |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
 | Relationship Network      | Multi-level hierarchical networks                      | Visualizing connections across biological levels    |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
 
 ## Option 1: Pathway Bar Chart
 
@@ -32,25 +27,25 @@ This function creates horizontal bar charts showing the top enriched pathways, m
 
 ### Key Settings
 
-+--------------+--------------------------------------+------------------------------------------------+
-| Settings     | Description                          | Options/Default                                |
-+==============+======================================+================================================+
-| Level        | Analysis level                       | `Pathway`, `Module`, `FM`                      |
-+--------------+--------------------------------------+------------------------------------------------+
-| X axis name  | X-axis metric                        | ORA: `qscore`, `RichFactor`, `FoldEnrichment`; |
-|              |                                      |                                                |
-|              |                                      | GSEA: `NES`                                    |
-+--------------+--------------------------------------+------------------------------------------------+
-| Line type    | Bar style                            | `Straight` (default), `Meteor`                 |
-+--------------+--------------------------------------+------------------------------------------------+
-| LLM text     | Use LLM names for functional modules | Tick box                                       |
-+--------------+--------------------------------------+------------------------------------------------+
-| Top N        | Number of items to show              | Default: 10                                    |
-+--------------+--------------------------------------+------------------------------------------------+
-| Database     | Databases to include                 | `GO`, `KEGG`, `Reactome`                       |
-+--------------+--------------------------------------+------------------------------------------------+
-| Type         | In what form the image is ploted     | `pdf`, `jpg`, `jpeg`                           |
-+--------------+--------------------------------------+------------------------------------------------+
++-------------+--------------------------------------+------------------------------------------------+
+| Settings    | Description                          | Options/Default                                |
++=============+======================================+================================================+
+| Level       | Analysis level                       | `Pathway`, `Module`, `FM`                      |
++-------------+--------------------------------------+------------------------------------------------+
+| X axis name | X-axis metric                        | ORA: `qscore`, `RichFactor`, `FoldEnrichment`; |
+|             |                                      |                                                |
+|             |                                      | GSEA: `NES`                                    |
++-------------+--------------------------------------+------------------------------------------------+
+| Line type   | Bar style                            | `Straight` (default), `Meteor`                 |
++-------------+--------------------------------------+------------------------------------------------+
+| LLM text    | Use LLM names for functional modules | Tick box                                       |
++-------------+--------------------------------------+------------------------------------------------+
+| Top N       | Number of items to show              | Default: 10                                    |
++-------------+--------------------------------------+------------------------------------------------+
+| Database    | Databases to include                 | `GO`, `KEGG`, `Reactome`                       |
++-------------+--------------------------------------+------------------------------------------------+
+| Type        | In what form the image is ploted     | `pdf`, `jpg`, `jpeg`                           |
++-------------+--------------------------------------+------------------------------------------------+
 
 Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.
 
@@ -95,6 +90,10 @@ The content of each plot depends on the analysis level:
 -   For ORA (Over-Representation Analysis): Word size is proportional to the sum of -log~10~(adjusted p-value) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger statistical enrichment.
 -   For GSEA (Gene Set Enrichment Analysis): Word size is proportional to the sum of \|NES\| (absolute Normalized Enrichment Score) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger enrichment signals, regardless of direction (up- or down-regulation).
 :::
+
+### For FM (Functional Module) Level
+
+### For Module Level
 
 ## Option 3: Similarity Network
 
