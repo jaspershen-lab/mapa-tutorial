@@ -285,8 +285,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#key-settings-2" id="toc-key-settings-2" class="nav-link" data-scroll-target="#key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</a></li>
   <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">16.5.2</span> Circular Layout</a></li>
   </ul></li>
-  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">16.6</span> Troubleshooting Visualization Issues</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.7</span> Next Steps</a></li>
+  <li><a href="#view-visualization-code" id="toc-view-visualization-code" class="nav-link" data-scroll-target="#view-visualization-code"><span class="header-section-number">16.6</span> View Visualization Code</a></li>
+  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">16.7</span> Troubleshooting Visualization Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.8</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -423,12 +424,6 @@ Important
 </tr>
 </tbody>
 </table>
-<p>Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/shinyapp_16_choosecolor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
-</figure>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -446,6 +441,26 @@ Note
 <li><strong>FoldEnrichment</strong>: Enrichment fold change (GeneRatio divided by BgRatio), see <span class="quarto-unresolved-ref">?sec-enrichment_res_interpretation</span></li>
 <li><strong>NES</strong>: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation</li>
 </ul>
+</div>
+</div>
+<p>Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_16_choosecolor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Color Choice</strong>: You can view all available HEX color code in the <code>RColorBrewer</code> package by running <code>RColorBrewer::display.brewer.all()</code>, which displays each palette so you can visually choose the one you prefer.</p>
+<p>Once you’ve decided, you can access its HEX codes using <code>RColorBrewer::brewer.pal(n = 99, name = "PaletteName")</code>.</p>
 </div>
 </div>
 </section>
@@ -533,9 +548,9 @@ Note
 <h3 data-number="16.4.1" class="anchored" data-anchor-id="key-settings-1"><span class="header-section-number">16.4.1</span> Key Settings</h3>
 <table class="table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 37%">
-<col style="width: 42%">
+<col style="width: 18%">
+<col style="width: 30%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -585,9 +600,9 @@ Note
 <h3 data-number="16.5.1" class="anchored" data-anchor-id="key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</h3>
 <table class="table">
 <colgroup>
-<col style="width: 36%">
-<col style="width: 28%">
-<col style="width: 33%">
+<col style="width: 23%">
+<col style="width: 52%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -630,8 +645,17 @@ Note
 </div>
 </section>
 </section>
-<section id="troubleshooting-visualization-issues" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">16.6</span> Troubleshooting Visualization Issues</h2>
+<section id="view-visualization-code" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="view-visualization-code"><span class="header-section-number">16.6</span> View Visualization Code</h2>
+<p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis:</p>
+<ul>
+<li><strong>Code 1</strong>: Shows <code>function()</code> function usage</li>
+<li><strong>Code 2</strong>: Shows <code>function()</code> function usage</li>
+</ul>
+<p>This code can be copied and used in your own R scripts for reproducible analysis.</p>
+</section>
+<section id="troubleshooting-visualization-issues" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">16.7</span> Troubleshooting Visualization Issues</h2>
 <p><strong>Common Issues and Solutions:</strong></p>
 <ul>
 <li><strong>Plots are not shown (white canva shown on the right)</strong>
@@ -651,8 +675,8 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.7</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.8</span> Next Steps</h2>
 <p>Continue to <a href="./17_res_report_shiny.html">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
 
 

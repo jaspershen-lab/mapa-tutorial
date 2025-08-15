@@ -24,7 +24,7 @@ This two-step approach helps ensure high-quality, biologically meaningful pathwa
 
 -   **Option 1: Continue from Previous Step**
 
-    If you have completed pathway similarity calculation in the current session, your data will automatically be available for clustering analysis.
+    If you have completed pathway similarity calculation in the **current** session, your data will automatically be available for clustering analysis.
 
 -   **Option 2: Upload Existing Results**
 

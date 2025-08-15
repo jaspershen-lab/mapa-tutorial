@@ -50,10 +50,6 @@ This function creates horizontal bar charts showing the top enriched pathways, m
 | Database     | Databases to include                 | `GO`, `KEGG`, `Reactome`                       |
 +--------------+--------------------------------------+------------------------------------------------+
 
-Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.
-
-![](images/shinyapp_16_choosecolor.png){fig-align="center" width="480"}
-
 ::: callout-note
 **X-axis Metrics Explained**:
 
@@ -61,6 +57,16 @@ Besides, you can tweak the color designated for each database by setting HEXA co
 -   **RichFactor**: Ratio of input genes in pathway vs. all genes in pathway
 -   **FoldEnrichment**: Enrichment fold change (GeneRatio divided by BgRatio), see @sec-enrichment_res_interpretation
 -   **NES**: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation
+:::
+
+Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.
+
+![](images/shinyapp_16_choosecolor.png){fig-align="center" width="480"}
+
+::: callout-tip
+**Color Choice**: You can view all available HEX color code in the `RColorBrewer` package by running `RColorBrewer::display.brewer.all()`, which displays each palette so you can visually choose the one you prefer. 
+
+Once you've decided, you can access its HEX codes using `RColorBrewer::brewer.pal(n = 99, name = "PaletteName")`.
 :::
 
 ### Basic Usage
@@ -98,9 +104,7 @@ The content of each plot depends on the analysis level:
 
 Choose `FM` to plot functional module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO and KEGG database).
 
-![](images/network_fm_42.png){fig-align="center" width="580"}
-![](images/barplot_fm_42.png){fig-align="center" width="580"}
-![](images/wordcloud_fm_42.png){fig-align="center" width="580"}
+![](images/network_fm_42.png){fig-align="center" width="580"} ![](images/barplot_fm_42.png){fig-align="center" width="580"} ![](images/wordcloud_fm_42.png){fig-align="center" width="580"}
 
 ### For Module Level
 
@@ -118,17 +122,17 @@ This function visualizes how pathways or modules cluster together based on simil
 
 ### Key Settings
 
-+-----------------------------+----------------------------------------------------------+-----------------------------------------------------------------+
-| Parameter                   | Description                                              | Usage                                                           |
-+=============================+==========================================================+=================================================================+
-| `Degree cutoff`             | Minimum pathways per module                              | Filter small modules                                            |
-+-----------------------------+----------------------------------------------------------+-----------------------------------------------------------------+
-| `Text`                      | Show representative names                                | One label per module                                            |
-+-----------------------------+----------------------------------------------------------+-----------------------------------------------------------------+
-| `Text all`                  | Show all pathway names                                   | All nodes labeled                                               |
-+-----------------------------+----------------------------------------------------------+-----------------------------------------------------------------+
-| `LLM text`                  | Use LLM-generated names                                  | For functional modules with LLM interpretation                  |
-+-----------------------------+----------------------------------------------------------+-----------------------------------------------------------------+
++-----------------+-----------------------------+------------------------------------------------+
+| Parameter       | Description                 | Usage                                          |
++=================+=============================+================================================+
+| `Degree cutoff` | Minimum pathways per module | Filter small modules                           |
++-----------------+-----------------------------+------------------------------------------------+
+| `Text`          | Show representative names   | One label per module                           |
++-----------------+-----------------------------+------------------------------------------------+
+| `Text all`      | Show all pathway names      | All nodes labeled                              |
++-----------------+-----------------------------+------------------------------------------------+
+| `LLM text`      | Use LLM-generated names     | For functional modules with LLM interpretation |
++-----------------+-----------------------------+------------------------------------------------+
 
 ### Basic Usage
 
@@ -142,23 +146,32 @@ This function creates comprehensive multi-level networks showing relationships b
 
 ### Key Settings
 
-+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
-| Parameter                                              | Description                                | Default                                            |
-+========================================================+============================================+====================================================+
-| `circular_plot`                                        | Circular vs. horizontal layout             | Not ticked                                         |
-+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
-| `Module ID`                                            | Specific modules to show                   | `NULL`                                             |
-+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
-| `Levels Included`                                      | The extent of details to show on the plot  | All ticked                                         |
-+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
-| `Position Limits`                                      | Determine how dense the node is arranged   | `[0, 1]` for all                                   |
-+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
++-------------------+-------------------------------------------+------------------+
+| Parameter         | Description                               | Default          |
++===================+===========================================+==================+
+| `circular_plot`   | Circular vs. horizontal layout            | Not ticked       |
++-------------------+-------------------------------------------+------------------+
+| `Module ID`       | Specific modules to show                  | `NULL`           |
++-------------------+-------------------------------------------+------------------+
+| `Levels Included` | The extent of details to show on the plot | All ticked       |
++-------------------+-------------------------------------------+------------------+
+| `Position Limits` | Determine how dense the node is arranged  | `[0, 1]` for all |
++-------------------+-------------------------------------------+------------------+
 
 ### Circular Layout
 
 Tick `Circular Plot` to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.
 
 ![](images/relationship_network_circle.png){fig-align="center" width="580"}
+
+## View Visualization Code
+
+Click the **"Code"** button to see the exact R code that replicates your analysis:
+
+-   **Code 1**: Shows `function()` function usage
+-   **Code 2**: Shows `function()` function usage
+
+This code can be copied and used in your own R scripts for reproducible analysis.
 
 ## Troubleshooting Visualization Issues
 

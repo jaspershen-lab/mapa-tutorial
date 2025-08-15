@@ -153,6 +153,15 @@ Contains the exact prompt sent to the LLM for transparency. Useful for understan
 The functional module results are automatically updated with a new column `llm_module_name`, which is the LLM-generated names. Download the R object for follow-up analysis.
 :::
 
+## Step 5: View Analysis Code
+
+Click the **"Code"** button to see the exact R code that replicates your analysis:
+
+-   **Code 1**: Shows `function()` function usage
+-   **Code 2**: Shows `function()` function usage
+
+This code can be copied and used in your own R scripts for reproducible analysis.
+
 ## Best Practices
 
 1.  **Start Small**: Begin with a subset of modules to estimate costs and processing time

@@ -13,9 +13,9 @@ Prerequisites: Before generating reports, ensure you have completed your MAPA an
 
 -   Enrichment analysis: `enrich_pathway()` or `do_gsea()`
 -   Pathway similarity calculation: `merge_pathways()` or `get_bioembedsim()`
--   Optional: Optimal clustering parameters determination: `determine_optimal_clusters()`
+-   Optional: Optimal clustering parameters determination with `determine_optimal_clusters()`
 -   Clustering: `get_functional_modules()`
--   Optional: LLM interpretation: `llm_interpret_module()`
+-   Optional: LLM interpretation with `llm_interpret_module()`
 
 The functions in this chapter work with the final `functional_module` object from your analysis.
 :::
@@ -24,9 +24,9 @@ The functions in this chapter work with the final `functional_module` object fro
 
 The reporting functions serve different purposes:
 
-| Function | Purpose | Output |
+| Function                     | Purpose                                 | Output                                                        |
 |------------------------|------------------------|------------------------|
-| `export_functional_module()` | Export analysis results to CSV files | Individual UTF-8 CSV files for each analysis component |
+| `export_functional_module()` | Export analysis results to CSV files    | Individual UTF-8 CSV files for each analysis component        |
 | `report_functional_module()` | Generate comprehensive analysis reports | HTML/PDF/Word/Markdown reports with embedded plots and tables |
 
 ## Data Export with `export_functional_module()`
@@ -169,4 +169,6 @@ With your results exported and reports generated, you now have comprehensive doc
 -   **Publication**: Use PDF reports and exported data for manuscript preparation
 -   **Presentation**: Extract visualizations and key findings for presentations
 
-The MAPA workflow is now complete, providing you with actionable insights into the functional organization of your biological data.
+## Thank You & Reach Out
+
+The MAPA R code workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the [MAPA GitHub Issues page](https://github.com/jaspershen-lab/mapa-tutorial/issues).
