@@ -270,10 +270,23 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#key-settings" id="toc-key-settings" class="nav-link" data-scroll-target="#key-settings"><span class="header-section-number">16.2.1</span> Key Settings</a></li>
   <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage"><span class="header-section-number">16.2.2</span> Basic Usage</a></li>
   </ul></li>
-  <li><a href="#option-2-module-information-plot" id="toc-option-2-module-information-plot" class="nav-link" data-scroll-target="#option-2-module-information-plot"><span class="header-section-number">16.3</span> Option 2: Module Information Plot</a></li>
-  <li><a href="#option-3-similarity-network" id="toc-option-3-similarity-network" class="nav-link" data-scroll-target="#option-3-similarity-network"><span class="header-section-number">16.4</span> Option 3: Similarity Network</a></li>
-  <li><a href="#option-4-relationship-network" id="toc-option-4-relationship-network" class="nav-link" data-scroll-target="#option-4-relationship-network"><span class="header-section-number">16.5</span> Option 4: Relationship Network</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.6</span> Next Steps</a></li>
+  <li><a href="#option-2-module-information-plot" id="toc-option-2-module-information-plot" class="nav-link" data-scroll-target="#option-2-module-information-plot"><span class="header-section-number">16.3</span> Option 2: Module Information Plot</a>
+  <ul class="collapse">
+  <li><a href="#for-fm-functional-module-level" id="toc-for-fm-functional-module-level" class="nav-link" data-scroll-target="#for-fm-functional-module-level"><span class="header-section-number">16.3.1</span> For FM (Functional Module) Level</a></li>
+  <li><a href="#for-module-level" id="toc-for-module-level" class="nav-link" data-scroll-target="#for-module-level"><span class="header-section-number">16.3.2</span> For Module Level</a></li>
+  </ul></li>
+  <li><a href="#option-3-similarity-network" id="toc-option-3-similarity-network" class="nav-link" data-scroll-target="#option-3-similarity-network"><span class="header-section-number">16.4</span> Option 3: Similarity Network</a>
+  <ul class="collapse">
+  <li><a href="#key-settings-1" id="toc-key-settings-1" class="nav-link" data-scroll-target="#key-settings-1"><span class="header-section-number">16.4.1</span> Key Settings</a></li>
+  <li><a href="#basic-usage-1" id="toc-basic-usage-1" class="nav-link" data-scroll-target="#basic-usage-1"><span class="header-section-number">16.4.2</span> Basic Usage</a></li>
+  </ul></li>
+  <li><a href="#option-4-relationship-network" id="toc-option-4-relationship-network" class="nav-link" data-scroll-target="#option-4-relationship-network"><span class="header-section-number">16.5</span> Option 4: Relationship Network</a>
+  <ul class="collapse">
+  <li><a href="#key-settings-2" id="toc-key-settings-2" class="nav-link" data-scroll-target="#key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</a></li>
+  <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">16.5.2</span> Circular Layout</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">16.6</span> Troubleshooting Visualization Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -408,11 +421,6 @@ Important
 <td>Databases to include</td>
 <td><code>GO</code>, <code>KEGG</code>, <code>Reactome</code></td>
 </tr>
-<tr class="odd">
-<td>Type</td>
-<td>In what form the image is ploted</td>
-<td><code>pdf</code>, <code>jpg</code>, <code>jpeg</code></td>
-</tr>
 </tbody>
 </table>
 <p>Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.</p>
@@ -505,17 +513,146 @@ Note
 </ul>
 </div>
 </div>
+<section id="for-fm-functional-module-level" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="for-fm-functional-module-level"><span class="header-section-number">16.3.1</span> For FM (Functional Module) Level</h3>
+<p>Choose <code>FM</code> to plot functional module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO and KEGG database).</p>
+<p><img src="images/network_fm_42.png" class="img-fluid quarto-figure quarto-figure-center" width="580"> <img src="images/barplot_fm_42.png" class="img-fluid quarto-figure quarto-figure-center" width="580"> <img src="images/wordcloud_fm_42.png" class="img-fluid quarto-figure quarto-figure-center" width="580"></p>
+</section>
+<section id="for-module-level" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="for-module-level"><span class="header-section-number">16.3.2</span> For Module Level</h3>
+<p>Choose <code>Module</code> to plot database-specific module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO database).</p>
+<p><img src="images/network_go_25.png" class="img-fluid" width="580"></p>
+<p><img src="images/barplot_go_25.png" class="img-fluid" width="580"></p>
+<p><img src="images/wordcloud_go_25.png" class="img-fluid" width="580"></p>
+</section>
 </section>
 <section id="option-3-similarity-network" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="option-3-similarity-network"><span class="header-section-number">16.4</span> Option 3: Similarity Network</h2>
 <p>This function visualizes how pathways or modules cluster together based on similarity metrics.</p>
+<section id="key-settings-1" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="key-settings-1"><span class="header-section-number">16.4.1</span> Key Settings</h3>
+<table class="table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 37%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Degree cutoff</code></td>
+<td>Minimum pathways per module</td>
+<td>Filter small modules</td>
+</tr>
+<tr class="even">
+<td><code>Text</code></td>
+<td>Show representative names</td>
+<td>One label per module</td>
+</tr>
+<tr class="odd">
+<td><code>Text all</code></td>
+<td>Show all pathway names</td>
+<td>All nodes labeled</td>
+</tr>
+<tr class="even">
+<td><code>LLM text</code></td>
+<td>Use LLM-generated names</td>
+<td>For functional modules with LLM interpretation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="basic-usage-1" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="basic-usage-1"><span class="header-section-number">16.4.2</span> Basic Usage</h3>
+<p>Configure your customized plot settings and plots will pop up on the right panel. Representative figure is shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sim_network_reactome_cutoff_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="580"></p>
+</figure>
+</div>
+</section>
 </section>
 <section id="option-4-relationship-network" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="option-4-relationship-network"><span class="header-section-number">16.5</span> Option 4: Relationship Network</h2>
 <p>This function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.</p>
+<section id="key-settings-2" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</h3>
+<table class="table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 28%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>circular_plot</code></td>
+<td>Circular vs.&nbsp;horizontal layout</td>
+<td>Not ticked</td>
+</tr>
+<tr class="even">
+<td><code>Module ID</code></td>
+<td>Specific modules to show</td>
+<td><code>NULL</code></td>
+</tr>
+<tr class="odd">
+<td><code>Levels Included</code></td>
+<td>The extent of details to show on the plot</td>
+<td>All ticked</td>
+</tr>
+<tr class="even">
+<td><code>Position Limits</code></td>
+<td>Determine how dense the node is arranged</td>
+<td><code>[0, 1]</code> for all</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="next-steps" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.6</span> Next Steps</h2>
+<section id="circular-layout" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="circular-layout"><span class="header-section-number">16.5.2</span> Circular Layout</h3>
+<p>Tick <code>Circular Plot</code> to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/relationship_network_circle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="580"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="troubleshooting-visualization-issues" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">16.6</span> Troubleshooting Visualization Issues</h2>
+<p><strong>Common Issues and Solutions:</strong></p>
+<ul>
+<li><strong>Plots are not shown (white canva shown on the right)</strong>
+<ul>
+<li>Verify that modules exist at the specified level</li>
+</ul></li>
+<li><strong>Text labels overlapping or unreadable</strong>
+<ul>
+<li>Adjust <code>Y label width</code> parameter</li>
+<li>Untick <code>Text all</code> to show only representative labels</li>
+<li>Increase plot dimensions when saving</li>
+</ul></li>
+<li><strong>LLM text not appearing</strong>
+<ul>
+<li>Ensure <a href="./15_llm_interpretation_shiny.html">Chapter 15: LLM Interpretation</a> was run successfully</li>
+<li>Check that the object contains LLM interpretation results</li>
+</ul></li>
+</ul>
+</section>
+<section id="next-steps" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.7</span> Next Steps</h2>
 <p>Continue to <a href="./17_res_report_shiny.html">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
 
 
