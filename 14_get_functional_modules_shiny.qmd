@@ -1,4 +1,4 @@
-# Pathway Clustering {#sec-shiny_pathway_clustering_shiny}
+# Functional Module Identification {#sec-shiny_pathway_clustering_shiny}
 
 This chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny app provides an intuitive interface for grouping related pathways into functional modules using optimal clustering parameters.
 

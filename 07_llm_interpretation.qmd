@@ -1,4 +1,4 @@
-# LLM Interpretation {#sec-llm_interpretation}
+# Functional Module Annotation {#sec-llm_interpretation}
 
 The `llm_interpret_module()` function provides AI-powered interpretation of functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. This approach combines pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.
 

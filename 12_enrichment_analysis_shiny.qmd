@@ -1,4 +1,4 @@
-# Enrichment Analysis {#sec-enrichment_analysis_shiny}
+# Pathway Analysis {#sec-enrichment_analysis_shiny}
 
 This chapter covers how to perform pathway enrichment analysis using the MAPA Shiny application. The Shiny app provides an intuitive interface for running both **Over-Representation Analysis (ORA)** and **Gene Set Enrichment Analysis (GSEA)** for genes, and ORA for metabolites across multiple databases.
 
