@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "mapa tutorial",
     "section": "",
-    "text": "Overview",
+    "text": "Preface",
     "crumbs": [
-      "Overview"
+      "Preface"
     ]
   },
   {
@@ -14,9 +14,9 @@
     "href": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
     "title": "mapa tutorial",
     "section": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM",
-    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nmapa is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:\n\nDetects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
+    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nDetects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
-      "Overview"
+      "Preface"
     ]
   },
   {
@@ -26,7 +26,17 @@
     "section": "Aim of This Tutorial",
     "text": "Aim of This Tutorial\nThis guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:\n\nMerge overlapping enriched pathways into informative functional modules.\nGenerate biological interpretations of each module with large-language models.\nCreate publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.\nExport a comprehensive report that gathers every table, figure, and LLM-based summary in one place.\n\nWhether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.",
     "crumbs": [
-      "Overview"
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#contact-us",
+    "href": "index.html#contact-us",
+    "title": "mapa tutorial",
+    "section": "📥 Contact us",
+    "text": "📥 Contact us\n\n📩 Email xiaotao.shen@outlook.com\n🏠 Shen Lab website shen-lab.org\n💬 WeChat jaspershen1990\n🐦 Twitter xiaotaoshen1990",
+    "crumbs": [
+      "Preface"
     ]
   },
   {
