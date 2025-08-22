@@ -3,10 +3,11 @@ project:
   output-dir: docs
 
 book:
-  title: "mapa tutorial"
+  title: "MAPA tutorial"
+  author: "[Yifei Ge](https://www.shen-lab.org/author/yifei-ge/) and [Xiaotao Shen](https://www.jaspershenlab.com/)"
   date: "6/8/2025"
   favicon: "/images/mapa_logo.png"
-  description: Functional Module Annotation for Pathway Analysis Results Using LLM
+  description: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM
   url: http://www.shen-lab.org/mapa-tutorial/
   sidebar:
     logo: "images/mapa_logo.png"

@@ -1,12 +1,12 @@
 # Preface {.unnumbered}
 
-## mapa: Functional Module Annotation for Pathway Analysis Results Using LLM
+## MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM
 
 **MAPA** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the [Shen Lab at Nanyang Technological University, Singapore](https://www.shen-lab.org/). It:
 
-1.  **Detects enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
-2.  **Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
-3.  **Summarises each module with large-language models (LLM)** (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.
+1.  **Pathway analysis: Detects enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
+2.  **Functional module identification: Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
+3.  **Functional module annotation: Summarises each module with large-language models (LLM)** (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.
 
 The outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.
 
@@ -29,3 +29,10 @@ Whether you favour the command line or a browser, the tutorial gives you everyth
 -   🏠 Shen Lab website [shen-lab.org](https://www.shen-lab.org/)
 -   💬 WeChat [jaspershen1990](https://jaspershen.github.io/image/wechat_QR.jpg)
 -   🐦 Twitter [xiaotaoshen1990](https://twitter.com/xiaotaoshen1990)
+
+## 🔗 More links
+
+-   📖 [Citation](https://www.shen-lab.org/mapa-website/)
+-   🏠 [MAPA project website](https://www.shen-lab.org/mapa-website/)
+-   ☁️ [Online MAPA Shiny](https://mapashiny.jaspershenlab.com/)
+

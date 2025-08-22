@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yifei Ge and Xiaotao Shen">
 <meta name="dcterms.date" content="2025-06-08">
-<meta name="description" content="Functional Module Annotation for Pathway Analysis Results Using LLM">
+<meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>mapa tutorial</title>
+<title>MAPA tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">mapa tutorial</a> 
+      <a href="./">MAPA tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -266,9 +267,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
   <ul class="collapse">
-  <li><a href="#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" id="toc-mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" class="nav-link" data-scroll-target="#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm">mapa: Functional Module Annotation for Pathway Analysis Results Using LLM</a></li>
+  <li><a href="#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm" id="toc-mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm" class="nav-link" data-scroll-target="#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm">MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM</a></li>
   <li><a href="#aim-of-this-tutorial" id="toc-aim-of-this-tutorial" class="nav-link" data-scroll-target="#aim-of-this-tutorial">Aim of This Tutorial</a></li>
   <li><a href="#contact-us" id="toc-contact-us" class="nav-link" data-scroll-target="#contact-us">📥 Contact us</a></li>
+  <li><a href="#more-links" id="toc-more-links" class="nav-link" data-scroll-target="#more-links">🔗 More links</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -278,18 +280,24 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">mapa tutorial</h1>
+<h1 class="title">MAPA tutorial</h1>
 </div>
 
 <div>
   <div class="description">
-    Functional Module Annotation for Pathway Analysis Results Using LLM
+    Functional Module Identification and Annotation for Pathway Analysis Results Using LLM
   </div>
 </div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://www.shen-lab.org/author/yifei-ge/">Yifei Ge</a> and <a href="https://www.jaspershenlab.com/">Xiaotao Shen</a> </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -308,13 +316,13 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<section id="mapa-functional-module-annotation-for-pathway-analysis-results-using-llm" class="level2">
-<h2 class="anchored" data-anchor-id="mapa-functional-module-annotation-for-pathway-analysis-results-using-llm">mapa: Functional Module Annotation for Pathway Analysis Results Using LLM</h2>
+<section id="mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm" class="level2">
+<h2 class="anchored" data-anchor-id="mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm">MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM</h2>
 <p><strong>MAPA</strong> is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the <a href="https://www.shen-lab.org/">Shen Lab at Nanyang Technological University, Singapore</a>. It:</p>
 <ol type="1">
-<li><strong>Detects enriched pathways</strong> from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).</li>
-<li><strong>Clusters overlapping or functional-related pathways</strong> into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.</li>
-<li><strong>Summarises each module with large-language models (LLM)</strong> (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.</li>
+<li><strong>Pathway analysis: Detects enriched pathways</strong> from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).</li>
+<li><strong>Functional module identification: Clusters overlapping or functional-related pathways</strong> into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.</li>
+<li><strong>Functional module annotation: Summarises each module with large-language models (LLM)</strong> (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.</li>
 </ol>
 <p>The outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.</p>
 </section>
@@ -337,6 +345,14 @@ ul.task-list li input[type="checkbox"] {
 <li>🏠 Shen Lab website <a href="https://www.shen-lab.org/">shen-lab.org</a></li>
 <li>💬 WeChat <a href="https://jaspershen.github.io/image/wechat_QR.jpg">jaspershen1990</a></li>
 <li>🐦 Twitter <a href="https://twitter.com/xiaotaoshen1990">xiaotaoshen1990</a></li>
+</ul>
+</section>
+<section id="more-links" class="level2">
+<h2 class="anchored" data-anchor-id="more-links">🔗 More links</h2>
+<ul>
+<li>📖 <a href="https://www.shen-lab.org/mapa-website/">Citation</a></li>
+<li>🏠 <a href="https://www.shen-lab.org/mapa-website/">MAPA project website</a></li>
+<li>☁️ <a href="https://mapashiny.jaspershenlab.com/">Online MAPA Shiny</a></li>
 </ul>
 
 
