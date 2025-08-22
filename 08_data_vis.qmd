@@ -1,6 +1,6 @@
 # Data Visualization {#sec-data_vis}
 
-The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers three main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
+The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers four main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
 
 ```{r}
 #| eval: false
@@ -89,7 +89,7 @@ The `plot_module_info()` function provides detailed, multi-panel visualizations 
 +----------------+----------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 | Plot level     | `level = "module"`                                                                           | `level = "functional_module"`                                                                                                                    |
 |                |                                                                                              |                                                                                                                                                  |
-|                | (Database-specific)                                                                          | (Cross-database)                                                                                                                                 |
+|                | *(Database-specific)*                                                                        | *(Cross-database)*                                                                                                                               |
 +================+==============================================================================================+==================================================================================================================================================+
 | **Network**    | Shows pathways within the database-specific module and their similarity connections          | Shows representative pathways from database-specific modules (SimCluster) or individual pathways (EmbedCluster)                                  |
 +----------------+----------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -322,4 +322,4 @@ plot_relationship_network(
 
 ## Next Steps
 
-Continue to [Results Report](07_res_report.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.
+Continue to [Results Report](09_res_report.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.

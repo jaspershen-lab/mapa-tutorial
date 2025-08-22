@@ -1,8 +1,8 @@
-# Overview {.unnumbered}
+# Preface {.unnumbered}
 
 ## mapa: Functional Module Annotation for Pathway Analysis Results Using LLM
 
-**mapa** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:
+**MAPA** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the [Shen Lab at Nanyang Technological University, Singapore](https://www.shen-lab.org/). It:
 
 1.  **Detects enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
 2.  **Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
@@ -20,3 +20,12 @@ This guide walks you through the two faces of mapa: the R package for command-li
 4.  Export a comprehensive report that gathers every table, figure, and LLM-based summary in one place.
 
 Whether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.
+
+![](images/shen_lab_logo.png)
+
+## 📥 Contact us
+
+-   📩 Email [xiaotao.shen\@outlook.com](xiaotao.shen@outlook.com)
+-   🏠 Shen Lab website [shen-lab.org](https://www.shen-lab.org/)
+-   💬 WeChat [jaspershen1990](https://jaspershen.github.io/image/wechat_QR.jpg)
+-   🐦 Twitter [xiaotaoshen1990](https://twitter.com/xiaotaoshen1990)

@@ -106,7 +106,7 @@ head(metabolite_data)
 
 The `convert_id()` function converts between different ID types and **always returns data with all four gene identifier columns** (`ensembl`, `entrezid`, `uniprot`, `symbol`), which are required for mapa to work properly. Since organism-specific annotation database are required for ID conversion and the following enrichment analysis, choose the ID conversion method based on your organism.
 
-::::: panel-tabset
+::: panel-tabset
 ##### Model Organisms
 
 For common model organisms, use standard organism database Bioconductor packages.
@@ -223,7 +223,7 @@ query_result$ah_id
 # [1] "AH119899" "AH119900" "AH119901" "AH119902"
 ```
 :::
-:::::
+:::
 
 ### Metabolite ID Conversion
 

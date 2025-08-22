@@ -13,14 +13,14 @@ The processed enrichment data is required for similarity calculation to proceed.
 
 ## Step 1: Load Your Data
 
-- **Option 1: Continue from Previous Step**
+-   **Option 1: Continue from Previous Step**
 
     If you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.
 
-- **Option 2: Upload Existing Results**
+-   **Option 2: Upload Existing Results**
 
     If you have previously saved enrichment results, you can upload them:
-    
+
     1.  **Click "Browse"** at the top of the left panel **"Upload Enriched Pathways Result (.rda)"** to upload your enrichment results file (.rda format)
     2.  **Select your file**
     3.  **Wait for validation** - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)
@@ -36,12 +36,12 @@ Once your data is loaded, choose your similarity calculation method using the ra
 
 When you select "Traditional methods", the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:
 
-| Parameter | Purpose | Default | Gene Databases | Metabolite Databases |
+| Parameter             | Purpose                                         | Default   | Gene Databases     | Metabolite Databases |
 |---------------|---------------|---------------|---------------|---------------|
-| **P-adjust cutoff** | Significance threshold for pathway inclusion | 0.05 | GO, KEGG, Reactome | SMPDB, KEGG |
-| **Count cutoff** | Minimum genes/metabolites per pathway | 5 | GO, KEGG, Reactome | SMPDB, KEGG |
-| **Similarity method** | Algorithm for calculating pathway similarity | See below | GO, KEGG, Reactome | SMPDB, KEGG |
-| **Similarity cutoff** | Threshold for intra-database pathway clustering | 0.5 | GO, KEGG, Reactome | SMPDB, KEGG |
+| **P-adjust cutoff**   | Significance threshold for pathway inclusion    | 0.05      | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Count cutoff**      | Minimum genes/metabolites per pathway           | 5         | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Similarity method** | Algorithm for calculating pathway similarity    | See below | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Similarity cutoff** | Threshold for intra-database pathway clustering | 0.5       | GO, KEGG, Reactome | SMPDB, KEGG          |
 
 **Similarity Method Options:**
 
@@ -51,11 +51,11 @@ When you select "Traditional methods", the interface displays database-specific 
 ![](images/shinyapp_13_simcluster_params_gene.png){fig-align="center" width="750"}
 
 ::: callout-tip
-**Parameter Selection Guide**: 
+**Parameter Selection Guide**:
 
-- **Lower p-adjust cutoff** (e.g., 0.01) = More stringent, fewer pathways 
-- **Higher count cutoff** (e.g., 10) = Focus on larger, more established pathways
-- **Similarity cutoff** = Balance between intra-database module granularity (lower values) and specificity (higher values)
+-   **Lower p-adjust cutoff** (e.g., 0.01) = More stringent, fewer pathways
+-   **Higher count cutoff** (e.g., 10) = Focus on larger, more established pathways
+-   **Similarity cutoff** = Balance between intra-database module granularity (lower values) and specificity (higher values)
 :::
 
 ### Method 2: Biotext Embedding
@@ -70,6 +70,10 @@ Set up your API connection:
 -   **Embedding model**: Specify the text embedding model (e.g., "text-embedding-3-small")
 -   **API key**: Enter your API key for the selected provider
 
+::: callout-note
+Note: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.
+:::
+
 ::: callout-tip
 **API Key Setup:**
 
@@ -83,11 +87,11 @@ Store your API key securely and never commit it to version control.
 
 Configure which databases to include and set filtering parameters:
 
-| Parameter | Purpose | Default | Gene Analysis | Metabolite Analysis |
-|-----------|---------|---------|---------------|-------------------|
-| **Available Database** | Select databases for embedding analysis | Auto-detected | GO, KEGG, Reactome | SMPDB, KEGG |
-| **P-adjust cutoff** | Significance threshold for pathway inclusion | 0.05 | All selected databases | All selected databases |
-| **Count cutoff** | Minimum genes/metabolites per pathway | 5 | All selected databases | All selected databases |
+| Parameter              | Purpose                                      | Default       | Gene Analysis          | Metabolite Analysis    |
+|---------------|---------------|---------------|---------------|---------------|
+| **Available Database** | Select databases for embedding analysis      | Auto-detected | GO, KEGG, Reactome     | SMPDB, KEGG            |
+| **P-adjust cutoff**    | Significance threshold for pathway inclusion | 0.05          | All selected databases | All selected databases |
+| **Count cutoff**       | Minimum genes/metabolites per pathway        | 5             | All selected databases | All selected databases |
 
 ![](images/shinyapp_13_embed_params_gene.png){fig-align="center" width="750"}
 
@@ -112,14 +116,14 @@ Configure which databases to include and set filtering parameters:
 
 After successful completion, results will appear in the right panel with different content based on your selected method:
 
-:::: panel-tabset
+::: panel-tabset
 ##### Traditional Methods Results
 
-**Table Tab**: View database-specific module results 
+**Table Tab**: View database-specific module results
 
-- Browse enriched pathway intra-database modules generated based on pathway similarity
-- Examine module composition
-- Download individual database results as CSV files
+-   Browse enriched pathway intra-database modules generated based on pathway similarity
+-   Examine module composition
+-   Download individual database results as CSV files
 
 Key result columns in the module tables:
 
@@ -132,17 +136,17 @@ Key result columns in the module tables:
 
 ![](images/shinyapp_13_simcluster_table_gene.png){fig-align="center" width="750"}
 
-**Data Visualization Tab**: Generate similarity network plots 
+**Data Visualization Tab**: Generate similarity network plots
 
-- Click "Generate plot" to create network visualizations for modules from each database 
-- Customize plot parameters (degree cutoff, text display options)
+-   Click "Generate plot" to create network visualizations for modules from each database
+-   Customize plot parameters (degree cutoff, text display options)
 
 ![](images/shinyapp_13_simcluster_plots.png){fig-align="center" width="750"}
 
 **R Object Tab**: Access the complete results object
 
-- View a summary of the analysis results 
-- Download the complete functional module object (.rda format) for further analysis in R
+-   View a summary of the analysis results
+-   Download the complete functional module object (.rda format) for further analysis in R
 
 ![](images/shinyapp_13_simcluster_object.png){fig-align="center" width="750"}
 
@@ -155,28 +159,28 @@ For biotext embedding results, you'll see a simplified results panel to download
 ::: callout-note
 **Embedding Results**: The similarity matrix from biotext embedding is typically large and computationally intensive to display. Instead of showing the full matrix in the interface, you can download it for use in subsequent analysis steps or external tools.
 :::
-::::
+:::
 
 ## Step 5: View Analysis Code
 
-Click the **"Code"** button to see the exact R code that replicates your analysis. This feature provides: 
+Click the **"Code"** button to see the exact R code that replicates your analysis. This feature provides:
 
-- **Reproducibility**: Copy and paste code into R scripts 
-- **Learning**: Understand the underlying MAPA functions and parameters 
-- **Customization**: Modify parameters for batch processing or additional analyses
+-   **Reproducibility**: Copy and paste code into R scripts
+-   **Learning**: Understand the underlying MAPA functions and parameters
+-   **Customization**: Modify parameters for batch processing or additional analyses
 
 ![](images/shinyapp_13_code.png){fig-align="center" width="500"}
 
 ## Method Comparison
 
-| Aspect | Traditional Methods | Biotext Embedding |
+| Aspect                         | Traditional Methods            | Biotext Embedding                                    |
 |----------------------------|-----------------------|---------------------|
-| **Speed** | Fast, deterministic | Slower, requires API calls |
-| **Cost** | Free | API usage costs |
-| **Reproducibility** | Fully reproducible | Highly reproducible (minor API variations) |
-| **Novel discoveries** | Based on known annotations | Can identify functional relationships beyond overlap |
-| **Internet dependency** | Minimal (for database updates) | Required for API access |
-| **Cross-database integration** | Limited by annotation overlap | Excellent semantic integration |
+| **Speed**                      | Fast, deterministic            | Slower, requires API calls                           |
+| **Cost**                       | Free                           | API usage costs                                      |
+| **Reproducibility**            | Fully reproducible             | Highly reproducible (minor API variations)           |
+| **Novel discoveries**          | Based on known annotations     | Can identify functional relationships beyond overlap |
+| **Internet dependency**        | Minimal (for database updates) | Required for API access                              |
+| **Cross-database integration** | Limited by annotation overlap  | Excellent semantic integration                       |
 
 ## Next Steps
 

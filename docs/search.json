@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "mapa tutorial",
     "section": "",
-    "text": "Overview",
+    "text": "Preface",
     "crumbs": [
-      "Overview"
+      "Preface"
     ]
   },
   {
@@ -14,9 +14,9 @@
     "href": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
     "title": "mapa tutorial",
     "section": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM",
-    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nmapa is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It:\n\nDetects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
+    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nDetects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
-      "Overview"
+      "Preface"
     ]
   },
   {
@@ -26,7 +26,17 @@
     "section": "Aim of This Tutorial",
     "text": "Aim of This Tutorial\nThis guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:\n\nMerge overlapping enriched pathways into informative functional modules.\nGenerate biological interpretations of each module with large-language models.\nCreate publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.\nExport a comprehensive report that gathers every table, figure, and LLM-based summary in one place.\n\nWhether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.",
     "crumbs": [
-      "Overview"
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#contact-us",
+    "href": "index.html#contact-us",
+    "title": "mapa tutorial",
+    "section": "📥 Contact us",
+    "text": "📥 Contact us\n\n📩 Email xiaotao.shen@outlook.com\n🏠 Shen Lab website shen-lab.org\n💬 WeChat jaspershen1990\n🐦 Twitter xiaotaoshen1990",
+    "crumbs": [
+      "Preface"
     ]
   },
   {
@@ -34,7 +44,7 @@
     "href": "01_package_installation.html",
     "title": "1  Installation",
     "section": "",
-    "text": "Follow the steps below to install the latest development version of MAPA from GitHub (the script first installs BiocManager and remotes if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)",
+    "text": "Follow the steps below to install the latest development version of MAPA from GitHub (the script first installs BiocManager and remotes if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\n\n\n\n\n\n\nNote\n\n\n\nDependency Conflict: If mapa installation failed because the simplifyEnrichment version is incompatible, update Bioconductor to version 3.20 or newer. To do that, you’ll need R environment 4.4.0 or newer.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
@@ -419,7 +429,7 @@
     "href": "07_llm_interpretation.html#sec-rag",
     "title": "7  LLM Interpretation",
     "section": "7.2 Understanding the RAG Strategy",
-    "text": "7.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
+    "text": "7.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>LLM Interpretation</span>"
@@ -485,7 +495,7 @@
     "href": "08_data_vis.html",
     "title": "8  Data Visualization",
     "section": "",
-    "text": "8.1 Overview of Visualization Functions\nThe mapa package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers three main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.\nmapa provides four main visualization functions:",
+    "text": "8.1 Overview of Visualization Functions\nThe mapa package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers four main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.\nmapa provides four main visualization functions:",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Visualization</span>"
@@ -628,7 +638,18 @@
     "href": "09_res_report.html#next-steps",
     "title": "9  Results Report",
     "section": "9.5 Next Steps",
-    "text": "9.5 Next Steps\nWith your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:\n\nFurther Analysis: Use exported CSV files for custom analyses or integration with other tools\nCollaboration: Share HTML reports with colleagues for easy viewing and discussion\n\nPublication: Use PDF reports and exported data for manuscript preparation\nPresentation: Extract visualizations and key findings for presentations\n\nThe MAPA workflow is now complete, providing you with actionable insights into the functional organization of your biological data.",
+    "text": "9.5 Next Steps\nWith your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:\n\nFurther Analysis: Use exported CSV files for custom analyses or integration with other tools\nCollaboration: Share HTML reports with colleagues for easy viewing and discussion\n\nPublication: Use PDF reports and exported data for manuscript preparation\nPresentation: Extract visualizations and key findings for presentations",
+    "crumbs": [
+      "MAPA R Package",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Results Report</span>"
+    ]
+  },
+  {
+    "objectID": "09_res_report.html#thank-you-reach-out",
+    "href": "09_res_report.html#thank-you-reach-out",
+    "title": "9  Results Report",
+    "section": "9.6 Thank You & Reach Out",
+    "text": "9.6 Thank You & Reach Out\nThe MAPA R code workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the MAPA GitHub Issues page.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Results Report</span>"
@@ -848,7 +869,7 @@
     "href": "13_pathway_similarity_shiny.html#step-2-select-method",
     "title": "13  Pathway Similarity Calculation",
     "section": "13.2 Step 2: Select Method",
-    "text": "13.2 Step 2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see Section 12.1)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
+    "text": "13.2 Step 2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see Section 12.1)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nNote\n\n\n\nNote: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.\n\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
@@ -1017,6 +1038,314 @@
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html",
+    "href": "15_llm_interpretation_shiny.html",
+    "title": "15  LLM Interpretation",
+    "section": "",
+    "text": "15.1 Overview\nThis chapter describes how to interpret the functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. The Shiny app provides an approach to combine pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.\nThe LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:\nThis approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#overview",
+    "href": "15_llm_interpretation_shiny.html#overview",
+    "title": "15  LLM Interpretation",
+    "section": "",
+    "text": "Information Sources:\n\nPathway descriptions from GO, KEGG, Reactome, and metabolite databases\nGene/metabolite names from your input data\nScientific literature retrieved from PubMed based on pathway and molecule relevance\nLocal documents (optional) - your own research papers or relevant literature\n\nAnalysis Pipeline:\n\nInformation Extraction: Extracts pathway descriptions and molecule information\nLiterature Retrieval: Searches PubMed for relevant scientific papers\nRAG Strategy: Uses embeddings to find and rank the most relevant literature, see Section 15.2\nLLM Generation: Generates biological module names and research summaries",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#sec-rag-shiny",
+    "href": "15_llm_interpretation_shiny.html#sec-rag-shiny",
+    "title": "15  LLM Interpretation",
+    "section": "15.2 Understanding the RAG Strategy",
+    "text": "15.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-1-load-your-data",
+    "href": "15_llm_interpretation_shiny.html#step-1-load-your-data",
+    "title": "15  LLM Interpretation",
+    "section": "15.3 Step 1: Load Your Data",
+    "text": "15.3 Step 1: Load Your Data\nUpload previously saved results:\n\nClick “Browse” at the top of the left panel “Upload functional module (.rda)” to upload your analyzed functional module file (.rda format)\nSelect your file",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-2-configure-llm-and-api-settings",
+    "href": "15_llm_interpretation_shiny.html#step-2-configure-llm-and-api-settings",
+    "title": "15  LLM Interpretation",
+    "section": "15.4 Step 2: Configure LLM and API Settings",
+    "text": "15.4 Step 2: Configure LLM and API Settings\n\n15.4.1 LLM Model Settings\nConfigure your LLM and text embedding models settings with references to the table below:\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nNotes\n\n\n\n\nAPI provider\nGPT model for text generation\n\"gpt-4o-mini-2024-07-18\"\nCurrently supports OpenAI models only\n\n\nEmbedding model\nModel for text embeddings\n\"text-embedding-3-small\"\nUsed for document similarity\n\n\nAPI key\nOpenAI API key\nRequired\nStore securely, never commit to version control\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nModel Selection: Due to changes in how requests are processed in GPT-5 model series, we strongly recommend using the default option (gpt-4o-mini-2024-07-18) for the best performance and quality.\n\n\n\n\n15.4.2 Literature Search Settings\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nUse Case\n\n\n\n\nModule size cutoff\nMinimum pathways per module\n1\nFilter small modules to focus on substantial ones\n\n\nYears to search\nYears to search back in PubMed\n5\nBalance between recent findings and comprehensive coverage\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAPI Usage & Processing Time: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking Module size cutoff to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.\n\n\n\n\n15.4.3 Optional Enhancements\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nBenefits\n\n\n\n\nDisease or phenotype\nDisease/condition context\nNULL\nAdds disease-specific interpretation\n\n\nLocal corpus directory\nLocal directory with your own PDF files\nNULL\nIncorporates your own research or relevant literature to enhance the interpretation\n\n\n\n\n\n15.4.4 Required Parameters\nTwo parameters are required before submit to LLM interpretation:\n\nEmbeddings output directory: The analyzed results will be displayed here\nOrganism gene annotation database: Select the organism of your omic data. You can refer to Data Input Chapter for detailed instruction.\n\n\n\n\n\n\n\nImportant\n\n\n\nDouble Check: Please DO NOT select a directory that contains any of your files, as this step will erase everything inside the chosen directory. Make sure the output directory you select is completely empty.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-3-run-the-analysis",
+    "href": "15_llm_interpretation_shiny.html#step-3-run-the-analysis",
+    "title": "15  LLM Interpretation",
+    "section": "15.5 Step 3: Run the Analysis",
+    "text": "15.5 Step 3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the LLM interpretation progress\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time usually takes more than 10 minutes, wait patiently",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-4-review-results",
+    "href": "15_llm_interpretation_shiny.html#step-4-review-results",
+    "title": "15  LLM Interpretation",
+    "section": "15.6 Step 4: Review Results",
+    "text": "15.6 Step 4: Review Results\nAfter successful completion, results will appear in the right panel with updated functional module.\nKey result elements:\n\nllm_module_name: AI-generated biological module name\nmodule_annotation: Original representative annotation (fallback if LLM interpretation unavailable)\n\n\nInterpretation resultsFull PromptR object\n\n\nFor each interpreted module, the results include:\n\nModule Name: AI-generated biological module name\nModule Summary: Original representative annotation (fallback if LLM interpretation unavailable)\nAssociation With Phenotype: How this module is associated with given phenotype. Empty if no disease or phenotype is entered\nConfidence Score: Indicate LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\n\n\nContains the exact prompt sent to the LLM for transparency. Useful for understanding AI reasoning.\n\n\nThe functional module results are automatically updated with a new column llm_module_name, which is the LLM-generated names. Download the R object for follow-up analysis.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-5-download-the-results",
+    "href": "15_llm_interpretation_shiny.html#step-5-download-the-results",
+    "title": "15  LLM Interpretation",
+    "section": "15.7 Step 5: Download the Results",
+    "text": "15.7 Step 5: Download the Results\nAfter completing the LLM Interpretation step, you have two options for accessing/downloading the results other than viewing it on Shiny app:\n\nDownload the R object (.rda) containing the LLM interpretation results, which can be used for follow-up visualizations described in Chapter 16: Visualization.\n\nCheck out the embeddings output directory, which already includes the following for each functional module:\n\nchunk.txt: AI-generated summaries of the retrieved PubMed literature\nembedding_vector.csv.gz: Text embeddings of the literature with cosine similarity values\n\npaper_title.txt: A list of PubMed articles identified for this functional module, including their titles and PubMed IDs",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#step-6-view-analysis-code",
+    "href": "15_llm_interpretation_shiny.html#step-6-view-analysis-code",
+    "title": "15  LLM Interpretation",
+    "section": "15.8 Step 6: View Analysis Code",
+    "text": "15.8 Step 6: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#best-practices",
+    "href": "15_llm_interpretation_shiny.html#best-practices",
+    "title": "15  LLM Interpretation",
+    "section": "15.9 Best Practices",
+    "text": "15.9 Best Practices\n\nStart Small: Begin with a subset of modules to estimate costs and processing time\nOptimize Parameters: Adjust filtering parameters based on your module complexity\nUse Phenotype Context: Specify relevant diseases/conditions for more targeted interpretations\nInclude Local Literature: Add your own papers for domain-specific insights\nReview Results: Examine confidence scores and retrieved literature quality\nIterate: Refine parameters based on initial results",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#next-steps",
+    "href": "15_llm_interpretation_shiny.html#next-steps",
+    "title": "15  LLM Interpretation",
+    "section": "15.10 Next Steps",
+    "text": "15.10 Next Steps\nContinue to Data Visualization to create informative plots showcasing your LLM-interpreted modules.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>LLM Interpretation</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html",
+    "href": "16_data_vis_shiny.html",
+    "title": "16  Data Visualization",
+    "section": "",
+    "text": "16.1 Overview of Visualization Functions\nThis chaper details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Four main visualization approaches are covered: pathway bar charts, module information plots, similarity networks, and relationship networks.\nmapa provides four main visualization functions:",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#overview-of-visualization-functions",
+    "href": "16_data_vis_shiny.html#overview-of-visualization-functions",
+    "title": "16  Data Visualization",
+    "section": "",
+    "text": "Function tab\nPurpose\nBest Used For\n\n\n\n\nBarplot\nHorizontal bar charts of top enriched items\nShowing enrichment strength across pathways/modules\n\n\nModule Information\nMulti-panel module details (network + bar + wordcloud)\nDetailed examination of specific modules\n\n\nModule Similarity Network\nSimilarity-based networks\nUnderstanding pathway relationships and clustering\n\n\nRelationship Network\nMulti-level hierarchical networks\nVisualizing connections across biological levels",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-1-pathway-bar-chart",
+    "href": "16_data_vis_shiny.html#option-1-pathway-bar-chart",
+    "title": "16  Data Visualization",
+    "section": "16.2 Option 1: Pathway Bar Chart",
+    "text": "16.2 Option 1: Pathway Bar Chart\nThis function creates horizontal bar charts showing the top enriched pathways, modules, or functional modules. This is ideal for presenting enrichment results in publications.\n\n16.2.1 Key Settings\n\n\n\n\n\n\n\n\nSettings\nDescription\nOptions/Default\n\n\n\n\nLevel\nAnalysis level\nPathway, Module, FM\n\n\nX axis name\nX-axis metric\nORA: qscore, RichFactor, FoldEnrichment;\nGSEA: NES\n\n\nLine type\nBar style\nStraight (default), Meteor\n\n\nLLM text\nUse LLM names for functional modules\nTick box\n\n\nTop N\nNumber of items to show\nDefault: 10\n\n\nDatabase\nDatabases to include\nGO, KEGG, Reactome\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nX-axis Metrics Explained:\n\nqscore: -log₁₀(adjusted p-value), higher values indicate more significant enrichment\nRichFactor: Ratio of input genes in pathway vs. all genes in pathway\nFoldEnrichment: Enrichment fold change (GeneRatio divided by BgRatio), see Section 3.3\nNES: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation\n\n\n\nBesides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nColor Choice: You can view all available HEX color code in the RColorBrewer package by running RColorBrewer::display.brewer.all(), which displays each palette so you can visually choose the one you prefer.\nOnce you’ve decided, you can access its HEX codes using RColorBrewer::brewer.pal(n = 99, name = \"PaletteName\").\n\n\n\n\n16.2.2 Basic Usage\nAfter setting all the parameters listed above, hit the Submit, and the plot will be shown on the right.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-2-module-information-plot",
+    "href": "16_data_vis_shiny.html#option-2-module-information-plot",
+    "title": "16  Data Visualization",
+    "section": "16.3 Option 2: Module Information Plot",
+    "text": "16.3 Option 2: Module Information Plot\nThis function provides detailed, multi-panel visualizations of individual modules, including network topology, pathway rankings, and word clouds.\nThe content of each plot depends on the analysis level:\n\n\n\n\n\n\n\n\nPlot level\nModule Level\n(Database-specific)\nFM Level\n(Cross-database)\n\n\n\n\nNetwork\nShows pathways within the database-specific module and their similarity connections\nShows representative pathways from database-specific modules (SimCluster) or individual pathways (EmbedCluster)\n\n\nBar plot\nRanks individual pathways within the module by significance\nRanks the representative pathways or database-specific modules by significance\n\n\nWord cloud\nWord frequency from pathway descriptions, with word size reflecting statistical significance\nWord frequency from all pathway descriptions in the functional module, with word size proportional to the sum of statistical significance values\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWord Cloud Interpretation: Word size reflects the cumulative statistical significance of pathways containing that word:\n\nFor ORA (Over-Representation Analysis): Word size is proportional to the sum of -log10(adjusted p-value) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger statistical enrichment.\nFor GSEA (Gene Set Enrichment Analysis): Word size is proportional to the sum of |NES| (absolute Normalized Enrichment Score) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger enrichment signals, regardless of direction (up- or down-regulation).\n\n\n\n\n16.3.1 For FM (Functional Module) Level\nChoose FM to plot functional module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO and KEGG database).\n  \n\n\n16.3.2 For Module Level\nChoose Module to plot database-specific module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO database).",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-3-similarity-network",
+    "href": "16_data_vis_shiny.html#option-3-similarity-network",
+    "title": "16  Data Visualization",
+    "section": "16.4 Option 3: Similarity Network",
+    "text": "16.4 Option 3: Similarity Network\nThis function visualizes how pathways or modules cluster together based on similarity metrics.\n\n16.4.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nUsage\n\n\n\n\nDegree cutoff\nMinimum pathways per module\nFilter small modules\n\n\nText\nShow representative names\nOne label per module\n\n\nText all\nShow all pathway names\nAll nodes labeled\n\n\nLLM text\nUse LLM-generated names\nFor functional modules with LLM interpretation\n\n\n\n\n\n16.4.2 Basic Usage\nConfigure your customized plot settings and plots will pop up on the right panel. Representative figure is shown below.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-4-relationship-network",
+    "href": "16_data_vis_shiny.html#option-4-relationship-network",
+    "title": "16  Data Visualization",
+    "section": "16.5 Option 4: Relationship Network",
+    "text": "16.5 Option 4: Relationship Network\nThis function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.\n\n16.5.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\n\n\n\n\ncircular_plot\nCircular vs. horizontal layout\nNot ticked\n\n\nModule ID\nSpecific modules to show\nNULL\n\n\nLevels Included\nThe extent of details to show on the plot\nAll ticked\n\n\nPosition Limits\nDetermine how dense the node is arranged\n[0, 1] for all\n\n\n\n\n\n16.5.2 Circular Layout\nTick Circular Plot to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#view-visualization-code",
+    "href": "16_data_vis_shiny.html#view-visualization-code",
+    "title": "16  Data Visualization",
+    "section": "16.6 View Visualization Code",
+    "text": "16.6 View Visualization Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#troubleshooting-visualization-issues",
+    "href": "16_data_vis_shiny.html#troubleshooting-visualization-issues",
+    "title": "16  Data Visualization",
+    "section": "16.7 Troubleshooting Visualization Issues",
+    "text": "16.7 Troubleshooting Visualization Issues\nCommon Issues and Solutions:\n\nPlots are not shown (white canva shown on the right)\n\nVerify that modules exist at the specified level\n\nText labels overlapping or unreadable\n\nAdjust Y label width parameter\nUntick Text all to show only representative labels\nIncrease plot dimensions when saving\n\nLLM text not appearing\n\nEnsure Chapter 15: LLM Interpretation was run successfully\nCheck that the object contains LLM interpretation results",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#next-steps",
+    "href": "16_data_vis_shiny.html#next-steps",
+    "title": "16  Data Visualization",
+    "section": "16.8 Next Steps",
+    "text": "16.8 Next Steps\nContinue to Results Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html",
+    "href": "17_res_report_shiny.html",
+    "title": "17  Result Report",
+    "section": "",
+    "text": "17.1 Overview\nmapashiny offers a one-click feature to export and report your functional module analysis results through comprehensive report generation. These tools enable you to share findings as structured data files and professionally formatted reports.\nWith a single click, you can generate comprehensive analysis report in a HTML file with various plots and tables.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#step-1-load-your-data",
+    "href": "17_res_report_shiny.html#step-1-load-your-data",
+    "title": "17  Result Report",
+    "section": "17.2 Step 1: Load Your Data",
+    "text": "17.2 Step 1: Load Your Data\n\nOption 1: Continue from Previous Step\nIf you have completed datavisualization in the current session, your data will automatically be available for final report.\nOption 2: Upload Existing Results\nYou can also upload previously saved results:\n\nClick “Browse” at the top of the left panel (of Data Visualization function page) “Upload functional module (.rda)” to upload your functional module file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect the input type and prepare for final report.\nSwitch back to Results & Report page",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#step-2-start-report-generation",
+    "href": "17_res_report_shiny.html#step-2-start-report-generation",
+    "title": "17  Result Report",
+    "section": "17.3 Step 2: Start Report Generation",
+    "text": "17.3 Step 2: Start Report Generation\nWith just one simple click, you report will be generated. This process is expected to take around 30 seconds.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#step-3-review-the-report",
+    "href": "17_res_report_shiny.html#step-3-review-the-report",
+    "title": "17  Result Report",
+    "section": "17.4 Step 3: Review the Report",
+    "text": "17.4 Step 3: Review the Report\nThe generated report automatically includes:\nAnalysis Summary:\n\nParameters: Overview of enrichment analysis parameters and results\nObject information: Summary statistics for each database and analysis level, and processing timeline and method details\n\nVisualizations:\n\nTop enriched pathways bar charts\nDatabase-specific module bar charts (if applicable)\nFunctional module bar charts with LLM names (if available)\nSimilarity networks for all analysis levels\n\nData Tables:\n\nOne of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#step-4-download-the-report",
+    "href": "17_res_report_shiny.html#step-4-download-the-report",
+    "title": "17  Result Report",
+    "section": "17.5 Step 4: Download the Report",
+    "text": "17.5 Step 4: Download the Report\nYou can also click Download to save the exact report shown in the right panel as an HTML file on your computer. The download will be a ZIP file—simply unzip it to access the HTML report and view its contents.\n\n\n\n\n\n\nTip\n\n\n\nWorking with Downloaded HTML file: The easiest way to save images embedded in the HTML file is to right-click on the image and select “Save image as…” (in Mac) to download it to your local device.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#step-5-view-analysis-code",
+    "href": "17_res_report_shiny.html#step-5-view-analysis-code",
+    "title": "17  Result Report",
+    "section": "17.6 Step 5: View Analysis Code",
+    "text": "17.6 Step 5: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#next-steps",
+    "href": "17_res_report_shiny.html#next-steps",
+    "title": "17  Result Report",
+    "section": "17.7 Next Steps",
+    "text": "17.7 Next Steps\nWith your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:\n\nCollaboration: Share HTML reports with colleagues for easy viewing and discussion\nPublication: Use HTML reports and exported the figures for manuscript preparation\nPresentation: Extract visualizations and key findings for presentations",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "17_res_report_shiny.html#thank-you-reach-out",
+    "href": "17_res_report_shiny.html#thank-you-reach-out",
+    "title": "17  Result Report",
+    "section": "17.8 Thank You & Reach Out",
+    "text": "17.8 Thank You & Reach Out\nThe MAPA Shiny app workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the MAPA GitHub Issues page.",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
     ]
   }
 ]

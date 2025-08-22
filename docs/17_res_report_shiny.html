@@ -121,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overview</span></a>
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -259,15 +259,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">17.1</span> Overview</a></li>
+  <li><a href="#step-1-load-your-data" id="toc-step-1-load-your-data" class="nav-link" data-scroll-target="#step-1-load-your-data"><span class="header-section-number">17.2</span> Step 1: Load Your Data</a></li>
+  <li><a href="#step-2-start-report-generation" id="toc-step-2-start-report-generation" class="nav-link" data-scroll-target="#step-2-start-report-generation"><span class="header-section-number">17.3</span> Step 2: Start Report Generation</a></li>
+  <li><a href="#step-3-review-the-report" id="toc-step-3-review-the-report" class="nav-link" data-scroll-target="#step-3-review-the-report"><span class="header-section-number">17.4</span> Step 3: Review the Report</a></li>
+  <li><a href="#step-4-download-the-report" id="toc-step-4-download-the-report" class="nav-link" data-scroll-target="#step-4-download-the-report"><span class="header-section-number">17.5</span> Step 4: Download the Report</a></li>
+  <li><a href="#step-5-view-analysis-code" id="toc-step-5-view-analysis-code" class="nav-link" data-scroll-target="#step-5-view-analysis-code"><span class="header-section-number">17.6</span> Step 5: View Analysis Code</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">17.7</span> Next Steps</a></li>
+  <li><a href="#thank-you-reach-out" id="toc-thank-you-reach-out" class="nav-link" data-scroll-target="#thank-you-reach-out"><span class="header-section-number">17.8</span> Thank You &amp; Reach Out</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./17_res_report_shiny.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></h1>
+<h1 class="title"><span id="sec-shiny_result_report_shiny" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Result Report</span></span></h1>
 </div>
 
 
@@ -284,8 +297,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><code>mapashiny</code> offers a one-click feature to export and report your functional module analysis results through comprehensive report generation. These tools enable you to share findings as structured data files and professionally formatted reports.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before generating reports, ensure you have completed your MAPA analysis workflow including:</p>
+<ul>
+<li>Enrichment analysis: Described in <a href="./12_enrichment_analysis_shiny.html">Chapter 12</a></li>
+<li>Pathway similarity calculation: Described in <a href="./13_pathway_similarity_shiny.html">Chapter 13</a></li>
+<li>Optional: Optimal clustering parameters determination described in <a href="./14_get_functional_modules_shiny.html">Chapter 14</a></li>
+<li>Clustering: Described in <a href="./14_get_functional_modules_shiny.html">Chapter 14</a></li>
+<li>Optional: LLM interpretation in <a href="./15_llm_interpretation_shiny.html">Chapter 15</a></li>
+</ul>
+<p>The functions in this chapter work with the final <code>functional_module</code> object from your analysis.</p>
+</div>
+</div>
+<section id="overview" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">17.1</span> Overview</h2>
+<p>With a single click, you can generate comprehensive analysis report in a HTML file with various plots and tables.</p>
+</section>
+<section id="step-1-load-your-data" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="step-1-load-your-data"><span class="header-section-number">17.2</span> Step 1: Load Your Data</h2>
+<ul>
+<li><p><strong>Option 1: Continue from Previous Step</strong></p>
+<p>If you have completed datavisualization in the <strong>current</strong> session, your data will automatically be available for final report.</p></li>
+<li><p><strong>Option 2: Upload Existing Results</strong></p>
+<p>You can also upload previously saved results:</p>
+<ol type="1">
+<li><strong>Click “Browse”</strong> at the top of the left panel (of <em>Data Visualization function</em> page) <strong>“Upload functional module (.rda)”</strong> to upload your functional module file (.rda format)</li>
+<li><strong>Select your file</strong></li>
+<li><strong>Wait for validation</strong> - the app will automatically detect the input type and prepare for final report.</li>
+<li><strong>Switch back to <em>Results &amp; Report</em> page</strong></li>
+</ol></li>
+</ul>
+</section>
+<section id="step-2-start-report-generation" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="step-2-start-report-generation"><span class="header-section-number">17.3</span> Step 2: Start Report Generation</h2>
+<p>With just one simple click, you report will be generated. This process is expected to take around 30 seconds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shinyapp_17_submit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="step-3-review-the-report" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="step-3-review-the-report"><span class="header-section-number">17.4</span> Step 3: Review the Report</h2>
+<p>The generated report automatically includes:</p>
+<p><strong>Analysis Summary:</strong></p>
+<ul>
+<li><code>Parameters</code>: Overview of enrichment analysis parameters and results</li>
+<li><code>Object information</code>: Summary statistics for each database and analysis level, and processing timeline and method details</li>
+</ul>
+<p><strong>Visualizations:</strong></p>
+<ul>
+<li>Top enriched pathways bar charts</li>
+<li>Database-specific module bar charts (if applicable)</li>
+<li>Functional module bar charts with LLM names (if available)</li>
+<li>Similarity networks for all analysis levels</li>
+</ul>
+<p><strong>Data Tables:</strong></p>
+<ul>
+<li>One of Enrichment results for functional modules or LLM interpretation results with confidence scores (if available)</li>
+</ul>
+</section>
+<section id="step-4-download-the-report" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="step-4-download-the-report"><span class="header-section-number">17.5</span> Step 4: Download the Report</h2>
+<p>You can also click <strong>Download</strong> to save the exact report shown in the right panel as an HTML file on your computer. The download will be a ZIP file—simply unzip it to access the HTML report and view its contents.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Working with Downloaded HTML file</strong>: The easiest way to save images embedded in the HTML file is to right-click on the image and select “Save image as…” (in Mac) to download it to your local device.</p>
+</div>
+</div>
+</section>
+<section id="step-5-view-analysis-code" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="step-5-view-analysis-code"><span class="header-section-number">17.6</span> Step 5: View Analysis Code</h2>
+<p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis:</p>
+<ul>
+<li><strong>Code 1</strong>: Shows <code>function()</code> function usage</li>
+<li><strong>Code 2</strong>: Shows <code>function()</code> function usage</li>
+</ul>
+<p>This code can be copied and used in your own R scripts for reproducible analysis.</p>
+</section>
+<section id="next-steps" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">17.7</span> Next Steps</h2>
+<p>With your results exported and reports generated, you now have comprehensive documentation of your functional module analysis. These outputs provide the foundation for:</p>
+<ul>
+<li><strong>Collaboration</strong>: Share HTML reports with colleagues for easy viewing and discussion</li>
+<li><strong>Publication</strong>: Use HTML reports and exported the figures for manuscript preparation</li>
+<li><strong>Presentation</strong>: Extract visualizations and key findings for presentations</li>
+</ul>
+</section>
+<section id="thank-you-reach-out" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="thank-you-reach-out"><span class="header-section-number">17.8</span> Thank You &amp; Reach Out</h2>
+<p>The MAPA Shiny app workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the <a href="https://github.com/jaspershen-lab/mapa-tutorial/issues">MAPA GitHub Issues page</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -866,4 +988,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/17_res_report_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

@@ -20,3 +20,7 @@ remotes::install_github(
   upgrade = "ask"
 )
 ```
+
+::: callout-note
+Dependency Conflict: If `mapa` installation failed because the `simplifyEnrichment` version is incompatible, update `Bioconductor` to **version 3.20 or newer**. To do that, you’ll need R environment **4.4.0 or newer**.
+:::
