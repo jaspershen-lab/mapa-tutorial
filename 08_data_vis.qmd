@@ -322,4 +322,4 @@ plot_relationship_network(
 
 ## Next Steps
 
-Continue to [Results Report](07_res_report.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.
+Continue to [Results Report](09_res_report.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.
