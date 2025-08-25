@@ -63,7 +63,7 @@ For Over-Representation Analysis (ORA), your data must contain **one** of the fo
 For Gene Set Enrichment Analysis (GSEA), you need:
 
 1.  **One identifier column** (ensembl, entrezid, uniprot, or symbol)
-2.  **An `order_by` column** containing numeric values to rank genes (This is used to create the **ranked gene list** required for GSEA. Common choices like Log2 fold change values, pvalue)
+2.  **An `order_by` column named "fc" or "p_value_adjust"**, containing numeric values to rank genes (This is used to create the **ranked gene list** required for GSEA. Common choices like Log2 fold change values, pvalue)
 
 ##### Metabolite Data
 
