@@ -41,7 +41,7 @@ The app automatically detects your data type (whether "gene" or "metabolite") fr
 -   **Gene set enrichment analysis (GSEA)**: Analyzes the entire ranked gene list to identify enriched pathways
 
 ::: callout-note
-**GSEA Requirements**: If you select GSEA, an additional "Order by" field will appear. This should correspond to a numeric column in your data (like fold change or p-values) that will be used to rank genes.
+**GSEA Requirements**: If you select GSEA, an additional "Order by" field will appear. This should correspond to a numeric column in your data (like fold change or p-values) that will be used to rank genes. Make sure **this column named "fc" or "p_value_adjust"**.
 :::
 
 ![](images/shinyapp_03_gene_analysis_type.png){fig-align="center" width="750"}

@@ -10,11 +10,11 @@
     ]
   },
   {
-    "objectID": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
-    "href": "index.html#mapa-functional-module-annotation-for-pathway-analysis-results-using-llm",
-    "title": "mapa tutorial",
-    "section": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM",
-    "text": "mapa: Functional Module Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nDetects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nClusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nSummarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
+    "objectID": "index.html#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm",
+    "href": "index.html#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm",
+    "title": "MAPA tutorial",
+    "section": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM",
+    "text": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
       "Preface"
     ]
@@ -35,6 +35,16 @@
     "title": "MAPA tutorial",
     "section": "📥 Contact us",
     "text": "📥 Contact us\n\n📩 Email xiaotao.shen@outlook.com\n🏠 Shen Lab website shen-lab.org\n💬 WeChat jaspershen1990\n🐦 Twitter xiaotaoshen1990",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#more-links",
+    "href": "index.html#more-links",
+    "title": "MAPA tutorial",
+    "section": "🔗 More links",
+    "text": "🔗 More links\n\n📖 Citation\n🏠 MAPA project website\n☁️ Online MAPA Shiny",
     "crumbs": [
       "Preface"
     ]
@@ -757,89 +767,89 @@
   {
     "objectID": "12_enrichment_analysis_shiny.html",
     "href": "12_enrichment_analysis_shiny.html",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "",
     "text": "12.1 Supported Databases and Analysis Types\nThis chapter covers how to perform pathway enrichment analysis using the MAPA Shiny application. The Shiny app provides an intuitive interface for running both Over-Representation Analysis (ORA) and Gene Set Enrichment Analysis (GSEA) for genes, and ORA for metabolites across multiple databases.\nThe MAPA Shiny app leverages the powerful enrichment functions from the clusterProfiler package for pathway analysis:",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#sec-supported_db",
     "href": "12_enrichment_analysis_shiny.html#sec-supported_db",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "",
     "text": "For Gene DataFor Metabolite Data\n\n\n\n\n\nDatabase\nSupported Organism\nKeytype Options\nAnalysis Types\n\n\n\n\nGene Ontology (GO)\nAny organism with OrgDb object (organism annotation database package from Bioconductor or OrgDb object retrieved from AnnotationHub)\nENTREZID, SYMBOL, ENSEMBL, UNIPROT\nORA, GSEA\n\n\nKEGG\nAll KEGG organisms\nkegg, ncbi-geneid, ncbi-proteinid, uniprot\nORA, GSEA\n\n\nReactome\nhuman, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken\nENTREZID only\nORA, GSEA\n\n\n\n\n\n\n\n\nDatabase\nSupported Organism\nKeytype Options\nAnalysis Types\n\n\n\n\nKEGG\nAll KEGG organisms\nKEGG compound IDs\nORA only\n\n\nSMPDB\nHuman only\nHMDB IDs\nORA only\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFor comprehensive understanding of enrichment analysis concepts, methodologies, we highly recommend reading the Biomedical Knowledge Mining using GOSemSim and clusterProfiler book. This book covers all the underlying methods that MAPA uses and will help you make informed decisions about your analysis parameters.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#gene-based-enrichment-analysis",
     "href": "12_enrichment_analysis_shiny.html#gene-based-enrichment-analysis",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.2 Gene-based Enrichment Analysis",
-    "text": "12.2 Gene-based Enrichment Analysis\n\n12.2.1 Step 1: Select Analysis Type\nThe app automatically detects your data type (whether “gene” or “metabolite”) from the previous step. For gene data, choose between:\n\nPathway enrichment analysis (ORA): Tests for over-representation of your genes in predefined pathways\nGene set enrichment analysis (GSEA): Analyzes the entire ranked gene list to identify enriched pathways\n\n\n\n\n\n\n\nNote\n\n\n\nGSEA Requirements: If you select GSEA, an additional “Order by” field will appear. This should correspond to a numeric column in your data (like fold change or p-values) that will be used to rank genes.\n\n\n\n\n\n\n\n\n\n12.2.2 Step 2: Configure Database Parameters\nThe app automatically detects available databases based on your organism and displays relevant parameter options:\n\nGO ParametersKEGG ParametersReactome Parameters\n\n\nWhen GO is selected, configure:\n\nGO Keytype: Choose the identifier type for GO analysis\n\nENTREZID: Entrez Gene IDs\nSYMBOL: Gene symbols\nENSEMBL: Ensembl gene IDs\nUNIPROT: UniProt IDs\n\nGO Ontology: Select which Gene Ontology aspects to analyze\n\nALL: All three ontologies (recommended)\nBP: Biological Process only\nCC: Cellular Component only\nMF: Molecular Function only\n\n\n\n\n\n\n\n\n\nWhen KEGG is selected, configure:\n\nKEGG Keytype: Choose the identifier type for KEGG analysis\n\nkegg: KEGG gene IDs (recommended)\nncbi-geneid: NCBI Gene IDs\nncbi-proteinid: NCBI Protein IDs\nuniprot: UniProt IDs\n\n\n\n\n\n\n\n\n\nReactome analysis uses ENTREZID only and requires no additional configuration.\n\n\n\n\n\n12.2.3 Step 3: Set Statistical Parameters\nConfigure the statistical thresholds for your analysis:\n\nP-value cutoff: Significance threshold for raw p-values (default: 0.05)\nP-adjust method: Multiple testing correction method (default: BH - Benjamini-Hochberg)\nQ-value cutoff: False Discovery Rate threshold (default: 0.2)\nGene set size: Minimum and maximum pathway sizes to consider (default: 10-500)",
+    "text": "12.2 Gene-based Enrichment Analysis\n\n12.2.1 Step 1: Select Analysis Type\nThe app automatically detects your data type (whether “gene” or “metabolite”) from the previous step. For gene data, choose between:\n\nPathway enrichment analysis (ORA): Tests for over-representation of your genes in predefined pathways\nGene set enrichment analysis (GSEA): Analyzes the entire ranked gene list to identify enriched pathways\n\n\n\n\n\n\n\nNote\n\n\n\nGSEA Requirements: If you select GSEA, an additional “Order by” field will appear. This should correspond to a numeric column in your data (like fold change or p-values) that will be used to rank genes. Make sure this column named “fc” or “p_value_adjust”.\n\n\n\n\n\n\n\n\n\n12.2.2 Step 2: Configure Database Parameters\nThe app automatically detects available databases based on your organism and displays relevant parameter options:\n\nGO ParametersKEGG ParametersReactome Parameters\n\n\nWhen GO is selected, configure:\n\nGO Keytype: Choose the identifier type for GO analysis\n\nENTREZID: Entrez Gene IDs\nSYMBOL: Gene symbols\nENSEMBL: Ensembl gene IDs\nUNIPROT: UniProt IDs\n\nGO Ontology: Select which Gene Ontology aspects to analyze\n\nALL: All three ontologies (recommended)\nBP: Biological Process only\nCC: Cellular Component only\nMF: Molecular Function only\n\n\n\n\n\n\n\n\n\nWhen KEGG is selected, configure:\n\nKEGG Keytype: Choose the identifier type for KEGG analysis\n\nkegg: KEGG gene IDs (recommended)\nncbi-geneid: NCBI Gene IDs\nncbi-proteinid: NCBI Protein IDs\nuniprot: UniProt IDs\n\n\n\n\n\n\n\n\n\nReactome analysis uses ENTREZID only and requires no additional configuration.\n\n\n\n\n\n12.2.3 Step 3: Set Statistical Parameters\nConfigure the statistical thresholds for your analysis:\n\nP-value cutoff: Significance threshold for raw p-values (default: 0.05)\nP-adjust method: Multiple testing correction method (default: BH - Benjamini-Hochberg)\nQ-value cutoff: False Discovery Rate threshold (default: 0.2)\nGene set size: Minimum and maximum pathway sizes to consider (default: 10-500)",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#metabolite-based-enrichment-analysis",
     "href": "12_enrichment_analysis_shiny.html#metabolite-based-enrichment-analysis",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.3 Metabolite-based Enrichment Analysis",
     "text": "12.3 Metabolite-based Enrichment Analysis\nFor metabolite data, the interface automatically switches to metabolite-specific options and shows available databases based on your organism:\n\nHuman: Both HMDB and KEGG databases available\nOther organisms: Only KEGG database available\n\n\n\n\n\n\n\n12.3.1 Step 1: Submit Analysis\n\nReview your parameter selections\nClick the “Submit” button to start the enrichment analysis\nA progress indicator will show the analysis is running\nSuccess or error messages will appear as notifications\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nProcessing Time: Metabolite enrichment analysis may take several minutes to complete. Please wait patiently while the analysis runs.\n\n\n\n\n12.3.2 Step 2: Review Results\nAfter successful completion, results will appear in the right panel with separate tabs for each database:\n\nGene ResultsMetabolite Results\n\n\nFor gene enrichment analysis, you’ll see tabs for:\n\nGO: Gene Ontology enrichment results\nKEGG: KEGG pathway enrichment results\n\nReactome: Reactome pathway enrichment results\nR object: Summary of the complete results object\n\n\n\n\n\n\n\n\nFor metabolite enrichment analysis, you’ll see tabs for:\n\nKEGG Metabolite: KEGG metabolic pathway results\nHMDB: Small Molecule Pathway Database pathway results (human only)\nR object: Summary of the complete results object",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#downloading-results",
     "href": "12_enrichment_analysis_shiny.html#downloading-results",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.4 Downloading Results",
     "text": "12.4 Downloading Results\nEach results tab includes a “Download” button to save results as CSV files:\n\nNavigate to the desired results tab\nClick “Download” to save the table\nThe “R object” tab allows downloading the complete results object for further analysis in R",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#understanding-the-results",
     "href": "12_enrichment_analysis_shiny.html#understanding-the-results",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.5 Understanding the Results",
     "text": "12.5 Understanding the Results\nKey columns in enrichment results:\n\nGene ORAGSEAMetabolite ORA\n\n\nCore Information:\n\nID: Pathway identifier (e.g., GO:0042060 for GO, hsa04060 for KEGG, R-HSA-5669034 for Reactome)\nDescription: Pathway name\nONTOLOGY: Biological ontology (for GO only: MF=molecular function, CC=cellular component, BP=biological process)\ncategory/subcategory: KEGG pathway categories (for KEGG only)\n\nStatistical Measures:\n\npvalue: Raw p-value from hypergeometric test (equivalent to one-sided Fisher’s exact test)\np_adjust: Adjusted p-value after multiple testing correction (BH method by default)\nqvalue: Q-value for FDR control. For more information, see ?qvalue::qvalue\n\nGene Mapping:\n\nGeneRatio: Ratio of input genes annotated to this pathway (format: “genes_in_pathway/total_input_genes”)\nBgRatio: Ratio of all genes annotated to this pathway in the background universe (format: “pathway_genes/universe_genes”)\nCount: Total number of genes from input list that match this pathway\ngeneID: Gene IDs that overlap between your gene list and the pathway (separated by “/”)\n\nEnrichment Metrics:\n\nRichFactor: Ratio of input genes annotated to a pathway vs. all genes annotated to this pathway\nFoldEnrichment: Enrichment fold change (GeneRatio divided by BgRatio)\nzScore: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you’d expect by chance. Higher absolute z-score means more “surprising” or significant enrichment.)\n\n\n\nFor GSEA results, additional columns specific to ranked list analysis include:\n\nsetSize: Total number of genes in the gene set/pathway\nenrichmentScore: Degree of overrepresentation at top/bottom of ranked list\nNES: Normalized Enrichment Score - main metric for interpretation\n\nPositive NES: pathway enriched in upregulated genes (pathway activation)\nNegative NES: pathway enriched in downregulated genes (pathway suppression)\n\nrank: Position in ranked list where maximum enrichment score occurred\nleading_edge: Statistics for the leading-edge subset of genes\ncore_enrichment: Core enriched genes that contribute most to the enrichment signal\nCount: Number of core enriched genes\n\n\n\nFor metabolite ORA results, the result structure differs from gene-based analysis:\nPathway Information:\n\npathway_id: KEGG pathway ID or Small Molecule Pathway Database pathway ID (e.g., SMP0000028)\npathway_name: Name of the metabolic pathway (e.g., “Caffeine Metabolism”)\ndescribtion: Detailed description of the pathway from the corresponding database\npathway_class: Classification of pathway (e.g., “Metabolic;primary_pathway”, “Disease;primary_pathway”)\n\nStatistical Measures:\n\np_value: Raw p-value from enrichment test\np_adjust: Adjusted p-value for multiple testing correction\n\nMetabolite Mapping:\n\nall_id: All metabolite IDs in this pathway (separated by “;”)\nall_number: Total number of metabolites in the pathway\nmapped_id: Your input metabolite IDs that map to this pathway (separated by “;”)\nmapped_number: Number of your metabolites that map to this pathway\nmapped_percentage: Percentage of pathway metabolites covered by your input data",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#viewing-the-analysis-code",
     "href": "12_enrichment_analysis_shiny.html#viewing-the-analysis-code",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.6 Viewing the Analysis Code",
     "text": "12.6 Viewing the Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis: This code can be copied and used in your own R scripts for reproducible analysis.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
     "objectID": "12_enrichment_analysis_shiny.html#next-steps",
     "href": "12_enrichment_analysis_shiny.html#next-steps",
-    "title": "12  Enrichment Analysis",
+    "title": "12  Pathway Analysis",
     "section": "12.7 Next Steps",
     "text": "12.7 Next Steps\nOnce your enrichment analysis is complete:\n\nReview Results: Examine the significance and biological relevance of enriched pathways\nDownload Data: Save results (especially R Object from R Object tab) for further analysis\nProceed to Clustering: Click the “Next” button to move to pathway clustering analysis. Based on your data type and analysis goals, you can proceed to:\n\nSimCluster Method: Traditional similarity-based clustering (Step 1: Merge Pathways)\nEmbedCluster Method: Advanced biotext embedding-based clustering\n\nFor metabolite analyses in non-human organisms, the app will automatically direct you to the EmbedCluster method, as it’s more suitable for single-database analyses.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Enrichment Analysis</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Pathway Analysis</span>"
     ]
   },
   {
@@ -933,111 +943,111 @@
   {
     "objectID": "14_get_functional_modules_shiny.html",
     "href": "14_get_functional_modules_shiny.html",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "",
     "text": "14.1 Overview\nThis chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny app provides an intuitive interface for grouping related pathways into functional modules using optimal clustering parameters.\nThe Pathway Clustering section in the MAPA Shiny app provides a comprehensive workflow for identifying functional modules from pathway similarity results. It includes two main steps:\nThis two-step approach helps ensure high-quality, biologically meaningful pathway modules.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#overview",
     "href": "14_get_functional_modules_shiny.html#overview",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "",
     "text": "(Optional) Find Optimal Parameters: Systematically evaluate different clustering algorithms and a series of similarity cutoffs to identify optimal parameters\nPerform Clustering: Apply the optimal parameters to generate functional modules",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-1-load-your-data",
     "href": "14_get_functional_modules_shiny.html#step-1-load-your-data",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.2 Step 1: Load Your Data",
     "text": "14.2 Step 1: Load Your Data\n\nOption 1: Continue from Previous Step\nIf you have completed pathway similarity calculation in the current session, your data will automatically be available for clustering analysis.\nOption 2: Upload Existing Results\nIf you have previously saved similarity results, you can upload them:\n\nClick “Browse” at the top of the left panel “Upload Similarity Result (.rda)” to upload your similarity results file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect the input type and prepare for clustering analysis",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-2-find-optimal-parameters",
     "href": "14_get_functional_modules_shiny.html#step-2-find-optimal-parameters",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.3 Step 2: Find Optimal Parameters",
     "text": "14.3 Step 2: Find Optimal Parameters\nBefore performing the final clustering, it’s highly recommended to systematically evaluate different clustering parameters to find the optimal settings. The optimal parameter analysis tests three clustering algorithms:\n\nBinary cut: Uses the simplifyEnrichment algorithm\nGirvan Newman: Community detection based on edge betweenness\nHierarchical: Traditional agglomerative clustering\n\nEach method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation. You can set the evaluation parameters:\n\nCutoff Increment: Step size for the similarity cutoff sequence (default: 0.1)\n\nSmaller values (e.g., 0.05) provide more detailed analysis but take longer\nLarger values (e.g., 0.1) provide faster analysis with broader evaluation\n\nHierarchical Linkage (for hierarchical method): Agglomeration method options\n\nThen run optimal parameter analysis:\n\nReview your cutoff increment setting\nClick the “Submit” button to start the parameter evaluation\nMonitor progress - the analysis will test multiple clustering methods and similarity cutoffs\nWait for completion - processing typically takes 1-3 minutes depending on data complexity and cutoff increment",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-3-review-optimal-parameter-results",
     "href": "14_get_functional_modules_shiny.html#step-3-review-optimal-parameter-results",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.4 Step 3: Review Optimal Parameter Results",
     "text": "14.4 Step 3: Review Optimal Parameter Results\nAfter completion, results will appear in the “Optimal Parameter Analysis” tab which includes Evaluation Plot and Best Recommended Combinations:\n\nEvaluation Plot\nThe plot shows how clustering quality metrics change across similarity cutoffs for different clustering methods. Look for:\n\nPeaks in modularity: Indicate good community structure (higher = stronger community structure with clearer boundaries between clusters)\nHigh silhouette scores: Indicate well-separated clusters (higher = better separated clusters)\nConsistent performance: Methods that perform well across multiple cutoffs\n\n\n\n\n\n\nBest Recommended Combinations\nThe table identifies the optimal method and cutoff combinations for each metric:\n\nMethod: Clustering algorithm (hierarchical, binary_cut, girvan_newman)\nCutoff: Optimal similarity cutoff value\nMetric: Evaluation criterion (modularity and silhouette)\nValue: Maximum achieved score for that metric",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-4-run-final-clustering-parameters",
     "href": "14_get_functional_modules_shiny.html#step-4-run-final-clustering-parameters",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.5 Step 4: Run Final Clustering Parameters",
     "text": "14.5 Step 4: Run Final Clustering Parameters\n\nUse the insights from the optimal parameter analysis to set your final clustering parameters:\n\nSimilarity Cutoff: Use the recommended cutoff from your evaluation (default: 0.5). The meaning of the cutoff depends on your clustering method:\n\nGirvan-Newman: Edge filter (higher cutoffs = smaller modules)\nBinary Cut & Hierarchical: Dendrogram cutting height (higher cutoffs = larger modules)\n\nClustering Method: Choose from the three available methods: Binary cut, Girvan Newman, and Hierarchical cluserting\nHierarchical Linkage (only for hierarchical method): Agglomeration method options\n\nClick the “Submit” button to perform the final clustering\nMonitor progress - clustering typically completes within minutes\nReview results in the “Final Clustering Result” tab",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-5-review-final-clustering-results",
     "href": "14_get_functional_modules_shiny.html#step-5-review-final-clustering-results",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.6 Step 5: Review Final Clustering Results",
     "text": "14.6 Step 5: Review Final Clustering Results\nAfter successful clustering, examine your results in the “Final Clustering Result” tab with three sub-tabs:\n\nTable TabData Visualization TabR Object Tab\n\n\nBrowse the functional module results and download as CSV:\n\nView: Complete functional module results table with key metrics\nDownload: Click “Download” button to save results as CSV for further analysis\n\nKey result columns:\n\nmodule: Functional Module identifier (e.g., “Functional_module_127”)\nmodule_annotation: Representative pathway name (lowest p-value for ORA, highest |NES| for GSEA)\nDescription: Names of all pathways in the module (separated by ;)\nmodule_content: All pathway/term IDs grouped in this module\nCount: Number of genes/metabolites from input list in the module\np_adjust: Best (lowest) adjusted p-value among pathways in the module\n\n\n\n\n\n\n\n\nGenerate similarity network plots to visualize functional modules:\n\nConfigure plot parameters:\n\nDegree cutoff: Minimum pathways per module to display\nText: Show representative module names\nText all: Show all pathway names\n\nClick “Generate plot” to create the network visualization\nExamine the network to understand module relationships and structure\n\n\n\n\n\n\n\n\nAccess the complete results object for further analysis:\n\nView: Summary of the complete functional module analysis\nDownload: Save the complete object (.rda format) for use in R",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#step-6-view-analysis-code",
     "href": "14_get_functional_modules_shiny.html#step-6-view-analysis-code",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.7 Step 6: View Analysis Code",
     "text": "14.7 Step 6: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nOptimal Parameter Analysis Code: Shows determine_optimal_clusters() function usage\nFinal Clustering Code: Shows get_functional_modules() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#clustering-quality-assessment",
     "href": "14_get_functional_modules_shiny.html#clustering-quality-assessment",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.8 Clustering Quality Assessment",
     "text": "14.8 Clustering Quality Assessment\nEvaluate the quality of your functional modules by examining:\n\nModule Size Distribution: Check if modules have reasonable sizes (not too many singleton modules or one dominant large module) and investigate clusters that are major outliers.\nSilhouette score plot\nBiological Interpretation: Most importantly, examine whether the grouped pathways represent coherent biological processes or functions. Statistical optimization alone doesn’t guarantee biological meaningfulness - modules should tell a clear biological story.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
     "objectID": "14_get_functional_modules_shiny.html#next-steps",
     "href": "14_get_functional_modules_shiny.html#next-steps",
-    "title": "14  Pathway Clustering",
+    "title": "14  Functional Module Identification",
     "section": "14.9 Next Steps",
     "text": "14.9 Next Steps\nOnce your functional module identification is complete:\n\nDownload Results: Save both the table and R object for backup and further analysis\nProceed to LLM Interpretation: Click the “Next” button to move to LLM Interpretation for AI-powered functional annotations of your modules\n\nThe functional modules will automatically be available for the next step in your MAPA analysis workflow, where you can add biological context and interpretations using large language models.",
     "crumbs": [
       "MAPA Shiny App",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Pathway Clustering</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
     ]
   },
   {
@@ -1346,26 +1356,6 @@
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm",
-    "href": "index.html#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm",
-    "title": "MAPA tutorial",
-    "section": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM",
-    "text": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
-    "crumbs": [
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "index.html#more-links",
-    "href": "index.html#more-links",
-    "title": "MAPA tutorial",
-    "section": "🔗 More links",
-    "text": "🔗 More links\n\n📖 Citation\n🏠 MAPA project website\n☁️ Online MAPA Shiny",
-    "crumbs": [
-      "Preface"
     ]
   }
 ]
