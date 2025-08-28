@@ -54,7 +54,7 @@
     "href": "01_package_installation.html",
     "title": "1  Installation",
     "section": "",
-    "text": "Follow the steps below to install the latest development version of MAPA from GitHub (the script first installs BiocManager and remotes if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\n\n\n\n\n\n\nNote\n\n\n\nDependency Conflict: If mapa installation failed because the simplifyEnrichment version is incompatible, update Bioconductor to version 3.20 or newer. To do that, you’ll need R environment 4.4.0 or newer.",
+    "text": "Follow the steps below to install the latest development version of MAPA from GitHub (the script first installs BiocManager and remotes if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\n\n\n\n\n\n\nNote\n\n\n\nPossible Dependency Conflict: If mapa installation failed because the simplifyEnrichment version is incompatible, update Bioconductor to version 3.20 or newer. To do that, you’ll need R environment 4.4.0 or newer.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
@@ -593,7 +593,7 @@
     "href": "09_res_report.html",
     "title": "9  Results Report",
     "section": "",
-    "text": "9.1 Overview\nThe mapa package provides two powerful functions for exporting and reporting your functional module analysis results: export_functional_module() for data export and report_functional_module() for comprehensive report generation. These functions help you share your findings through structured data files and professional reports.\nThe reporting functions serve different purposes:",
+    "text": "9.1 Overview\nThe reporting functions serve different purposes:",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Results Report</span>"
@@ -659,7 +659,7 @@
     "href": "09_res_report.html#thank-you-reach-out",
     "title": "9  Results Report",
     "section": "9.6 Thank You & Reach Out",
-    "text": "9.6 Thank You & Reach Out\nThe MAPA R code workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the MAPA GitHub Issues page.",
+    "text": "9.6 Thank You & Reach Out\nTo this point, mapa command-line workflow is now complete! Thank you for your use.\nIf you have any questions regarding mapa command-line workflow, feel free to reach out via the mapa GitHub Issues page.\n\n\n\n\n\n\nNote\n\n\n\nCite Our Work: If you used mapa in your publications, we would appreciate it if you could cite our paper [to be updated.]",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Results Report</span>"
@@ -1275,7 +1275,7 @@
     "href": "17_res_report_shiny.html",
     "title": "17  Result Report",
     "section": "",
-    "text": "17.1 Overview\nmapashiny offers a one-click feature to export and report your functional module analysis results through comprehensive report generation. These tools enable you to share findings as structured data files and professionally formatted reports.\nWith a single click, you can generate comprehensive analysis report in a HTML file with various plots and tables.",
+    "text": "17.1 Overview\nWith a single click, you can generate comprehensive analysis report in a HTML file with various plots and tables.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
@@ -1352,10 +1352,21 @@
     "href": "17_res_report_shiny.html#thank-you-reach-out",
     "title": "17  Result Report",
     "section": "17.8 Thank You & Reach Out",
-    "text": "17.8 Thank You & Reach Out\nThe MAPA Shiny app workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the MAPA GitHub Issues page.",
+    "text": "17.8 Thank You & Reach Out\nTo this point, mapa shiny app workflow is now complete! Thank you for your use.\nIf you have any questions regarding mapa shiny app workflow, feel free to reach out via the mapashiny GitHub Issues page.\n\n\n\n\n\n\nNote\n\n\n\nCite Our Work: If you used mapa in your publications, we would appreciate it if you could cite our paper [to be updated.]",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Result Report</span>"
+    ]
+  },
+  {
+    "objectID": "09_res_report.html#cite-our-work",
+    "href": "09_res_report.html#cite-our-work",
+    "title": "9  Results Report",
+    "section": "9.7 Cite Our Work",
+    "text": "9.7 Cite Our Work",
+    "crumbs": [
+      "MAPA R Package",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Results Report</span>"
     ]
   }
 ]

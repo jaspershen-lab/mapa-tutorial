@@ -28,10 +28,10 @@ With a single click, you can generate comprehensive analysis report in a HTML fi
 
     You can also upload previously saved results:
 
-    1.  **Click "Browse"** at the top of the left panel (of _Data Visualization function_ page) **"Upload functional module (.rda)"** to upload your functional module file (.rda format)
+    1.  **Click "Browse"** at the top of the left panel (of *Data Visualization function* page) **"Upload functional module (.rda)"** to upload your functional module file (.rda format)
     2.  **Select your file**
     3.  **Wait for validation** - the app will automatically detect the input type and prepare for final report.
-    4.  **Switch back to _Results & Report_ page**
+    4.  **Switch back to *Results & Report* page**
 
 ## Step 2: Start Report Generation
 
@@ -86,4 +86,10 @@ With your results exported and reports generated, you now have comprehensive doc
 
 ## Thank You & Reach Out
 
-The MAPA Shiny app workflow is now complete! Thank you for your usage. If you have any questions, feel free to reach out via the [MAPA GitHub Issues page](https://github.com/jaspershen-lab/mapa-tutorial/issues).
+To this point, mapa shiny app workflow is now complete! Thank you for your use. 
+
+If you have any questions regarding mapa shiny app workflow, feel free to reach out via the [mapashiny GitHub Issues page](https://github.com/jaspershen-lab/mapashiny/issues).
+
+::: callout-note
+**Cite Our Work:** If you used mapa in your publications, we would appreciate it if you could cite our paper [to be updated.]
+:::
