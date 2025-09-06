@@ -18,7 +18,7 @@ The `get_functional_modules()` function is a generic function that identifies fu
 
 ## Basic Usage
 
-The function automatically detects your input type and applies the appropriate clustering strategy:
+The function automatically detects your input type and applies the appropriate clustering strategy, take metabolomic data for example:
 
 ::: panel-tabset
 ##### Traditional Similarity Results
@@ -30,7 +30,7 @@ functional_modules <-
   get_functional_modules(
     object = met_similarity_result,
     sim.cutoff = 0.5,
-    cluster_method = "girvan newman"
+    cluster_method = "louvain"
   )
 
 # Get functional modules from traditional pathway similarity calculation results ...
@@ -48,7 +48,7 @@ functional_modules <-
   get_functional_modules(
     object = met_biotext_similarity,
     sim.cutoff = 0.5,
-    cluster_method = "binary cut"
+    cluster_method = "louvain"
   )
 
 # Get functional modules from Biotext embedding results ...
@@ -75,11 +75,11 @@ optimal_cutoff <- modularity_optimal$cutoff[1]
 
 # Apply optimal parameters
 functional_modules <- 
-  get_functional_modules(
-    object = similarity_results,
-    sim.cutoff = optimal_cutoff,
-    cluster_method = optimal_method
-  )
+    get_functional_modules(
+      object = met_similarity_result,
+      sim.cutoff = optimal_cutoff,
+      cluster_method = optimal_method
+    )
 
 # Alternatively, use silhouette-optimized parameters for better separation
 silhouette_optimal <- best_params[best_params$metric == "silhouette", ]
@@ -196,7 +196,8 @@ top_modules <-
 print(top_modules[, c("module_annotation", "Count", "p_adjust")])
 
 # Check for singleton modules (modules with only one pathway)
-singleton_count <- sum(sapply(strsplit(module_results$module_content, ";"), length) == 1)
+chr <- as.character(module_results$module_content); chr[is.na(chr)] <- ""; counts <- lengths(strsplit(chr, ";", fixed = TRUE))
+singleton_count <- sum(counts == 1 & nzchar(chr))
 cat("Number of singleton modules:", singleton_count, "\n")
 cat("Percentage of singleton modules:", round(singleton_count/nrow(module_results)*100, 1), "%\n")
 ```

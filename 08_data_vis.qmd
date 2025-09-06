@@ -2,18 +2,12 @@
 
 The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers four main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
 
-```{r}
-#| eval: false
-
-library(mapa)
-```
-
 ::: callout-important
-Prerequisites: Before creating visualizations, ensure you have completed the previous analysis steps. The visualization functions require objects from:
+**Prerequisites:** Before creating visualizations, ensure you have completed the previous analysis steps. The visualization functions require objects from:
 
 -   Enrichment analysis: `enrich_pathway()` or `do_gsea()`
 -   Module clustering: `merge_pathways()` and `merge_modules()` or `merge_pathways_bioembedsim()`
--   Optional: LLM interpretation: `llm_interpret_module()`
+-   (Optional) LLM interpretation: `llm_interpret_module()`
 :::
 
 ## Overview of Visualization Functions
@@ -43,7 +37,7 @@ The `plot_pathway_bar()` function creates horizontal bar charts showing the top 
 
 # Basic pathway-level bar chart
 plot_pathway_bar(
-  object = enriched_functional_modules,
+  object = functional_modules,
   level = "pathway",
   database = c("go", "kegg", "reactome"),
   top_n = 5,
@@ -111,11 +105,11 @@ The `plot_module_info()` function provides detailed, multi-panel visualizations 
 #| eval: false
 
 # Get available module IDs first
-enriched_functional_modules@merged_module$functional_module_result$module
+functional_modules@merged_module$functional_module_result$module
 
 # Create detailed plots for a specific module
 module_plots <- plot_module_info(
-  object = enriched_functional_modules,
+  object = functional_modules,
   level = "functional_module",
   module_id = "Functional_module_42",
   llm_text = FALSE   # Set to TRUE to use LLM-generated names if available
@@ -155,7 +149,7 @@ module_plots$wordcloud
 
 # Examine a specific KEGG module
 go_plots <- plot_module_info(
-  object = enriched_functional_modules,
+  object = functional_modules,
   level = "module",
   database = "go",
   module_id = "go_Module_25"
@@ -180,7 +174,7 @@ The `plot_similarity_network()` function visualizes how pathways or modules clus
 
 # Functional module similarity network
 plot_similarity_network(
-  object = enriched_functional_modules,
+  object = functional_modules,
   level = "functional_module",
   degree_cutoff = 4,  # Only show modules with >2 pathways
   text = TRUE
@@ -196,7 +190,7 @@ plot_similarity_network(
 
 # GO module network
 plot_similarity_network(
-  object = enriched_functional_modules,
+  object = functional_modules,
   level = "module",
   database = "go",
   degree_cutoff = 5,
@@ -247,7 +241,7 @@ The `plot_relationship_network()` function creates comprehensive multi-level net
 ```{r}
 #| eval: false
 
-object <- enriched_functional_modules
+object <- functional_modules
 object@merged_module$functional_module_result <- 
   head(object@merged_module$functional_module_result, 2)
 

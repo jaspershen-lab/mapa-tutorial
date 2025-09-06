@@ -2,14 +2,8 @@
 
 The `llm_interpret_module()` function provides AI-powered interpretation of functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. This approach combines pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.
 
-```{r}
-#| eval: false
-
-library(mapa)
-```
-
 ::: callout-important
-Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation using `get_functional_modules()` as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
+**Prerequisites:** Before running LLM interpretation, ensure you have completed functional module generation using `get_functional_modules()` as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
 :::
 
 ## Overview
@@ -66,6 +60,10 @@ This multi-stage approach ensures that generated annotations are both scientific
 
 ## Basic Usage
 
+::: callout-important
+**Highly Important:** Please ensure the `embedding_output_dir` you choose is completely empty, since `llm_interpret_module()` will clear the directory first.
+:::
+
 ::: panel-tabset
 ##### Gene-based Module Interpretation
 
@@ -74,7 +72,7 @@ This multi-stage approach ensures that generated annotations are both scientific
 
 llm_interpreted_modules <- 
   llm_interpret_module(
-    object = enriched_functional_modules,
+    object = functional_modules,
     llm_model = "gpt-4o-mini-2024-07-18",
     embedding_model = "text-embedding-3-small", 
     api_key = "your_openai_api_key",
@@ -109,13 +107,46 @@ llm_interpreted_modules <-
 
 met_llm_interpreted_modules <- 
   llm_interpret_module(
-    object = met_enriched_functional_modules,
+    object = met_functional_modules,
     llm_model = "gpt-4o-mini-2024-07-18",
     embedding_model = "text-embedding-3-small",
     api_key = "your_openai_api_key",
-    embedding_output_dir = "met_embedding_output/",
+    embedding_output_dir = "embedding_output/",
     module_content_number_cutoff = 1
   )
+
+#   |====================================| 100%, Elapsed 00:02
+# Processing module: Functional_module_2
+# Including PID number: 20
+#   |====================================| 100%, Elapsed 00:04
+# Processing module: Functional_module_1
+# Including PID number: 15
+#   |====================================| 100%, Elapsed 00:08
+# Starting to process all modules...
+# ...
+# Processing module 1/2: Functional_module_2
+# - Generating module embeddings...
+# - Reading and calculating PubMed similarity...
+# - Local documents not found, skipping local similarity calculation
+# - Reading document content...
+# - Processing document content using GPT...
+#   |====================================| 100%, Elapsed 00:19
+# - Filtering the most relevant results...
+# Functional_module_2 processing completed
+# ...
+# Processing module 2/2: Functional_module_1
+# - Generating module embeddings...
+# - Reading and calculating PubMed similarity...
+# - Local documents not found, skipping local similarity calculation
+# - Reading document content...
+# - Processing document content using GPT...
+#   |====================================| 100%, Elapsed 00:16
+# - Filtering the most relevant results...
+# Functional_module_1 processing completed
+# ...
+# All modules processing completed!
+# Start to generate name and summary for functional modules ...
+# Done
 ```
 :::
 
@@ -123,21 +154,21 @@ met_llm_interpreted_modules <-
 
 ### LLM and API Settings
 
-| Parameter | Description | Default | Notes |
+| Parameter         | Description                   | Default                    | Notes                                           |
 |------------------|-------------------|------------------|------------------|
-| `llm_model` | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only |
-| `embedding_model` | Model for text embeddings | `"text-embedding-3-small"` | Used for document similarity |
-| `api_key` | OpenAI API key | Required | Store securely, never commit to version control |
+| `llm_model`       | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
+| `embedding_model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
+| `api_key`         | OpenAI API key                | Required                   | Store securely, never commit to version control |
 
 ### Analysis Control
 
-| Parameter | Description | Default | Use Case |
+| Parameter                      | Description                          | Default | Use Case                                                   |
 |------------------|-------------------|------------------|------------------|
-| `module_content_number_cutoff` | Minimum pathways per module | 1 | Filter small modules to focus on substantial ones |
-| `years` | Years to search back in PubMed | 5 | Balance between recent findings and comprehensive coverage |
-| `retmax` | Max papers per PubMed search | 10 | Control API usage and processing time |
-| `similarity_filter_num` | Papers kept after similarity ranking | 20 | First-stage filtering based on text similarity |
-| `GPT_filter_num` | Papers kept after GPT ranking | 5 | Final selection of most relevant papers |
+| `module_content_number_cutoff` | Minimum pathways per module          | 1       | Filter small modules to focus on substantial ones          |
+| `years`                        | Years to search back in PubMed       | 5       | Balance between recent findings and comprehensive coverage |
+| `retmax`                       | Max papers per PubMed search         | 10      | Control API usage and processing time                      |
+| `similarity_filter_num`        | Papers kept after similarity ranking | 20      | First-stage filtering based on text similarity             |
+| `GPT_filter_num`               | Papers kept after GPT ranking        | 5       | Final selection of most relevant papers                    |
 
 ::: callout-note
 **API Usage & Processing Time**: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider using `module_content_number_cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules, though progress is displayed during processing.
@@ -145,11 +176,11 @@ met_llm_interpreted_modules <-
 
 ### Optional Enhancements
 
-| Parameter | Description | Default | Benefits |
+| Parameter          | Description                                 | Default | Benefits                                                                            |
 |------------------|-------------------|------------------|------------------|
-| `phenotype` | Disease/condition context | `NULL` | Adds disease-specific interpretation |
-| `local_corpus_dir` | Local directory with your own **PDF** files | `NULL` | Incorporates your own research or relevant literature to enhance the interpretation |
-| `output_prompt` | Include prompts in results | `TRUE` | Useful for understanding AI reasoning |
+| `phenotype`        | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
+| `local_corpus_dir` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
+| `output_prompt`    | Include prompts in results                  | `TRUE`  | Useful for understanding AI reasoning                                               |
 
 ## Results Interpretation
 
