@@ -3,14 +3,12 @@
 This chapter describes how to systematically evaluate different clustering parameters to find the optimal settings for grouping your pathway similarity results into functional modules.
 
 ::: callout-important
-Prerequisites: Before determining optimal clustering parameters, ensure you have calculated pathway similarity using either `merge_pathways()` or `get_bioembedsim()` as described in @sec-pathway_similarity. The similarity results will be used as input for this analysis.
+**Prerequisites:** Before determining optimal clustering parameters, ensure you have calculated pathway similarity using either `merge_pathways()` or `get_bioembedsim()` as described in @sec-pathway_similarity. The similarity results will be used as input for this analysis.
 :::
 
 ## Overview
 
-The `determine_optimal_clusters()` function systematically evaluates various clustering strategies to identify the optimal parameters for grouping pathway enrichment results. It tests different clustering methods and similarity cutoffs, using modularity and silhouette scores to assess clustering quality.
-
-This analysis helps you make informed decisions about clustering parameters before proceeding to functional module identification, potentially saving time and improving the biological interpretability of your results.
+The `determine_optimal_clusters()` function tests clustering methods and similarity cutoffs, using modularity and silhouette scores to select optimal parameters. This ensures better clustering choices before functional module identification, which saves you time and enhances biological interpretability.
 
 ## Supported Input Types
 
@@ -19,7 +17,7 @@ The function accepts two types of input objects:
 1.  **Traditional similarity objects**: Results from `merge_pathways()` (functional_module class)
 2.  **Biotext embedding objects**: Results from `get_bioembedsim()` (list with sim_matrix and enriched_pathway)
 
-For traditional similarity objects, the function internally calculates Jaccard similarity between modules from different databases. For biotext embedding objects, it uses the pre-computed semantic similarity matrix.
+For **traditional similarity objects**, the function internally calculates Jaccard similarity between modules from different databases. For **biotext embedding objects**, it uses the pre-computed semantic similarity matrix.
 
 ## Basic Usage
 
@@ -56,6 +54,15 @@ cluster_evaluation <-
     object = met_biotext_similarity,
     cutoff_increment = 0.05
   )
+
+# Starting optimal cluster determination for biotext embedding object...
+# Extracting similarity matrix and pathway data...
+# Starting clustering evaluation across methods and cutoffs...
+# Processing method: hierarchical_ward.D ...
+# Processing method: binary_cut ...
+# Processing method: louvain ...
+# Clustering evaluation completed! Generating plots and finding optimal parameters...
+# Analysis complete!
 ```
 :::
 
@@ -112,11 +119,16 @@ Always examine your results and adjust based on the biological interpretability 
 # Fine-grained parameter search
 detailed_evaluation <- 
   determine_optimal_clusters(
-    object = similarity_results,
+    object = met_similarity_result,
     cutoff_increment = 0.01,  # Smaller steps for more detailed analysis
     hclust_method = "ward.D2"  # Different hierarchical clustering method
   )
 
+# Starting optimal cluster determination for functional_module object...
+# Extracting similarity matrix and pathway data...
+# Calculating the similarity matrix...
+# Starting clustering evaluation across methods and cutoffs...
+# Processing method: hierarchical_ward.D ...
 # Available hierarchical clustering methods:
 # "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid"
 ```
@@ -163,4 +175,4 @@ cluster_evaluation$best_combination
 
 ## Next Steps
 
-Use the optimal parameters identified in this analysis for functional module identification in [Functional Module Identification](06_get_functional_modules.qmd). The recommended method and cutoff values will help ensure high-quality, biologically meaningful pathway modules.
+Use the optimal parameters identified in this analysis for functional module identification in [Chapter 6: Functional Module Identification](06_get_functional_modules.qmd). The recommended method and cutoff values will help you ensure the pathway modules are high-quality, biologically meaningful.

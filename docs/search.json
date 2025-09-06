@@ -230,7 +230,7 @@
     "href": "05_determine_optimal_clustering_params.html",
     "title": "5  Determining Optimal Clustering Parameters",
     "section": "",
-    "text": "5.1 Overview\nThis chapter describes how to systematically evaluate different clustering parameters to find the optimal settings for grouping your pathway similarity results into functional modules.\nThe determine_optimal_clusters() function systematically evaluates various clustering strategies to identify the optimal parameters for grouping pathway enrichment results. It tests different clustering methods and similarity cutoffs, using modularity and silhouette scores to assess clustering quality.\nThis analysis helps you make informed decisions about clustering parameters before proceeding to functional module identification, potentially saving time and improving the biological interpretability of your results.",
+    "text": "5.1 Overview\nThe determine_optimal_clusters() function tests clustering methods and similarity cutoffs, using modularity and silhouette scores to select optimal parameters. This ensures better clustering choices before functional module identification, which saves you time and enhances biological interpretability.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Determining Optimal Clustering Parameters</span>"
@@ -252,7 +252,7 @@
     "href": "05_determine_optimal_clustering_params.html#basic-usage",
     "title": "5  Determining Optimal Clustering Parameters",
     "section": "5.3 Basic Usage",
-    "text": "5.3 Basic Usage\n\nTraditional Similarity ResultsBiotext Embedding Results\n\n\n\ncluster_evaluation &lt;- \n  determine_optimal_clusters(\n    object = met_similarity_result,\n    cutoff_increment = 0.05  # Test cutoffs from 0.2 to 0.9 in steps of 0.05\n  )\n\n# Starting optimal cluster determination...\n# Extracting similarity matrix and pathway data...\n# Calculating the similarity matrix...\n# Starting clustering evaluation across methods and cutoffs...\n# Processing method: hierarchical ...\n# Processing method: binary_cut ...\n# Processing method: girvan_newman ...\n# Clustering evaluation completed! Generating plots and finding optimal parameters...\n# Analysis complete!\n\n\n\n\ncluster_evaluation &lt;- \n  determine_optimal_clusters(\n    object = met_biotext_similarity,\n    cutoff_increment = 0.05\n  )",
+    "text": "5.3 Basic Usage\n\nTraditional Similarity ResultsBiotext Embedding Results\n\n\n\ncluster_evaluation &lt;- \n  determine_optimal_clusters(\n    object = met_similarity_result,\n    cutoff_increment = 0.05  # Test cutoffs from 0.2 to 0.9 in steps of 0.05\n  )\n\n# Starting optimal cluster determination...\n# Extracting similarity matrix and pathway data...\n# Calculating the similarity matrix...\n# Starting clustering evaluation across methods and cutoffs...\n# Processing method: hierarchical ...\n# Processing method: binary_cut ...\n# Processing method: girvan_newman ...\n# Clustering evaluation completed! Generating plots and finding optimal parameters...\n# Analysis complete!\n\n\n\n\ncluster_evaluation &lt;- \n  determine_optimal_clusters(\n    object = met_biotext_similarity,\n    cutoff_increment = 0.05\n  )\n\n# Starting optimal cluster determination for biotext embedding object...\n# Extracting similarity matrix and pathway data...\n# Starting clustering evaluation across methods and cutoffs...\n# Processing method: hierarchical_ward.D ...\n# Processing method: binary_cut ...\n# Processing method: louvain ...\n# Clustering evaluation completed! Generating plots and finding optimal parameters...\n# Analysis complete!",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Determining Optimal Clustering Parameters</span>"
@@ -296,7 +296,7 @@
     "href": "05_determine_optimal_clustering_params.html#parameter-customization",
     "title": "5  Determining Optimal Clustering Parameters",
     "section": "5.7 Parameter Customization",
-    "text": "5.7 Parameter Customization\n\n# Fine-grained parameter search\ndetailed_evaluation &lt;- \n  determine_optimal_clusters(\n    object = similarity_results,\n    cutoff_increment = 0.01,  # Smaller steps for more detailed analysis\n    hclust_method = \"ward.D2\"  # Different hierarchical clustering method\n  )\n\n# Available hierarchical clustering methods:\n# \"ward.D\", \"ward.D2\", \"single\", \"complete\", \"average\", \"mcquitty\", \"median\", \"centroid\"",
+    "text": "5.7 Parameter Customization\n\n# Fine-grained parameter search\ndetailed_evaluation &lt;- \n  determine_optimal_clusters(\n    object = met_similarity_result,\n    cutoff_increment = 0.01,  # Smaller steps for more detailed analysis\n    hclust_method = \"ward.D2\"  # Different hierarchical clustering method\n  )\n\n# Starting optimal cluster determination for functional_module object...\n# Extracting similarity matrix and pathway data...\n# Calculating the similarity matrix...\n# Starting clustering evaluation across methods and cutoffs...\n# Processing method: hierarchical_ward.D ...\n# Available hierarchical clustering methods:\n# \"ward.D\", \"ward.D2\", \"single\", \"complete\", \"average\", \"mcquitty\", \"median\", \"centroid\"",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Determining Optimal Clustering Parameters</span>"
@@ -318,7 +318,7 @@
     "href": "05_determine_optimal_clustering_params.html#next-steps",
     "title": "5  Determining Optimal Clustering Parameters",
     "section": "5.9 Next Steps",
-    "text": "5.9 Next Steps\nUse the optimal parameters identified in this analysis for functional module identification in Functional Module Identification. The recommended method and cutoff values will help ensure high-quality, biologically meaningful pathway modules.",
+    "text": "5.9 Next Steps\nUse the optimal parameters identified in this analysis for functional module identification in Chapter 6: Functional Module Identification. The recommended method and cutoff values will help you ensure the pathway modules are high-quality, biologically meaningful.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Determining Optimal Clustering Parameters</span>"
@@ -329,7 +329,7 @@
     "href": "06_get_functional_modules.html",
     "title": "6  Functional Module Identification",
     "section": "",
-    "text": "6.1 Overview\nThis chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.\nThe get_functional_modules() function is a generic function that identifies functional modules from pathway similarity results. It automatically detects the type of input object and applies the appropriate clustering method:",
+    "text": "6.1 Overview\nThe get_functional_modules() function is a generic function that identifies functional modules from pathway similarity results. It automatically detects the type of input object and applies the appropriate clustering method:",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Functional Module Identification</span>"
