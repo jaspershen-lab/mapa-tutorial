@@ -26,5 +26,7 @@ remotes::install_github(
 :::
 
 ```{r}
+#| eval=FALSE
+
 library(mapa)
 ```
