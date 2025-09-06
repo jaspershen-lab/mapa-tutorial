@@ -1,14 +1,14 @@
 # Preface {.unnumbered}
 
-## MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM
+## MAPA: Functional [M]{.underline}odule Identification and [A]{.underline}nnotation for [P]{.underline}athway [A]{.underline}nalysis Results Using LLM
 
-**MAPA** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the [Shen Lab at Nanyang Technological University, Singapore](https://www.shen-lab.org/). It:
+**MAPA** is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the [Shen Lab at Nanyang Technological University, Singapore](https://www.shen-lab.org/). It is able to perform:
 
-1.  **Pathway analysis: Detects enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
+1.  **Pathway analysis:** Detects **enriched pathways** from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).
 2.  **Functional module identification: Clusters overlapping or functional-related pathways** into functional modules, so every informative pathway—not just the "top 5 or 10"—contributes to the story.
-3.  **Functional module annotation: Summarises each module with large-language models (LLM)** (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.
+3.  **Functional module annotation: Summarises each module with large-language models (LLM)** (e.g., ChatGPT), which links the results to the latest findings in literature from PubMed.
 
-The outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.
+This tool is a streamlined, reproducible, and user-friendly workflow that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.
 
 ## Aim of This Tutorial
 

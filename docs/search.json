@@ -14,7 +14,7 @@
     "href": "index.html#mapa-functional-module-identification-and-annotation-for-pathway-analysis-results-using-llm",
     "title": "MAPA tutorial",
     "section": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM",
-    "text": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
+    "text": "MAPA: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It is able to perform:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), which links the results to the latest findings in literature from PubMed.\n\nThis tool is a streamlined, reproducible, and user-friendly workflow that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
       "Preface"
     ]
@@ -1378,6 +1378,16 @@
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data input and preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#mapa-functional-odule-identification-and-annotation-for-pathway-analysis-results-using-llm",
+    "href": "index.html#mapa-functional-odule-identification-and-annotation-for-pathway-analysis-results-using-llm",
+    "title": "MAPA tutorial",
+    "section": "MAPA: Functional odule Identification and Annotation for Pathway Analysis Results Using LLM",
+    "text": "MAPA: Functional odule Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
+    "crumbs": [
+      "Preface"
     ]
   }
 ]

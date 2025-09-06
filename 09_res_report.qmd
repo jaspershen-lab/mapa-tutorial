@@ -41,9 +41,7 @@ export_functional_module(
 
 This creates a directory structure with individual CSV files for each analysis component in your current working directory:
 
-
 ::: panel-tabset
-
 ##### Gene-based Data
 
 ```         
@@ -60,7 +58,7 @@ mapa_results/
 
 ##### Metabolite-based Data
 
-```
+```         
 mapa_results/
 ├── enriched_functional_module.csv
 ├── enriched_module_hmdb.csv
@@ -190,5 +188,5 @@ If you have any questions regarding mapa command-line workflow, feel free to rea
 ::: callout-note
 **Cite Our Work:** If you used mapa in your publications, we would appreciate it if you could cite our paper.
 
-Ge, Y. _et al._ (2025) ‘Leveraging Large Language Models for Redundancy-Aware Pathway Analysis and Deep Biological Interpretation’. bioRxiv, p. 2025.08.23.671949. Available at: https://doi.org/10.1101/2025.08.23.671949.
+Ge, Y. *et al.* (2025) ‘Leveraging Large Language Models for Redundancy-Aware Pathway Analysis and Deep Biological Interpretation’. bioRxiv, p. 2025.08.23.671949. Available at: https://doi.org/10.1101/2025.08.23.671949.
 :::
