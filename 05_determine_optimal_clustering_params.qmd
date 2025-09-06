@@ -10,6 +10,8 @@ This chapter describes how to systematically evaluate different clustering param
 
 The `determine_optimal_clusters()` function tests clustering methods and similarity cutoffs, using modularity and silhouette scores to select optimal parameters. This ensures better clustering choices before functional module identification, which saves you time and enhances biological interpretability.
 
+Overall, this chapter is not mandatory but highly recommended for anyone aiming to obtain high-quality functional modules.
+
 ## Supported Input Types
 
 The function accepts two types of input objects:

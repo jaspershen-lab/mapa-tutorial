@@ -3,7 +3,7 @@
 This chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.
 
 ::: callout-important
-Prerequisites:
+**Prerequisites:**
 
 1.  **Similarity calculation**: Complete pathway similarity calculation using either `merge_pathways()` or `get_bioembedsim()` (@sec-pathway_similarity)
 2.  **Parameter optimization** (recommended): Determine optimal clustering parameters using `determine_optimal_clusters()` (@sec-optimal_clustering)
