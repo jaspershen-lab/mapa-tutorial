@@ -305,4 +305,4 @@ gene_biotext_similarity$sim_matrix[1:5, 1:5]
 
 ## Next Steps
 
-Continue to [Chapter 5: Optimal Clustering Parameters](05_determine_optimal_clustering_params.qmd) to determine the best clustering parameters for your similarity data, then proceed to [Chapter 6: Functional Module Identification](06_get_functional_modules.qmd) to group related pathways into modules.
+Continue to [Optimal Clustering Parameters](05_determine_optimal_clustering_params.qmd) to determine the best clustering parameters for your similarity data, then proceed to [Functional Module Identification](06_get_functional_modules.qmd) to group related pathways into modules.

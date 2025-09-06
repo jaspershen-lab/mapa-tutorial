@@ -35,4 +35,3 @@ Whether you favour the command line or a browser, the tutorial gives you everyth
 -   📖 [Citation](https://www.shen-lab.org/mapa-website/)
 -   🏠 [MAPA project website](https://www.shen-lab.org/mapa-website/)
 -   ☁️ [Online MAPA Shiny](https://mapashiny.jaspershenlab.com/)
-

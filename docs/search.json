@@ -219,7 +219,7 @@
     "href": "04_pathway_similarity.html#next-steps",
     "title": "4  Pathway Similarity Calculation",
     "section": "4.6 Next Steps",
-    "text": "4.6 Next Steps\nContinue to Chapter 5: Optimal Clustering Parameters to determine the best clustering parameters for your similarity data, then proceed to Chapter 6: Functional Module Identification to group related pathways into modules.",
+    "text": "4.6 Next Steps\nContinue to Optimal Clustering Parameters to determine the best clustering parameters for your similarity data, then proceed to Functional Module Identification to group related pathways into modules.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
