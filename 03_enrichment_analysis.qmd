@@ -268,7 +268,7 @@ Key columns in enrichment results:
 
 -   `RichFactor`: Ratio of input genes annotated to a pathway vs. all genes annotated to this pathway
 -   `FoldEnrichment`: Enrichment fold change (GeneRatio divided by BgRatio)
--   `zScore`: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you'd expect by chance. Higher absolute z-score means more "surprising" or significant enrichment.)
+-   `zScore`: Standard deviations away from expected overlap (How unusual or extreme the observed enrichment is compared to what you'd expect by chance. Higher absolute z-score means more "surprising" or significant enrichment)
 
 ##### GSEA
 
@@ -309,4 +309,4 @@ For metabolite ORA results, the result structure differs from gene-based analysi
 -   `mapped_percentage`: Percentage of pathway metabolites covered by your input data
 :::
 
-The enrichment results provide the foundation for downstream similarity analysis and functional module identification in the MAPA workflow.
+The enrichment results object is tailored for downstream similarity analysis and module identification in MAPA, so it cannot be substituted with outputs from other tools. Make sure you complete the steps above before proceeding.
