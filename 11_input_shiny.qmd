@@ -1,0 +1,261 @@
+# Data Input and Preprocessing
+
+This chapter covers how to input and preprocess your data using the MAPA Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.
+
+## Launching the MAPA Shiny App
+
+Before you can input and process your data, you need to launch the MAPA Shiny application.
+
+::: callout-important
+Prerequisites: Ensure you have installed both the `mapa` package and `mapashiny` package as described in @sec-shinyapp_installation.
+:::
+
+To launch the MAPA Shiny app, run the following command in your R console:
+
+```{r}
+#| eval: false
+
+library(mapashiny)
+run_mapa_shiny()
+```
+
+Once launched, you'll see the MAPA interface with:
+
+-   **Header**: Application title and navigation
+-   **Sidebar**: Menu with different analysis steps
+-   **Main Panel**: Content area for each analysis step
+
+![](images/shinyapp_introduction.png){fig-align="center" width="750"}
+
+The sidebar contains the following sections:
+
+-   **Introduction**: Overview of MAPA functionality
+-   **Upload Data**: File upload and ID conversion (covered in this chapter)
+-   **Enrich Pathways**: Pathway enrichment analysis
+-   **Pathway Clustering**: Two methods for grouping related pathways
+-   **LLM Interpretation**: AI-powered functional module annotation
+-   **Data Visualization**: Results plotting and visualization
+-   **Results & Report**: Final results and report generation
+
+## Accessing the Upload Data Interface
+
+After launching the MAPA Shiny app, navigate to the **Upload Data** tab in the sidebar. The interface is divided into two main sections:
+
+-   **Left Panel**: File upload, data type selection, and processing parameters
+-   **Right Panel**: Data preview and download options
+
+![](images/shinyapp_02_upload_data.png){fig-align="center" width="750"}
+
+## Input Data Requirements
+
+The Shiny app accepts **CSV files** (`.csv`) and **Excel files** (`.xlsx`, `.xls`). For more details and examples, see @sec-input_data_requirement.
+
+::: panel-tabset
+##### Gene Expression Data
+
+For Over-Representation Analysis (ORA), your data must contain **one** of the following identifier columns (column names must be lowercase):
+
+-   `ensembl`: [Ensembl gene IDs](https://asia.ensembl.org/info/genome/stable_ids/index.html) (e.g., "ENSG00000141510")
+-   `entrezid`: [NCBI Entrez gene IDs](https://pmc.ncbi.nlm.nih.gov/articles/PMC1761442/) (e.g., "7157")
+-   `uniprot`: [UniProtKB accession numbers](https://www.uniprot.org/help/accession_numbers) (e.g., "P04637")
+-   `symbol`: [Gene symbols](https://www.pnas.org/doi/full/10.1073/pnas.2025207118) (e.g., "TP53")
+
+For Gene Set Enrichment Analysis (GSEA), you need:
+
+1.  **One identifier column** (ensembl, entrezid, uniprot, or symbol)
+2.  **An `order_by` column named "fc" or "p_value_adjust"**, containing numeric values to rank genes (This is used to create the **ranked gene list** required for GSEA. Common choices like Log2 fold change values, pvalue)
+
+##### Metabolite Data
+
+For metabolite analysis, your data must contain **one** of the following identifier columns:
+
+-   `hmdbid`: [Human Metabolome Database IDs](https://www.hmdb.ca) (e.g., "HMDB0000001") - **Human only**
+-   `keggid`: [KEGG Compound IDs](https://www.genome.jp/kegg/compound/) (e.g., "C00001") - **All organisms**
+:::
+
+## Step-by-Step Guide
+
+### Step 1: Select Query Type
+
+First, choose your data type using the radio buttons:
+
+-   **Gene**: For gene expression or proteomic data
+-   **Metabolite**: For metabolomic data
+
+![](images/shinyapp_02_upload_data_query_type.png){fig-align="center" width="750"}
+
+### Step 2: Load Your Data
+
+You have two options for loading data:
+
+::: panel-tabset
+##### Option A: Upload Your Own Data
+
+1.  Click **"Browse"** to upload your file
+2.  Select a CSV or Excel file from your computer
+3.  The data will be automatically loaded and displayed in the preview table
+
+![](images/shinyapp_02_upload_data_browse.png){fig-align="center" width="300"}
+
+##### Option B: Use Example Data
+
+For quick testing, select from the available example datasets:
+
+**Gene Examples:**
+
+-   **Pathway Enrichment Example**: Sample data for Over-Representation Analysis (ORA)
+-   **GSEA Example**: Sample data with fold change values for Gene Set Enrichment Analysis
+
+**Metabolite Examples:**
+
+-   **Pathway Enrichment Example**: Sample metabolite data for pathway analysis
+
+![](images/shinyapp_02_upload_data_example_dt.png){fig-align="center" width="750"}
+:::
+
+### Step 3: Configure ID Conversion Parameters
+
+#### For Gene Data
+
+:::: panel-tabset
+##### Model Organisms
+
+If working with common model organisms:
+
+1.  **Select Organism**: Choose from the dropdown menu for standard organism database Bioconductor packages.
+
+    ::: callout-note
+    For most model organisms, Bioconductor already supplies curated organism annotation databases (the OrgDb packages). You can browse the complete list and select the one that matches your species of interest [here](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb).
+    :::
+
+2.  **Input ID Type**: Select the identifier type in your data
+
+![](images/shinyapp_02_upload_data_param.png){fig-align="center" width="750"}
+
+##### Non-Model Organisms
+
+For organisms without standard Bioconductor packages:
+
+1.  **AnnotationHub ID**: Enter the AnnotationHub identifier (e.g., "AH119900")
+2.  **Return OrgDb**: Check this box to return the organism database for downstream analysis
+3.  **Input ID Type**: Select your input identifier type
+
+![](images/shinyapp_02_upload_data_param_2.png){fig-align="center" width="500"}
+
+::: callout-tip
+**Finding AnnotationHub IDs:**
+
+To find the correct AnnotationHub ID for your organism:
+
+```{r}
+#| eval: false
+
+library(AnnotationHub)
+ah <- AnnotationHub()
+# Search by taxonomy ID (e.g., 9541 for Macaca fascicularis)
+query_result <- AnnotationHub::query(ah, c("OrgDb", "9541"))
+query_result$ah_id
+```
+:::
+::::
+
+#### For Metabolite Data
+
+1.  **Organism**: Select from [KEGG organism codes](https://www.genome.jp/kegg/tables/br08606.html)
+2.  **Input ID Type**: Choose the identifier type in your data: KEGG ID (available for all organisms), HMDB ID (human only)
+
+![](images/shinyapp_02_upload_data_met_org.png){fig-align="center" width="750"}
+
+### Step 4: Process Your Data
+
+1.  Click the **"Submit"** button to start ID conversion
+2.  The app will validate your inputs and perform the conversion
+3.  Success or error messages will appear as notifications
+4.  Processed data will be displayed in the preview table
+
+![](images/shinyapp_02_upload_data_submit.png){fig-align="center" width="750"}
+
+### Step 5: Review and Download Results
+
+After successful processing:
+
+1.  **Preview**: Review the converted data in the **"Marker information"** tab
+2.  **Download**: Click the **"Download"** button to save the processed data as a CSV file
+3.  **View Code**: Click the **"Code"** button to see the R code that replicates your conversion
+
+## Understanding the Results
+
+After ID conversion, your data will contain all necessary identifier columns:
+
+**For Genes:**
+
+-   Original columns from your input data
+-   `ensembl`: Ensembl gene IDs
+-   `entrezid`: NCBI Entrez gene IDs\
+-   `uniprot`: UniProtKB accession numbers
+-   `symbol`: Gene symbols
+
+::: callout-note
+Blank columns might appear for some identifier types after ID conversion. Because some annotation databases may not provide all four identifier types (ensembl, entrezid, uniprot, symbol). MAPA will generate blank columns for unavailable ID types. Do NOT delete these blank columns as they are required for the downstream workflow to function correctly.
+:::
+
+**For Metabolites:**
+
+-   Original columns from your input data
+-   `hmdbid`: HMDB IDs (human only)
+-   `keggid`: KEGG compound IDs
+
+## Troubleshooting Common Issues
+
+-   File Upload Problems
+
+    **Issue**: "Unsupported file format" error
+
+    **Solution**: Ensure your file is in CSV (.csv) or Excel (.xlsx, .xls) format
+
+-   ID Conversion Errors
+
+    **Issue**: "Invalid OrgDb package name" error
+
+    **Solution**: Ensure the organism package name follows the format `org.XX.eg.db`
+
+    **Issue**: "Package not installed" error
+
+    **Solution**: Install the required Bioconductor package:
+
+    ```{r}
+    #| eval: false
+
+    BiocManager::install('org.Hs.eg.db')  # Example for human
+    ```
+
+    **Issue**: High percentage of failed ID mappings
+
+    **Solution**:
+
+    -   Verify your input ID type selection matches your data
+    -   Check for typos or formatting issues in your identifiers
+    -   Some ID loss is normal during conversion
+
+-   Non-Model Organism Issues
+
+    **Issue**: AnnotationHub ID not found
+
+    **Solution**:
+
+    -   Verify the AnnotationHub ID is correct
+    -   Check internet connection for AnnotationHub access
+    -   Use the search method provided in the tip above
+
+## Next Steps
+
+Once your data is successfully processed:
+
+1.  Click the **"Next"** button to proceed to **Enrich Pathways**
+2.  Or navigate manually to the **Enrich Pathways** tab in the sidebar
+
+The processed data will automatically be available for pathway enrichment analysis in the next step.
+
+::: callout-important
+**Before Proceeding**: Ensure your data conversion was successful and all necessary identifier columns are present. The enrichment analysis requires properly formatted identifier information to function correctly.
+:::

@@ -1,0 +1,345 @@
+# SimCluster: Traditional Similarity-based Clustering {#sec-simcluster}
+
+SimCluster is the traditional pathway clustering method in mapa that groups related pathways into functional modules based on gene/metabolite overlap similarity. This method uses established similarity metrics (Jaccard, Dice, etc.) and semantic similarity measures to identify functionally related pathways.
+
+```{r}
+#| eval: false
+
+library(mapa)
+```
+
+::: callout-important
+Prerequisites: Before running SimCluster analysis, ensure you have completed pathway enrichment analysis using either `enrich_pathway()` or `do_gsea()` as described in @sec-enrichment_analysis. The `enriched_pathways` object used in this chapter should be the output from the enrichment analysis step.
+
+```{r}
+#| eval: false
+# If you haven't performed enrichment analysis yet, run:
+# enriched_pathways <- enrich_pathway(...)
+# or 
+# enriched_pathways <- do_gsea(...)
+
+# Load your enrichment results if saved previously:
+# load("path/to/your/enriched_pathways.RData")
+```
+:::
+
+## Overview
+
+SimCluster works in two main steps:
+
+**Step1: `merge_pathways()`**: Groups pathways within each database (GO, KEGG, Reactome, HMDB) based on their similarity
+
+**Step2: `merge_modules()`**: Combines modules across different databases to create final functional modules
+
++------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+| Function               | Similarity Calculation                                                                          | Clustering Method                          | Sim.cutoff Role                                    |
++========================+=================================================================================================+============================================+====================================================+
+| **`merge_pathways()`** | For GO, all similarity methods provided by [simona](https://jokergoo.github.io/simona/) package | Girvan-Newman only                         | Edge filter                                        |
+|                        |                                                                                                 |                                            |                                                    |
+|                        | For KEGG, Reactome, and HMDB, gene/metabolite overlap                                           |                                            |                                                    |
++------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+| **`merge_modules()`**  | Jaccard index based on overlapping genes from input list                                        | Girvan-Newman, Binary Cut, or Hierarchical | Girvan-Newman: Edge filter                         |
+|                        |                                                                                                 |                                            |                                                    |
+|                        |                                                                                                 |                                            | Binary Cut/Hierarchical: Dendrogram cutting height |
++------------------------+-------------------------------------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------+
+
+This approach leverages well-established similarity metrics and has been widely validated in pathway analysis literature.
+
+### Step 1: Merge Pathways Within Databases
+
+The `merge_pathways()` function calculates similarity between pathways within each database and groups similar pathways into modules using the Girvan-Newman clustering algorithm.
+
+::::: panel-tabset
+##### Gene-based Analysis
+
+```{r}
+#| eval: false
+
+enriched_modules <- 
+  merge_pathways(
+    object = enriched_pathways,
+    database = c("go", "kegg", "reactome"),
+    # Statistical cutoffs
+    p.adjust.cutoff.go = 0.05,
+    p.adjust.cutoff.kegg = 0.05,
+    p.adjust.cutoff.reactome = 0.05,
+    count.cutoff.go = 5,
+    count.cutoff.kegg = 5,
+    count.cutoff.reactome = 5,
+    # Similarity cutoffs (edge filters for Girvan-Newman clustering)
+    sim.cutoff.go = 0.5,
+    sim.cutoff.kegg = 0.5,
+    sim.cutoff.reactome = 0.5,
+    # Similarity methods
+    measure.method.go = "Sim_XGraSM_2013",  # GO semantic similarity
+    go.orgdb = org.Hs.eg.db,               # Required for GO analysis
+    measure.method.kegg = "jaccard",        # Gene overlap similarity
+    measure.method.reactome = "jaccard"    # Gene overlap similarity
+  )
+
+# --------------------
+# GO database...
+# Calculating similartiy matrix, it may take a while...
+# relations: is_a, part_of, regulates, negatively_regulates, positively_regulates
+# IC_method: IC_annotation
+# term_sim_method: Sim_XGraSM_2013
+# IC_method: IC_annotation
+# Completed GO term (BP) similarity calculation.
+# relations: is_a, part_of, regulates, negatively_regulates, positively_regulates
+# IC_method: IC_annotation
+# term_sim_method: Sim_XGraSM_2013
+# IC_method: IC_annotation
+# Completed GO term (MF) similarity calculation.
+# relations: is_a, part_of, regulates, negatively_regulates, positively_regulates
+# IC_method: IC_annotation
+# term_sim_method: Sim_XGraSM_2013
+# IC_method: IC_annotation
+# Completed GO term (CC) similarity calculation.
+# Completed GO term similarity calculation successfully!
+# Identifying modules...
+# Done
+# --------------------
+# KEGG database...
+# Calculating similartiy matrix, it may take a while...
+# Completed KEGG pathway similarity calculation successfully!
+# Identifying modules...
+# Done
+# --------------------
+# Reactome database...
+# Calculating similartiy matrix, it may take a while...
+# Completed Reactome pathway similarity calculation successfully!
+# Identifying modules...
+# Done
+# Done
+```
+
+::: callout-note
+OrgDb Selection:
+
+-   For model organisms with Bioconductor annotation packages: use the package directly (e.g., `go.orgdb = org.Hs.eg.db`)
+-   For non-model organisms: use the OrgDb object from @sec-gene_id_conversion (e.g., `go.orgdb = variable_info$orgdb`)
+:::
+
+##### Metabolite-based Analysis
+
+::: callout-important
+**Organism Limitation**: SimCluster for metabolites is only recommended for human studies where you can cluster pathways from both KEGG and HMDB (SMPDB) databases. For non-human organisms, only the KEGG database is available for metabolite analysis, making cross-database clustering unnecessary. For metabolite analysis in non-human organisms, use EmbedCluster (@sec-embed_cluster) instead.
+:::
+
+```{r}
+#| eval: false
+
+met_enriched_modules <- 
+  merge_pathways(
+    object = met_enriched_pathways,
+    database = c("hmdb", "metkegg"),
+    # Statistical cutoffs for metabolites
+    p.adjust.cutoff.hmdb = 0.05,
+    p.adjust.cutoff.metkegg = 0.05,
+    count.cutoff.hmdb = 5,
+    count.cutoff.metkegg = 5,
+    # Similarity settings
+    sim.cutoff.hmdb = 0.5,
+    sim.cutoff.metkegg = 0.5,
+    measure.method.hmdb = "jaccard",
+    measure.method.metkegg = "jaccard"
+  )
+```
+:::::
+
+### Step 2: Merge Modules Across Databases
+
+The `merge_modules()` function combines pathway modules from different databases into unified functional modules. In this step, similarity between database-specific modules is calculated using the Jaccard index based on overlapping genes from your input gene list.
+
+```{r}
+#| eval: false
+
+enriched_functional_modules <- 
+  merge_modules(
+    object = enriched_modules,
+    sim.cutoff = 0.5,
+    measure_method = "jaccard",
+    cluster_method = "girvan newman"  # Options: "girvan newman", "binary cut", "hierarchical"
+  )
+
+# Calculating the similarity matrix...
+# Identifying funcitonal modules...
+# Done
+```
+
+## Similarity Methods (For `merged_pathways()`)
+
+**GO Semantic Similarity Methods**
+
+For GO terms, mapa calculates GO term similarity using the [simona](https://jokergoo.github.io/simona/) package, which supports multiple semantic similarity measures, such as:
+
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| Method               | Type                      | Description                                             | Use Case                              |
++======================+===========================+=========================================================+=======================================+
+| `Sim_XGraSM_2013`    | Hybrid                    | Combines multiple similarity aspects                    | **Default**, good overall performance |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Wang_2007`      | Structure-based           | Based on GO graph structure and relationships           | Emphasizes hierarchical relationships |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Lin_1998`       | Information content-based | Uses information content of terms                       | Good for well-annotated organisms     |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Resnik_1999`    | Information content-based | Information content of most informative common ancestor | Conservative similarity measure       |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_FaITH_2010`     | Hybrid                    | Functional annotation-based                             | Incorporates functional annotations   |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+| `Sim_Relevance_2006` | Information content-based | Relevance-based semantic similarity                     | Balances specificity and generality   |
++----------------------+---------------------------+---------------------------------------------------------+---------------------------------------+
+
+**Gene/Metabolite Overlap Similarity**
+
+For KEGG, Reactome, and metabolite pathways:
+
++-------------+---------------------------------+---------------------+--------------------------------------+
+| Method      | Formula                         | Description         | Use Case                             |
++=============+=================================+=====================+======================================+
+| `jaccard`   | \|A ∩ B\| / \|A ∪ B\|           | Jaccard index       | **Default**, most commonly used      |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `dice`      | 2 × \|A ∩ B\| / (\|A\| + \|B\|) | Dice coefficient    | Emphasizes shared elements           |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `overlap`   | \|A ∩ B\| / min(\|A\|, \|B\|)   | Overlap coefficient | Good for pathways of different sizes |
++-------------+---------------------------------+---------------------+--------------------------------------+
+| `kappa`     | (Po - Pe) / (1 - Pe)            | Cohen's kappa       | Accounts for chance agreement        |
++-------------+---------------------------------+---------------------+--------------------------------------+
+
+::: callout-tip
+For detailed explanations of similarity methods, see the [simona documentation](https://jokergoo.github.io/simona/articles/v05_term_similarity.html#ic-based-or-node-based-methods).
+:::
+
+## Clustering Methods (For `merge_modules()`) {#sec-cluster_method}
+
+SimCluster offers three clustering algorithms, please set parameters as follows:
+
+1.  Girvan-Newman (Default)
+
+    Community detection based on edge betweenness - good for identifying natural communities in networks.
+
+    ```{r}
+    #| eval: false
+    cluster_method = "girvan newman"
+    sim.cutoff = 0.5  # Only edges above this similarity are included
+    ```
+
+2.  Binary Cut
+
+    Uses the [simplifyEnrichment](https://doi.org/10.1016/j.gpb.2022.04.008) algorithm - efficient for large datasets.
+
+    ```{r}
+    #| eval: false
+    cluster_method = "binary cut"
+    sim.cutoff = 0.5  # Cutoff for cutting the dendrogram (Higher values: More permissive, larger modules)
+    ```
+
+3.  Hierarchical Clustering
+
+    Traditional hierarchical clustering with distance thresholds.
+
+    ```{r}
+    #| eval: false
+    cluster_method = "hierarchical"
+    hclust.method = "complete"  # Linkage method
+    sim.cutoff = 0.5           # Height for cutting dendrogram (Higher values: More permissive, larger modules)
+    ```
+
+::: callout-note
+The interpretation of `sim.cutoff` depends on your chosen clustering method:
+
+-   **For Girvan-Newman Clustering**
+
+    `sim.cutoff` acts as an edge filter - only pathway pairs with similarity above this threshold are connected in the network.
+
+    -   0.5: Good starting point, moderate connectivity
+    -   Lower values (0.3-0.4): More permissive, denser networks, larger modules
+    -   Higher values (0.6-0.8): More stringent, sparser networks, smaller modules
+
+-   **For Binary Cut and Hierarchical Clustering**
+
+    `sim.cutoff` acts as a dendrogram cutting height - determines where to cut the clustering tree.
+
+    -   0.5: Moderate module granularity
+    -   Lower values (0.3-0.4): Cut lower in tree, more fine-grained modules
+    -   Higher values (0.6-0.8): Cut higher in tree, fewer but larger modules
+
+**Key Difference**:
+
+-   In `"girvan newman"`, higher cutoffs = smaller modules.
+-   In `"binary cut"`/`"hierarchical"`, higher cutoffs = larger modules. Always examine your results and adjust based on the biological interpretability of resulting modules.
+:::
+
+## Results Interpretation
+
+After running SimCluster, examine the results:
+
+```{r}
+#| eval: false
+# View analysis summary
+enriched_functional_modules
+# -------------------- 
+# Analysis method: enrich_pathway 
+# -------------------- 
+# -----------Variable information------------
+# 119  features/markers in total
+# -----------Enrichment results and modules of genes------------
+# -----------GO------------
+# 1025 GO terms with p.adjust < 0.05 
+# 250 GO modules 
+# -----------KEGG------------
+# 48 KEGG pathways with p.adjust < 0.05 
+# 29 KEGG modules
+# -----------Reactome------------
+# 48 Reactome pathways with p.adjust < 0.05 
+# 13 Reactome modules
+# -----------Enrichment results and modules of metabolites------------
+# -----------HMDB------------
+# No HMDB results
+# No HMDB modules
+# -----------KEGG Metabolite------------
+# No KEGG metabolite results
+# No KEGG modules
+# -----------Functional modules------------
+# 158 Functional modules
+# -----------LLM module interpretation------------
+# No LLM module interpretation results
+# -------------------- 
+# Processing information
+# 3 processings in total
+# enrich_pathway ---------- 
+#   Package    Function.used                Time
+# 1    mapa enrich_pathway() 2025-06-09 21:32:51
+# merge_pathways ---------- 
+#   Package    Function.used                Time
+# 1    mapa merge_pathways() 2025-06-09 21:34:00
+# merge_modules ---------- 
+#   Package   Function.used                Time
+# 1    mapa merge_modules() 2025-06-09 21:34:56
+```
+
+```{r}
+#| eval: false
+
+# Access functional modules
+head(enriched_functional_modules@merged_module$functional_module_result)
+```
+
+```{r}
+#| eval: false
+
+# View modules within specific databases
+head(enriched_functional_modules@merged_pathway_go$module_result, 1)
+```
+
+Key result columns:
+
+-   **module**: Module identifier (e.g., "go_Module_2", "Functional_module_127")
+-   **module_annotation**: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest \|NES\| for GSEA) for the module
+-   **Description**: Names of all the pathways in the module separated by `;`
+-   **module_content**: All pathways/terms (i.e. nodes) grouped in this module
+-   **Count**: Number of genes/metabolites from the input genes/metabolites list in the module
+-   **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
+
+## Next Steps
+
+Continue to [EmbedCluster](04_embed_cluster.qmd) to learn about the advanced pathway biological text embedding approach to calculate similarity, or proceed to [LLM Interpretation](05_llm_interpretation.qmd) to add AI-powered functional annotations to your modules.

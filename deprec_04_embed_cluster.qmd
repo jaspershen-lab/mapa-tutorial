@@ -1,0 +1,234 @@
+# EmbedCluster: Advanced Biotext Embedding-based Clustering {#sec-embed_cluster}
+
+EmbedCluster is an advanced pathway clustering method in mapa that groups related pathways into functional modules based on biotext embedding similarity. This method leverages large language model (LLM) text embeddings to capture semantic relationships between pathway descriptions, enabling more nuanced clustering based on biological function rather than just gene overlap.
+
+```{r}
+#| eval: false
+
+library(mapa)
+```
+
+::: callout-important
+Prerequisites: Before running EmbedCluster analysis, ensure you have completed pathway enrichment analysis using either `enrich_pathway()` or `do_gsea()` as described in @sec-enrichment_analysis. The `enriched_pathways` object used in this chapter should be the output from the enrichment analysis step.
+
+```{r}
+#| eval: false
+# If you haven't performed enrichment analysis yet, run:
+# enriched_pathways <- enrich_pathway(...)
+# or 
+# enriched_pathways <- do_gsea(...)
+
+# Load your enrichment results if saved previously:
+# load("path/to/your/enriched_pathways.RData")
+```
+:::
+
+## Overview
+
+EmbedCluster works in two main steps:
+
+**Step 1: `get_bioembedsim()`**: Extracts pathway text information, generates embeddings using LLM APIs, and calculates cosine similarity between pathways
+
+**Step 2: `merge_pathways_bioembedsim()`**: Groups pathways into functional modules based on biotext embedding similarity
+
+This approach captures semantic relationships that traditional gene overlap methods might miss, particularly useful for identifying functionally related pathways with different gene sets.
+
+## Step 1: Calculate Biotext Embedding Similarity
+
+The `get_bioembedsim()` function extracts pathway descriptions, generates text embeddings using text embedding model, and calculates pairwise cosine similarity between pathways.
+
+:::: panel-tabset
+##### Gene-based Analysis
+
+```{r}
+#| eval: false
+
+bioembed_similarity <- 
+  get_bioembedsim(
+    object = enriched_pathways,
+    api_provider = "openai",
+    text_embedding_model = "text-embedding-3-small",
+    api_key = "your_openai_api_key",
+    database = c("go", "kegg", "reactome"),
+    # Statistical cutoffs
+    p.adjust.cutoff.go = 0.05,
+    p.adjust.cutoff.kegg = 0.05,
+    p.adjust.cutoff.reactome = 0.05,
+    count.cutoff.go = 5,
+    count.cutoff.kegg = 5,
+    count.cutoff.reactome = 5
+  )
+
+# Biotext embedding and similarity calculation finished
+```
+
+::: callout-tip
+**API Key Setup:**
+
+-   For OpenAI: Obtain your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+-   For Gemini: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+
+Store your API key securely and never commit it to version control.
+:::
+
+##### Metabolite-based Analysis
+
+```{r}
+#| eval: false
+
+met_bioembed_similarity <- 
+  get_bioembedsim(
+    object = met_enriched_pathways,
+    api_provider = "openai",
+    text_embedding_model = "text-embedding-3-small",
+    api_key = "your_openai_api_key",
+    database = c("hmdb", "metkegg"),  # human only for HMDB
+    # Statistical cutoffs for metabolites
+    p.adjust.cutoff.hmdb = 0.05,
+    p.adjust.cutoff.metkegg = 0.05,
+    count.cutoff.hmdb = 5,
+    count.cutoff.metkegg = 5
+  )
+```
+::::
+
+### How EmbedCluster Works
+
+The biotext embedding process involves several steps:
+
+1.  **Text Extraction**: For each pathway, the function extracts:
+
+    -   **GO terms**: Term name + definition from QuickGO API
+    -   **KEGG pathways**: Pathway name + description from KEGG REST API\
+    -   **Reactome pathways**: Pathway name + summary from Reactome API
+    -   **Metabolite pathways**: Pathway name + description from respective databases
+
+2.  **Text Embedding**: The combined text information is sent to the specified text embedding model to generate high-dimensional vector representations
+
+3.  **Similarity Calculation**: Cosine similarity is calculated between all pathway embedding vectors
+
+::: callout-tip
+**Understanding Text Embeddings**: Text embeddings convert text into numerical vectors that capture semantic meaning. For a comprehensive introduction to embeddings, including how they work, model details and best practices, see the [OpenAI Embeddings Guide](https://platform.openai.com/docs/guides/embeddings).
+:::
+
+## Step 2: Cluster Pathways Using Biotext Similarity
+
+The `merge_pathways_bioembedsim()` function uses the calculated biotext embedding similarity matrix to group pathways into functional modules.
+
+```{r}
+#| eval: false
+
+enriched_bioembed_modules <- 
+  merge_pathways_bioembedsim(
+    object = bioembed_similarity,
+    sim.cutoff = 0.5,
+    cluster_method = "girvan newman"  # Options: "binary cut", "girvan newman", "hierarchical"
+  )
+
+# Identifying funcitonal modules...
+# Joining with `by = join_by(node)`
+# Done
+```
+
+EmbedCluster uses the same three clustering algorithms as SimCluster. For detailed explanations of each clustering method and parameter interpretation, see @sec-cluster_method in SimCluster. The key difference is that EmbedCluster operates on biotext embedding similarity matrices rather than traditional gene/metabolite overlap similarity.
+
+## Results Interpretation
+
+After running EmbedCluster, examine the results:
+
+```{r}
+#| eval: false
+# View analysis summary
+enriched_bioembed_modules
+# -------------------- 
+# Analysis method: enrich_pathway 
+# -------------------- 
+# -----------Variable information------------
+# 119  features/markers in total
+# -----------Enrichment results and modules of genes------------
+# -----------GO------------
+# 1025 GO terms with p.adjust < 0.05 
+# No GO modules
+# -----------KEGG------------
+# 48 KEGG pathways with p.adjust < 0.05 
+# No KEGG modules
+# -----------Reactome------------
+# 48 Reactome pathways with p.adjust < 0.05 
+# No Reactome modules
+# -----------Enrichment results and modules of metabolites------------
+# -----------HMDB------------
+# No HMDB results
+# No HMDB modules
+# -----------KEGG Metabolite------------
+# No KEGG metabolite results
+# No KEGG modules
+# -----------Functional modules------------
+# 60 Functional modules
+# -----------LLM module interpretation------------
+# No LLM module interpretation results
+# -------------------- 
+# Processing information
+# 3 processings in total
+# enrich_pathway ---------- 
+#   Package    Function.used                Time
+# 1    mapa enrich_pathway() 2025-06-10 10:50:36
+# merge_pathways ---------- 
+#   Package     Function.used                Time
+# 1    mapa get_bioembedsim() 2025-06-10 11:27:59
+# merge_modules ---------- 
+#   Package                                      Function.used                Time
+# 1    mapa get_bioembedsim() and merge_pathways_bioembedsim() 2025-06-10 11:40:09
+```
+
+Access the biotext embedding-based functional modules:
+
+```{r}
+#| eval: false
+# View functional modules
+head(enriched_bioembed_modules@merged_module$functional_module_result)
+
+# Access similarity matrix
+similarity_matrix <- bioembed_similarity$sim_matrix
+head(similarity_matrix[1:5, 1:5])
+#            GO:0016049 GO:0031589 GO:1900046 GO:0071375 GO:0061900
+# GO:0016049  1.0000000  0.3779020  0.2286780  0.3376592  0.4369859
+# GO:0031589  0.3779020  1.0000000  0.2702301  0.3123477  0.3938414
+# GO:1900046  0.2286780  0.2702301  1.0000000  0.3277389  0.2867548
+# GO:0071375  0.3376592  0.3123477  0.3277389  1.0000000  0.4493753
+# GO:0061900  0.4369859  0.3938414  0.2867548  0.4493753  1.0000000
+```
+
+Key result columns:
+
+-   **module**: Module identifier (e.g., "Functional_module_127")
+-   **module_annotation**: Representative annotation (pathway name with the lowest adjusted p-value for ORA/ pathway name with the highest \|NES\| for GSEA) for the module
+-   **Description**: Names of all the pathways in the module separated by `;`
+-   **module_content**: All pathways/terms (i.e. nodes) grouped in this module
+-   **Count**: Number of genes/metabolites from the input genes/metabolites list in the module
+-   **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
+
+## Advantages and Considerations
+
+**Advantages of EmbedCluster**
+
+1.  **Semantic Understanding**: Considers pathway descriptions and biological context, capturing functional relationships beyond gene overlap
+2.  **Cross-database Integration**: Better at combining pathways from different databases
+3.  **Novel Discoveries**: May identify functionally related pathways missed by traditional methods
+
+**Considerations**
+
+1.  **API Dependency**: Requires internet connection and API access
+2.  **Cost**: API usage may incur costs for large analyses
+3.  **Processing Time**: Longer than traditional methods due to API calls
+4.  **Reproducibility**: Results may vary slightly due to API responses (though embedding vectors are typically stable)
+
+**When to Use EmbedCluster vs SimCluster**
+
+| Use EmbedCluster when: | Use SimCluster when: |
+|-------------------------------------|----------------------------------|
+| Exploring novel functional relationships | Working with limited internet/API access |
+| Interested in semantic pathway similarity | Need deterministic, reproducible results |
+
+## Next Steps
+
+Continue to [LLM Interpretation](05_llm_interpretation.qmd) to add AI-powered functional annotations to your modules, or proceed to [Data Visualization](06_data_vis.qmd) to create informative plots of your clustering results.

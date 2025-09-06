@@ -1,0 +1,193 @@
+# Pathway Similarity Calculation {#sec-shiny_pathway_similarity}
+
+This chapter covers how to calculate pathway similarity using the MAPA Shiny application. The Shiny app computes pathway similarity using two powerful methods: traditional similarity and biotext embedding similarity. Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.
+
+::: callout-important
+Prerequisites: Before calculating pathway similarity, ensure you have either:
+
+1.  **Completed pathway enrichment analysis** in the current session using the **Pathway Enrichment** section as described in the previous chapter, OR
+2.  **Upload existing enrichment results** using the file upload option at the top of the interface
+
+The processed enrichment data is required for similarity calculation to proceed.
+:::
+
+## Step 1: Load Your Data
+
+-   **Option 1: Continue from Previous Step**
+
+    If you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.
+
+-   **Option 2: Upload Existing Results**
+
+    If you have previously saved enrichment results, you can upload them:
+
+    1.  **Click "Browse"** at the top of the left panel **"Upload Enriched Pathways Result (.rda)"** to upload your enrichment results file (.rda format)
+    2.  **Select your file**
+    3.  **Wait for validation** - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)
+
+## Step 2: Select Method
+
+Once your data is loaded, choose your similarity calculation method using the radio buttons:
+
+-   **Traditional methods**: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see @sec-supported_db)
+-   **Biotext embedding**: Uses large language model (LLM) text embeddings to capture semantic relationships
+
+### Method 1: Traditional Methods
+
+When you select "Traditional methods", the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:
+
+| Parameter             | Purpose                                         | Default   | Gene Databases     | Metabolite Databases |
+|---------------|---------------|---------------|---------------|---------------|
+| **P-adjust cutoff**   | Significance threshold for pathway inclusion    | 0.05      | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Count cutoff**      | Minimum genes/metabolites per pathway           | 5         | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Similarity method** | Algorithm for calculating pathway similarity    | See below | GO, KEGG, Reactome | SMPDB, KEGG          |
+| **Similarity cutoff** | Threshold for intra-database pathway clustering | 0.5       | GO, KEGG, Reactome | SMPDB, KEGG          |
+
+**Similarity Method Options:**
+
+-   **Only GO terms**: Semantic similarity using the [simona](https://jokergoo.github.io/simona/) package
+-   **GO/KEGG/Reactome/SMPDB pathways**: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)
+
+![](images/shinyapp_13_simcluster_params_gene.png){fig-align="center" width="750"}
+
+::: callout-tip
+**Parameter Selection Guide**:
+
+-   **Lower p-adjust cutoff** (e.g., 0.01) = More stringent, fewer pathways
+-   **Higher count cutoff** (e.g., 10) = Focus on larger, more established pathways
+-   **Similarity cutoff** = Balance between intra-database module granularity (lower values) and specificity (higher values)
+:::
+
+### Method 2: Biotext Embedding
+
+When you select "Biotext embedding", the interface displays parameters for LLM-based similarity calculation.
+
+#### API Configuration
+
+Set up your API connection:
+
+-   **API provider**: Choose between OpenAI or Gemini
+-   **Embedding model**: Specify the text embedding model (e.g., "text-embedding-3-small")
+-   **API key**: Enter your API key for the selected provider
+
+::: callout-note
+Note: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.
+:::
+
+::: callout-tip
+**API Key Setup:**
+
+-   For OpenAI: Obtain your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+-   For Gemini: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+
+Store your API key securely and never commit it to version control.
+:::
+
+#### Database Selection and Filtering
+
+Configure which databases to include and set filtering parameters:
+
+| Parameter              | Purpose                                      | Default       | Gene Analysis          | Metabolite Analysis    |
+|---------------|---------------|---------------|---------------|---------------|
+| **Available Database** | Select databases for embedding analysis      | Auto-detected | GO, KEGG, Reactome     | SMPDB, KEGG            |
+| **P-adjust cutoff**    | Significance threshold for pathway inclusion | 0.05          | All selected databases | All selected databases |
+| **Count cutoff**       | Minimum genes/metabolites per pathway        | 5             | All selected databases | All selected databases |
+
+![](images/shinyapp_13_embed_params_gene.png){fig-align="center" width="750"}
+
+::: callout-note
+**Database Availability**: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.
+:::
+
+## Step 3: Run the Analysis
+
+1.  **Verify your data is loaded** - either from the current session or uploaded file
+2.  **Select your similarity method** - Traditional or Biotext embedding
+3.  **Review all parameter selections** to ensure they match your analysis goals
+4.  **Click the "Submit" button** to start the similarity calculation
+5.  **Monitor progress** - a progress indicator will show the analysis is running
+6.  **Wait for completion** - processing time varies by method:
+    -   Traditional methods: Usually complete within minutes
+    -   Biotext embedding: May take longer due to API calls and text processing
+
+![](images/shinyapp_13_submit.png){fig-align="center" width="750"}
+
+## Step 4: Review Results
+
+After successful completion, results will appear in the right panel with different content based on your selected method:
+
+::: panel-tabset
+##### Traditional Methods Results
+
+**Table Tab**: View database-specific module results
+
+-   Browse enriched pathway intra-database modules generated based on pathway similarity
+-   Examine module composition
+-   Download individual database results as CSV files
+
+Key result columns in the module tables:
+
+-   **module**: Intra-database module identifier (e.g., "go_Module_2", "kegg_Module_15")
+-   **module_annotation**: Representative pathway name for the module (pathway with lowest p-adjust for ORA or highest \|NES\| for GSEA)
+-   **Description**: Names of all pathways in the module (separated by `;`)
+-   **module_content**: All pathway/term IDs grouped in this module
+-   **Count**: Number of genes/metabolites from input list in the module
+-   **p_adjust**: Best (lowest) adjusted p-value among pathways in the module
+
+![](images/shinyapp_13_simcluster_table_gene.png){fig-align="center" width="750"}
+
+**Data Visualization Tab**: Generate similarity network plots
+
+-   Click "Generate plot" to create network visualizations for modules from each database
+-   Customize plot parameters (degree cutoff, text display options)
+
+![](images/shinyapp_13_simcluster_plots.png){fig-align="center" width="750"}
+
+**R Object Tab**: Access the complete results object
+
+-   View a summary of the analysis results
+-   Download the complete functional module object (.rda format) for further analysis in R
+
+![](images/shinyapp_13_simcluster_object.png){fig-align="center" width="750"}
+
+##### Biotext Embedding Results
+
+For biotext embedding results, you'll see a simplified results panel to download the results (.rda format) which include a similarity matrix and your enrichment analysis result for use in downstream clustering analysis.
+
+![](images/shinyapp_13_embedcluster_results.png){fig-align="center" width="750"}
+
+::: callout-note
+**Embedding Results**: The similarity matrix from biotext embedding is typically large and computationally intensive to display. Instead of showing the full matrix in the interface, you can download it for use in subsequent analysis steps or external tools.
+:::
+:::
+
+## Step 5: View Analysis Code
+
+Click the **"Code"** button to see the exact R code that replicates your analysis. This feature provides:
+
+-   **Reproducibility**: Copy and paste code into R scripts
+-   **Learning**: Understand the underlying MAPA functions and parameters
+-   **Customization**: Modify parameters for batch processing or additional analyses
+
+![](images/shinyapp_13_code.png){fig-align="center" width="500"}
+
+## Method Comparison
+
+| Aspect                         | Traditional Methods            | Biotext Embedding                                    |
+|----------------------------|-----------------------|---------------------|
+| **Speed**                      | Fast, deterministic            | Slower, requires API calls                           |
+| **Cost**                       | Free                           | API usage costs                                      |
+| **Reproducibility**            | Fully reproducible             | Highly reproducible (minor API variations)           |
+| **Novel discoveries**          | Based on known annotations     | Can identify functional relationships beyond overlap |
+| **Internet dependency**        | Minimal (for database updates) | Required for API access                              |
+| **Cross-database integration** | Limited by annotation overlap  | Excellent semantic integration                       |
+
+## Next Steps
+
+Once your similarity calculation is complete:
+
+1.  **Review and Download Results**: Examine the similarity patterns and download results for further analysis and as backup copies so that you can restart from this point if needed.
+
+2.  **Proceed to Clustering**: Click the **"Next"** button to move to the **Pathway Clustering** section
+
+The similarity results will automatically be available for the next step in your MAPA analysis workflow in this current session, where you'll group related pathways into functional modules.

@@ -1,0 +1,184 @@
+# Functional Module Annotation {#sec-shiny_llm_interpretation_shiny}
+
+This chapter describes how to interpret the functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. The Shiny app provides an approach to combine pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.
+
+::: callout-important
+Prerequisites: Before running LLM interpretation, ensure you have completed functional module generation as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
+:::
+
+## Overview
+
+The LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:
+
+-   **Information Sources:**
+
+    -   **Pathway descriptions** from GO, KEGG, Reactome, and metabolite databases
+    -   **Gene/metabolite names** from your input data
+    -   **Scientific literature** retrieved from PubMed based on pathway and molecule relevance
+    -   **Local documents** (optional) - your own research papers or relevant literature
+
+-   **Analysis Pipeline:**
+
+    1.  **Information Extraction**: Extracts pathway descriptions and molecule information
+    2.  **Literature Retrieval**: Searches PubMed for relevant scientific papers
+    3.  **RAG Strategy**: Uses embeddings to find and rank the most relevant literature, see @sec-rag-shiny
+    4.  **LLM Generation**: Generates biological module names and research summaries
+
+This approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.
+
+## Understanding the RAG Strategy {#sec-rag-shiny}
+
+![](images/RAG_frame.png){fig-align="center" width="785"}
+
+The Retrieval-Augmented Generation (RAG) strategy works in several stages:
+
+**Stage 1: Literature Search**
+
+-   Searches PubMed using pathway names and gene/metabolite information
+-   Retrieves abstracts and titles for relevant papers
+-   Includes reference papers cited in pathway databases
+
+**Stage 2: Embedding-based Similarity**
+
+-   Generates text embeddings for module descriptions (pathways + molecules)
+-   Calculates similarity between module embeddings and paper abstracts
+-   Filters top papers based on cosine similarity scores
+
+**Stage 3: GPT-powered Reranking**
+
+-   Uses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules
+-   Select the most informative literature for final interpretation
+
+**Stage 4: Final Generation**
+
+-   Combines module information with top-ranked papers
+-   Generates biologically meaningful module names
+-   Produces research summaries highlighting current knowledge
+-   Assigns confidence scores (0-1) reflecting the LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
+
+This multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.
+
+## Step 1: Load Your Data
+
+Upload previously saved results:
+
+1.  **Click "Browse"** at the top of the left panel **"Upload functional module (.rda)"** to upload your analyzed functional module file (.rda format)
+2.  **Select your file**
+
+## Step 2: Configure LLM and API Settings
+
+### LLM Model Settings
+
+Configure your LLM and text embedding models settings with references to the table below:
+
+| Parameter | Description | Default | Notes |
+|------------------|-------------------|------------------|------------------|
+| `API provider` | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only |
+| `Embedding model` | Model for text embeddings | `"text-embedding-3-small"` | Used for document similarity |
+| `API key` | OpenAI API key | Required | Store securely, never commit to version control |
+
+::: callout-important
+Model Selection: Due to changes in how requests are processed in GPT-5 model series, we **strongly** recommend using the default option (`gpt-4o-mini-2024-07-18`) for the best performance and quality.
+:::
+
+### Literature Search Settings
+
+| Parameter | Description | Default | Use Case |
+|------------------|-------------------|------------------|------------------|
+| `Module size cutoff` | Minimum pathways per module | 1 | Filter small modules to focus on substantial ones |
+| `Years to search` | Years to search back in PubMed | 5 | Balance between recent findings and comprehensive coverage |
+
+::: callout-note
+**API Usage & Processing Time:** Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking `Module size cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.
+:::
+
+### Optional Enhancements
+
+| Parameter | Description | Default | Benefits |
+|------------------|-------------------|------------------|------------------|
+| `Disease or phenotype` | Disease/condition context | `NULL` | Adds disease-specific interpretation |
+| `Local corpus directory` | Local directory with your own **PDF** files | `NULL` | Incorporates your own research or relevant literature to enhance the interpretation |
+
+### Required Parameters
+
+Two parameters are required before submit to LLM interpretation:
+
+1.  **Embeddings output directory**: The analyzed results will be displayed here
+
+2.  **Organism gene annotation database**: Select the organism of your omic data. You can refer to [Data Input Chapter](11_input_shiny.qmd) for detailed instruction.
+
+::: callout-important
+**Double Check:** Please DO NOT select a directory that contains any of your files, as this step will erase **everything** inside the chosen directory. Make sure the output directory you select is **completely empty.**
+:::
+
+## Step 3: Run the Analysis
+
+1.  **Verify your data is loaded** - either from the current session or uploaded file
+2.  **Review all parameter selections** to ensure they match your analysis goals
+3.  **Click the "Submit" button** to start the LLM interpretation progress
+4.  **Monitor progress** - a progress indicator will show the analysis is running
+5.  **Wait for completion** - processing time usually takes more than 10 minutes, wait patiently
+
+![](images/shinyapp_15_submit.png){fig-align="center" width="750"}
+
+## Step 4: Review Results
+
+After successful completion, results will appear in the right panel with updated functional module.
+
+Key result elements:
+
+-   **llm_module_name**: AI-generated biological module name
+-   **module_annotation**: Original representative annotation (fallback if LLM interpretation unavailable)
+
+::: panel-tabset
+##### Interpretation results
+
+For each interpreted module, the results include:
+
+-   **Module Name**: AI-generated biological module name
+-   **Module Summary**: Original representative annotation (fallback if LLM interpretation unavailable)
+-   **Association With Phenotype**: How this module is associated with given phenotype. Empty if no disease or phenotype is entered
+-   **Confidence Score**: Indicate LLM's assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence
+
+##### Full Prompt
+
+Contains the exact prompt sent to the LLM for transparency. Useful for understanding AI reasoning.
+
+##### R object
+
+The functional module results are automatically updated with a new column `llm_module_name`, which is the LLM-generated names. Download the R object for follow-up analysis.
+:::
+
+## Step 5: Download the Results
+
+After completing the LLM Interpretation step, you have two options for accessing/downloading the results other than viewing it on Shiny app:
+
+1.  **Download the R object (.rda)** containing the LLM interpretation results, which can be used for follow-up visualizations described in [Chapter 16: Visualization](16_data_vis_shiny.qmd).\
+2.  **Check out the embeddings output directory**, which already includes the following for each functional module:
+    -   `chunk.txt`: AI-generated summaries of the retrieved PubMed literature
+    -   `embedding_vector.csv.gz`: Text embeddings of the literature with cosine similarity values\
+    -   `paper_title.txt`: A list of PubMed articles identified for this functional module, including their titles and PubMed IDs
+
+![](images/shinyapp_15_outdir.png){fig-align="center" width="450"}
+
+## Step 6: View Analysis Code
+
+Click the **"Code"** button to see the exact R code that replicates your analysis:
+
+-   **Code 1**: Shows `function()` function usage
+-   **Code 2**: Shows `function()` function usage
+
+This code can be copied and used in your own R scripts for reproducible analysis.
+
+## Best Practices
+
+1.  **Start Small**: Begin with a subset of modules to estimate costs and processing time
+2.  **Optimize Parameters**: Adjust filtering parameters based on your module complexity
+3.  **Use Phenotype Context**: Specify relevant diseases/conditions for more targeted interpretations
+4.  **Include Local Literature**: Add your own papers for domain-specific insights
+5.  **Review Results**: Examine confidence scores and retrieved literature quality
+6.  **Iterate**: Refine parameters based on initial results
+
+## Next Steps
+
+Continue to [Data Visualization](16_data_vis_shiny.qmd) to create informative plots showcasing your LLM-interpreted modules.

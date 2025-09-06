@@ -1,0 +1,57 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "MAPA tutorial"
+  author: "[Yifei Ge](https://www.shen-lab.org/author/yifei-ge/), [Xiaotao Shen](https://www.jaspershenlab.com/), [Yuchen Shen](https://github.com/EthanShenx.com)"
+  date: "6/8/2025"
+  favicon: "/images/mapa_logo.png"
+  description: Functional Module Identification and Annotation for Pathway Analysis Results Using LLM
+  url: http://www.shen-lab.org/mapa-tutorial/
+  sidebar:
+    logo: "images/mapa_logo.png"
+    search: true
+  repo-url: https://github.com/jaspershen-lab/mapa-tutorial
+  repo-actions: [edit, issue, source]
+  image: "images/mapa_logo.png"
+  
+  chapters:
+    - index.qmd
+    
+    - part: "MAPA R Package"
+      chapters:
+        - 01_package_installation.qmd
+        - 02_input.qmd
+        - 03_enrichment_analysis.qmd
+        - 04_pathway_similarity.qmd
+        - 05_determine_optimal_clustering_params.qmd
+        - 06_get_functional_modules.qmd
+        - 07_llm_interpretation.qmd
+        - 08_data_vis.qmd
+        - 09_res_report.qmd
+    
+    - part: "MAPA Shiny App"
+      chapters:
+        - 10_shinyapp_installation.qmd
+        - 11_input_shiny.qmd
+        - 12_enrichment_analysis_shiny.qmd
+        - 13_pathway_similarity_shiny.qmd
+        - 14_get_functional_modules_shiny.qmd
+        - 15_llm_interpretation_shiny.qmd
+        - 16_data_vis_shiny.qmd
+        - 17_res_report_shiny.qmd
+
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: superhero
+    css: custom.css
+
+editor: visual
+

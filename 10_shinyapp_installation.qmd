@@ -1,0 +1,29 @@
+# Installation {#sec-shinyapp_installation}
+
+Follow the steps below to install the latest development version of **MAPA shinyapp** from GitHub (the script first installs *BiocManager*, *remotes*, and *MAPA* if you don’t have them):
+
+```{r}
+#| eval=FALSE
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+ install.packages("BiocManager") 
+}
+
+if (!requireNamespace("remotes", quietly = TRUE)) {
+ install.packages("remotes") 
+}
+
+remotes::install_github(
+  "jaspershen-lab/mapa",
+  dependencies = TRUE,
+  repos = BiocManager::repositories(),
+  upgrade = "ask"
+)
+
+remotes::install_github(
+  "jaspershen-lab/mapashiny",
+  dependencies = TRUE,
+  repos        = BiocManager::repositories(),
+  upgrade      = "ask"
+)
+```
