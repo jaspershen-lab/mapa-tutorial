@@ -299,15 +299,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">4.1</span> Overview</a></li>
-  <li><a href="#method-1-traditional-similarity" id="toc-method-1-traditional-similarity" class="nav-link" data-scroll-target="#method-1-traditional-similarity"><span class="header-section-number">4.2</span> Method 1: Traditional Similarity</a>
+  <li><a href="#method-comparison" id="toc-method-comparison" class="nav-link" data-scroll-target="#method-comparison"><span class="header-section-number">4.2</span> Method Comparison</a></li>
+  <li><a href="#method-1-traditional-similarity" id="toc-method-1-traditional-similarity" class="nav-link" data-scroll-target="#method-1-traditional-similarity"><span class="header-section-number">4.3</span> Method 1: Traditional Similarity</a>
   <ul class="collapse">
-  <li><a href="#similarity-methods-details" id="toc-similarity-methods-details" class="nav-link" data-scroll-target="#similarity-methods-details"><span class="header-section-number">4.2.1</span> Similarity Methods Details</a></li>
+  <li><a href="#similarity-methods-details" id="toc-similarity-methods-details" class="nav-link" data-scroll-target="#similarity-methods-details"><span class="header-section-number">4.3.1</span> Similarity Methods Details</a></li>
   </ul></li>
-  <li><a href="#method-2-biotext-embedding-similarity" id="toc-method-2-biotext-embedding-similarity" class="nav-link" data-scroll-target="#method-2-biotext-embedding-similarity"><span class="header-section-number">4.3</span> Method 2: Biotext Embedding Similarity</a>
+  <li><a href="#method-2-biotext-embedding-similarity" id="toc-method-2-biotext-embedding-similarity" class="nav-link" data-scroll-target="#method-2-biotext-embedding-similarity"><span class="header-section-number">4.4</span> Method 2: Biotext Embedding Similarity</a>
   <ul class="collapse">
-  <li><a href="#how-biotext-embedding-works" id="toc-how-biotext-embedding-works" class="nav-link" data-scroll-target="#how-biotext-embedding-works"><span class="header-section-number">4.3.1</span> How Biotext Embedding Works</a></li>
+  <li><a href="#how-biotext-embedding-works" id="toc-how-biotext-embedding-works" class="nav-link" data-scroll-target="#how-biotext-embedding-works"><span class="header-section-number">4.4.1</span> How Biotext Embedding Works</a></li>
   </ul></li>
-  <li><a href="#method-comparison" id="toc-method-comparison" class="nav-link" data-scroll-target="#method-comparison"><span class="header-section-number">4.4</span> Method Comparison</a></li>
   <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">4.5</span> Results Interpretation</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4.6</span> Next Steps</a></li>
   </ul>
@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter covers the two methods available in MAPA for calculating pathway similarity: traditional similarity (e.g.&nbsp;Jaccard, Wang algorithm) and pathway biological text embedding similarity (Biotext embedding) we developed.</p>
+<p>This chapter covers the two methods available in MAPA for calculating pathway similarity, which include <strong>traditional similarity</strong> (e.g.&nbsp;Jaccard, Wang algorithm) and <strong>Pathway biological text embedding similarity</strong> (Biotext embedding) we developed.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -346,7 +346,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prerequisites: Before calculating pathway similarity, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The <code>enriched_pathways</code> object used in this chapter should be the output from the enrichment analysis step.</p>
+<p><strong>Prerequisites:</strong> Before calculating pathway similarity, ensure you have completed pathway enrichment analysis using either <code>enrich_pathway()</code> or <code>do_gsea()</code> as described in <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>. The <code>enriched_pathways</code> object used in this chapter must be the output from the previous step.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't performed enrichment analysis yet, run:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enriched_pathways &lt;- enrich_pathway(...)</span></span>
@@ -365,10 +365,69 @@ Important
 <li><strong>Traditional Similarity (<code>merge_pathways()</code>)</strong>: Uses gene/metabolite overlap and semantic similarity</li>
 <li><strong>Biotext Embedding Similarity (<code>get_bioembedsim()</code>)</strong>: Uses LLM text embeddings to capture semantic relationships</li>
 </ol>
-<p>Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.</p>
+<p>Both methods prepare your data for downstream clustering analysis, so you can choose the approach that best fits your research needs and computational resources.</p>
 </section>
-<section id="method-1-traditional-similarity" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="method-1-traditional-similarity"><span class="header-section-number">4.2</span> Method 1: Traditional Similarity</h2>
+<section id="method-comparison" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="method-comparison"><span class="header-section-number">4.2</span> Method Comparison</h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Traditional Similarity</th>
+<th>Biotext Embedding Similarity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Basis</strong></td>
+<td>Gene/metabolite overlap + semantic structure</td>
+<td>Text semantic meaning</td>
+</tr>
+<tr class="even">
+<td><strong>Speed</strong></td>
+<td>Fast, deterministic</td>
+<td>Slower, requires API calls</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost</strong></td>
+<td>Free</td>
+<td>API usage costs</td>
+</tr>
+<tr class="even">
+<td><strong>Reproducibility</strong></td>
+<td>Fully reproducible</td>
+<td>Highly reproducible (minor API variations)</td>
+</tr>
+<tr class="odd">
+<td><strong>Novel discoveries</strong></td>
+<td>Based on known annotations</td>
+<td>Can identify functional relationships beyond overlap</td>
+</tr>
+<tr class="even">
+<td><strong>Internet dependency</strong></td>
+<td>Minimal (for GO/KEGG updates)</td>
+<td>Required for API access</td>
+</tr>
+<tr class="odd">
+<td><strong>Cross-database integration</strong></td>
+<td>Limited by annotation overlap</td>
+<td>Excellent semantic integration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to use each method:</strong></p>
+<ul>
+<li><strong>Traditional Similarity</strong>: When working with limited internet access, need fully reproducible results, or working with well-annotated pathways where overlap is meaningful</li>
+<li><strong>Biotext Embedding (recommended)</strong>: When exploring novel functional relationships, integrating diverse databases, or when semantic understanding is more important than annotation overlap</li>
+</ul>
+</section>
+<section id="method-1-traditional-similarity" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="method-1-traditional-similarity"><span class="header-section-number">4.3</span> Method 1: Traditional Similarity</h2>
 <p>The <code>merge_pathways()</code> function calculates similarity using established methods:</p>
 <ul>
 <li><strong>Only GO terms</strong>: Semantic similarity using the <a href="https://jokergoo.github.io/simona/">simona</a> package</li>
@@ -463,7 +522,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Organism Limitation</strong>: <strong>Traditional similarity for metabolites is recommended primarily for human studies</strong> where you can use both KEGG and HMDB databases. For non-human organisms, only KEGG is available, making this approach less informative. Consider <strong>using biotext embedding similarity instead for non-human metabolite studies</strong>.</p>
+<p><strong>Organism Limitation</strong>: Traditional similarity for metabolites is recommended primarily for <strong>human</strong> studies where you can use both KEGG and HMDB databases. For <strong>non-human</strong> organisms, only KEGG is available, making this approach less informative. Consider using <strong>biotext embedding similarity</strong> instead for non-human metabolite studies.</p>
 </div>
 </div>
 <div class="cell">
@@ -498,8 +557,8 @@ Important
 </div>
 </div>
 </div>
-<section id="similarity-methods-details" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="similarity-methods-details"><span class="header-section-number">4.2.1</span> Similarity Methods Details</h3>
+<section id="similarity-methods-details" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="similarity-methods-details"><span class="header-section-number">4.3.1</span> Similarity Methods Details</h3>
 <p><strong>GO Semantic Similarity Methods</strong></p>
 <p>For GO terms, MAPA uses the <a href="https://jokergoo.github.io/simona/">simona</a> package:</p>
 <table class="table">
@@ -597,8 +656,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="method-2-biotext-embedding-similarity" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="method-2-biotext-embedding-similarity"><span class="header-section-number">4.3</span> Method 2: Biotext Embedding Similarity</h2>
+<section id="method-2-biotext-embedding-similarity" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="method-2-biotext-embedding-similarity"><span class="header-section-number">4.4</span> Method 2: Biotext Embedding Similarity</h2>
 <p>The <code>get_bioembedsim()</code> function leverages large language model text embedding models to capture semantic relationships between pathway descriptions, enabling more nuanced similarity calculation based on biological function.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Gene-based Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Metabolite-based Analysis</a></li></ul>
@@ -621,7 +680,9 @@ Tip
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.reactome =</span> <span class="dv">5</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting pathway text embeddings ...</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating cosine similairty ...</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
@@ -640,7 +701,9 @@ Tip
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.metkegg =</span> <span class="dv">5</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting pathway text embeddings ...</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating cosine similairty ...</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Biotext embedding and similarity calculation finished</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -663,8 +726,8 @@ Tip
 <p>Store your API key securely and never commit it to version control.</p>
 </div>
 </div>
-<section id="how-biotext-embedding-works" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="how-biotext-embedding-works"><span class="header-section-number">4.3.1</span> How Biotext Embedding Works</h3>
+<section id="how-biotext-embedding-works" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="how-biotext-embedding-works"><span class="header-section-number">4.4.1</span> How Biotext Embedding Works</h3>
 <p>The biotext embedding process involves several steps:</p>
 <ol type="1">
 <li><strong>Text Extraction</strong>: For each pathway, the function extracts pathway name and description from respective databases</li>
@@ -685,65 +748,6 @@ Tip
 </div>
 </div>
 </section>
-</section>
-<section id="method-comparison" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="method-comparison"><span class="header-section-number">4.4</span> Method Comparison</h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Aspect</th>
-<th>Traditional Similarity</th>
-<th>Biotext Embedding Similarity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Basis</strong></td>
-<td>Gene/metabolite overlap + semantic structure</td>
-<td>Text semantic meaning</td>
-</tr>
-<tr class="even">
-<td><strong>Speed</strong></td>
-<td>Fast, deterministic</td>
-<td>Slower, requires API calls</td>
-</tr>
-<tr class="odd">
-<td><strong>Cost</strong></td>
-<td>Free</td>
-<td>API usage costs</td>
-</tr>
-<tr class="even">
-<td><strong>Reproducibility</strong></td>
-<td>Fully reproducible</td>
-<td>Highly reproducible (minor API variations)</td>
-</tr>
-<tr class="odd">
-<td><strong>Novel discoveries</strong></td>
-<td>Based on known annotations</td>
-<td>Can identify functional relationships beyond overlap</td>
-</tr>
-<tr class="even">
-<td><strong>Internet dependency</strong></td>
-<td>Minimal (for GO/KEGG updates)</td>
-<td>Required for API access</td>
-</tr>
-<tr class="odd">
-<td><strong>Cross-database integration</strong></td>
-<td>Limited by annotation overlap</td>
-<td>Excellent semantic integration</td>
-</tr>
-</tbody>
-</table>
-<p><strong>When to use each method:</strong></p>
-<ul>
-<li><strong>Traditional Similarity</strong>: When working with limited internet access, need fully reproducible results, or working with well-annotated pathways where overlap is meaningful</li>
-<li><strong>Biotext Embedding (recommended)</strong>: When exploring novel functional relationships, integrating diverse databases, or when semantic understanding is more important than annotation overlap</li>
-</ul>
 </section>
 <section id="results-interpretation" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="results-interpretation"><span class="header-section-number">4.5</span> Results Interpretation</h2>
@@ -782,7 +786,7 @@ Tip
 </section>
 <section id="next-steps" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">4.6</span> Next Steps</h2>
-<p>Continue to <a href="./05_determine_optimal_clustering_params.html">Optimal Clustering Parameters</a> to determine the best clustering parameters for your similarity data, then proceed to <a href="./06_get_functional_modules.html">Functional Module Identification</a> to group related pathways into modules.</p>
+<p>Continue to <a href="./05_determine_optimal_clustering_params.html">Chapter 5: Optimal Clustering Parameters</a> to determine the best clustering parameters for your similarity data, then proceed to <a href="./06_get_functional_modules.html">Chapter 6: Functional Module Identification</a> to group related pathways into modules.</p>
 
 
 </section>
