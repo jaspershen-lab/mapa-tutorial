@@ -1,16 +1,23 @@
 # Pathway Analysis {#sec-enrichment_analysis}
 
-The `mapa` package provides two powerful functions for pathway enrichment analysis: `enrich_pathway()` for Over-Representation Analysis (ORA) and `do_gsea()` for Gene Set Enrichment Analysis (GSEA). Both functions support multiple databases and can handle both gene and metabolite data (for metabolite, currently supports **ORA only**). Here we provide a unified, streamlined workflow that eliminates the need to run separate analyses for different databases, allowing you to **analyze multiple databases simultaneously in a single function call**.
+The `mapa` package offers two key functions for pathway enrichment:
 
-::: callout-important
-Prerequisites: Before running enrichment analysis, ensure your data has been properly preprocessed using the `convert_id()` function as described in Chapter 2 - Data Input and Preprocessing. The `variable_info` used in this chapter should be the output from the ID conversion step.
+- `enrich_pathway()` for Over-Representation Analysis (ORA)
+- `do_gsea()` for Gene Set Enrichment Analysis (GSEA). 
+
+Both support multiple databases and handle gene and metabolite data (metabolites currently **ORA only**). A unified workflow lets you analyze **multiple databases simultaneously in one function call**, avoiding separate runs.
+
+::: callout-tip
+For your interest, check out these resources on the application and theory behind ORA and GSEA:  
+
+- [Comprehensive review in *Briefings in Bioinformatics*](https://academic.oup.com/bib/article/22/1/545/5722384)
+
+- [Pluto Learning Series: GSEA vs. ORA](https://pluto.bio/resources/Learning%20Series/gsea-vs-ora-two-key-pathway-analysis-approaches-for-next-gen-sequencing-data)  
 :::
 
-```{r}
-#| eval: false
-
-library(mapa)
-```
+::: callout-important
+**Prerequisites:** Before running enrichment analysis, ensure your data has been properly preprocessed using the `convert_id()` function as described in Chapter 2 - Data Input and Preprocessing. The `variable_info` used in this chapter should be the output from the ID conversion step.
+:::
 
 ## Gene-based Enrichment
 
@@ -18,11 +25,11 @@ library(mapa)
 
 The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
 
-| Database | Supported Organism | Keytype Options |
+| Database           | Supported Organism                                                                                                                                                                                                                     | Keytype Options                                            |
 |------------------------|------------------------|------------------------|
-| Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object |
-| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
-| Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only |
+| Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object                 |
+| KEGG               | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html)                                                                                                                                                                   | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
+| Reactome           | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken                                                                                                                                                            | `ENTREZID` only                                            |
 
 ::: callout-tip
 1.  To check available GO keytype for your organism:
@@ -60,6 +67,8 @@ Use `enrich_pathway()` for Over-Representation Analysis.
 ```{r}
 #| eval: false
 
+library(org.Hs.eg.db)
+    
 enriched_pathways <- 
   enrich_pathway(
     variable_info = variable_info,
@@ -94,6 +103,8 @@ The `do_gsea()` function performs GSEA using ranked gene lists based on fold cha
 ```{r}
 #| eval: false
 
+library(org.Hs.eg.db)
+    
 gsea_pathways <- 
   do_gsea(
     variable_info = variable_info,
@@ -123,10 +134,10 @@ gsea_pathways <-
 
 ### Supported Databases and Keytypes
 
-| Database | Supported Organism | Keytype Options |
+| Database | Supported Organism                                                   | Keytype Options   |
 |------------------------|------------------------|------------------------|
-| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
-| SMPDB | Only for human | HMDB IDs |
+| KEGG     | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
+| SMPDB    | Only for human                                                       | HMDB IDs          |
 
 ### Basic Usage
 

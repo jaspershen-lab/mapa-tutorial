@@ -100,7 +100,7 @@ head(metabolite_data)
 
 ## Input Data Preprocessing
 
-**This step is required except for non-human metabolite analysis** - mapa provides the `convert_id()` function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, you must run this function to ensure all necessary identifiers are present for pathway analysis.
+**This step is required except for non-human metabolite analysis** - mapa provides the `convert_id()` function to perform ID conversion for downstream analysis. Even if your data already contains one of the required identifier columns, it is highly recommended to run this function to ensure all necessary identifiers are present for pathway analysis.
 
 ### Gene ID conversion {#sec-gene_id_conversion}
 
@@ -232,7 +232,7 @@ For human metabolite data, convert IDs bwteen KEGG and HMDB:
 ```{r}
 #| eval: false
 # Convert KEGG IDs to HMDB IDs (human only)
-variable_info <- convert_id(
+met_variable_info <- convert_id(
   data = metabolite_data,
   query_type = "metabolite", 
   from_id_type = "keggid",
@@ -252,6 +252,6 @@ head(variable_info)
 # 6 M544T604_POS C04230 1.19e-18  1.53 HMDB0010380
 ```
 
-## Next Steps
+## Next Step
 
 Once your data meets the format requirements, you can proceed to [enrichment analysis](03_enrichment_analysis.qmd) to begin your mapa workflow.
