@@ -65,7 +65,7 @@ This multi-stage approach ensures that generated annotations are both scientific
 :::
 
 ::: panel-tabset
-##### Gene-based Module Interpretation
+##### Gene-based
 
 ```{r}
 #| eval: false
@@ -100,7 +100,7 @@ llm_interpreted_modules <-
 # Done
 ```
 
-##### Metabolite-based Module Interpretation
+##### Metabolite-based
 
 ```{r}
 #| eval: false

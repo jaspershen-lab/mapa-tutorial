@@ -2,12 +2,6 @@
 
 The `mapa` package provides two powerful functions for exporting and reporting your functional module analysis results: `export_functional_module()` for data export and `report_functional_module()` for comprehensive report generation. These functions help you share your findings through structured data files and professional reports.
 
-```{r}
-#| eval: false
-
-library(mapa)
-```
-
 ::: callout-important
 Prerequisites: Before generating reports, ensure you have completed your MAPA analysis workflow including:
 
@@ -47,6 +41,11 @@ export_functional_module(
 
 This creates a directory structure with individual CSV files for each analysis component in your current working directory:
 
+
+::: panel-tabset
+
+##### Gene-based Data
+
 ```         
 mapa_results/
 ├── enriched_pathway_go.csv
@@ -58,6 +57,19 @@ mapa_results/
 ├── enriched_functional_module.csv
 └── llm_module_interpretation.csv
 ```
+
+##### Metabolite-based Data
+
+```
+mapa_results/
+├── enriched_functional_module.csv
+├── enriched_module_hmdb.csv
+├── enriched_module_metkegg.csv
+├── enriched_pathway_hmdb.csv
+├── enriched_pathway_metkegg.csv
+└── llm_module_interpretation.csv
+```
+:::
 
 ### Output Files Description
 
@@ -171,11 +183,12 @@ With your results exported and reports generated, you now have comprehensive doc
 
 ## Thank You & Reach Out
 
-To this point, mapa command-line workflow is now complete! Thank you for your use. 
+To this point, mapa command-line workflow is now complete! Thank you for your use.
 
 If you have any questions regarding mapa command-line workflow, feel free to reach out via the [mapa GitHub Issues page](https://github.com/jaspershen-lab/mapa/issues).
 
 ::: callout-note
-**Cite Our Work:** If you used mapa in your publications, we would appreciate it if you could cite our paper [to be updated.]
-:::
+**Cite Our Work:** If you used mapa in your publications, we would appreciate it if you could cite our paper.
 
+Ge, Y. _et al._ (2025) ‘Leveraging Large Language Models for Redundancy-Aware Pathway Analysis and Deep Biological Interpretation’. bioRxiv, p. 2025.08.23.671949. Available at: https://doi.org/10.1101/2025.08.23.671949.
+:::
