@@ -2,6 +2,12 @@
 
 The `mapa` package provides two powerful functions for exporting and reporting your functional module analysis results: `export_functional_module()` for data export and `report_functional_module()` for comprehensive report generation. These functions help you share your findings through structured data files and professional reports.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 Prerequisites: Before generating reports, ensure you have completed your MAPA analysis workflow including:
 

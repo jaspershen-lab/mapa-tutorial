@@ -2,6 +2,12 @@
 
 This chapter describes how to group related pathways into functional modules using the optimal clustering parameters determined in the previous chapter.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 **Prerequisites:**
 

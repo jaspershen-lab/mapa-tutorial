@@ -2,6 +2,12 @@
 
 This chapter covers the two methods available in MAPA for calculating pathway similarity, which include **traditional similarity** (e.g. Jaccard, Wang algorithm) and **Pathway biological text embedding similarity** (Biotext embedding) we developed.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 **Prerequisites:** Before calculating pathway similarity, ensure you have completed pathway enrichment analysis using either `enrich_pathway()` or `do_gsea()` as described in @sec-enrichment_analysis. The `enriched_pathways` object used in this chapter must be the output from the previous step.
 

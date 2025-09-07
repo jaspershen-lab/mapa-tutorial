@@ -2,6 +2,12 @@
 
 The `llm_interpret_module()` function provides AI-powered interpretation of functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. This approach combines pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 **Prerequisites:** Before running LLM interpretation, ensure you have completed functional module generation using `get_functional_modules()` as described in previous chapters. The `enriched_functional_modules` object used in this chapter should be the output from the module clustering step.
 :::

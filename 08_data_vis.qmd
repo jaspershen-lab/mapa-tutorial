@@ -2,6 +2,12 @@
 
 The `mapa` package provides comprehensive visualization functions to explore and present your pathway enrichment and functional module results. This chapter covers four main visualization approaches: pathway bar charts, module information plots, similarity networks, and relationship networks.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 **Prerequisites:** Before creating visualizations, ensure you have completed the previous analysis steps. The visualization functions require objects from:
 

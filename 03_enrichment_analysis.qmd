@@ -7,6 +7,12 @@ The `mapa` package offers two key functions for pathway enrichment:
 
 Both support multiple databases and handle gene and metabolite data (metabolites currently **ORA only**). A unified workflow lets you analyze **multiple databases simultaneously in one function call**, avoiding separate runs.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-tip
 For your interest, check out these resources on the application and theory behind ORA and GSEA:
 

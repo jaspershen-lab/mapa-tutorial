@@ -2,6 +2,12 @@
 
 This chapter describes how to systematically evaluate different clustering parameters to find the optimal settings for grouping your pathway similarity results into functional modules.
 
+```{r}
+#| eval=FALSE
+
+library(mapa)
+```
+
 ::: callout-important
 **Prerequisites:** Before determining optimal clustering parameters, ensure you have calculated pathway similarity using either `merge_pathways()` or `get_bioembedsim()` as described in @sec-pathway_similarity. The similarity results will be used as input for this analysis.
 :::
