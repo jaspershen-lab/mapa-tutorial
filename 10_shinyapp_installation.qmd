@@ -26,4 +26,21 @@ remotes::install_github(
   repos        = BiocManager::repositories(),
   upgrade      = "ask"
 )
+
 ```
+
+::: callout-note
+**Possible Dependency Conflict:** If `mapa` installation failed because the `simplifyEnrichment` version is incompatible, update `Bioconductor` to **version 3.20 or newer**. To do that, you’ll need R environment **4.4.0 or newer**.
+:::
+
+::: callout-tip
+**What is MAPA shinyapp:** The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.
+
+**How to Launch the Shiny App:**
+
+1.  In an R session, run:`mapashiny::run_mapa_shiny()`
+
+2.  An R viewer window will open where you can start the workflow. You can also use the *Open in Browser* button (top-right) to launch the app in your default web browser.
+
+3.  You can stop the app at any time by closing the browser tab/window or pressing the stop button in your R IDE.
+:::

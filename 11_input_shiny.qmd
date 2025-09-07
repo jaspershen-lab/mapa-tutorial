@@ -1,22 +1,19 @@
 # Data Input and Preprocessing
 
-This chapter covers how to input and preprocess your data using the MAPA Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.
+This chapter covers how to input and pre-process your data using the MAPA Shiny App. This stage prepares your data for fitting the input type of downstream analysis.
+
+::: callout-important
+**Prerequisites:** Ensure you have installed both the `mapa` package and `mapashiny` package as described in @sec-shinyapp_installation. You can also refer to the "Tip" section in @sec-shinyapp_installation for more details about using Shiny App.
+:::
 
 ## Launching the MAPA Shiny App
 
-Before you can input and process your data, you need to launch the MAPA Shiny application.
-
-::: callout-important
-Prerequisites: Ensure you have installed both the `mapa` package and `mapashiny` package as described in @sec-shinyapp_installation.
-:::
-
-To launch the MAPA Shiny app, run the following command in your R console:
+Before you can input and process your data, you need to launch the MAPA Shiny application by running the following code:
 
 ```{r}
 #| eval: false
 
-library(mapashiny)
-run_mapa_shiny()
+mapashiny::run_mapa_shiny()
 ```
 
 Once launched, you'll see the MAPA interface with:
@@ -117,7 +114,7 @@ For quick testing, select from the available example datasets:
 
 #### For Gene Data
 
-:::: panel-tabset
+::: panel-tabset
 ##### Model Organisms
 
 If working with common model organisms:
@@ -157,7 +154,7 @@ query_result <- AnnotationHub::query(ah, c("OrgDb", "9541"))
 query_result$ah_id
 ```
 :::
-::::
+:::
 
 #### For Metabolite Data
 

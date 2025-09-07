@@ -670,7 +670,7 @@
     "href": "10_shinyapp_installation.html",
     "title": "10  Installation",
     "section": "",
-    "text": "Follow the steps below to install the latest development version of MAPA shinyapp from GitHub (the script first installs BiocManager, remotes, and MAPA if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\nremotes::install_github(\n  \"jaspershen-lab/mapashiny\",\n  dependencies = TRUE,\n  repos        = BiocManager::repositories(),\n  upgrade      = \"ask\"\n)",
+    "text": "Follow the steps below to install the latest development version of MAPA shinyapp from GitHub (the script first installs BiocManager, remotes, and MAPA if you don’t have them):\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) {\n install.packages(\"BiocManager\") \n}\n\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n install.packages(\"remotes\") \n}\n\nremotes::install_github(\n  \"jaspershen-lab/mapa\",\n  dependencies = TRUE,\n  repos = BiocManager::repositories(),\n  upgrade = \"ask\"\n)\n\nremotes::install_github(\n  \"jaspershen-lab/mapashiny\",\n  dependencies = TRUE,\n  repos        = BiocManager::repositories(),\n  upgrade      = \"ask\"\n)\n\n\n\n\n\n\n\nNote\n\n\n\nPossible Dependency Conflict: If mapa installation failed because the simplifyEnrichment version is incompatible, update Bioconductor to version 3.20 or newer. To do that, you’ll need R environment 4.4.0 or newer.\n\n\n\n\n\n\n\n\nTip\n\n\n\nWhat is MAPA shinyapp: The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.\nHow to Launch the Shiny App:\n\nIn an R session, run:mapashiny::run_mapa_shiny()\nAn R viewer window will open where you can start the workflow. You can also use the Open in Browser button (top-right) to launch the app in your default web browser.\nYou can stop the app at any time by closing the browser tab/window or pressing the stop button in your R IDE.",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
@@ -681,7 +681,7 @@
     "href": "11_input_shiny.html",
     "title": "11  Data Input and Preprocessing",
     "section": "",
-    "text": "11.1 Launching the MAPA Shiny App\nThis chapter covers how to input and preprocess your data using the MAPA Shiny application. The Shiny app provides an intuitive interface for uploading data and performing ID conversion, which is essential for downstream pathway analysis.\nBefore you can input and process your data, you need to launch the MAPA Shiny application.\nTo launch the MAPA Shiny app, run the following command in your R console:\nlibrary(mapashiny)\nrun_mapa_shiny()\nOnce launched, you’ll see the MAPA interface with:\nThe sidebar contains the following sections:",
+    "text": "11.1 Launching the MAPA Shiny App\nBefore you can input and process your data, you need to launch the MAPA Shiny application by running the following code:\nmapashiny::run_mapa_shiny()\nOnce launched, you’ll see the MAPA interface with:\nThe sidebar contains the following sections:",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
@@ -692,7 +692,7 @@
     "href": "11_input_shiny.html#launching-the-mapa-shiny-app",
     "title": "11  Data Input and Preprocessing",
     "section": "",
-    "text": "Important\n\n\n\nPrerequisites: Ensure you have installed both the mapa package and mapashiny package as described in Chapter 10.\n\n\n\n\n\n\nHeader: Application title and navigation\nSidebar: Menu with different analysis steps\nMain Panel: Content area for each analysis step\n\n\n\n\n\n\n\n\nIntroduction: Overview of MAPA functionality\nUpload Data: File upload and ID conversion (covered in this chapter)\nEnrich Pathways: Pathway enrichment analysis\nPathway Clustering: Two methods for grouping related pathways\nLLM Interpretation: AI-powered functional module annotation\nData Visualization: Results plotting and visualization\nResults & Report: Final results and report generation",
+    "text": "Header: Application title and navigation\nSidebar: Menu with different analysis steps\nMain Panel: Content area for each analysis step\n\n\n\n\n\n\n\n\nIntroduction: Overview of MAPA functionality\nUpload Data: File upload and ID conversion (covered in this chapter)\nEnrich Pathways: Pathway enrichment analysis\nPathway Clustering: Two methods for grouping related pathways\nLLM Interpretation: AI-powered functional module annotation\nData Visualization: Results plotting and visualization\nResults & Report: Final results and report generation",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
