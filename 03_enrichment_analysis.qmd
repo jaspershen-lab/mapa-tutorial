@@ -2,17 +2,17 @@
 
 The `mapa` package offers two key functions for pathway enrichment:
 
-- `enrich_pathway()` for Over-Representation Analysis (ORA)
-- `do_gsea()` for Gene Set Enrichment Analysis (GSEA). 
+-   `enrich_pathway()` for Over-Representation Analysis (ORA)
+-   `do_gsea()` for Gene Set Enrichment Analysis (GSEA).
 
 Both support multiple databases and handle gene and metabolite data (metabolites currently **ORA only**). A unified workflow lets you analyze **multiple databases simultaneously in one function call**, avoiding separate runs.
 
 ::: callout-tip
-For your interest, check out these resources on the application and theory behind ORA and GSEA:  
+For your interest, check out these resources on the application and theory behind ORA and GSEA:
 
-- [Comprehensive review in *Briefings in Bioinformatics*](https://academic.oup.com/bib/article/22/1/545/5722384)
+-   [Comprehensive review in *Briefings in Bioinformatics*](https://academic.oup.com/bib/article/22/1/545/5722384)
 
-- [Pluto Learning Series: GSEA vs. ORA](https://pluto.bio/resources/Learning%20Series/gsea-vs-ora-two-key-pathway-analysis-approaches-for-next-gen-sequencing-data)  
+-   [Pluto Learning Series: GSEA vs. ORA](https://pluto.bio/resources/Learning%20Series/gsea-vs-ora-two-key-pathway-analysis-approaches-for-next-gen-sequencing-data)\
 :::
 
 ::: callout-important
@@ -26,7 +26,7 @@ For your interest, check out these resources on the application and theory behin
 The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
 
 | Database           | Supported Organism                                                                                                                                                                                                                     | Keytype Options                                            |
-|------------------------|------------------------|------------------------|
+|-------------|----------------------------------------------|-------------|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object                 |
 | KEGG               | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html)                                                                                                                                                                   | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
 | Reactome           | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken                                                                                                                                                            | `ENTREZID` only                                            |
@@ -135,7 +135,7 @@ gsea_pathways <-
 ### Supported Databases and Keytypes
 
 | Database | Supported Organism                                                   | Keytype Options   |
-|------------------------|------------------------|------------------------|
+|--------------|---------------------------------------------|--------------|
 | KEGG     | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
 | SMPDB    | Only for human                                                       | HMDB IDs          |
 
