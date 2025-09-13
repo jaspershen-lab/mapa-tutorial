@@ -44,3 +44,7 @@ remotes::install_github(
 
 3.  You can stop the app at any time by closing the browser tab/window or pressing the stop button in your R IDE.
 :::
+
+## A Web-based Version of MAPA
+
+If you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform: https://mapashiny.jaspershenlab.com

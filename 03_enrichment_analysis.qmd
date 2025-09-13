@@ -75,7 +75,7 @@ Use `enrich_pathway()` for Over-Representation Analysis.
 
 library(org.Hs.eg.db)
     
-enriched_pathways <- 
+gene_enriched_pathways <- 
   enrich_pathway(
     variable_info = variable_info,
     query_type = "gene",
@@ -212,7 +212,7 @@ You can access specific database results via `@`:
 
 ```{r}
 #| eval: false
-head(enriched_pathways@enrichment_go_result@result)
+head(gene_enriched_pathways@enrichment_go_result@result)
 #            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue
 # GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14
 # GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13
