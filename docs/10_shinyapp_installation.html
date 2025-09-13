@@ -382,7 +382,56 @@ Tip
 </div>
 <section id="a-web-based-version-of-mapa" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="a-web-based-version-of-mapa"><span class="header-section-number">10.1</span> A Web-based Version of MAPA</h2>
-<p>If you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform: https://mapashiny.jaspershenlab.com</p>
+<p>If you prefer not to run the mapa workflow locally on your computer, you can also access it through <a href="https://mapashiny.jaspershenlab.com">our web platform</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>How to Choose Whether to Use Shiny App or a Web Server:</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>Run Locally with Shiny (R)</th>
+<th>Use the Web Service</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Setup</td>
+<td>Requires package installs, potential dependency conflicts</td>
+<td>Zero installation efforts required; start in the browser immediately</td>
+</tr>
+<tr class="even">
+<td>Reliability of environment</td>
+<td>You fully control R/package versions (e.g., via <code>renv</code>)</td>
+<td>Curated environment maintained for you, versions may change when the service updates</td>
+</tr>
+<tr class="odd">
+<td>Offline use</td>
+<td>Works offline once installed (if not using LLM api service)</td>
+<td>Internet required</td>
+</tr>
+<tr class="even">
+<td>Reproducibility</td>
+<td>Store versions locally, archive results alongside code</td>
+<td>Good for “same UI for everyone,” but version drift is outside your control</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>

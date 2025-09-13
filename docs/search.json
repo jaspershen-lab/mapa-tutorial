@@ -670,7 +670,7 @@
     "href": "10_shinyapp_installation.html",
     "title": "10  Installation",
     "section": "",
-    "text": "10.1 A Web-based Version of MAPA\nIf you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform: https://mapashiny.jaspershenlab.com",
+    "text": "10.1 A Web-based Version of MAPA\nIf you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform",
     "crumbs": [
       "MAPA Shiny App",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
@@ -1388,6 +1388,17 @@
     "text": "MAPA: Functional odule Identification and Annotation for Pathway Analysis Results Using LLM\nMAPA is a streamlined workflow for pathway-enrichment analysis and enrichment result interpretation that turns large omics datasets into clear biological insight. It is developed by the Shen Lab at Nanyang Technological University, Singapore. It:\n\nPathway analysis: Detects enriched pathways from your data via over-representation analysis (ORA) or gene set enrichment analysis (GSEA).\nFunctional module identification: Clusters overlapping or functional-related pathways into functional modules, so every informative pathway—not just the “top 5 or 10”—contributes to the story.\nFunctional module annotation: Summarises each module with large-language models (LLM) (e.g., ChatGPT), linking the results to the latest findings in literature from PubMed.\n\nThe outcome is a fast, reproducible, and user-friendly pipeline that reduces redundancy and delivers biologically meaningful interpretations for enrichment results.",
     "crumbs": [
       "Preface"
+    ]
+  },
+  {
+    "objectID": "10_shinyapp_installation.html#a-web-based-version-of-mapa",
+    "href": "10_shinyapp_installation.html#a-web-based-version-of-mapa",
+    "title": "10  Installation",
+    "section": "",
+    "text": "Tip\n\n\n\nHow to Choose Whether to Use Shiny App or a Web Server:\n\n\n\n\n\n\n\n\nComparison\nRun Locally with Shiny (R)\nUse the Web Service\n\n\n\n\nSetup\nRequires package installs, potential dependency conflicts\nZero installation efforts required; start in the browser immediately\n\n\nReliability of environment\nYou fully control R/package versions (e.g., via renv)\nCurated environment maintained for you, versions may change when the service updates\n\n\nOffline use\nWorks offline once installed (if not using LLM api service)\nInternet required\n\n\nReproducibility\nStore versions locally, archive results alongside code\nGood for “same UI for everyone,” but version drift is outside your control",
+    "crumbs": [
+      "MAPA Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
     ]
   }
 ]

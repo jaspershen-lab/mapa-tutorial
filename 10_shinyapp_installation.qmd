@@ -47,4 +47,15 @@ remotes::install_github(
 
 ## A Web-based Version of MAPA
 
-If you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform: https://mapashiny.jaspershenlab.com
+If you prefer not to run the mapa workflow locally on your computer, you can also access it through [our web platform](https://mapashiny.jaspershenlab.com)
+
+::: callout-tip
+**How to Choose Whether to Use Shiny App or a Web Server:**
+
+| Comparison                 | Run Locally with Shiny (R)                                  | Use the Web Service                                                                  |
+|------------------------|------------------------|------------------------|
+| Setup                      | Requires package installs, potential dependency conflicts   | Zero installation efforts required; start in the browser immediately                 |
+| Reliability of environment | You fully control R/package versions (e.g., via `renv`)     | Curated environment maintained for you, versions may change when the service updates |
+| Offline use                | Works offline once installed (if not using LLM api service) | Internet required                                                                    |
+| Reproducibility            | Store versions locally, archive results alongside code      | Good for “same UI for everyone,” but version drift is outside your control           |
+:::
