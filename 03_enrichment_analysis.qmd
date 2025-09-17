@@ -32,7 +32,7 @@ For your interest, check out these resources on the application and theory behin
 The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
 
 | Database           | Supported Organism                                                                                                                                                                                                                     | Keytype Options                                            |
-|-------------|----------------------------------------------|-------------|
+|---------------|------------------------------------------|---------------|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object                 |
 | KEGG               | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html)                                                                                                                                                                   | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
 | Reactome           | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken                                                                                                                                                            | `ENTREZID` only                                            |
@@ -81,7 +81,7 @@ gene_enriched_pathways <-
     query_type = "gene",
     database = c("go", "kegg", "reactome"),
     # GO parameters
-    go.orgdb = org.Hs.eg.db,
+    go.orgdb = org.Hs.eg.db, # or "org.Hs.eg.db" (in quotes) if you did not load `org.Hs.eg.db`
     go.keytype = "ENTREZID",
     go.ont = "ALL",
     # KEGG parameters
@@ -118,7 +118,7 @@ gsea_pathways <-
     order_by = "fc",              # Column to rank genes by
     database = c("go", "kegg", "reactome"),
     # Database parameters
-    go.orgdb = org.Hs.eg.db,
+    go.orgdb = org.Hs.eg.db, # or "org.Hs.eg.db" (in quotes) if you did not load `org.Hs.eg.db`
     go.ont = "ALL",
     go.keytype = "ENTREZID",
     kegg.organism = "hsa",
@@ -141,7 +141,7 @@ gsea_pathways <-
 ### Supported Databases and Keytypes
 
 | Database | Supported Organism                                                   | Keytype Options   |
-|--------------|---------------------------------------------|--------------|
+|----------------|-----------------------------------------|----------------|
 | KEGG     | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
 | SMPDB    | Only for human                                                       | HMDB IDs          |
 

@@ -181,7 +181,14 @@ This code can be copied and used in your own R scripts for reproducible analysis
 
 ## Trouble Shooting
 
-**Pathway Retrieval from Reactome**
+**1. LLM Access Problems**
+
+   When using the module annotation step or the biotext embedding step, only models and API keys provided by _SiliconFlow_ are supported. To have a stable connection to _SiliconFlow_,
+
+   - **Users in China**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
+   - **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
+
+**2. Pathway Retrieval from Reactome**
 
 Occasionally, the connection to Reactome may be unstable, which could result in errors or incomplete responses. If you encounter such issues, simply try running the request again.
 
