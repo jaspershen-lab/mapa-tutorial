@@ -1,6 +1,6 @@
 # Installation {#sec-shinyapp_installation}
 
-Follow the steps below to install the latest development version of **MAPA shinyapp** from GitHub (the script first installs *BiocManager*, *remotes*, and *MAPA* if you don’t have them):
+Follow the steps below to install the latest development version of **MAPA Shiny App** from GitHub (the script first installs *BiocManager*, *remotes*, and *MAPA* if you don’t have them):
 
 ```{r}
 #| eval=FALSE
@@ -34,7 +34,7 @@ remotes::install_github(
 :::
 
 ::: callout-tip
-**What is MAPA shinyapp:** The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.
+**What is MAPA Shiny App:** The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.
 
 **How to Launch the Shiny App:**
 
@@ -45,17 +45,31 @@ remotes::install_github(
 3.  You can stop the app at any time by closing the browser tab/window or pressing the stop button in your R IDE.
 :::
 
-## A Web-based Version of MAPA
+## Web-based Access to MAPA {#sec-web}
 
-If you prefer not to run the mapa workflow locally on your computer, you can also access it through [our web platform](https://mapashiny.jaspershenlab.com)
+A hosted, browser-based instance of MAPA is available for users who prefer not to manage a local R environment. The service provides the same point-and-click interface as the Shiny application and requires no installation.
 
-::: callout-tip
-**How to Choose Whether to Use Shiny App or a Web Server:**
+**Access URL:** <https://mapashiny.jaspershenlab.com>
 
-| Comparison                 | Run Locally with Shiny (R)                                  | Use the Web Service                                                                  |
-|------------------------|------------------------|------------------------|
-| Setup                      | Requires package installs, potential dependency conflicts   | Zero installation efforts required; start in the browser immediately                 |
-| Reliability of environment | You fully control R/package versions (e.g., via `renv`)     | Curated environment maintained for you, versions may change when the service updates |
-| Offline use                | Works offline once installed (if not using LLM api service) | Internet required                                                                    |
-| Reproducibility            | Store versions locally, archive results alongside code      | Good for “same UI for everyone,” but version drift is outside your control           |
+::: callout-note
+The workflow described in this section is applicable to both **MAPA Shiny App** and the **web-based MAPA platform**.
+:::
+
+### Getting Started
+
+1.  Open the URL above in a modern web browser
+2.  Follow this tutorial to upload input data and configure analysis parameters
+3.  Launch the workflow and monitor progress in the browser
+4.  Download figures, tables, and reports upon completion
+
+::: callout-important
+**Data Privacy Statement**
+
+- Yes, your uploaded data are transmitted to and processed by our server.
+
+- No, we _do not_ sell your data, use your data to train machine-learning models, or make your files public. 
+
+Uploaded files are used solely to run the analysis you request and are kept in session-scoped, temporary storage that is routinely purged.
+
+If your dataset is confidential, regulated, or requires strict control over storage location and retention, prefer the local Shiny deployment under your organization’s governance.
 :::

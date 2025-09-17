@@ -24,7 +24,7 @@
     "href": "index.html#aim-of-this-tutorial",
     "title": "MAPA tutorial",
     "section": "Aim of This Tutorial",
-    "text": "Aim of This Tutorial\nThis guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:\n\nMerge overlapping enriched pathways into informative functional modules.\nGenerate biological interpretations of each module with large-language models.\nCreate publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.\nExport a comprehensive report that gathers every table, figure, and LLM-based summary in one place.\n\nWhether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.",
+    "text": "Aim of This Tutorial\nThis guide walks you through the two faces of mapa: the R package for command-line (code) workflow and the Shiny App/Web version for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:\n\nMerge overlapping enriched pathways into informative functional modules.\nGenerate biological interpretations of each module with large-language models.\nCreate publication-ready visuals of enrichment results, module networks, and pathway–molecule relationships.\nExport a comprehensive report that gathers every table, figure, and LLM-based summary in one place.\n\nWhether you favour the command line or a browser, the tutorial gives you everything you need to apply MAPA confidently in your bioinformatics projects.",
     "crumbs": [
       "Preface"
     ]
@@ -670,9 +670,9 @@
     "href": "10_shinyapp_installation.html",
     "title": "10  Installation",
     "section": "",
-    "text": "10.1 A Web-based Version of MAPA\nIf you prefer not to run the mapa workflow locally on your computer, you can also access it through our web platform",
+    "text": "10.1 Web-based Access to MAPA\nA hosted, browser-based instance of MAPA is available for users who prefer not to manage a local R environment. The service provides the same point-and-click interface as the Shiny application and requires no installation.\nAccess URL: https://mapashiny.jaspershenlab.com",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
     ]
   },
@@ -1398,6 +1398,17 @@
     "text": "Tip\n\n\n\nHow to Choose Whether to Use Shiny App or a Web Server:\n\n\n\n\n\n\n\n\nComparison\nRun Locally with Shiny (R)\nUse the Web Service\n\n\n\n\nSetup\nRequires package installs, potential dependency conflicts\nZero installation efforts required; start in the browser immediately\n\n\nReliability of environment\nYou fully control R/package versions (e.g., via renv)\nCurated environment maintained for you, versions may change when the service updates\n\n\nOffline use\nWorks offline once installed (if not using LLM api service)\nInternet required\n\n\nReproducibility\nStore versions locally, archive results alongside code\nGood for “same UI for everyone,” but version drift is outside your control",
     "crumbs": [
       "MAPA Shiny App",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "10_shinyapp_installation.html#sec-web",
+    "href": "10_shinyapp_installation.html#sec-web",
+    "title": "10  Installation",
+    "section": "",
+    "text": "Note\n\n\n\nThe workflow described in this section is applicable to both MAPA Shiny App and the web-based MAPA platform.\n\n\n\n10.1.1 Getting Started\n\nOpen the URL above in a modern web browser\nFollow this tutorial to upload input data and configure analysis parameters\nLaunch the workflow and monitor progress in the browser\nDownload figures, tables, and reports upon completion\n\n\n\n\n\n\n\nImportant\n\n\n\nData Privacy Statement\n\nYes, your uploaded data are transmitted to and processed by our server.\nNo, we do not sell your data, use your data to train machine-learning models, or make your files public.\n\nUploaded files are used solely to run the analysis you request and are kept in session-scoped, temporary storage that is routinely purged.\nIf your dataset is confidential, regulated, or requires strict control over storage location and retention, prefer the local Shiny deployment under your organization’s governance.",
+    "crumbs": [
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
     ]
   }

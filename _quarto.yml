@@ -31,7 +31,7 @@ book:
         - 08_data_vis.qmd
         - 09_res_report.qmd
     
-    - part: "MAPA Shiny App"
+    - part: "MAPA Shiny App/Web"
       chapters:
         - 10_shinyapp_installation.qmd
         - 11_input_shiny.qmd

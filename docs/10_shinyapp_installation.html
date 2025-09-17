@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
+ <span class="menu-text">MAPA Shiny App/Web</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -298,14 +298,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#a-web-based-version-of-mapa" id="toc-a-web-based-version-of-mapa" class="nav-link active" data-scroll-target="#a-web-based-version-of-mapa"><span class="header-section-number">10.1</span> A Web-based Version of MAPA</a></li>
+  <li><a href="#sec-web" id="toc-sec-web" class="nav-link active" data-scroll-target="#sec-web"><span class="header-section-number">10.1</span> Web-based Access to MAPA</a>
+  <ul class="collapse">
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">10.1.1</span> Getting Started</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/10_shinyapp_installation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/10_shinyapp_installation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-shinyapp_installation" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Installation</span></span></h1>
 </div>
@@ -324,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Follow the steps below to install the latest development version of <strong>MAPA shinyapp</strong> from GitHub (the script first installs <em>BiocManager</em>, <em>remotes</em>, and <em>MAPA</em> if you don’t have them):</p>
+<p>Follow the steps below to install the latest development version of <strong>MAPA Shiny App</strong> from GitHub (the script first installs <em>BiocManager</em>, <em>remotes</em>, and <em>MAPA</em> if you don’t have them):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>) </span>
@@ -371,7 +374,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>What is MAPA shinyapp:</strong> The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.</p>
+<p><strong>What is MAPA Shiny App:</strong> The Shiny-app version for MAPA lets you run the complete MAPA workflow with points and clicks without any R coding skills. It’s especially handy for bench scientists and those who prefer a graphical UI.</p>
 <p><strong>How to Launch the Shiny App:</strong></p>
 <ol type="1">
 <li><p>In an R session, run:<code>mapashiny::run_mapa_shiny()</code></p></li>
@@ -380,60 +383,53 @@ Tip
 </ol>
 </div>
 </div>
-<section id="a-web-based-version-of-mapa" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="a-web-based-version-of-mapa"><span class="header-section-number">10.1</span> A Web-based Version of MAPA</h2>
-<p>If you prefer not to run the mapa workflow locally on your computer, you can also access it through <a href="https://mapashiny.jaspershenlab.com">our web platform</a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="sec-web" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-web"><span class="header-section-number">10.1</span> Web-based Access to MAPA</h2>
+<p>A hosted, browser-based instance of MAPA is available for users who prefer not to manage a local R environment. The service provides the same point-and-click interface as the Shiny application and requires no installation.</p>
+<p><strong>Access URL:</strong> <a href="https://mapashiny.jaspershenlab.com" class="uri">https://mapashiny.jaspershenlab.com</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>How to Choose Whether to Use Shiny App or a Web Server:</strong></p>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Comparison</th>
-<th>Run Locally with Shiny (R)</th>
-<th>Use the Web Service</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Setup</td>
-<td>Requires package installs, potential dependency conflicts</td>
-<td>Zero installation efforts required; start in the browser immediately</td>
-</tr>
-<tr class="even">
-<td>Reliability of environment</td>
-<td>You fully control R/package versions (e.g., via <code>renv</code>)</td>
-<td>Curated environment maintained for you, versions may change when the service updates</td>
-</tr>
-<tr class="odd">
-<td>Offline use</td>
-<td>Works offline once installed (if not using LLM api service)</td>
-<td>Internet required</td>
-</tr>
-<tr class="even">
-<td>Reproducibility</td>
-<td>Store versions locally, archive results alongside code</td>
-<td>Good for “same UI for everyone,” but version drift is outside your control</td>
-</tr>
-</tbody>
-</table>
+<p>The workflow described in this section is applicable to both <strong>MAPA Shiny App</strong> and the <strong>web-based MAPA platform</strong>.</p>
+</div>
+</div>
+<section id="getting-started" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">10.1.1</span> Getting Started</h3>
+<ol type="1">
+<li>Open the URL above in a modern web browser</li>
+<li>Follow this tutorial to upload input data and configure analysis parameters</li>
+<li>Launch the workflow and monitor progress in the browser</li>
+<li>Download figures, tables, and reports upon completion</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Data Privacy Statement</strong></p>
+<ul>
+<li><p>Yes, your uploaded data are transmitted to and processed by our server.</p></li>
+<li><p>No, we <em>do not</em> sell your data, use your data to train machine-learning models, or make your files public.</p></li>
+</ul>
+<p>Uploaded files are used solely to run the analysis you request and are kept in session-scoped, temporary storage that is routinely purged.</p>
+<p>If your dataset is confidential, regulated, or requires strict control over storage location and retention, prefer the local Shiny deployment under your organization’s governance.</p>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

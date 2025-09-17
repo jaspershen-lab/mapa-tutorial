@@ -12,7 +12,7 @@ This tool is a streamlined, reproducible, and user-friendly workflow that reduce
 
 ## Aim of This Tutorial
 
-This guide walks you through the two faces of mapa: the R package for command-line workflows and the Shiny app for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:
+This guide walks you through the two faces of mapa: the R package for **command-line (code)** workflow and the **Shiny App/Web version** for point-and-click exploration. By the end, with your gene/metabolite list as input, you will be able to:
 
 1.  Merge overlapping enriched pathways into informative functional modules.
 2.  Generate biological interpretations of each module with large-language models.
