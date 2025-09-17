@@ -857,9 +857,9 @@
     "href": "13_pathway_similarity_shiny.html",
     "title": "13  Pathway Similarity Calculation",
     "section": "",
-    "text": "13.1 Step 1: Load Your Data\nThis chapter covers how to calculate pathway similarity using the MAPA Shiny application. The Shiny app computes pathway similarity using two powerful methods: traditional similarity and biotext embedding similarity. Both methods prepare your data for downstream clustering analysis, allowing you to choose the approach that best fits your research needs and computational resources.",
+    "text": "13.1 Step 1: Load Your Data",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -870,7 +870,7 @@
     "section": "",
     "text": "Option 1: Continue from Previous Step\nIf you have completed pathway enrichment analysis in the current session, your data will automatically be available for similarity calculation. The interface will detect your data type (gene or metabolite) and display appropriate parameter options.\nOption 2: Upload Existing Results\nIf you have previously saved enrichment results, you can upload them:\n\nClick “Browse” at the top of the left panel “Upload Enriched Pathways Result (.rda)” to upload your enrichment results file (.rda format)\nSelect your file\nWait for validation - the app will automatically detect: data type (gene or metabolite), available databases from your enrichment analysis, organism information (required for downstream analysis)",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -879,9 +879,9 @@
     "href": "13_pathway_similarity_shiny.html#step-2-select-method",
     "title": "13  Pathway Similarity Calculation",
     "section": "13.2 Step 2: Select Method",
-    "text": "13.2 Step 2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see Section 12.1)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nNote\n\n\n\nNote: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.\n\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
+    "text": "13.2 Step 2: Select Method\nOnce your data is loaded, choose your similarity calculation method using the radio buttons:\n\nTraditional methods: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see ?sec-supported_db)\nBiotext embedding: Uses large language model (LLM) text embeddings to capture semantic relationships\n\n\n13.2.1 Method 1: Traditional Methods\nWhen you select “Traditional methods”, the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Databases\nMetabolite Databases\n\n\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity method\nAlgorithm for calculating pathway similarity\nSee below\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nSimilarity cutoff\nThreshold for intra-database pathway clustering\n0.5\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\n\nSimilarity Method Options:\n\nOnly GO terms: Semantic similarity using the simona package\nGO/KEGG/Reactome/SMPDB pathways: Gene/metabolite overlap similarity (Jaccard, Dice, Overlap, and Kappa)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nParameter Selection Guide:\n\nLower p-adjust cutoff (e.g., 0.01) = More stringent, fewer pathways\nHigher count cutoff (e.g., 10) = Focus on larger, more established pathways\nSimilarity cutoff = Balance between intra-database module granularity (lower values) and specificity (higher values)\n\n\n\n\n\n13.2.2 Method 2: Biotext Embedding\nWhen you select “Biotext embedding”, the interface displays parameters for LLM-based similarity calculation.\n\n13.2.2.1 API Configuration\nSet up your API connection:\n\nAPI provider: Choose between OpenAI or Gemini\nEmbedding model: Specify the text embedding model (e.g., “text-embedding-3-small”)\nAPI key: Enter your API key for the selected provider\n\n\n\n\n\n\n\nNote\n\n\n\nNote: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.\n\n\n\n\n\n\n\n\nTip\n\n\n\nAPI Key Setup:\n\nFor OpenAI: Obtain your API key from OpenAI Platform\nFor Gemini: Get your API key from Google AI Studio\n\nStore your API key securely and never commit it to version control.\n\n\n\n\n13.2.2.2 Database Selection and Filtering\nConfigure which databases to include and set filtering parameters:\n\n\n\n\n\n\n\n\n\n\nParameter\nPurpose\nDefault\nGene Analysis\nMetabolite Analysis\n\n\n\n\nAvailable Database\nSelect databases for embedding analysis\nAuto-detected\nGO, KEGG, Reactome\nSMPDB, KEGG\n\n\nP-adjust cutoff\nSignificance threshold for pathway inclusion\n0.05\nAll selected databases\nAll selected databases\n\n\nCount cutoff\nMinimum genes/metabolites per pathway\n5\nAll selected databases\nAll selected databases\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDatabase Availability: The databases available for selection depend on your organism and the results from your enrichment analysis. Only databases with significant results will be available for embedding analysis.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -892,7 +892,7 @@
     "section": "13.3 Step 3: Run the Analysis",
     "text": "13.3 Step 3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nSelect your similarity method - Traditional or Biotext embedding\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the similarity calculation\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time varies by method:\n\nTraditional methods: Usually complete within minutes\nBiotext embedding: May take longer due to API calls and text processing",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -903,7 +903,7 @@
     "section": "13.4 Step 4: Review Results",
     "text": "13.4 Step 4: Review Results\nAfter successful completion, results will appear in the right panel with different content based on your selected method:\n\nTraditional Methods ResultsBiotext Embedding Results\n\n\nTable Tab: View database-specific module results\n\nBrowse enriched pathway intra-database modules generated based on pathway similarity\nExamine module composition\nDownload individual database results as CSV files\n\nKey result columns in the module tables:\n\nmodule: Intra-database module identifier (e.g., “go_Module_2”, “kegg_Module_15”)\nmodule_annotation: Representative pathway name for the module (pathway with lowest p-adjust for ORA or highest |NES| for GSEA)\nDescription: Names of all pathways in the module (separated by ;)\nmodule_content: All pathway/term IDs grouped in this module\nCount: Number of genes/metabolites from input list in the module\np_adjust: Best (lowest) adjusted p-value among pathways in the module\n\n\n\n\n\n\nData Visualization Tab: Generate similarity network plots\n\nClick “Generate plot” to create network visualizations for modules from each database\nCustomize plot parameters (degree cutoff, text display options)\n\n\n\n\n\n\nR Object Tab: Access the complete results object\n\nView a summary of the analysis results\nDownload the complete functional module object (.rda format) for further analysis in R\n\n\n\n\n\n\n\n\nFor biotext embedding results, you’ll see a simplified results panel to download the results (.rda format) which include a similarity matrix and your enrichment analysis result for use in downstream clustering analysis.\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nEmbedding Results: The similarity matrix from biotext embedding is typically large and computationally intensive to display. Instead of showing the full matrix in the interface, you can download it for use in subsequent analysis steps or external tools.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -914,7 +914,7 @@
     "section": "13.5 Step 5: View Analysis Code",
     "text": "13.5 Step 5: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis. This feature provides:\n\nReproducibility: Copy and paste code into R scripts\nLearning: Understand the underlying MAPA functions and parameters\nCustomization: Modify parameters for batch processing or additional analyses",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -925,7 +925,7 @@
     "section": "13.6 Method Comparison",
     "text": "13.6 Method Comparison\n\n\n\n\n\n\n\n\nAspect\nTraditional Methods\nBiotext Embedding\n\n\n\n\nSpeed\nFast, deterministic\nSlower, requires API calls\n\n\nCost\nFree\nAPI usage costs\n\n\nReproducibility\nFully reproducible\nHighly reproducible (minor API variations)\n\n\nNovel discoveries\nBased on known annotations\nCan identify functional relationships beyond overlap\n\n\nInternet dependency\nMinimal (for database updates)\nRequired for API access\n\n\nCross-database integration\nLimited by annotation overlap\nExcellent semantic integration",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -933,10 +933,10 @@
     "objectID": "13_pathway_similarity_shiny.html#next-steps",
     "href": "13_pathway_similarity_shiny.html#next-steps",
     "title": "13  Pathway Similarity Calculation",
-    "section": "13.7 Next Steps",
-    "text": "13.7 Next Steps\nOnce your similarity calculation is complete:\n\nReview and Download Results: Examine the similarity patterns and download results for further analysis and as backup copies so that you can restart from this point if needed.\nProceed to Clustering: Click the “Next” button to move to the Pathway Clustering section\n\nThe similarity results will automatically be available for the next step in your MAPA analysis workflow in this current session, where you’ll group related pathways into functional modules.",
+    "section": "13.8 Next Steps",
+    "text": "13.8 Next Steps\nOnce your similarity calculation is complete:\n\nReview and Download Results: Examine the similarity patterns and download results for further analysis and as backup copies so that you can restart from this point if needed.\nProceed to Clustering: Click the “Next” button to move to the Pathway Clustering section\n\nThe similarity results will automatically be available for the next step in your MAPA analysis workflow in this current session, where you’ll group related pathways into functional modules.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
     ]
   },
@@ -1055,9 +1055,9 @@
     "href": "15_llm_interpretation_shiny.html",
     "title": "15  Functional Module Annotation",
     "section": "",
-    "text": "15.1 Overview\nThis chapter describes how to interpret the functional modules by integrating Large Language Models (LLMs) with a Retrieval-Augmented Generation (RAG) strategy. The Shiny app provides an approach to combine pathway information, scientific literature, and advanced text analysis to generate meaningful names and summaries for your functional modules.\nThe LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:\nThis approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.",
+    "text": "15.1 Overview\nThe LLM interpretation process integrates multiple information sources to provide comprehensive module annotations:\nThis approach leverages both structured biological knowledge and cutting-edge research to provide contextually rich interpretations of your functional modules.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1068,7 +1068,7 @@
     "section": "",
     "text": "Information Sources:\n\nPathway descriptions from GO, KEGG, Reactome, and metabolite databases\nGene/metabolite names from your input data\nScientific literature retrieved from PubMed based on pathway and molecule relevance\nLocal documents (optional) - your own research papers or relevant literature\n\nAnalysis Pipeline:\n\nInformation Extraction: Extracts pathway descriptions and molecule information\nLiterature Retrieval: Searches PubMed for relevant scientific papers\nRAG Strategy: Uses embeddings to find and rank the most relevant literature, see Section 15.2\nLLM Generation: Generates biological module names and research summaries",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1079,7 +1079,7 @@
     "section": "15.2 Understanding the RAG Strategy",
     "text": "15.2 Understanding the RAG Strategy\n\n\n\n\n\nThe Retrieval-Augmented Generation (RAG) strategy works in several stages:\nStage 1: Literature Search\n\nSearches PubMed using pathway names and gene/metabolite information\nRetrieves abstracts and titles for relevant papers\nIncludes reference papers cited in pathway databases\n\nStage 2: Embedding-based Similarity\n\nGenerates text embeddings for module descriptions (pathways + molecules)\nCalculates similarity between module embeddings and paper abstracts\nFilters top papers based on cosine similarity scores\n\nStage 3: GPT-powered Reranking\n\nUses LLM to assess relevance of each paper to the specific module by assigning relevance scores (0-1) where 1 indicates high relevance to module pathways and molecules\nSelect the most informative literature for final interpretation\n\nStage 4: Final Generation\n\nCombines module information with top-ranked papers\nGenerates biologically meaningful module names\nProduces research summaries highlighting current knowledge\nAssigns confidence scores (0-1) reflecting the LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\nThis multi-stage approach ensures that generated annotations are both scientifically accurate and contextually relevant.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1090,7 +1090,7 @@
     "section": "15.3 Step 1: Load Your Data",
     "text": "15.3 Step 1: Load Your Data\nUpload previously saved results:\n\nClick “Browse” at the top of the left panel “Upload functional module (.rda)” to upload your analyzed functional module file (.rda format)\nSelect your file",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1101,7 +1101,7 @@
     "section": "15.4 Step 2: Configure LLM and API Settings",
     "text": "15.4 Step 2: Configure LLM and API Settings\n\n15.4.1 LLM Model Settings\nConfigure your LLM and text embedding models settings with references to the table below:\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nNotes\n\n\n\n\nAPI provider\nGPT model for text generation\n\"gpt-4o-mini-2024-07-18\"\nCurrently supports OpenAI models only\n\n\nEmbedding model\nModel for text embeddings\n\"text-embedding-3-small\"\nUsed for document similarity\n\n\nAPI key\nOpenAI API key\nRequired\nStore securely, never commit to version control\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nModel Selection: Due to changes in how requests are processed in GPT-5 model series, we strongly recommend using the default option (gpt-4o-mini-2024-07-18) for the best performance and quality.\n\n\n\n\n15.4.2 Literature Search Settings\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nUse Case\n\n\n\n\nModule size cutoff\nMinimum pathways per module\n1\nFilter small modules to focus on substantial ones\n\n\nYears to search\nYears to search back in PubMed\n5\nBalance between recent findings and comprehensive coverage\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAPI Usage & Processing Time: Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking Module size cutoff to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.\n\n\n\n\n15.4.3 Optional Enhancements\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\nBenefits\n\n\n\n\nDisease or phenotype\nDisease/condition context\nNULL\nAdds disease-specific interpretation\n\n\nLocal corpus directory\nLocal directory with your own PDF files\nNULL\nIncorporates your own research or relevant literature to enhance the interpretation\n\n\n\n\n\n15.4.4 Required Parameters\nTwo parameters are required before submit to LLM interpretation:\n\nEmbeddings output directory: The analyzed results will be displayed here\nOrganism gene annotation database: Select the organism of your omic data. You can refer to Data Input Chapter for detailed instruction.\n\n\n\n\n\n\n\nImportant\n\n\n\nDouble Check: Please DO NOT select a directory that contains any of your files, as this step will erase everything inside the chosen directory. Make sure the output directory you select is completely empty.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1112,7 +1112,7 @@
     "section": "15.5 Step 3: Run the Analysis",
     "text": "15.5 Step 3: Run the Analysis\n\nVerify your data is loaded - either from the current session or uploaded file\nReview all parameter selections to ensure they match your analysis goals\nClick the “Submit” button to start the LLM interpretation progress\nMonitor progress - a progress indicator will show the analysis is running\nWait for completion - processing time usually takes more than 10 minutes, wait patiently",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1123,7 +1123,7 @@
     "section": "15.6 Step 4: Review Results",
     "text": "15.6 Step 4: Review Results\nAfter successful completion, results will appear in the right panel with updated functional module.\nKey result elements:\n\nllm_module_name: AI-generated biological module name\nmodule_annotation: Original representative annotation (fallback if LLM interpretation unavailable)\n\n\nInterpretation resultsFull PromptR object\n\n\nFor each interpreted module, the results include:\n\nModule Name: AI-generated biological module name\nModule Summary: Original representative annotation (fallback if LLM interpretation unavailable)\nAssociation With Phenotype: How this module is associated with given phenotype. Empty if no disease or phenotype is entered\nConfidence Score: Indicate LLM’s assessment of interpretation quality based on available evidence. High confidence means strong literature support and clear biological coherence\n\n\n\nContains the exact prompt sent to the LLM for transparency. Useful for understanding AI reasoning.\n\n\nThe functional module results are automatically updated with a new column llm_module_name, which is the LLM-generated names. Download the R object for follow-up analysis.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1134,7 +1134,7 @@
     "section": "15.7 Step 5: Download the Results",
     "text": "15.7 Step 5: Download the Results\nAfter completing the LLM Interpretation step, you have two options for accessing/downloading the results other than viewing it on Shiny app:\n\nDownload the R object (.rda) containing the LLM interpretation results, which can be used for follow-up visualizations described in Chapter 16: Visualization.\n\nCheck out the embeddings output directory, which already includes the following for each functional module:\n\nchunk.txt: AI-generated summaries of the retrieved PubMed literature\nembedding_vector.csv.gz: Text embeddings of the literature with cosine similarity values\n\npaper_title.txt: A list of PubMed articles identified for this functional module, including their titles and PubMed IDs",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1145,7 +1145,7 @@
     "section": "15.8 Step 6: View Analysis Code",
     "text": "15.8 Step 6: View Analysis Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1156,7 +1156,7 @@
     "section": "15.9 Best Practices",
     "text": "15.9 Best Practices\n\nStart Small: Begin with a subset of modules to estimate costs and processing time\nOptimize Parameters: Adjust filtering parameters based on your module complexity\nUse Phenotype Context: Specify relevant diseases/conditions for more targeted interpretations\nInclude Local Literature: Add your own papers for domain-specific insights\nReview Results: Examine confidence scores and retrieved literature quality\nIterate: Refine parameters based on initial results",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1164,10 +1164,10 @@
     "objectID": "15_llm_interpretation_shiny.html#next-steps",
     "href": "15_llm_interpretation_shiny.html#next-steps",
     "title": "15  Functional Module Annotation",
-    "section": "15.10 Next Steps",
-    "text": "15.10 Next Steps\nContinue to Data Visualization to create informative plots showcasing your LLM-interpreted modules.",
+    "section": "15.11 Next Steps",
+    "text": "15.11 Next Steps\nContinue to Data Visualization to create informative plots showcasing your LLM-interpreted modules.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   },
@@ -1410,6 +1410,28 @@
     "crumbs": [
       "MAPA Shiny App/Web",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "13_pathway_similarity_shiny.html#trouble-shooting",
+    "href": "13_pathway_similarity_shiny.html#trouble-shooting",
+    "title": "13  Pathway Similarity Calculation",
+    "section": "13.7 Trouble Shooting",
+    "text": "13.7 Trouble Shooting\nLLM Access Problems\nWhen using the module annotation step or the biotext embedding step, only models and API keys provided by SiliconFlow are supported. To have a stable connection to SiliconFlow,\n\nUsers in China: Use an API key from the Chinese portal — https://siliconflow.cn\n\nInternational users: Use an API key from the global portal — https://www.siliconflow.com",
+    "crumbs": [
+      "MAPA Shiny App/Web",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Pathway Similarity Calculation</span>"
+    ]
+  },
+  {
+    "objectID": "15_llm_interpretation_shiny.html#trouble-shooting",
+    "href": "15_llm_interpretation_shiny.html#trouble-shooting",
+    "title": "15  Functional Module Annotation",
+    "section": "15.10 Trouble Shooting",
+    "text": "15.10 Trouble Shooting\nPathway Retrieval from Reactome\nOccasionally, the connection to Reactome may be unstable, which could result in errors or incomplete responses. If you encounter such issues, simply try running the request again.",
+    "crumbs": [
+      "MAPA Shiny App/Web",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
     ]
   }
 ]

@@ -182,6 +182,15 @@ Click the **"Code"** button to see the exact R code that replicates your analysi
 | **Internet dependency**        | Minimal (for database updates) | Required for API access                              |
 | **Cross-database integration** | Limited by annotation overlap  | Excellent semantic integration                       |
 
+## Trouble Shooting
+
+**LLM Access Problems**
+
+   When using the *module annotation* step or the *biotext embedding* step, only models and API keys provided by _SiliconFlow_ are supported. To have a stable connection to _SiliconFlow_,
+
+   - **Users in China**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
+   - **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
+
 ## Next Steps
 
 Once your similarity calculation is complete:

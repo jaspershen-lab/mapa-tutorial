@@ -13,18 +13,18 @@ The MAPA Shiny app leverages the powerful enrichment functions from the [`cluste
 ::: panel-tabset
 ##### For Gene Data
 
-| Database | Supported Organism | Keytype Options | Analysis Types |
-|------------------|------------------|------------------|------------------|
-| Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub) | `ENTREZID`, `SYMBOL`, `ENSEMBL`, `UNIPROT` | ORA, GSEA |
-| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | `kegg`, `ncbi-geneid`, `ncbi-proteinid`, `uniprot` | ORA, GSEA |
-| Reactome | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken | `ENTREZID` only | ORA, GSEA |
+| Database           | Supported Organism                                                                                                                                                                                        | Keytype Options                                    | Analysis Types |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------|
+| Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub) | `ENTREZID`, `SYMBOL`, `ENSEMBL`, `UNIPROT`         | ORA, GSEA      |
+| KEGG               | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html)                                                                                                                                      | `kegg`, `ncbi-geneid`, `ncbi-proteinid`, `uniprot` | ORA, GSEA      |
+| Reactome           | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken                                                                                                                               | `ENTREZID` only                                    | ORA, GSEA      |
 
 ##### For Metabolite Data
 
-| Database | Supported Organism | Keytype Options | Analysis Types |
-|------------------|------------------|------------------|------------------|
-| KEGG | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs | ORA only |
-| SMPDB | Human only | HMDB IDs | ORA only |
+| Database | Supported Organism                                                   | Keytype Options   | Analysis Types |
+|----------|----------------------------------------------------------------------|-------------------|----------------|
+| KEGG     | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs | ORA only       |
+| SMPDB    | Human only                                                           | HMDB IDs          | ORA only       |
 :::
 
 ::: callout-tip

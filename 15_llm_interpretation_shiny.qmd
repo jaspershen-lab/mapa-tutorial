@@ -71,11 +71,11 @@ Upload previously saved results:
 
 Configure your LLM and text embedding models settings with references to the table below:
 
-| Parameter | Description | Default | Notes |
+| Parameter         | Description                   | Default                    | Notes                                           |
 |------------------|-------------------|------------------|------------------|
-| `API provider` | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only |
-| `Embedding model` | Model for text embeddings | `"text-embedding-3-small"` | Used for document similarity |
-| `API key` | OpenAI API key | Required | Store securely, never commit to version control |
+| `API provider`    | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
+| `Embedding model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
+| `API key`         | OpenAI API key                | Required                   | Store securely, never commit to version control |
 
 ::: callout-important
 Model Selection: Due to changes in how requests are processed in GPT-5 model series, we **strongly** recommend using the default option (`gpt-4o-mini-2024-07-18`) for the best performance and quality.
@@ -83,10 +83,10 @@ Model Selection: Due to changes in how requests are processed in GPT-5 model ser
 
 ### Literature Search Settings
 
-| Parameter | Description | Default | Use Case |
+| Parameter            | Description                    | Default | Use Case                                                   |
 |------------------|-------------------|------------------|------------------|
-| `Module size cutoff` | Minimum pathways per module | 1 | Filter small modules to focus on substantial ones |
-| `Years to search` | Years to search back in PubMed | 5 | Balance between recent findings and comprehensive coverage |
+| `Module size cutoff` | Minimum pathways per module    | 1       | Filter small modules to focus on substantial ones          |
+| `Years to search`    | Years to search back in PubMed | 5       | Balance between recent findings and comprehensive coverage |
 
 ::: callout-note
 **API Usage & Processing Time:** Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking `Module size cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.
@@ -94,10 +94,10 @@ Model Selection: Due to changes in how requests are processed in GPT-5 model ser
 
 ### Optional Enhancements
 
-| Parameter | Description | Default | Benefits |
+| Parameter                | Description                                 | Default | Benefits                                                                            |
 |------------------|-------------------|------------------|------------------|
-| `Disease or phenotype` | Disease/condition context | `NULL` | Adds disease-specific interpretation |
-| `Local corpus directory` | Local directory with your own **PDF** files | `NULL` | Incorporates your own research or relevant literature to enhance the interpretation |
+| `Disease or phenotype`   | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
+| `Local corpus directory` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
 
 ### Required Parameters
 
@@ -178,6 +178,14 @@ This code can be copied and used in your own R scripts for reproducible analysis
 4.  **Include Local Literature**: Add your own papers for domain-specific insights
 5.  **Review Results**: Examine confidence scores and retrieved literature quality
 6.  **Iterate**: Refine parameters based on initial results
+
+## Trouble Shooting
+
+**Pathway Retrieval from Reactome**
+
+Occasionally, the connection to Reactome may be unstable, which could result in errors or incomplete responses. If you encounter such issues, simply try running the request again.
+
+![](images/shinyapp_15_reactome_troubleshooting.png){fig-align="center" width="785"}
 
 ## Next Steps
 
