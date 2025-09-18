@@ -20,17 +20,19 @@ library(mapa)
 
 mapa provides four main visualization functions:
 
-+-------------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| Function                      | Purpose                                                | Best Used For                                       |
-+===============================+========================================================+=====================================================+
-| `plot_pathway_bar()`          | Horizontal bar charts of top enriched items            | Showing enrichment strength across pathways/modules |
-+-------------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| `plot_module_info()`          | Multi-panel module details (network + bar + wordcloud) | Detailed examination of specific modules            |
-+-------------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| `plot_similarity_network()`   | Similarity-based networks                              | Understanding pathway relationships and clustering  |
-+-------------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| `plot_relationship_network()` | Multi-level hierarchical networks                      | Visualizing connections across biological levels    |
-+-------------------------------+--------------------------------------------------------+-----------------------------------------------------+
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| **Function**                  | **Purpose**                                                    | **Best Used For**                                        |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| `plot_pathway_bar()`          | Horizontal bar charts of top enriched items                    | Showing enrichment strength across pathways/modules      |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| `plot_module_info()`          | Multi-panel module details (network + bar + wordcloud)         | Detailed examination of specific modules                 |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| `plot_similarity_network()`   | Similarity-based networks                                      | Understanding pathway relationships and clustering       |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| `plot_relationship_network()` | Multi-level hierarchical networks                              | Visualizing connections across biological levels         |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
+| `plot_relationship_heatmap()` | Combined relationship network + heatmap (optional word-clouds) | Linking modules/pathways/molecules to expression context |
++-------------------------------+----------------------------------------------------------------+----------------------------------------------------------+
 
 ## Bar Chart Visualization
 
@@ -301,6 +303,8 @@ plot_relationship_network(
 +-----------------+--------------------------------+-------------------+
 | `circular_plot` | Circular vs. horizontal layout | `FALSE`           |
 +-----------------+--------------------------------+-------------------+
+
+## Relationship Heatmap Visualization
 
 ## Troubleshooting Visualization Issues
 

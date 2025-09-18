@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
+ <span class="menu-text">MAPA Shiny App/Web</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -322,8 +322,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">8.5.2</span> Circular Layout</a></li>
   <li><a href="#customization-options" id="toc-customization-options" class="nav-link" data-scroll-target="#customization-options"><span class="header-section-number">8.5.3</span> Customization Options</a></li>
   </ul></li>
-  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">8.6</span> Troubleshooting Visualization Issues</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">8.7</span> Next Steps</a></li>
+  <li><a href="#relationship-heatmap-visualization" id="toc-relationship-heatmap-visualization" class="nav-link" data-scroll-target="#relationship-heatmap-visualization"><span class="header-section-number">8.6</span> Relationship Heatmap Visualization</a></li>
+  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">8.7</span> Troubleshooting Visualization Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">8.8</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/08_data_vis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/08_data_vis.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -376,37 +377,40 @@ Important
 <p>mapa provides four main visualization functions:</p>
 <table class="table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 39%">
+<col style="width: 20%">
+<col style="width: 41%">
 <col style="width: 37%">
 </colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Purpose</th>
-<th>Best Used For</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
+<td><strong>Function</strong></td>
+<td><strong>Purpose</strong></td>
+<td><strong>Best Used For</strong></td>
+</tr>
+<tr class="even">
 <td><code>plot_pathway_bar()</code></td>
 <td>Horizontal bar charts of top enriched items</td>
 <td>Showing enrichment strength across pathways/modules</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>plot_module_info()</code></td>
 <td>Multi-panel module details (network + bar + wordcloud)</td>
 <td>Detailed examination of specific modules</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>plot_similarity_network()</code></td>
 <td>Similarity-based networks</td>
 <td>Understanding pathway relationships and clustering</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>plot_relationship_network()</code></td>
 <td>Multi-level hierarchical networks</td>
 <td>Visualizing connections across biological levels</td>
+</tr>
+<tr class="even">
+<td><code>plot_relationship_heatmap()</code></td>
+<td>Combined relationship network + heatmap (optional word-clouds)</td>
+<td>Linking modules/pathways/molecules to expression context</td>
 </tr>
 </tbody>
 </table>
@@ -811,8 +815,11 @@ Note
 </table>
 </section>
 </section>
-<section id="troubleshooting-visualization-issues" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">8.6</span> Troubleshooting Visualization Issues</h2>
+<section id="relationship-heatmap-visualization" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="relationship-heatmap-visualization"><span class="header-section-number">8.6</span> Relationship Heatmap Visualization</h2>
+</section>
+<section id="troubleshooting-visualization-issues" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">8.7</span> Troubleshooting Visualization Issues</h2>
 <p><strong>Common Issues and Solutions:</strong></p>
 <ul>
 <li><strong>Empty plots or warnings about no data</strong>
@@ -838,8 +845,8 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">8.7</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">8.8</span> Next Steps</h2>
 <p>Continue to <a href="./09_res_report.html">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
 
 

@@ -516,7 +516,7 @@
     "href": "08_data_vis.html#overview-of-visualization-functions",
     "title": "8  Data Visualization",
     "section": "",
-    "text": "Function\nPurpose\nBest Used For\n\n\n\n\nplot_pathway_bar()\nHorizontal bar charts of top enriched items\nShowing enrichment strength across pathways/modules\n\n\nplot_module_info()\nMulti-panel module details (network + bar + wordcloud)\nDetailed examination of specific modules\n\n\nplot_similarity_network()\nSimilarity-based networks\nUnderstanding pathway relationships and clustering\n\n\nplot_relationship_network()\nMulti-level hierarchical networks\nVisualizing connections across biological levels",
+    "text": "Function\nPurpose\nBest Used For\n\n\nplot_pathway_bar()\nHorizontal bar charts of top enriched items\nShowing enrichment strength across pathways/modules\n\n\nplot_module_info()\nMulti-panel module details (network + bar + wordcloud)\nDetailed examination of specific modules\n\n\nplot_similarity_network()\nSimilarity-based networks\nUnderstanding pathway relationships and clustering\n\n\nplot_relationship_network()\nMulti-level hierarchical networks\nVisualizing connections across biological levels\n\n\nplot_relationship_heatmap()\nCombined relationship network + heatmap (optional word-clouds)\nLinking modules/pathways/molecules to expression context",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Visualization</span>"
@@ -570,8 +570,8 @@
     "objectID": "08_data_vis.html#troubleshooting-visualization-issues",
     "href": "08_data_vis.html#troubleshooting-visualization-issues",
     "title": "8  Data Visualization",
-    "section": "8.6 Troubleshooting Visualization Issues",
-    "text": "8.6 Troubleshooting Visualization Issues\nCommon Issues and Solutions:\n\nEmpty plots or warnings about no data\n\nCheck that your cutoffs (p.adjust.cutoff, count.cutoff) aren’t too stringent\nVerify that modules exist at the specified level\n\nText labels overlapping or unreadable\n\nAdjust y_label_width parameter\nUse text_all = FALSE to show only representative labels\nIncrease plot dimensions when saving\n\nEmbedCluster results at module level\n\nUse level = \"functional_module\" for EmbedCluster results\nEmbedCluster bypasses database-specific modules\n\nLLM text not appearing\n\nEnsure llm_interpret_module() was run successfully\nCheck that the object contains LLM interpretation results",
+    "section": "8.7 Troubleshooting Visualization Issues",
+    "text": "8.7 Troubleshooting Visualization Issues\nCommon Issues and Solutions:\n\nEmpty plots or warnings about no data\n\nCheck that your cutoffs (p.adjust.cutoff, count.cutoff) aren’t too stringent\nVerify that modules exist at the specified level\n\nText labels overlapping or unreadable\n\nAdjust y_label_width parameter\nUse text_all = FALSE to show only representative labels\nIncrease plot dimensions when saving\n\nEmbedCluster results at module level\n\nUse level = \"functional_module\" for EmbedCluster results\nEmbedCluster bypasses database-specific modules\n\nLLM text not appearing\n\nEnsure llm_interpret_module() was run successfully\nCheck that the object contains LLM interpretation results",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Visualization</span>"
@@ -581,8 +581,8 @@
     "objectID": "08_data_vis.html#next-steps",
     "href": "08_data_vis.html#next-steps",
     "title": "8  Data Visualization",
-    "section": "8.7 Next Steps",
-    "text": "8.7 Next Steps\nContinue to Results Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
+    "section": "8.8 Next Steps",
+    "text": "8.8 Next Steps\nContinue to Results Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
     "crumbs": [
       "MAPA R Package",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Visualization</span>"
@@ -1432,6 +1432,17 @@
     "crumbs": [
       "MAPA Shiny App/Web",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Functional Module Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "08_data_vis.html#relationship-heatmap-visualization",
+    "href": "08_data_vis.html#relationship-heatmap-visualization",
+    "title": "8  Data Visualization",
+    "section": "8.6 Relationship Heatmap Visualization",
+    "text": "8.6 Relationship Heatmap Visualization",
+    "crumbs": [
+      "MAPA R Package",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   }
 ]
