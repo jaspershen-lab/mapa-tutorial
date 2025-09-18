@@ -339,27 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>enrich_pathway()</code> for Over-Representation Analysis (ORA)</li>
 <li><code>do_gsea()</code> for Gene Set Enrichment Analysis (GSEA).</li>
 </ul>
-<p>Both support multiple databases and handle gene and metabolite data (metabolites currently <strong>ORA only</strong>). A unified workflow lets you analyze <strong>multiple databases simultaneously in one function call</strong>, avoiding separate runs.</p>
+<p>Both support multiple databases and handle gene and metabolite data (metabolites currently <strong>ORA only</strong>). A unified workflow lets you analyze <strong>multiple databases simultaneously in one function call</strong>, which saves separate runs.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For your interest, check out these resources on the application and theory behind ORA and GSEA:</p>
-<ul>
-<li><p><a href="https://academic.oup.com/bib/article/22/1/545/5722384">Comprehensive review in <em>Briefings in Bioinformatics</em></a></p></li>
-<li><p><a href="https://pluto.bio/resources/Learning%20Series/gsea-vs-ora-two-key-pathway-analysis-approaches-for-next-gen-sequencing-data">Pluto Learning Series: GSEA vs.&nbsp;ORA</a><br>
-</p></li>
-</ul>
-</div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -372,6 +354,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Prerequisites:</strong> Before running enrichment analysis, ensure your data has been properly preprocessed using the <code>convert_id()</code> function as described in Chapter 2 - Data Input and Preprocessing. The <code>variable_info</code> used in this chapter should be the output from the ID conversion step.</p>
+<p>Alternatively, you can load our example data by following 2.1.2 of <a href="02_input.html#sec-input_data_requirement" class="quarto-xref"><span>Section 2.1</span></a>.</p>
 </div>
 </div>
 <section id="gene-based-enrichment" class="level2" data-number="3.1">

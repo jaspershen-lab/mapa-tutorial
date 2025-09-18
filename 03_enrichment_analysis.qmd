@@ -5,7 +5,7 @@ The `mapa` package offers two key functions for pathway enrichment:
 -   `enrich_pathway()` for Over-Representation Analysis (ORA)
 -   `do_gsea()` for Gene Set Enrichment Analysis (GSEA).
 
-Both support multiple databases and handle gene and metabolite data (metabolites currently **ORA only**). A unified workflow lets you analyze **multiple databases simultaneously in one function call**, avoiding separate runs.
+Both support multiple databases and handle gene and metabolite data (metabolites currently **ORA only**). A unified workflow lets you analyze **multiple databases simultaneously in one function call**, which saves separate runs.
 
 ```{r}
 #| eval=FALSE
@@ -13,16 +13,10 @@ Both support multiple databases and handle gene and metabolite data (metabolites
 library(mapa)
 ```
 
-::: callout-tip
-For your interest, check out these resources on the application and theory behind ORA and GSEA:
-
--   [Comprehensive review in *Briefings in Bioinformatics*](https://academic.oup.com/bib/article/22/1/545/5722384)
-
--   [Pluto Learning Series: GSEA vs. ORA](https://pluto.bio/resources/Learning%20Series/gsea-vs-ora-two-key-pathway-analysis-approaches-for-next-gen-sequencing-data)\
-:::
-
 ::: callout-important
 **Prerequisites:** Before running enrichment analysis, ensure your data has been properly preprocessed using the `convert_id()` function as described in Chapter 2 - Data Input and Preprocessing. The `variable_info` used in this chapter should be the output from the ID conversion step.
+
+Alternatively, you can load our example data by following 2.1.2 of @sec-input_data_requirement.
 :::
 
 ## Gene-based Enrichment
