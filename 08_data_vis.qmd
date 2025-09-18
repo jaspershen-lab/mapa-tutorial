@@ -314,13 +314,38 @@ The `plot_relationship_heatmap()` function creates an integrated plot that links
 
 -   (Optional) You can also add **word-cloud** annotations to summarize each functional module
 
-::: callout-important
-**Requirements:**
+::: callout-tip
+**ID Mapping Checklist:** If you see “No expression data available for your selected modules”, verify that:
 
--   A `functional_module` object from previous steps (`merge_pathways()` + `merge_modules()` **or** `merge_pathways_bioembedsim()`, optionally `llm_interpret_module()` if you want LLM summaries).
+-   The id column in expression_data uses the expected identifier type
 
--   An `expression_data` table with an `id` column (gene/protein ENSEMBL; metabolite HMDB/KEGG) followed by one column per sample.
+-   Your earlier convert_id() step produced IDs consistent with the enrichment pipeline
 :::
+
+### Get Our Example Data
+
+MAPA provides several **built-in demo datasets** that help you to go through and study MAPA workflow such as pathway enrichment analysis in previous @sec-enrichment_analysis, and this heatmap visualization step.
+
+To load any dataset, use:
+
+``` r
+data(ora_expression_dt)   # Expression data for ORA heatmaps
+data(gsea_expression_dt)  # Expression data for GSEA heatmaps
+```
+
+Below are some info about these two datasets:
+
++--------------------+---------------------------------------------------------+--------+---------+----------------------------------------------------------+------------------------------------------------------------------------------------+
+| Dataset            | Content                                                 | Rows   | Columns | Use                                                      | Source                                                                             |
++====================+=========================================================+========+=========+==========================================================+====================================================================================+
+| ```                | Expression values of 65 muscle genes across 8 samples   | 65     | 9       | Over-Representation Analysis (ORA) heatmap visualization | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
+| ora_expression_dt  |                                                         |        |         |                                                          |                                                                                    |
+| ```                |                                                         |        |         |                                                          |                                                                                    |
++--------------------+---------------------------------------------------------+--------+---------+----------------------------------------------------------+------------------------------------------------------------------------------------+
+| ```                | Expression values of 5,167 liver genes across 8 samples | 5167   | 9       | Gene Set Enrichment Analysis (GSEA) visualization        | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
+| gsea_expression_dt |                                                         |        |         |                                                          |                                                                                    |
+| ```                |                                                         |        |         |                                                          |                                                                                    |
++--------------------+---------------------------------------------------------+--------+---------+----------------------------------------------------------+------------------------------------------------------------------------------------+
 
 ### Basic Use: Pathway Level
 

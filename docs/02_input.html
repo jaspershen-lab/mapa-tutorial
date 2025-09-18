@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-input_data_requirement" id="toc-sec-input_data_requirement" class="nav-link active" data-scroll-target="#sec-input_data_requirement"><span class="header-section-number">2.1</span> Input Data Format Requirements</a>
   <ul class="collapse">
   <li><a href="#gene-expression-data" id="toc-gene-expression-data" class="nav-link" data-scroll-target="#gene-expression-data"><span class="header-section-number">2.1.1</span> Gene Expression Data</a></li>
-  <li><a href="#get-our-example-toy-data" id="toc-get-our-example-toy-data" class="nav-link" data-scroll-target="#get-our-example-toy-data"><span class="header-section-number">2.1.2</span> Get Our Example Toy Data</a></li>
+  <li><a href="#get-our-example-data" id="toc-get-our-example-data" class="nav-link" data-scroll-target="#get-our-example-data"><span class="header-section-number">2.1.2</span> Get Our Example Data</a></li>
   <li><a href="#metabolite-data" id="toc-metabolite-data" class="nav-link" data-scroll-target="#metabolite-data"><span class="header-section-number">2.1.3</span> Metabolite Data</a></li>
   </ul></li>
   <li><a href="#input-data-preprocessing" id="toc-input-data-preprocessing" class="nav-link" data-scroll-target="#input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</a>
@@ -364,22 +364,22 @@ Important
 </div>
 </div>
 </section>
-<section id="get-our-example-toy-data" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="get-our-example-toy-data"><span class="header-section-number">2.1.2</span> Get Our Example Toy Data</h3>
-<p>MAPA provides several <strong>built-in demo datasets</strong> that help you to go through and study MAPA workflow steps such as pathway enrichment analysis, and integrated expression visualization.</p>
-<p>To load any dataset, use:</p>
+<section id="get-our-example-data" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="get-our-example-data"><span class="header-section-number">2.1.2</span> Get Our Example Data</h3>
+<p>MAPA provides several <strong>built-in demo datasets</strong> that help you to go through and study MAPA workflow such as pathway enrichment analysis in the next step <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>, and integrated heatmap visualization in <a href="08_data_vis.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
+<p>To load any dataset for the following step <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>, use:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_ora)       <span class="co"># Gene ORA dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_gsea)      <span class="co"># Gene GSEA dataset</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_met)       <span class="co"># Metabolite ORA dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Below are some info about these datasets:</p>
+<p>Below are some information about these datasets:</p>
 <table class="table">
 <colgroup>
-<col style="width: 6%">
+<col style="width: 7%">
 <col style="width: 30%">
-<col style="width: 4%">
+<col style="width: 3%">
 <col style="width: 4%">
 <col style="width: 17%">
-<col style="width: 34%">
+<col style="width: 35%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -405,7 +405,7 @@ Important
 <td>5,290 proteins with fold changes and adjusted p-values from liver tissue</td>
 <td>5,290</td>
 <td>3</td>
-<td>Gene Gene Set Enrichment Analysis (GSEA)</td>
+<td>Gene Set Enrichment Analysis (GSEA)</td>
 <td>Takasugi et al., <em>Nat Commun</em> <strong>15</strong>, 8520 (2024), DOI: 10.1038/s41467-024-52845-x</td>
 </tr>
 <tr class="odd">

@@ -24,11 +24,11 @@ mapa accepts gene expression data with flexible identifier requirements, dependi
 Column names must be in lowercase.
 :::
 
-### Get Our Example Toy Data
+### Get Our Example Data
 
-MAPA provides several **built-in demo datasets** that help you to go through and study MAPA workflow steps such as pathway enrichment analysis, and integrated expression visualization.
+MAPA provides several **built-in demo datasets** that help you to go through and study MAPA workflow such as pathway enrichment analysis in the next step @sec-enrichment_analysis, and integrated heatmap visualization in @sec-data_vis.
 
-To load any dataset, use:
+To load any dataset for the following step @sec-enrichment_analysis, use:
 
 ``` r
 data(demo_data_ora)       # Gene ORA dataset
@@ -36,23 +36,23 @@ data(demo_data_gsea)      # Gene GSEA dataset
 data(demo_data_met)       # Metabolite ORA dataset
 ```
 
-Below are some info about these datasets:
+Below are some information about these datasets:
 
-+----------------+--------------------------------------------------------------------------+---------+---------+------------------------------------------+------------------------------------------------------------------------------------+
-| Dataset        | Content                                                                  | Rows    | Columns | Use                                      | Source                                                                             |
-+================+==========================================================================+=========+=========+==========================================+====================================================================================+
-| ```            | 66 significantly downregulated proteins (log2FC, FDR) from muscle tissue | 66      | 3       | Gene Over-Representation Analysis (ORA)  | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
-| demo_data_ora  |                                                                          |         |         |                                          |                                                                                    |
-| ```            |                                                                          |         |         |                                          |                                                                                    |
-+----------------+--------------------------------------------------------------------------+---------+---------+------------------------------------------+------------------------------------------------------------------------------------+
-| ```            | 5,290 proteins with fold changes and adjusted p-values from liver tissue | 5,290   | 3       | Gene Gene Set Enrichment Analysis (GSEA) | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
-| demo_data_gsea |                                                                          |         |         |                                          |                                                                                    |
-| ```            |                                                                          |         |         |                                          |                                                                                    |
-+----------------+--------------------------------------------------------------------------+---------+---------+------------------------------------------+------------------------------------------------------------------------------------+
-| ```            | 106 altered metabolites with KEGG IDs, FDR, and fold-change scores       | 106     | 4       | Metabolite pathway enrichment analysis   | In-house data                                                                      |
-| demo_data_met  |                                                                          |         |         |                                          |                                                                                    |
-| ```            |                                                                          |         |         |                                          |                                                                                    |
-+----------------+--------------------------------------------------------------------------+---------+---------+------------------------------------------+------------------------------------------------------------------------------------+
++----------------+--------------------------------------------------------------------------+--------+---------+-----------------------------------------+------------------------------------------------------------------------------------+
+| Dataset        | Content                                                                  | Rows   | Columns | Use                                     | Source                                                                             |
++================+==========================================================================+========+=========+=========================================+====================================================================================+
+| ```            | 66 significantly downregulated proteins (log2FC, FDR) from muscle tissue | 66     | 3       | Gene Over-Representation Analysis (ORA) | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
+| demo_data_ora  |                                                                          |        |         |                                         |                                                                                    |
+| ```            |                                                                          |        |         |                                         |                                                                                    |
++----------------+--------------------------------------------------------------------------+--------+---------+-----------------------------------------+------------------------------------------------------------------------------------+
+| ```            | 5,290 proteins with fold changes and adjusted p-values from liver tissue | 5,290  | 3       | Gene Set Enrichment Analysis (GSEA)     | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
+| demo_data_gsea |                                                                          |        |         |                                         |                                                                                    |
+| ```            |                                                                          |        |         |                                         |                                                                                    |
++----------------+--------------------------------------------------------------------------+--------+---------+-----------------------------------------+------------------------------------------------------------------------------------+
+| ```            | 106 altered metabolites with KEGG IDs, FDR, and fold-change scores       | 106    | 4       | Metabolite pathway enrichment analysis  | In-house data                                                                      |
+| demo_data_met  |                                                                          |        |         |                                         |                                                                                    |
+| ```            |                                                                          |        |         |                                         |                                                                                    |
++----------------+--------------------------------------------------------------------------+--------+---------+-----------------------------------------+------------------------------------------------------------------------------------+
 
 ::: panel-tabset
 ##### Over-Representation Analysis (ORA)
