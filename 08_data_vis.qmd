@@ -306,6 +306,82 @@ plot_relationship_network(
 
 ## Relationship Heatmap Visualization
 
+The `plot_relationship_heatmap()` function creates an integrated plot that links a relationship network (functional modules → pathways → molecules) to an expression heatmap.
+
+-   At the **pathway** level: mean expression per pathway is shown
+
+-   At the **molecule** level: per-molecule expression with optional clustering is shown
+
+-   (Optional) You can also add **word-cloud** annotations to summarize each functional module
+
+::: callout-important
+**Requirements:**
+
+-   A `functional_module` object from previous steps (`merge_pathways()` + `merge_modules()` **or** `merge_pathways_bioembedsim()`, optionally `llm_interpret_module()` if you want LLM summaries).
+
+-   An `expression_data` table with an `id` column (gene/protein ENSEMBL; metabolite HMDB/KEGG) followed by one column per sample.
+:::
+
+### Basic Use: Pathway Level
+
+```{r}
+#| eval: false
+
+# This example uses ORA-style expression matrix that matches the gene IDs in your modules
+
+plot_relationship_heatmap(
+  object      = object,  # functional_module object
+  level       = "pathway",
+  expression_data = ora_expression_dt,  # e.g., demo expression for muscle (65 genes × 8 samples)
+  module_content_number_cutoff = 3,     # keep modules with >3 pathways
+  wordcloud   = TRUE,                   # add module-level word clouds
+  llm_text    = FALSE                   # set TRUE to use LLM summaries (if available)
+)
+```
+
+### Basic Use: Molecular Level
+
+```{r}
+#| eval: false
+
+# Focus on specific modules and visualize individual molecules
+plot_relationship_heatmap(
+  object      = functional_modules,
+  level       = "molecule",
+  expression_data = gsea_expression_dt,   # e.g., demo expression for liver (5,167 genes × 8 samples)
+  module_ids  = c("Functional_module_10", "Functional_module_25"),
+  cluster_rows      = TRUE,               # hierarchical clustering of molecules
+  show_cluster_tree = TRUE,               # show the dendrogram
+  scale_expression_data = TRUE            # z-score per row
+)
+```
+
+### Key Parameters
+
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| Parameter                                                       | Description                                                 | Options/Default/Use                   |
++=================================================================+=============================================================+=======================================+
+| `level`                                                         | Granularity of the view                                     | `"pathway"` or `"molecule"`           |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `expression_data`                                               | Expression matrix with id + sample columns                  | Use our example data                  |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `module_ids`                                                    | Plot only selected modules                                  | `NULL`                                |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `module_content_number_cutoff`                                  | Keep modules with pathway count greater than this threshold | `NULL`                                |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `cluster_rows`                                                  | Perform row clustering                                      | `FALSE`                               |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `show_cluster_tree`                                             | Show dendrogram (molecule level)                            | `TRUE`                                |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `wordcloud`                                                     | Add module word-cloud                                       | `TRUE`                                |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `llm_text`                                                      | Use LLM summaries if previously having run this step        | `TRUE`                                |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `*_position_limits`, `*_color`, `*_text`                        | Layout and labeling of network nodes                        | Adjust for readability in dense plots |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+| `plot_widths`, `heatmap_height_ratios`, `network_height_ratios` | Panel sizing & alignment                                    | Tweak when labels or modules are many |
++-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+
 ## Troubleshooting Visualization Issues
 
 **Common Issues and Solutions:**
