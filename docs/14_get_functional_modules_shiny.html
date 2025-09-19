@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>14&nbsp; Functional Module Identification – MAPA tutorial</title>
+<title>MAPA Tutorial - 14&nbsp; Functional Module Identification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,12 +39,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-632f36f2c1407c4cee85ceeffdfc11c1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,13 +83,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./14_get_functional_modules_shiny.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./14_get_functional_modules_shiny.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MAPA tutorial</a> 
+      <a href="./">MAPA Tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -126,9 +126,9 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">MAPA R Package</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -191,9 +191,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">MAPA Shiny App/Web</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -266,20 +266,18 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">14.1</span> Overview</a></li>
   <li><a href="#step-1-load-your-data" id="toc-step-1-load-your-data" class="nav-link" data-scroll-target="#step-1-load-your-data"><span class="header-section-number">14.2</span> Step 1: Load Your Data</a></li>
-  <li><a href="#step-2-find-optimal-parameters" id="toc-step-2-find-optimal-parameters" class="nav-link" data-scroll-target="#step-2-find-optimal-parameters"><span class="header-section-number">14.3</span> Step 2: Find Optimal Parameters</a></li>
-  <li><a href="#step-3-review-optimal-parameter-results" id="toc-step-3-review-optimal-parameter-results" class="nav-link" data-scroll-target="#step-3-review-optimal-parameter-results"><span class="header-section-number">14.4</span> Step 3: Review Optimal Parameter Results</a></li>
-  <li><a href="#step-4-run-final-clustering-parameters" id="toc-step-4-run-final-clustering-parameters" class="nav-link" data-scroll-target="#step-4-run-final-clustering-parameters"><span class="header-section-number">14.5</span> Step 4: Run Final Clustering Parameters</a></li>
-  <li><a href="#step-5-review-final-clustering-results" id="toc-step-5-review-final-clustering-results" class="nav-link" data-scroll-target="#step-5-review-final-clustering-results"><span class="header-section-number">14.6</span> Step 5: Review Final Clustering Results</a></li>
-  <li><a href="#step-6-view-analysis-code" id="toc-step-6-view-analysis-code" class="nav-link" data-scroll-target="#step-6-view-analysis-code"><span class="header-section-number">14.7</span> Step 6: View Analysis Code</a></li>
-  <li><a href="#clustering-quality-assessment" id="toc-clustering-quality-assessment" class="nav-link" data-scroll-target="#clustering-quality-assessment"><span class="header-section-number">14.8</span> Clustering Quality Assessment</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">14.9</span> Next Steps</a></li>
+  <li><a href="#step-2-perform-module-identification" id="toc-step-2-perform-module-identification" class="nav-link" data-scroll-target="#step-2-perform-module-identification"><span class="header-section-number">14.3</span> Step 2: Perform Module Identification</a></li>
+  <li><a href="#step-3-review-module-identification-results" id="toc-step-3-review-module-identification-results" class="nav-link" data-scroll-target="#step-3-review-module-identification-results"><span class="header-section-number">14.4</span> Step 3: Review Module Identification Results</a></li>
+  <li><a href="#step-4-assess-clustering-quality" id="toc-step-4-assess-clustering-quality" class="nav-link" data-scroll-target="#step-4-assess-clustering-quality"><span class="header-section-number">14.5</span> Step 4: Assess Clustering Quality</a></li>
+  <li><a href="#step-5-view-analysis-code" id="toc-step-5-view-analysis-code" class="nav-link" data-scroll-target="#step-5-view-analysis-code"><span class="header-section-number">14.6</span> Step 5: View Analysis Code</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">14.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/14_get_functional_modules_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/14_get_functional_modules_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./14_get_functional_modules_shiny.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./14_get_functional_modules_shiny.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-shiny_pathway_clustering_shiny" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Functional Module Identification</span></span></h1>
 </div>
@@ -298,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny app provides an intuitive interface for grouping related pathways into functional modules using optimal clustering parameters.</p>
+<p>This chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny web app provides an intuitive interface for clustering similar pathways into functional modules and assessing clustering quality.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -312,116 +310,47 @@ Important
 <p>Prerequisites: Before identifying functional modules, ensure you have either:</p>
 <ol type="1">
 <li><strong>Completed pathway similarity calculation</strong> in the current session using the <strong>Pathway Similarity</strong> section as described in the previous chapter, OR</li>
-<li><strong>Upload existing similarity results</strong> using the file upload option at the top of the interface</li>
+<li><strong>Upload existing similarity results</strong> using the file upload option at the top of the interface.</li>
 </ol>
 <p>The similarity calculation results are required for functional module identification to proceed.</p>
 </div>
 </div>
 <section id="overview" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">14.1</span> Overview</h2>
-<p>The <strong>Pathway Clustering</strong> section in the MAPA Shiny app provides a comprehensive workflow for identifying functional modules from pathway similarity results. It includes two main steps:</p>
-<ol type="1">
-<li><strong>(Optional) Find Optimal Parameters</strong>: Systematically evaluate different clustering algorithms and a series of similarity cutoffs to identify optimal parameters</li>
-<li><strong>Perform Clustering</strong>: Apply the optimal parameters to generate functional modules</li>
-</ol>
-<p>This two-step approach helps ensure high-quality, biologically meaningful pathway modules.</p>
+<p>The <strong>Module Identification</strong> section in the MAPA Shiny web app lets you run clustering directly on the pathway similarity matrix and then assess clustering quality with built-in diagnostics.</p>
+<p>This two-step flow (cluster → assess quality) helps you produce biologically meaningful pathway modules.</p>
 </section>
 <section id="step-1-load-your-data" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="step-1-load-your-data"><span class="header-section-number">14.2</span> Step 1: Load Your Data</h2>
 <ul>
 <li><p><strong>Option 1: Continue from Previous Step</strong></p>
-<p>If you have completed pathway similarity calculation in the <strong>current</strong> session, your data will automatically be available for clustering analysis.</p></li>
+<p>If you have completed pathway similarity calculation in the <strong>current</strong> session, your data will automatically be available for module identification.</p></li>
 <li><p><strong>Option 2: Upload Existing Results</strong></p>
 <p>If you have previously saved similarity results, you can upload them:</p>
 <ol type="1">
 <li><strong>Click “Browse”</strong> at the top of the left panel <strong>“Upload Similarity Result (.rda)”</strong> to upload your similarity results file (.rda format)</li>
 <li><strong>Select your file</strong></li>
-<li><strong>Wait for validation</strong> - the app will automatically detect the input type and prepare for clustering analysis</li>
+<li><strong>Wait for validation</strong> - the app will automatically detect the input type and prepare for Module Identification.</li>
 </ol></li>
 </ul>
 </section>
-<section id="step-2-find-optimal-parameters" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="step-2-find-optimal-parameters"><span class="header-section-number">14.3</span> Step 2: Find Optimal Parameters</h2>
-<p>Before performing the final clustering, it’s highly recommended to systematically evaluate different clustering parameters to find the optimal settings. The optimal parameter analysis tests three clustering algorithms:</p>
-<ul>
-<li>Binary cut: Uses the <a href="https://doi.org/10.1016/j.gpb.2022.04.008">simplifyEnrichment</a> algorithm</li>
-<li>Girvan Newman: Community detection based on edge betweenness</li>
-<li>Hierarchical: Traditional agglomerative clustering</li>
-</ul>
-<p>Each method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation. You can set the evaluation parameters:</p>
-<ul>
-<li><p><strong>Cutoff Increment</strong>: Step size for the similarity cutoff sequence (default: 0.1)</p>
-<ul>
-<li>Smaller values (e.g., 0.05) provide more detailed analysis but take longer</li>
-<li>Larger values (e.g., 0.1) provide faster analysis with broader evaluation</li>
-</ul></li>
-<li><p><strong>Hierarchical Linkage</strong> (for hierarchical method): Agglomeration method options</p></li>
-</ul>
-<p>Then run optimal parameter analysis:</p>
+<section id="step-2-perform-module-identification" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="step-2-perform-module-identification"><span class="header-section-number">14.3</span> Step 2: Perform Module Identification</h2>
 <ol type="1">
-<li><strong>Review your cutoff increment</strong> setting</li>
-<li><strong>Click the “Submit” button</strong> to start the parameter evaluation</li>
-<li><strong>Monitor progress</strong> - the analysis will test multiple clustering methods and similarity cutoffs</li>
-<li><strong>Wait for completion</strong> - processing typically takes 1-3 minutes depending on data complexity and cutoff increment</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/shinyapp_14_optimal_params.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
-</figure>
-</div>
-</section>
-<section id="step-3-review-optimal-parameter-results" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="step-3-review-optimal-parameter-results"><span class="header-section-number">14.4</span> Step 3: Review Optimal Parameter Results</h2>
-<p>After completion, results will appear in the <strong>“Optimal Parameter Analysis”</strong> tab which includes <strong>Evaluation Plot</strong> and <strong>Best Recommended Combinations</strong>:</p>
+<li><p><strong>Set parameters:</strong></p>
 <ul>
-<li><p><strong>Evaluation Plot</strong></p>
-<p>The plot shows how clustering quality metrics change across similarity cutoffs for different clustering methods. Look for:</p>
-<ul>
-<li><strong>Peaks in modularity</strong>: Indicate good community structure (higher = stronger community structure with clearer boundaries between clusters)</li>
-<li><strong>High silhouette scores</strong>: Indicate well-separated clusters (higher = better separated clusters)</li>
-<li><strong>Consistent performance</strong>: Methods that perform well across multiple cutoffs</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/shinyapp_14_evaluation_plot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
-</figure>
-</div></li>
-<li><p><strong>Best Recommended Combinations</strong></p>
-<p>The table identifies the optimal method and cutoff combinations for each metric:</p>
-<ul>
-<li><strong>Method</strong>: Clustering algorithm (hierarchical, binary_cut, girvan_newman)</li>
-<li><strong>Cutoff</strong>: Optimal similarity cutoff value</li>
-<li><strong>Metric</strong>: Evaluation criterion (modularity and silhouette)</li>
-<li><strong>Value</strong>: Maximum achieved score for that metric</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/shinyapp_14_optimal_table.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
-</figure>
-</div></li>
-</ul>
-</section>
-<section id="step-4-run-final-clustering-parameters" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="step-4-run-final-clustering-parameters"><span class="header-section-number">14.5</span> Step 4: Run Final Clustering Parameters</h2>
-<ol type="1">
-<li><p>Use the insights from the optimal parameter analysis to set your final clustering parameters:</p>
-<ul>
-<li><p><strong>Similarity Cutoff</strong>: Use the recommended cutoff from your evaluation (default: 0.5). The meaning of the cutoff depends on your clustering method:</p>
-<ul>
-<li><strong>Girvan-Newman</strong>: Edge filter (higher cutoffs = smaller modules)</li>
-<li><strong>Binary Cut &amp; Hierarchical</strong>: Dendrogram cutting height (higher cutoffs = larger modules)</li>
+<li><p><strong>Similarity cutoff:</strong> Controls the sparsity/cut level used by the selected method. Smaller values generally retain more edges and yield larger modules; larger values retain fewer edges and yield smaller modules. (Exact behavior varies by algorithm.)</p></li>
+<li><p><strong>Clustering method:</strong> Choose from the available methods in the dropdown.</p></li>
+<li><p><strong>Hierarchical linkage</strong> (shown only when a hierarchical method is selected): Choose the agglomeration linkage.</p></li>
 </ul></li>
-<li><p><strong>Clustering Method</strong>: Choose from the three available methods: <strong>Binary cut</strong>, <strong>Girvan Newman</strong>, and <strong>Hierarchical</strong> cluserting</p></li>
-<li><p><strong>Hierarchical Linkage</strong> (only for hierarchical method): Agglomeration method options</p></li>
-</ul></li>
-<li><p><strong>Click the “Submit” button</strong> to perform the final clustering</p></li>
-<li><p><strong>Monitor progress</strong> - clustering typically completes within minutes</p></li>
-<li><p><strong>Review results</strong> in the <strong>“Final Clustering Result”</strong> tab</p></li>
+<li><p><strong>Click “Submit”</strong> to run Module Identification.</p></li>
+<li><p><strong>Monitor progress</strong> clustering typically completes within minutes</p></li>
+<li><p><strong>Review results</strong> under <strong>“Module identification result”</strong> (Table / Data visualization / R object).</p></li>
 </ol>
 </section>
-<section id="step-5-review-final-clustering-results" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="step-5-review-final-clustering-results"><span class="header-section-number">14.6</span> Step 5: Review Final Clustering Results</h2>
-<p>After successful clustering, examine your results in the <strong>“Final Clustering Result”</strong> tab with three sub-tabs:</p>
+<section id="step-3-review-module-identification-results" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="step-3-review-module-identification-results"><span class="header-section-number">14.4</span> Step 3: Review Module Identification Results</h2>
+<p>After clustering finishes, examine your results in <strong>“Module identification result”</strong> with three sub-tabs:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Table Tab</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data Visualization Tab</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">R Object Tab</a></li></ul>
 <div class="tab-content">
@@ -479,26 +408,39 @@ Important
 </div>
 </div>
 </section>
-<section id="step-6-view-analysis-code" class="level2" data-number="14.7">
-<h2 data-number="14.7" class="anchored" data-anchor-id="step-6-view-analysis-code"><span class="header-section-number">14.7</span> Step 6: View Analysis Code</h2>
+<section id="step-4-assess-clustering-quality" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="step-4-assess-clustering-quality"><span class="header-section-number">14.5</span> Step 4: Assess Clustering Quality</h2>
+<p>Use the <strong>Quality assessment</strong> panel to inspect:</p>
+<ul>
+<li><p><strong>Module size:</strong> Distribution of module sizes. Avoid many singletons or one giant module.</p></li>
+<li><p><strong>Silhouette scores:</strong> Higher values indicate better cluster separation.</p></li>
+<li><p><strong>Quality metrics table:</strong> Tabular metrics summarizing clustering quality. You can download results; plot <strong>Width/Height</strong> controls are available where applicable.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can upload a module identification result (.rda) here if you ran clustering elsewhere and only want to assess quality.</p>
+</div>
+</div>
+</section>
+<section id="step-5-view-analysis-code" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="step-5-view-analysis-code"><span class="header-section-number">14.6</span> Step 5: View Analysis Code</h2>
 <p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis:</p>
 <ul>
-<li><strong>Optimal Parameter Analysis Code</strong>: Shows <code>determine_optimal_clusters()</code> function usage</li>
-<li><strong>Final Clustering Code</strong>: Shows <code>get_functional_modules()</code> function usage</li>
+<li><strong>Module Identification Code</strong>: Shows the code used for clustering with your chosen algorithm and cutoff</li>
+<li><strong>Quality Assessment Code</strong>: Shows code used to generate size distribution, silhouette plots, and the metrics table</li>
 </ul>
 <p>This code can be copied and used in your own R scripts for reproducible analysis.</p>
 </section>
-<section id="clustering-quality-assessment" class="level2" data-number="14.8">
-<h2 data-number="14.8" class="anchored" data-anchor-id="clustering-quality-assessment"><span class="header-section-number">14.8</span> Clustering Quality Assessment</h2>
-<p>Evaluate the quality of your functional modules by examining:</p>
-<ul>
-<li><p><strong>Module Size Distribution</strong>: Check if modules have reasonable sizes (not too many singleton modules or one dominant large module) and investigate clusters that are major outliers.</p></li>
-<li><p><strong>Silhouette score plot</strong></p></li>
-<li><p><strong>Biological Interpretation</strong>: Most importantly, examine whether the grouped pathways represent coherent biological processes or functions. Statistical optimization alone doesn’t guarantee biological meaningfulness - modules should tell a clear biological story.</p></li>
-</ul>
-</section>
-<section id="next-steps" class="level2" data-number="14.9">
-<h2 data-number="14.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">14.9</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">14.7</span> Next Steps</h2>
 <p>Once your functional module identification is complete:</p>
 <ol type="1">
 <li><strong>Download Results</strong>: Save both the table and R object for backup and further analysis</li>
@@ -689,7 +631,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -721,27 +674,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -749,7 +682,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -846,6 +779,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "MAPA tutorial"
+  title: "MAPA Tutorial"
   author: "[Yifei Ge](https://www.shen-lab.org/author/yifei-ge/), [Xiaotao Shen](https://www.jaspershenlab.com/), [Yuchen Shen](https://github.com/EthanShenx)"
   date: "6/8/2025"
   favicon: "/images/mapa_logo.png"

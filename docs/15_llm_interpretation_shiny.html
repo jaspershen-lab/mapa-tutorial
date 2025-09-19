@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>MAPA tutorial - 15&nbsp; Functional Module Annotation</title>
+<title>MAPA Tutorial - 15&nbsp; Functional Module Annotation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MAPA tutorial</a> 
+      <a href="./">MAPA Tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -279,8 +279,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-5-download-the-results" id="toc-step-5-download-the-results" class="nav-link" data-scroll-target="#step-5-download-the-results"><span class="header-section-number">15.7</span> Step 5: Download the Results</a></li>
   <li><a href="#step-6-view-analysis-code" id="toc-step-6-view-analysis-code" class="nav-link" data-scroll-target="#step-6-view-analysis-code"><span class="header-section-number">15.8</span> Step 6: View Analysis Code</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">15.9</span> Best Practices</a></li>
-  <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting"><span class="header-section-number">15.10</span> Trouble Shooting</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">15.11</span> Next Steps</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">15.10</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/15_llm_interpretation_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/15_llm_interpretation_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -382,6 +381,7 @@ Important
 <li><strong>Click “Browse”</strong> at the top of the left panel <strong>“Upload functional module (.rda)”</strong> to upload your analyzed functional module file (.rda format)</li>
 <li><strong>Select your file</strong></li>
 </ol>
+<p>You can also proceed directly if the functional module result is already present in the current session.</p>
 </section>
 <section id="step-2-configure-llm-and-api-settings" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="step-2-configure-llm-and-api-settings"><span class="header-section-number">15.4</span> Step 2: Configure LLM and API Settings</h2>
@@ -399,14 +399,14 @@ Important
 <tr class="header">
 <th>Parameter</th>
 <th>Description</th>
-<th>Default</th>
+<th>Example</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>API provider</code></td>
-<td>GPT model for text generation</td>
+<td>LLM model for text generation</td>
 <td><code>"gpt-4o-mini-2024-07-18"</code></td>
 <td>Currently supports OpenAI models only</td>
 </tr>
@@ -418,12 +418,25 @@ Important
 </tr>
 <tr class="odd">
 <td><code>API key</code></td>
-<td>OpenAI API key</td>
+<td>OpenAI/Google/SiliconFlow API key</td>
 <td>Required</td>
 <td>Store securely, never commit to version control</td>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Model Selection: The model dropdown in the web only lists variants we’ve tested to work stably. See provider docs if you need others.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -434,7 +447,14 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Model Selection: Due to changes in how requests are processed in GPT-5 model series, we <strong>strongly</strong> recommend using the default option (<code>gpt-4o-mini-2024-07-18</code>) for the best performance and quality.</p>
+<p>If you are a <strong>server</strong> MAPA user, please note:</p>
+<p>When running the <em>biotext embedding</em> step in <a href="13_pathway_similarity_shiny.html" class="quarto-xref"><span>Chapter 13</span></a> or the <em>module annotation</em> step in this chapter, <strong>only models and API keys provided by <a href="https://www.siliconflow.com/">SiliconFlow</a></strong> are supported.<br>
+This restriction exists because the server is set up in China Mainland. To ensure a stable connection to <em>SiliconFlow</em>:</p>
+<ul>
+<li><strong>Users in China Mainland</strong>: Use an API key from the Chinese portal — <a href="https://siliconflow.cn/">https://siliconflow.cn</a><br>
+</li>
+<li><strong>International users</strong>: Use an API key from the global portal — <a href="https://www.siliconflow.com/">https://www.siliconflow.com</a></li>
+</ul>
 </div>
 </div>
 </section>
@@ -623,25 +643,8 @@ Important
 <li><strong>Iterate</strong>: Refine parameters based on initial results</li>
 </ol>
 </section>
-<section id="trouble-shooting" class="level2" data-number="15.10">
-<h2 data-number="15.10" class="anchored" data-anchor-id="trouble-shooting"><span class="header-section-number">15.10</span> Trouble Shooting</h2>
-<p><strong>1. LLM Access Problems</strong></p>
-<p>When using the module annotation step or the biotext embedding step, only models and API keys provided by <em>SiliconFlow</em> are supported. To have a stable connection to <em>SiliconFlow</em>,</p>
-<ul>
-<li><strong>Users in China</strong>: Use an API key from the Chinese portal — <a href="https://siliconflow.cn/">https://siliconflow.cn</a><br>
-</li>
-<li><strong>International users</strong>: Use an API key from the global portal — <a href="https://www.siliconflow.com/">https://www.siliconflow.com</a></li>
-</ul>
-<p><strong>2. Pathway Retrieval from Reactome</strong></p>
-<p>Occasionally, the connection to Reactome may be unstable, which could result in errors or incomplete responses. If you encounter such issues, simply try running the request again.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/shinyapp_15_reactome_troubleshooting.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="785"></p>
-</figure>
-</div>
-</section>
-<section id="next-steps" class="level2" data-number="15.11">
-<h2 data-number="15.11" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">15.11</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">15.10</span> Next Steps</h2>
 <p>Continue to <a href="./16_data_vis_shiny.html">Data Visualization</a> to create informative plots showcasing your LLM-interpreted modules.</p>
 
 

@@ -1,30 +1,27 @@
 # Functional Module Identification {#sec-shiny_pathway_clustering_shiny}
 
-This chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny app provides an intuitive interface for grouping related pathways into functional modules using optimal clustering parameters.
+This chapter describes how to identify functional modules using the MAPA Shiny application. The Shiny web app provides an intuitive interface for clustering similar pathways into functional modules and assessing clustering quality.
 
 ::: callout-important
 Prerequisites: Before identifying functional modules, ensure you have either:
 
 1.  **Completed pathway similarity calculation** in the current session using the **Pathway Similarity** section as described in the previous chapter, OR
-2.  **Upload existing similarity results** using the file upload option at the top of the interface
+2.  **Upload existing similarity results** using the file upload option at the top of the interface.
 
 The similarity calculation results are required for functional module identification to proceed.
 :::
 
 ## Overview
 
-The **Pathway Clustering** section in the MAPA Shiny app provides a comprehensive workflow for identifying functional modules from pathway similarity results. It includes two main steps:
+The **Module Identification** section in the MAPA Shiny web app lets you run clustering directly on the pathway similarity matrix and then assess clustering quality with built-in diagnostics.
 
-1.  **(Optional) Find Optimal Parameters**: Systematically evaluate different clustering algorithms and a series of similarity cutoffs to identify optimal parameters
-2.  **Perform Clustering**: Apply the optimal parameters to generate functional modules
-
-This two-step approach helps ensure high-quality, biologically meaningful pathway modules.
+This two-step flow (cluster → assess quality) helps you produce biologically meaningful pathway modules.
 
 ## Step 1: Load Your Data
 
 -   **Option 1: Continue from Previous Step**
 
-    If you have completed pathway similarity calculation in the **current** session, your data will automatically be available for clustering analysis.
+    If you have completed pathway similarity calculation in the **current** session, your data will automatically be available for module identification.
 
 -   **Option 2: Upload Existing Results**
 
@@ -32,81 +29,27 @@ This two-step approach helps ensure high-quality, biologically meaningful pathwa
 
     1.  **Click "Browse"** at the top of the left panel **"Upload Similarity Result (.rda)"** to upload your similarity results file (.rda format)
     2.  **Select your file**
-    3.  **Wait for validation** - the app will automatically detect the input type and prepare for clustering analysis
+    3.  **Wait for validation** - the app will automatically detect the input type and prepare for Module Identification.
 
-## Step 2: Find Optimal Parameters
+## Step 2: Perform Module Identification
 
-Before performing the final clustering, it's highly recommended to systematically evaluate different clustering parameters to find the optimal settings. The optimal parameter analysis tests three clustering algorithms:
+1.  **Set parameters:**
 
--   Binary cut: Uses the [simplifyEnrichment](https://doi.org/10.1016/j.gpb.2022.04.008) algorithm
--   Girvan Newman: Community detection based on edge betweenness
--   Hierarchical: Traditional agglomerative clustering
+    -   **Similarity cutoff:** Controls the sparsity/cut level used by the selected method. Smaller values generally retain more edges and yield larger modules; larger values retain fewer edges and yield smaller modules. (Exact behavior varies by algorithm.)
 
-Each method is tested across a range of similarity cutoffs to find the optimal balance between cluster cohesion and separation. You can set the evaluation parameters:
+    -   **Clustering method:** Choose from the available methods in the dropdown.
 
--   **Cutoff Increment**: Step size for the similarity cutoff sequence (default: 0.1)
+    -   **Hierarchical linkage** (shown only when a hierarchical method is selected): Choose the agglomeration linkage.
 
-    -   Smaller values (e.g., 0.05) provide more detailed analysis but take longer
-    -   Larger values (e.g., 0.1) provide faster analysis with broader evaluation
+2.  **Click "Submit"** to run Module Identification.
 
--   **Hierarchical Linkage** (for hierarchical method): Agglomeration method options
+3.  **Monitor progress** clustering typically completes within minutes
 
-Then run optimal parameter analysis:
+4.  **Review results** under **"Module identification result"** (Table / Data visualization / R object).
 
-1.  **Review your cutoff increment** setting
-2.  **Click the "Submit" button** to start the parameter evaluation
-3.  **Monitor progress** - the analysis will test multiple clustering methods and similarity cutoffs
-4.  **Wait for completion** - processing typically takes 1-3 minutes depending on data complexity and cutoff increment
+## Step 3: Review Module Identification Results
 
-![](images/shinyapp_14_optimal_params.png){fig-align="center" width="500"}
-
-## Step 3: Review Optimal Parameter Results
-
-After completion, results will appear in the **"Optimal Parameter Analysis"** tab which includes **Evaluation Plot** and **Best Recommended Combinations**:
-
--   **Evaluation Plot**
-
-    The plot shows how clustering quality metrics change across similarity cutoffs for different clustering methods. Look for:
-
-    -   **Peaks in modularity**: Indicate good community structure (higher = stronger community structure with clearer boundaries between clusters)
-    -   **High silhouette scores**: Indicate well-separated clusters (higher = better separated clusters)
-    -   **Consistent performance**: Methods that perform well across multiple cutoffs
-
-    ![](images/shinyapp_14_evaluation_plot.png){fig-align="center" width="750"}
-
--   **Best Recommended Combinations**
-
-    The table identifies the optimal method and cutoff combinations for each metric:
-
-    -   **Method**: Clustering algorithm (hierarchical, binary_cut, girvan_newman)
-    -   **Cutoff**: Optimal similarity cutoff value
-    -   **Metric**: Evaluation criterion (modularity and silhouette)
-    -   **Value**: Maximum achieved score for that metric
-
-    ![](images/shinyapp_14_optimal_table.png){fig-align="center" width="750"}
-
-## Step 4: Run Final Clustering Parameters
-
-1.  Use the insights from the optimal parameter analysis to set your final clustering parameters:
-
-    -   **Similarity Cutoff**: Use the recommended cutoff from your evaluation (default: 0.5). The meaning of the cutoff depends on your clustering method:
-
-        -   **Girvan-Newman**: Edge filter (higher cutoffs = smaller modules)
-        -   **Binary Cut & Hierarchical**: Dendrogram cutting height (higher cutoffs = larger modules)
-
-    -   **Clustering Method**: Choose from the three available methods: **Binary cut**, **Girvan Newman**, and **Hierarchical** cluserting
-
-    -   **Hierarchical Linkage** (only for hierarchical method): Agglomeration method options
-
-2.  **Click the "Submit" button** to perform the final clustering
-
-3.  **Monitor progress** - clustering typically completes within minutes
-
-4.  **Review results** in the **"Final Clustering Result"** tab
-
-## Step 5: Review Final Clustering Results
-
-After successful clustering, examine your results in the **"Final Clustering Result"** tab with three sub-tabs:
+After clustering finishes, examine your results in **"Module identification result"** with three sub-tabs:
 
 ::: panel-tabset
 ##### Table Tab
@@ -150,24 +93,28 @@ Access the complete results object for further analysis:
 ![](images/shinyapp_14_r_object.png){fig-align="center" width="500"}
 :::
 
-## Step 6: View Analysis Code
+## Step 4: Assess Clustering Quality
+
+Use the **Quality assessment** panel to inspect:
+
+-   **Module size:** Distribution of module sizes. Avoid many singletons or one giant module.
+
+-   **Silhouette scores:** Higher values indicate better cluster separation.
+
+-   **Quality metrics table:** Tabular metrics summarizing clustering quality. You can download results; plot **Width/Height** controls are available where applicable.
+
+::: callout-note
+You can upload a module identification result (.rda) here if you ran clustering elsewhere and only want to assess quality.
+:::
+
+## Step 5: View Analysis Code
 
 Click the **"Code"** button to see the exact R code that replicates your analysis:
 
--   **Optimal Parameter Analysis Code**: Shows `determine_optimal_clusters()` function usage
--   **Final Clustering Code**: Shows `get_functional_modules()` function usage
+-   **Module Identification Code**: Shows the code used for clustering with your chosen algorithm and cutoff
+-   **Quality Assessment Code**: Shows code used to generate size distribution, silhouette plots, and the metrics table
 
 This code can be copied and used in your own R scripts for reproducible analysis.
-
-## Clustering Quality Assessment
-
-Evaluate the quality of your functional modules by examining:
-
--   **Module Size Distribution**: Check if modules have reasonable sizes (not too many singleton modules or one dominant large module) and investigate clusters that are major outliers.
-
--   **Silhouette score plot**
-
--   **Biological Interpretation**: Most importantly, examine whether the grouped pathways represent coherent biological processes or functions. Statistical optimization alone doesn't guarantee biological meaningfulness - modules should tell a clear biological story.
 
 ## Next Steps
 

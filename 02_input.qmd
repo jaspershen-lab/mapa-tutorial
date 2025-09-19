@@ -39,7 +39,7 @@ data(demo_data_met)       # Metabolite ORA dataset
 Below are some information about these datasets:
 
 | Dataset          | Content                                                                  | Rows  | Columns | Use                                     | Source                                                                             |
-|----------|--------------|----------|----------|----------|-----------------|
+|------------|------------|------------|------------|------------|------------|
 | `demo_data_ora`  | 66 significantly downregulated proteins (log2FC, FDR) from muscle tissue | 66    | 3       | Gene Over-Representation Analysis (ORA) | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
 | `demo_data_gsea` | 5,290 proteins with fold changes and adjusted p-values from liver tissue | 5,290 | 3       | Gene Set Enrichment Analysis (GSEA)     | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
 | `demo_data_met`  | 106 altered metabolites with KEGG IDs, FDR, and fold-change scores       | 106   | 4       | Metabolite pathway enrichment analysis  | In-house data                                                                      |

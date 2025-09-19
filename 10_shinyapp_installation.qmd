@@ -65,9 +65,9 @@ The workflow described in this section is applicable to both **MAPA Shiny App** 
 ::: callout-important
 **Data Privacy Statement**
 
-- Yes, your uploaded data are transmitted to and processed by our server.
+-   Yes, your uploaded data are transmitted to and processed by our server.
 
-- No, we _do not_ sell your data, use your data to train machine-learning models, or make your files public. 
+-   No, we *do not* sell your data, use your data to train machine-learning models, or make your files public.
 
 Uploaded files are used solely to run the analysis you request and are kept in session-scoped, temporary storage that is routinely purged.
 

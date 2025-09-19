@@ -66,12 +66,12 @@ When you select "Biotext embedding", the interface displays parameters for LLM-b
 
 Set up your API connection:
 
--   **API provider**: Choose between OpenAI or Gemini
+-   **API provider**: Choose between OpenAI or Gemini or SiliconFlow
 -   **Embedding model**: Specify the text embedding model (e.g., "text-embedding-3-small")
 -   **API key**: Enter your API key for the selected provider
 
 ::: callout-note
-Note: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.
+Note: Third-party API keys, other than SiliconFLow, are not currently supported.
 :::
 
 ::: callout-tip
@@ -79,8 +79,19 @@ Note: Third-party API keys, such as those from OpenRouter, are not currently sup
 
 -   For OpenAI: Obtain your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 -   For Gemini: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+-   For SilisonFlow: Get your API key from [SiliconFlow Website](https://docs.siliconflow.com/en/userguide/quickstart)
 
-Store your API key securely and never commit it to version control.
+**Note: Store your API key securely and never commit it to version control!**
+:::
+
+::: callout-important
+If you are a **server** MAPA user, please note:
+
+When running the *biotext embedding* step in this chapter or the *module annotation* step in @sec-shiny_llm_interpretation_shiny, **only models and API keys provided by [SiliconFlow](https://www.siliconflow.com/)** are supported.  
+This restriction exists because the server is set up in China Mainland. To ensure a stable connection to *SiliconFlow*:
+
+- **Users in China Mainland**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
+- **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
 :::
 
 #### Database Selection and Filtering
@@ -181,15 +192,6 @@ Click the **"Code"** button to see the exact R code that replicates your analysi
 | **Novel discoveries**          | Based on known annotations     | Can identify functional relationships beyond overlap |
 | **Internet dependency**        | Minimal (for database updates) | Required for API access                              |
 | **Cross-database integration** | Limited by annotation overlap  | Excellent semantic integration                       |
-
-## Trouble Shooting
-
-**LLM Access Problems**
-
-   When using the *module annotation* step or the *biotext embedding* step, only models and API keys provided by _SiliconFlow_ are supported. To have a stable connection to _SiliconFlow_,
-
-   - **Users in China**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
-   - **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
 
 ## Next Steps
 

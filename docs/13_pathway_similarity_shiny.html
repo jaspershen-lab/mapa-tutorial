@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>MAPA tutorial - 13&nbsp; Pathway Similarity Calculation</title>
+<title>MAPA Tutorial - 13&nbsp; Pathway Similarity Calculation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MAPA tutorial</a> 
+      <a href="./">MAPA Tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -274,8 +274,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-4-review-results" id="toc-step-4-review-results" class="nav-link" data-scroll-target="#step-4-review-results"><span class="header-section-number">13.4</span> Step 4: Review Results</a></li>
   <li><a href="#step-5-view-analysis-code" id="toc-step-5-view-analysis-code" class="nav-link" data-scroll-target="#step-5-view-analysis-code"><span class="header-section-number">13.5</span> Step 5: View Analysis Code</a></li>
   <li><a href="#method-comparison" id="toc-method-comparison" class="nav-link" data-scroll-target="#method-comparison"><span class="header-section-number">13.6</span> Method Comparison</a></li>
-  <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting"><span class="header-section-number">13.7</span> Trouble Shooting</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">13.8</span> Next Steps</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">13.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/13_pathway_similarity_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -338,7 +337,7 @@ Important
 <h2 data-number="13.2" class="anchored" data-anchor-id="step-2-select-method"><span class="header-section-number">13.2</span> Step 2: Select Method</h2>
 <p>Once your data is loaded, choose your similarity calculation method using the radio buttons:</p>
 <ul>
-<li><strong>Traditional methods</strong>: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see <span class="quarto-unresolved-ref">?sec-supported_db</span>)</li>
+<li><strong>Traditional methods</strong>: Uses established similarity measures (semantic similarity for GO, overlap-based similarity for all supported databases, see <a href="12_enrichment_analysis_shiny.html#sec-supported_db" class="quarto-xref"><span>Section 12.1</span></a>)</li>
 <li><strong>Biotext embedding</strong>: Uses large language model (LLM) text embeddings to capture semantic relationships</li>
 </ul>
 <section id="method-1-traditional-methods" class="level3" data-number="13.2.1">
@@ -428,7 +427,7 @@ Tip
 <h4 data-number="13.2.2.1" class="anchored" data-anchor-id="api-configuration"><span class="header-section-number">13.2.2.1</span> API Configuration</h4>
 <p>Set up your API connection:</p>
 <ul>
-<li><strong>API provider</strong>: Choose between OpenAI or Gemini</li>
+<li><strong>API provider</strong>: Choose between OpenAI or Gemini or SiliconFlow</li>
 <li><strong>Embedding model</strong>: Specify the text embedding model (e.g., “text-embedding-3-small”)</li>
 <li><strong>API key</strong>: Enter your API key for the selected provider</li>
 </ul>
@@ -442,7 +441,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note: Third-party API keys, such as those from OpenRouter, are not currently supported. Please use an official API provider.</p>
+<p>Note: Third-party API keys, other than SiliconFLow, are not currently supported.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -459,8 +458,29 @@ Tip
 <ul>
 <li>For OpenAI: Obtain your API key from <a href="https://platform.openai.com/api-keys">OpenAI Platform</a></li>
 <li>For Gemini: Get your API key from <a href="https://makersuite.google.com/app/apikey">Google AI Studio</a></li>
+<li>For SilisonFlow: Get your API key from <a href="https://docs.siliconflow.com/en/userguide/quickstart">SiliconFlow Website</a></li>
 </ul>
-<p>Store your API key securely and never commit it to version control.</p>
+<p><strong>Note: Store your API key securely and never commit it to version control!</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are a <strong>server</strong> MAPA user, please note:</p>
+<p>When running the <em>biotext embedding</em> step in this chapter or the <em>module annotation</em> step in <a href="15_llm_interpretation_shiny.html" class="quarto-xref"><span>Chapter 15</span></a>, <strong>only models and API keys provided by <a href="https://www.siliconflow.com/">SiliconFlow</a></strong> are supported.<br>
+This restriction exists because the server is set up in China Mainland. To ensure a stable connection to <em>SiliconFlow</em>:</p>
+<ul>
+<li><strong>Users in China Mainland</strong>: Use an API key from the Chinese portal — <a href="https://siliconflow.cn/">https://siliconflow.cn</a><br>
+</li>
+<li><strong>International users</strong>: Use an API key from the global portal — <a href="https://www.siliconflow.com/">https://www.siliconflow.com</a></li>
+</ul>
 </div>
 </div>
 </section>
@@ -684,18 +704,8 @@ Note
 </tbody>
 </table>
 </section>
-<section id="trouble-shooting" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="trouble-shooting"><span class="header-section-number">13.7</span> Trouble Shooting</h2>
-<p><strong>LLM Access Problems</strong></p>
-<p>When using the <em>module annotation</em> step or the <em>biotext embedding</em> step, only models and API keys provided by <em>SiliconFlow</em> are supported. To have a stable connection to <em>SiliconFlow</em>,</p>
-<ul>
-<li><strong>Users in China</strong>: Use an API key from the Chinese portal — <a href="https://siliconflow.cn/">https://siliconflow.cn</a><br>
-</li>
-<li><strong>International users</strong>: Use an API key from the global portal — <a href="https://www.siliconflow.com/">https://www.siliconflow.com</a></li>
-</ul>
-</section>
-<section id="next-steps" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">13.8</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">13.7</span> Next Steps</h2>
 <p>Once your similarity calculation is complete:</p>
 <ol type="1">
 <li><p><strong>Review and Download Results</strong>: Examine the similarity patterns and download results for further analysis and as backup copies so that you can restart from this point if needed.</p></li>

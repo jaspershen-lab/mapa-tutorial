@@ -65,20 +65,32 @@ Upload previously saved results:
 1.  **Click "Browse"** at the top of the left panel **"Upload functional module (.rda)"** to upload your analyzed functional module file (.rda format)
 2.  **Select your file**
 
+You can also proceed directly if the functional module result is already present in the current session.
+
 ## Step 2: Configure LLM and API Settings
 
 ### LLM Model Settings
 
 Configure your LLM and text embedding models settings with references to the table below:
 
-| Parameter         | Description                   | Default                    | Notes                                           |
+| Parameter         | Description                       | Example                    | Notes                                           |
 |------------------|-------------------|------------------|------------------|
-| `API provider`    | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
-| `Embedding model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
-| `API key`         | OpenAI API key                | Required                   | Store securely, never commit to version control |
+| `API provider`    | LLM model for text generation     | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
+| `Embedding model` | Model for text embeddings         | `"text-embedding-3-small"` | Used for document similarity                    |
+| `API key`         | OpenAI/Google/SiliconFlow API key | Required                   | Store securely, never commit to version control |
+
+::: callout-note
+Model Selection: The model dropdown in the web only lists variants we’ve tested to work stably. See provider docs if you need others.
+:::
 
 ::: callout-important
-Model Selection: Due to changes in how requests are processed in GPT-5 model series, we **strongly** recommend using the default option (`gpt-4o-mini-2024-07-18`) for the best performance and quality.
+If you are a **server** MAPA user, please note:
+
+When running the *biotext embedding* step in @sec-shiny_pathway_similarity or the *module annotation* step in this chapter, **only models and API keys provided by [SiliconFlow](https://www.siliconflow.com/)** are supported.\
+This restriction exists because the server is set up in China Mainland. To ensure a stable connection to *SiliconFlow*:
+
+-   **Users in China Mainland**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)\
+-   **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
 :::
 
 ### Literature Search Settings
@@ -178,21 +190,6 @@ This code can be copied and used in your own R scripts for reproducible analysis
 4.  **Include Local Literature**: Add your own papers for domain-specific insights
 5.  **Review Results**: Examine confidence scores and retrieved literature quality
 6.  **Iterate**: Refine parameters based on initial results
-
-## Trouble Shooting
-
-**1. LLM Access Problems**
-
-   When using the module annotation step or the biotext embedding step, only models and API keys provided by _SiliconFlow_ are supported. To have a stable connection to _SiliconFlow_,
-
-   - **Users in China**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
-   - **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
-
-**2. Pathway Retrieval from Reactome**
-
-Occasionally, the connection to Reactome may be unstable, which could result in errors or incomplete responses. If you encounter such issues, simply try running the request again.
-
-![](images/shinyapp_15_reactome_troubleshooting.png){fig-align="center" width="785"}
 
 ## Next Steps
 
