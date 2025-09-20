@@ -164,21 +164,21 @@ After enrichment analysis, view the enrichment analysis summary:
 
 ```{r}
 #| eval: false
-enriched_pathways
+gene_enriched_pathways
 # -------------------- 
 # Analysis method: enrich_pathway 
 # -------------------- 
 # -----------Variable information------------
-# 119  features/markers in total
+# 66  features/markers in total
 # -----------Enrichment results and modules of genes------------
 # -----------GO------------
-# 1025 GO terms with p.adjust < 0.05 
+# 197 GO terms with p.adjust < 0.05 
 # No GO modules
 # -----------KEGG------------
-# 48 KEGG pathways with p.adjust < 0.05 
+# 30 KEGG pathways with p.adjust < 0.05 
 # No KEGG modules
 # -----------Reactome------------
-# 48 Reactome pathways with p.adjust < 0.05 
+# 16 Reactome pathways with p.adjust < 0.05 
 # No Reactome modules
 # -----------Enrichment results and modules of metabolites------------
 # -----------HMDB------------
@@ -196,7 +196,7 @@ enriched_pathways
 # 1 processings in total
 # enrich_pathway ---------- 
 #   Package    Function.used                Time
-# 1    mapa enrich_pathway() 2025-06-08 14:34:13
+# 1    mapa enrich_pathway() 2025-09-20 12:26:40
 ```
 
 You can access specific database results via `@`:
@@ -207,20 +207,27 @@ You can access specific database results via `@`:
 ```{r}
 #| eval: false
 head(gene_enriched_pathways@enrichment_go_result@result)
-#            ONTOLOGY         ID                                                      Description GeneRatio   BgRatio RichFactor FoldEnrichment   zScore       pvalue
-# GO:0038084       BP GO:0038084             vascular endothelial growth factor signaling pathway    13/116  95/18805 0.13684211       22.18376 16.30756 2.147803e-14
-# GO:0036005       BP GO:0036005                 response to macrophage colony-stimulating factor    11/116  64/18805 0.17187500       27.86301 16.95936 1.713923e-13
-# GO:0035924       BP GO:0035924 cellular response to vascular endothelial growth factor stimulus    13/116 122/18805 0.10655738       17.27424 14.20752 5.888098e-13
-# GO:0006935       BP GO:0006935                                                       chemotaxis    21/116 466/18805 0.04506438        7.30548 10.85886 8.851862e-13
-# GO:0042330       BP GO:0042330                                                            taxis    21/116 468/18805 0.04487179        7.27426 10.82885 9.608949e-13
-# GO:0038145       BP GO:0038145           macrophage colony-stimulating factor signaling pathway    10/116  54/18805 0.18518519       30.02075 16.82498 1.024076e-12
-#                p_adjust       qvalue                                                                                                       geneID Count
-# GO:0038084 5.859206e-11 3.635439e-11                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13
-# GO:0036005 2.337791e-10 1.450520e-10                                                        3480/1435/1969/1956/6696/2050/5156/2064/5979/2324/780    11
-# GO:0035924 4.656131e-10 2.888971e-10                                            3480/28514/1969/1956/64094/2050/5156/7422/8828/2064/5979/2324/780    13
-# GO:0006935 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21
-# GO:0042330 4.656131e-10 2.888971e-10 6370/3958/5919/1435/7040/8633/56477/1969/58191/64094/5054/3491/5156/3569/6359/7422/3082/6360/10457/5328/8828    21
-# GO:0038145 4.656131e-10 2.888971e-10                                                             3480/1435/1969/1956/2050/5156/2064/5979/2324/780    10
+#            ONTOLOGY         ID                                         Description GeneRatio
+# GO:0015980       BP GO:0015980 energy derivation by oxidation of organic compounds     12/63
+# GO:0009060       BP GO:0009060                                 aerobic respiration      9/63
+# GO:0045333       BP GO:0045333                                cellular respiration      9/63
+# GO:0003012       BP GO:0003012                               muscle system process     10/63
+# GO:0006941       BP GO:0006941                         striated muscle contraction      7/63
+# GO:0006936       BP GO:0006936                                  muscle contraction      8/63
+#              BgRatio RichFactor FoldEnrichment    zScore       pvalue     p_adjust       qvalue
+# GO:0015980 380/28928 0.03157895      14.500251 12.376048 3.244556e-11 3.912934e-08 2.759580e-08
+# GO:0009060 206/28928 0.04368932      20.061026 12.826517 6.707680e-10 4.044731e-07 2.852529e-07
+# GO:0045333 271/28928 0.03321033      15.249341 11.010328 7.404865e-09 2.976756e-06 2.099344e-06
+# GO:0003012 460/28928 0.02173913       9.982057  9.072196 5.645295e-08 1.702057e-05 1.200368e-05
+# GO:0006941 181/28928 0.03867403      17.758134 10.565860 1.375932e-07 3.318748e-05 2.340533e-05
+# GO:0006936 329/28928 0.02431611      11.165340  8.663245 5.781200e-07 1.065983e-04 7.517800e-05
+#                                                                               geneID Count
+# GO:0015980 66128/66043/94044/12833/66576/12867/78920/16828/78330/407785/102093/19045    12
+# GO:0009060                    66128/66043/94044/12833/66576/12867/78920/78330/407785     9
+# GO:0045333                    66128/66043/94044/12833/66576/12867/78920/78330/407785     9
+# GO:0003012             11640/11464/12313/226594/12833/26399/17885/407785/56012/74166    10
+# GO:0006941                                11464/12313/226594/26399/17885/56012/74166     7
+# GO:0006936                         11464/12313/226594/26399/17885/407785/56012/74166     8
 ```
 
 ##### GSEA enrichment result
@@ -228,14 +235,26 @@ head(gene_enriched_pathways@enrichment_go_result@result)
 ```{r}
 #| eval: false
 head(gsea_pathways@enrichment_kegg_result@result)
-#                ID                                       Description setSize enrichmentScore      NES       pvalue     p_adjust       qvalue rank
-# hsa05014 hsa05014                     Amyotrophic lateral sclerosis      11       0.6473595 2.500196 0.0001092759 0.0006556554 0.0003450818  218
-# hsa05022 hsa05022 Pathways of neurodegeneration - multiple diseases      11       0.4649904 1.795860 0.0102663060 0.0307989180 0.0162099568  232
-# hsa05010 hsa05010                                 Alzheimer disease      10       0.4709263 1.667865 0.0220601399 0.0441202798 0.0232211999  214
-#                             leading_edge                                            core_enrichment Count
-# hsa05014 tags=100%, list=36%, signal=65% 6390/23435/4720/5690/56893/6391/55706/842/5710/22926/55746    11
-# hsa05022  tags=91%, list=39%, signal=57%         6390/23435/4720/5690/6391/1435/842/5710/22926/9927    10
-# hsa05010  tags=90%, list=36%, signal=59%              6390/10000/4720/5690/6391/1435/842/5710/22926     9
+#                ID                                 Description setSize enrichmentScore       NES
+# mmu05322 mmu05322                Systemic lupus erythematosus      17       0.4629405  2.010801
+# mmu04664 mmu04664             Fc epsilon RI signaling pathway      16       0.4603239  1.973294
+# mmu04141 mmu04141 Protein processing in endoplasmic reticulum      44      -0.4963270 -1.685713
+# mmu05014 mmu05014               Amyotrophic lateral sclerosis      68      -0.4359574 -1.547397
+#                pvalue   p_adjust     qvalue rank                    leading_edge
+# mmu05322 0.0005485788 0.04951072 0.04812464 1343 tags=100%, list=54%, signal=46%
+# mmu04664 0.0008427356 0.04951072 0.04812464 1349 tags=100%, list=54%, signal=46%
+# mmu04141 0.0005266381 0.04951072 0.04812464  991  tags=77%, list=40%, signal=47%
+# mmu05014 0.0007372888 0.04951072 0.04812464  878  tags=63%, list=35%, signal=42%
+#                                                                                                                                                                                                                                                                            core_enrichment
+# mmu05322                                                                                                                                                                           14960/14969/14961/12262/13035/326619/15078/109711/15270/26914/60595/12268/20821/20641/67332/50909/20823
+# mmu04664                                                                                                                                                                                  19354/20963/234779/18783/22324/18707/16331/11651/18750/26417/17096/14784/19353/16653/22325/26416
+# mmu04141                                                               19089/27061/68292/67075/69276/26408/26965/320011/20014/12333/27054/20224/56228/216440/14827/23802/22027/100037258/99683/50907/110379/103963/81500/22393/50527/66967/66212/12304/12330/81489/71853/14376/18453/67397
+# mmu05014 26408/69654/53319/17184/71844/227197/107939/56480/227699/59288/225887/68342/59015/433702/17274/53598/53857/234865/108989/230908/269966/53379/56717/67665/69912/19069/56208/16573/237782/74764/110379/70699/19132/226977/214585/12864/67680/445007/11744/19172/11750/225326/103468
+#          Count
+# mmu05322    17
+# mmu04664    16
+# mmu04141    34
+# mmu05014    43
 ```
 :::
 

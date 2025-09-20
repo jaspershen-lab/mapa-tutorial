@@ -8,7 +8,7 @@
 
 <meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>MAPA tutorial - 4&nbsp; Pathway Similarity Calculation</title>
+<title>MAPA Tutorial - 4&nbsp; Pathway Similarity Calculation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MAPA tutorial</a> 
+      <a href="./">MAPA Tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
+ <span class="menu-text">MAPA Shiny App/Web</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -374,7 +374,7 @@ Important
 <h2 data-number="4.2" class="anchored" data-anchor-id="method-comparison"><span class="header-section-number">4.2</span> Method Comparison</h2>
 <table class="table">
 <colgroup>
-<col style="width: 24%">
+<col style="width: 25%">
 <col style="width: 34%">
 <col style="width: 40%">
 </colgroup>
@@ -454,7 +454,7 @@ Important
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">count.cutoff.reactome =</span> <span class="dv">5</span>,</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Similarity methods</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.method.go =</span> <span class="st">"Sim_XGraSM_2013"</span>,  <span class="co"># GO semantic similarity</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.orgdb =</span> <span class="st">"org.Hs.eg.db"</span>,               <span class="co"># Required for GO analysis</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">go.orgdb =</span> <span class="st">"org.Mm.eg.db"</span>,               <span class="co"># Required for GO analysis</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.method.kegg =</span> <span class="st">"jaccard"</span>,        <span class="co"># Gene overlap similarity</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.method.reactome =</span> <span class="st">"jaccard"</span>     <span class="co"># Gene overlap similarity</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span>
@@ -483,8 +483,8 @@ Important
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># KEGG database...</span></span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating similartiy matrix, it may take a while...</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading KEGG annotation online: "https://rest.kegg.jp/link/hsa/pathway"...</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading KEGG annotation online: "https://rest.kegg.jp/list/pathway/hsa"...</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading KEGG annotation online: "https://rest.kegg.jp/link/mmu/pathway"...</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading KEGG annotation online: "https://rest.kegg.jp/list/pathway/mmu"...</span></span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Completed KEGG pathway similarity calculation successfully!</span></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying modules...</span></span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Done</span></span>
@@ -508,7 +508,7 @@ Note
 <div class="callout-body-container callout-body">
 <p><strong><code>go.orgdb</code> Selection:</strong></p>
 <ul>
-<li>For model organisms with Bioconductor annotation packages: use the package directly (e.g., <code>go.orgdb = "org.Hs.eg.db"</code>)</li>
+<li>For model organisms with Bioconductor annotation packages: use the package directly (e.g., <code>go.orgdb = "org.Mm.eg.db"</code>)</li>
 <li>For non-model organisms: use the OrgDb object from <a href="02_input.html#sec-gene_id_conversion" class="quarto-xref"><span>Section 2.2.1</span></a> (e.g., <code>go.orgdb = variable_info$orgdb</code>)</li>
 </ul>
 </div>
@@ -566,9 +566,9 @@ Important
 <p>For GO terms, MAPA uses the <a href="https://jokergoo.github.io/simona/">simona</a> package:</p>
 <table class="table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 26%">
-<col style="width: 55%">
+<col style="width: 23%">
+<col style="width: 25%">
+<col style="width: 51%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -604,10 +604,10 @@ Important
 <p>For KEGG, Reactome, and metabolite pathways:</p>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 32%">
 <col style="width: 20%">
-<col style="width: 36%">
+<col style="width: 27%">
+<col style="width: 20%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">

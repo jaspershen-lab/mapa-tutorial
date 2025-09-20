@@ -35,7 +35,7 @@ Both methods prepare your data for downstream clustering analysis, so you can ch
 ## Method Comparison
 
 | Aspect                         | Traditional Similarity                       | Biotext Embedding Similarity                         |
-|--------------------------------|----------------------------------------------|------------------------------------------------------|
+|------------------|-------------------------|-----------------------------|
 | **Basis**                      | Gene/metabolite overlap + semantic structure | Text semantic meaning                                |
 | **Speed**                      | Fast, deterministic                          | Slower, requires API calls                           |
 | **Cost**                       | Free                                         | API usage costs                                      |
@@ -75,7 +75,7 @@ gene_similarity_result <-
     count.cutoff.reactome = 5,
     # Similarity methods
     measure.method.go = "Sim_XGraSM_2013",  # GO semantic similarity
-    go.orgdb = "org.Hs.eg.db",               # Required for GO analysis
+    go.orgdb = "org.Mm.eg.db",               # Required for GO analysis
     measure.method.kegg = "jaccard",        # Gene overlap similarity
     measure.method.reactome = "jaccard"     # Gene overlap similarity
   )
@@ -104,8 +104,8 @@ gene_similarity_result <-
 # --------------------
 # KEGG database...
 # Calculating similartiy matrix, it may take a while...
-# Reading KEGG annotation online: "https://rest.kegg.jp/link/hsa/pathway"...
-# Reading KEGG annotation online: "https://rest.kegg.jp/list/pathway/hsa"...
+# Reading KEGG annotation online: "https://rest.kegg.jp/link/mmu/pathway"...
+# Reading KEGG annotation online: "https://rest.kegg.jp/list/pathway/mmu"...
 # Completed KEGG pathway similarity calculation successfully!
 # Identifying modules...
 # Done
@@ -121,7 +121,7 @@ gene_similarity_result <-
 ::: callout-note
 **`go.orgdb` Selection:**
 
--   For model organisms with Bioconductor annotation packages: use the package directly (e.g., `go.orgdb = "org.Hs.eg.db"`)
+-   For model organisms with Bioconductor annotation packages: use the package directly (e.g., `go.orgdb = "org.Mm.eg.db"`)
 -   For non-model organisms: use the OrgDb object from @sec-gene_id_conversion (e.g., `go.orgdb = variable_info$orgdb`)
 :::
 
@@ -171,7 +171,7 @@ met_similarity_result <-
 For GO terms, MAPA uses the [simona](https://jokergoo.github.io/simona/) package:
 
 | Method            | Type                      | Description                                             |
-|-------------------|---------------------------|---------------------------------------------------------|
+|-----------------|------------------|-------------------------------------|
 | `Sim_XGraSM_2013` | Hybrid                    | Combines multiple similarity aspects                    |
 | `Sim_Wang_2007`   | Structure-based           | Based on GO graph structure                             |
 | `Sim_Lin_1998`    | Information content-based | Uses information content of terms                       |
@@ -182,7 +182,7 @@ For GO terms, MAPA uses the [simona](https://jokergoo.github.io/simona/) package
 For KEGG, Reactome, and metabolite pathways:
 
 | Method    | Formula                         | Description         | Use Case                             |
-|-----------|---------------------------------|---------------------|--------------------------------------|
+|---------------|--------------------|---------------|-----------------------|
 | `jaccard` | \|A ∩ B\| / \|A ∪ B\|           | Jaccard index       | **Default**, most commonly used      |
 | `dice`    | 2 × \|A ∩ B\| / (\|A\| + \|B\|) | Dice coefficient    | Emphasizes shared elements           |
 | `overlap` | \|A ∩ B\| / min(\|A\|, \|B\|)   | Overlap coefficient | Good for pathways of different sizes |
