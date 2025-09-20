@@ -26,7 +26,7 @@ Alternatively, you can load our example data by following 2.1.2 of @sec-input_da
 The mapa package leverages the powerful enrichment functions from the [`clusterProfiler`](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) package for pathway analysis. The following table shows which databases you can use for your organism and the supported key types:
 
 | Database           | Supported Organism                                                                                                                                                                                                                     | Keytype Options                                            |
-|---------------|------------------------------------------|---------------|
+|-------------|-----------------------------------------------|-------------|
 | Gene Ontology (GO) | Any organism with OrgDb object ([organism annotation database package from Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___OrgDb) or OrgDb object retrieved from AnnotationHub, see @sec-gene_id_conversion) | Any keyType supported by your OrgDb object                 |
 | KEGG               | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html)                                                                                                                                                                   | `"kegg"`, `"ncbi-geneid"`, `"ncbi-proteinid"`, `"uniprot"` |
 | Reactome           | human, rat, mouse, celegans, yeast, zebrafish, fly, bovine, canine, chicken                                                                                                                                                            | `ENTREZID` only                                            |
@@ -39,8 +39,8 @@ The mapa package leverages the powerful enrichment functions from the [`clusterP
     ```{r}
     #| eval: false
     ## For model organisms with Bioconductor annotation packages
-    library(org.Hs.eg.db)
-    AnnotationDbi::keytypes(org.Hs.eg.db)
+    library(org.Mm.eg.db)
+    AnnotationDbi::keytypes(org.Mm.eg.db)
     # [1] "ACCNUM" "ALIAS" "ENSEMBL" "ENSEMBLPROT" "ENSEMBLTRANS" "ENTREZID" "ENZYME"  "EVIDENCE" "EVIDENCEALL" "GENENAME"    
     # [11] "GENETYPE" "GO" "GOALL" "IPI" "MAP" "OMIM" "ONTOLOGY" "ONTOLOGYALL" "PATH" "PFAM"        
     # [21] "PMID" "PROSITE" "REFSEQ" "SYMBOL" "UCSCKG" "UNIPROT" 
@@ -67,7 +67,7 @@ Use `enrich_pathway()` for Over-Representation Analysis.
 ```{r}
 #| eval: false
 
-library(org.Hs.eg.db)
+library(org.Mm.eg.db)
     
 gene_enriched_pathways <- 
   enrich_pathway(
@@ -75,14 +75,14 @@ gene_enriched_pathways <-
     query_type = "gene",
     database = c("go", "kegg", "reactome"),
     # GO parameters
-    go.orgdb = org.Hs.eg.db, # or "org.Hs.eg.db" (in quotes) if you did not load `org.Hs.eg.db`
+    go.orgdb = org.Mm.eg.db, # or "org.Mm.eg.db" (in quotes) if you did not load `org.Mm.eg.db`
     go.keytype = "ENTREZID",
     go.ont = "ALL",
     # KEGG parameters
-    kegg.organism = "hsa",
+    kegg.organism = "mmu",
     kegg.keytype = "kegg",
     # Reactome parameters
-    reactome.organism = "human",
+    reactome.organism = "mouse",
     # Statistical parameters
     pvalueCutoff = 0.05,
     pAdjustMethod = "BH"
@@ -103,7 +103,7 @@ The `do_gsea()` function performs GSEA using ranked gene lists based on fold cha
 ```{r}
 #| eval: false
 
-library(org.Hs.eg.db)
+library(org.Mm.eg.db)
     
 gsea_pathways <- 
   do_gsea(
@@ -112,12 +112,12 @@ gsea_pathways <-
     order_by = "fc",              # Column to rank genes by
     database = c("go", "kegg", "reactome"),
     # Database parameters
-    go.orgdb = org.Hs.eg.db, # or "org.Hs.eg.db" (in quotes) if you did not load `org.Hs.eg.db`
+    go.orgdb = org.Mm.eg.db, # or "org.Mm.eg.db" (in quotes) if you did not load `org.Mm.eg.db`
     go.ont = "ALL",
     go.keytype = "ENTREZID",
-    kegg.organism = "hsa",
+    kegg.organism = "mmu",
     kegg.keytype = "kegg",
-    reactome.organism = "human",
+    reactome.organism = "mouse",
     # GSEA parameters
     pvalueCutoff = 0.05,
     pAdjustMethod = "BH"
@@ -135,7 +135,7 @@ gsea_pathways <-
 ### Supported Databases and Keytypes
 
 | Database | Supported Organism                                                   | Keytype Options   |
-|----------------|-----------------------------------------|----------------|
+|--------------|---------------------------------------------|--------------|
 | KEGG     | [All KEGG organisms](https://www.genome.jp/kegg/tables/br08606.html) | KEGG compound IDs |
 | SMPDB    | Only for human                                                       | HMDB IDs          |
 
