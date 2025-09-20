@@ -343,40 +343,6 @@ Below are some info about these two datasets:
 | `gsea_expression_dt` | Expression values of 5,167 liver genes across 8 samples | 5167    | 9       | Gene Set Enrichment Analysis (GSEA) visualization        | Takasugi et al., *Nat Commun* **15**, 8520 (2024), DOI: 10.1038/s41467-024-52845-x |
 +----------------------+---------------------------------------------------------+---------+---------+----------------------------------------------------------+------------------------------------------------------------------------------------+
 
-### Basic Use: Pathway Level
-
-```{r}
-#| eval: false
-
-# This example uses ORA-style expression matrix that matches the gene IDs in your modules
-
-plot_relationship_heatmap(
-  object      = object,  # functional_module object
-  level       = "pathway",
-  expression_data = ora_expression_dt,  # e.g., demo expression for muscle (65 genes × 8 samples)
-  module_content_number_cutoff = 3,     # keep modules with >3 pathways
-  wordcloud   = TRUE,                   # add module-level word clouds
-  llm_text    = FALSE                   # set TRUE to use LLM summaries (if available)
-)
-```
-
-### Basic Use: Molecular Level
-
-```{r}
-#| eval: false
-
-# Focus on specific modules and visualize individual molecules
-plot_relationship_heatmap(
-  object      = functional_modules,
-  level       = "molecule",
-  expression_data = gsea_expression_dt,   # e.g., demo expression for liver (5,167 genes × 8 samples)
-  # module_ids  = c("Functional_module_10", "Functional_module_25"),
-  cluster_rows      = TRUE,               # hierarchical clustering of molecules
-  show_cluster_tree = TRUE,               # show the dendrogram
-  scale_expression_data = TRUE            # z-score per row
-)
-```
-
 ### Key Parameters
 
 +-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
@@ -402,6 +368,45 @@ plot_relationship_heatmap(
 +-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
 | `plot_widths`, `heatmap_height_ratios`, `network_height_ratios` | Panel sizing & alignment                                    | Tweak when labels or modules are many |
 +-----------------------------------------------------------------+-------------------------------------------------------------+---------------------------------------+
+
+
+### Basic Use: Pathway Level
+
+```{r}
+#| eval: false
+
+# This example uses ORA-style expression matrix that matches the gene IDs in your modules
+
+plot_relationship_heatmap(
+  object      = object,  # functional_module object
+  level       = "pathway",
+  expression_data = ora_expression_dt,  # e.g., demo expression for muscle (65 genes × 8 samples)
+  module_content_number_cutoff = 3,     # keep modules with >3 pathways
+  wordcloud   = TRUE,                   # add module-level word clouds
+  llm_text    = FALSE                   # set TRUE to use LLM summaries (if available)
+)
+```
+
+![](images/pathway_level_heapmap.svg)
+
+### Basic Use: Molecular Level
+
+```{r}
+#| eval: false
+
+# Focus on specific modules and visualize individual molecules
+plot_relationship_heatmap(
+  object      = functional_modules,
+  level       = "molecule",
+  expression_data = gsea_expression_dt,   # e.g., demo expression for liver (5,167 genes × 8 samples)
+  # module_ids  = c("Functional_module_10", "Functional_module_25"),
+  cluster_rows      = TRUE,               # hierarchical clustering of molecules
+  show_cluster_tree = TRUE,               # show the dendrogram
+  scale_expression_data = TRUE            # z-score per row
+)
+```
+
+![](images/molecule_level_heatmap.svg)
 
 ## Troubleshooting Visualization Issues
 
