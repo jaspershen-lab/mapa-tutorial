@@ -37,7 +37,7 @@ Once your data is loaded, choose your similarity calculation method using the ra
 When you select "Traditional methods", the interface displays database-specific parameter panels based on your enrichment analysis results. The app automatically detects which databases are available from your enrichment analysis. The traditional similarity method requires four main parameters for each database. While the parameter names vary slightly between data types, they serve the same fundamental purposes:
 
 | Parameter             | Purpose                                         | Default   | Gene Databases     | Metabolite Databases |
-|---------------|---------------|---------------|---------------|---------------|
+|-----------------------|-------------------------------------------------|-----------|--------------------|----------------------|
 | **P-adjust cutoff**   | Significance threshold for pathway inclusion    | 0.05      | GO, KEGG, Reactome | SMPDB, KEGG          |
 | **Count cutoff**      | Minimum genes/metabolites per pathway           | 5         | GO, KEGG, Reactome | SMPDB, KEGG          |
 | **Similarity method** | Algorithm for calculating pathway similarity    | See below | GO, KEGG, Reactome | SMPDB, KEGG          |
@@ -87,11 +87,11 @@ Note: Third-party API keys, other than SiliconFLow, are not currently supported.
 ::: callout-important
 If you are a **server** MAPA user, please note:
 
-When running the *biotext embedding* step in this chapter or the *module annotation* step in @sec-shiny_llm_interpretation_shiny, **only models and API keys provided by [SiliconFlow](https://www.siliconflow.com/)** are supported.  
+When running the *biotext embedding* step in this chapter or the *module annotation* step in @sec-shiny_llm_interpretation_shiny, **only models and API keys provided by [SiliconFlow](https://www.siliconflow.com/)** are supported.\
 This restriction exists because the server is set up in China Mainland. To ensure a stable connection to *SiliconFlow*:
 
-- **Users in China Mainland**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)  
-- **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
+-   **Users in China Mainland**: Use an API key from the Chinese portal — [https://siliconflow.cn](https://siliconflow.cn/)\
+-   **International users**: Use an API key from the global portal — [https://www.siliconflow.com](https://www.siliconflow.com/)
 :::
 
 #### Database Selection and Filtering
@@ -99,7 +99,7 @@ This restriction exists because the server is set up in China Mainland. To ensur
 Configure which databases to include and set filtering parameters:
 
 | Parameter              | Purpose                                      | Default       | Gene Analysis          | Metabolite Analysis    |
-|---------------|---------------|---------------|---------------|---------------|
+|------------------------|----------------------------------------------|---------------|------------------------|------------------------|
 | **Available Database** | Select databases for embedding analysis      | Auto-detected | GO, KEGG, Reactome     | SMPDB, KEGG            |
 | **P-adjust cutoff**    | Significance threshold for pathway inclusion | 0.05          | All selected databases | All selected databases |
 | **Count cutoff**       | Minimum genes/metabolites per pathway        | 5             | All selected databases | All selected databases |
@@ -185,7 +185,7 @@ Click the **"Code"** button to see the exact R code that replicates your analysi
 ## Method Comparison
 
 | Aspect                         | Traditional Methods            | Biotext Embedding                                    |
-|----------------------------|-----------------------|---------------------|
+|--------------------------------|--------------------------------|------------------------------------------------------|
 | **Speed**                      | Fast, deterministic            | Slower, requires API calls                           |
 | **Cost**                       | Free                           | API usage costs                                      |
 | **Reproducibility**            | Fully reproducible             | Highly reproducible (minor API variations)           |

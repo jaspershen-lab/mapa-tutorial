@@ -73,3 +73,9 @@ Uploaded files are used solely to run the analysis you request and are kept in s
 
 If your dataset is confidential, regulated, or requires strict control over storage location and retention, prefer the local Shiny deployment under your organization’s governance.
 :::
+
+::: callout-note
+We're excited that the MAPA web and MAPA Shinyapp are already available and working well. However, some webpage features and graphical layouts are still under active development. This means the version you see might look *slightly* different from the examples present in this tutorial. 
+
+These updates are part of our ongoing effort to improve your experience and make things better step by step. Thank you sincerely for your patience and understanding.
+:::
