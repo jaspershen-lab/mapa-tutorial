@@ -206,6 +206,10 @@ Prerequisites: Before plotting relationship heatmap, you should prepare expressi
 
 5.  Click Generate plot to render, then Download to save; use Type / Width / Height to control export; click Next Code to view the reproducible R code.
 
+![Pathway level heatmap](images/pathway_level_heapmap.svg)
+
+![Molecule level heatmap](images/molecule_level_heatmap.svg)
+
 ## View Visualization Code
 
 Click the **"Code"** button to see the exact R code that replicates your analysis:
