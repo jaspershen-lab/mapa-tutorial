@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Functional Module Identification and Annotation for Pathway Analysis Results Using LLM">
 
-<title>16&nbsp; Data Visualization – MAPA tutorial</title>
+<title>MAPA Tutorial - 16&nbsp; Data Visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,12 +39,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-632f36f2c1407c4cee85ceeffdfc11c1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,13 +83,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./16_data_vis_shiny.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./16_data_vis_shiny.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/mapa_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MAPA tutorial</a> 
+      <a href="./">MAPA Tutorial</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jaspershen-lab/mapa-tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -126,9 +126,9 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">MAPA R Package</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -191,9 +191,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">MAPA Shiny App</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">MAPA Shiny App/Web</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -285,16 +285,21 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#key-settings-2" id="toc-key-settings-2" class="nav-link" data-scroll-target="#key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</a></li>
   <li><a href="#circular-layout" id="toc-circular-layout" class="nav-link" data-scroll-target="#circular-layout"><span class="header-section-number">16.5.2</span> Circular Layout</a></li>
   </ul></li>
-  <li><a href="#view-visualization-code" id="toc-view-visualization-code" class="nav-link" data-scroll-target="#view-visualization-code"><span class="header-section-number">16.6</span> View Visualization Code</a></li>
-  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">16.7</span> Troubleshooting Visualization Issues</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.8</span> Next Steps</a></li>
+  <li><a href="#option-5-relationship-heatmap" id="toc-option-5-relationship-heatmap" class="nav-link" data-scroll-target="#option-5-relationship-heatmap"><span class="header-section-number">16.6</span> Option 5: Relationship Heatmap</a>
+  <ul class="collapse">
+  <li><a href="#key-settings-3" id="toc-key-settings-3" class="nav-link" data-scroll-target="#key-settings-3"><span class="header-section-number">16.6.1</span> Key Settings</a></li>
+  <li><a href="#basic-usage-2" id="toc-basic-usage-2" class="nav-link" data-scroll-target="#basic-usage-2"><span class="header-section-number">16.6.2</span> Basic Usage</a></li>
+  </ul></li>
+  <li><a href="#view-visualization-code" id="toc-view-visualization-code" class="nav-link" data-scroll-target="#view-visualization-code"><span class="header-section-number">16.7</span> View Visualization Code</a></li>
+  <li><a href="#troubleshooting-visualization-issues" id="toc-troubleshooting-visualization-issues" class="nav-link" data-scroll-target="#troubleshooting-visualization-issues"><span class="header-section-number">16.8</span> Troubleshooting Visualization Issues</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">16.9</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/16_data_vis_shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App</a></li><li class="breadcrumb-item"><a href="./16_data_vis_shiny.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_shinyapp_installation.html">MAPA Shiny App/Web</a></li><li class="breadcrumb-item"><a href="./16_data_vis_shiny.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-shiny_data_visualization_shiny" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
 </div>
@@ -313,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chaper details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Four main visualization approaches are covered: pathway bar charts, module information plots, similarity networks, and relationship networks.</p>
+<p>This chapter details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Five visualization approaches are covered: barplots, module information, module similarity network, relationship network, and module-expression heatmap.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -335,11 +340,11 @@ Important
 <section id="overview-of-visualization-functions" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="overview-of-visualization-functions"><span class="header-section-number">16.1</span> Overview of Visualization Functions</h2>
 <p>mapa provides four main visualization functions:</p>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 40%">
-<col style="width: 38%">
+<col style="width: 17%">
+<col style="width: 35%">
+<col style="width: 46%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -369,6 +374,11 @@ Important
 <td>Multi-level hierarchical networks</td>
 <td>Visualizing connections across biological levels</td>
 </tr>
+<tr class="odd">
+<td>Module-Expression Heatmap</td>
+<td>Integrated heatmap of expression with modules/pathways</td>
+<td>Showing expression patterns per module or pathway; clustering molecules</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -377,7 +387,7 @@ Important
 <p>This function creates horizontal bar charts showing the top enriched pathways, modules, or functional modules. This is ideal for presenting enrichment results in publications.</p>
 <section id="key-settings" class="level3" data-number="16.2.1">
 <h3 data-number="16.2.1" class="anchored" data-anchor-id="key-settings"><span class="header-section-number">16.2.1</span> Key Settings</h3>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 37%">
@@ -443,7 +453,7 @@ Note
 </ul>
 </div>
 </div>
-<p>Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.</p>
+<p>Besides, you can tweak the color designated for each database by setting HEX code or PGBA code or just manually set them.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/shinyapp_16_choosecolor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
@@ -466,7 +476,7 @@ Tip
 </section>
 <section id="basic-usage" class="level3" data-number="16.2.2">
 <h3 data-number="16.2.2" class="anchored" data-anchor-id="basic-usage"><span class="header-section-number">16.2.2</span> Basic Usage</h3>
-<p>After setting all the parameters listed above, hit the Submit, and the plot will be shown on the right.</p>
+<p>After setting all the parameters listed above, click <strong>Generate plot</strong>, and the plot will be shown on the right.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ora_pathway_level_barplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="580"></p>
@@ -478,7 +488,7 @@ Tip
 <h2 data-number="16.3" class="anchored" data-anchor-id="option-2-module-information-plot"><span class="header-section-number">16.3</span> Option 2: Module Information Plot</h2>
 <p>This function provides detailed, multi-panel visualizations of individual modules, including network topology, pathway rankings, and word clouds.</p>
 <p>The content of each plot depends on the analysis level:</p>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 36%">
@@ -546,7 +556,7 @@ Note
 <p>This function visualizes how pathways or modules cluster together based on similarity metrics.</p>
 <section id="key-settings-1" class="level3" data-number="16.4.1">
 <h3 data-number="16.4.1" class="anchored" data-anchor-id="key-settings-1"><span class="header-section-number">16.4.1</span> Key Settings</h3>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 30%">
@@ -598,11 +608,11 @@ Note
 <p>This function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.</p>
 <section id="key-settings-2" class="level3" data-number="16.5.1">
 <h3 data-number="16.5.1" class="anchored" data-anchor-id="key-settings-2"><span class="header-section-number">16.5.1</span> Key Settings</h3>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 52%">
 <col style="width: 22%">
+<col style="width: 55%">
+<col style="width: 21%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -613,7 +623,7 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>circular_plot</code></td>
+<td><code>Circular layout</code></td>
 <td>Circular vs.&nbsp;horizontal layout</td>
 <td>Not ticked</td>
 </tr>
@@ -623,13 +633,18 @@ Note
 <td><code>NULL</code></td>
 </tr>
 <tr class="odd">
-<td><code>Levels Included</code></td>
+<td><code>Filter Level</code></td>
 <td>The extent of details to show on the plot</td>
-<td>All ticked</td>
+<td><code>FM</code></td>
 </tr>
 <tr class="even">
-<td><code>Position Limits</code></td>
-<td>Determine how dense the node is arranged</td>
+<td><code>Text size</code></td>
+<td>Text size for each level of the plot objects</td>
+<td><code>3</code> for all</td>
+</tr>
+<tr class="odd">
+<td><code>Position limits</code></td>
+<td>Determine how densely are these plots arranged</td>
 <td><code>[0, 1]</code> for all</td>
 </tr>
 </tbody>
@@ -637,7 +652,7 @@ Note
 </section>
 <section id="circular-layout" class="level3" data-number="16.5.2">
 <h3 data-number="16.5.2" class="anchored" data-anchor-id="circular-layout"><span class="header-section-number">16.5.2</span> Circular Layout</h3>
-<p>Tick <code>Circular Plot</code> to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.</p>
+<p>Tick <code>Circular layout</code> to use a circular-style arrangement for relationship network. Plots will pothese plots areht panel. Representative figure is shown below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/relationship_network_circle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="580"></p>
@@ -645,20 +660,103 @@ Note
 </div>
 </section>
 </section>
-<section id="view-visualization-code" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="view-visualization-code"><span class="header-section-number">16.6</span> View Visualization Code</h2>
+<section id="option-5-relationship-heatmap" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="option-5-relationship-heatmap"><span class="header-section-number">16.6</span> Option 5: Relationship Heatmap</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prerequisites: Before plotting relationship heatmap, you should prepare expression data.</p>
+</div>
+</div>
+<section id="key-settings-3" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="key-settings-3"><span class="header-section-number">16.6.1</span> Key Settings</h3>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 50%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Options / Defaults</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Level</code></td>
+<td>Mapping level for heatmap and network</td>
+<td><code>Pathway</code>, <code>Molecule</code></td>
+</tr>
+<tr class="even">
+<td><code>Module ID</code></td>
+<td>(Optional) Focus on a single functional module</td>
+<td>Text input (module identifier)</td>
+</tr>
+<tr class="odd">
+<td><code>Scale expression data</code></td>
+<td>Scale/normalize expression values before plotting</td>
+<td>Toggle (off by default)</td>
+</tr>
+<tr class="even">
+<td><code>Word cloud</code></td>
+<td>Add a word cloud panel summarizing pathway terms</td>
+<td>Toggle</td>
+</tr>
+<tr class="odd">
+<td><code>Cluster rows</code></td>
+<td>Cluster heatmap rows to group similar expression profiles</td>
+<td>Toggle</td>
+</tr>
+<tr class="even">
+<td><code>Show cluster tree</code></td>
+<td>Display the dendrogram when rows are clustered</td>
+<td>Toggle</td>
+</tr>
+<tr class="odd">
+<td><code>LLM text</code></td>
+<td>Use LLM-generated names where available</td>
+<td>Toggle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="basic-usage-2" class="level3" data-number="16.6.2">
+<h3 data-number="16.6.2" class="anchored" data-anchor-id="basic-usage-2"><span class="header-section-number">16.6.2</span> Basic Usage</h3>
+<ol type="1">
+<li><p>Upload expression data (<code>.csv</code>, <code>.xlsx</code>, or <code>.rda</code>).</p></li>
+<li><p>Choose Level (<code>Pathway</code> or <code>Molecule</code>); optionally enter a Module ID to subset.<br>
+</p></li>
+<li><p>(Optional) Toggle Scale expression data, Cluster rows, Show cluster tree, Word cloud, and LLM text as needed.<br>
+</p></li>
+<li><p>Customize Colors, Position limits, and Layout ratios to refine readability.<br>
+</p></li>
+<li><p>Click Generate plot to render, then Download to save; use Type / Width / Height to control export; click Next Code to view the reproducible R code.</p></li>
+</ol>
+</section>
+</section>
+<section id="view-visualization-code" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="view-visualization-code"><span class="header-section-number">16.7</span> View Visualization Code</h2>
 <p>Click the <strong>“Code”</strong> button to see the exact R code that replicates your analysis:</p>
 <ul>
 <li><strong>Code 1</strong>: Shows <code>function()</code> function usage</li>
 <li><strong>Code 2</strong>: Shows <code>function()</code> function usage</li>
 </ul>
-<p>This code can be copied and used in your own R scripts for reproducible analysis.</p>
+<p>This code can be copied and used in your own R scripts for reproducibility.</p>
 </section>
-<section id="troubleshooting-visualization-issues" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">16.7</span> Troubleshooting Visualization Issues</h2>
+<section id="troubleshooting-visualization-issues" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="troubleshooting-visualization-issues"><span class="header-section-number">16.8</span> Troubleshooting Visualization Issues</h2>
 <p><strong>Common Issues and Solutions:</strong></p>
 <ul>
-<li><strong>Plots are not shown (white canva shown on the right)</strong>
+<li><strong>Plots are not shown (white canvas shown on the right)</strong>
 <ul>
 <li>Verify that modules exist at the specified level</li>
 </ul></li>
@@ -675,9 +773,9 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.8</span> Next Steps</h2>
-<p>Continue to <a href="./17_res_report_shiny.html">Results Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
+<section id="next-steps" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">16.9</span> Next Steps</h2>
+<p>Continue to <a href="./17_res_report_shiny.html">Results &amp; Report</a> to learn how to generate comprehensive analysis reports that combine all your results into professional documents.</p>
 
 
 </section>
@@ -862,7 +960,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -894,27 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -922,7 +1011,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1019,6 +1108,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

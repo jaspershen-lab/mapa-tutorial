@@ -1,6 +1,6 @@
 # Data Visualization {#sec-shiny_data_visualization_shiny}
 
-This chaper details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Four main visualization approaches are covered: pathway bar charts, module information plots, similarity networks, and relationship networks.
+This chapter details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Five visualization approaches are covered: barplots, module information, module similarity network, relationship network, and module-expression heatmap.
 
 ::: callout-important
 Prerequisites: Before creating visualizations, make sure you have completed the previous analysis steps. The visualization functions require objects from:
@@ -14,17 +14,19 @@ Prerequisites: Before creating visualizations, make sure you have completed the 
 
 mapa provides four main visualization functions:
 
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| Function tab              | Purpose                                                | Best Used For                                       |
-+===========================+========================================================+=====================================================+
-| Barplot                   | Horizontal bar charts of top enriched items            | Showing enrichment strength across pathways/modules |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| Module Information        | Multi-panel module details (network + bar + wordcloud) | Detailed examination of specific modules            |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| Module Similarity Network | Similarity-based networks                              | Understanding pathway relationships and clustering  |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
-| Relationship Network      | Multi-level hierarchical networks                      | Visualizing connections across biological levels    |
-+---------------------------+--------------------------------------------------------+-----------------------------------------------------+
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
+| Function tab              | Purpose                                                | Best Used For                                                           |
++===========================+========================================================+=========================================================================+
+| Barplot                   | Horizontal bar charts of top enriched items            | Showing enrichment strength across pathways/modules                     |
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
+| Module Information        | Multi-panel module details (network + bar + wordcloud) | Detailed examination of specific modules                                |
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
+| Module Similarity Network | Similarity-based networks                              | Understanding pathway relationships and clustering                      |
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
+| Relationship Network      | Multi-level hierarchical networks                      | Visualizing connections across biological levels                        |
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
+| Module-Expression Heatmap | Integrated heatmap of expression with modules/pathways | Showing expression patterns per module or pathway; clustering molecules |
++---------------------------+--------------------------------------------------------+-------------------------------------------------------------------------+
 
 ## Option 1: Pathway Bar Chart
 
@@ -59,19 +61,19 @@ This function creates horizontal bar charts showing the top enriched pathways, m
 -   **NES**: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation
 :::
 
-Besides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.
+Besides, you can tweak the color designated for each database by setting HEX code or PGBA code or just manually set them.
 
 ![](images/shinyapp_16_choosecolor.png){fig-align="center" width="480"}
 
 ::: callout-tip
-**Color Choice**: You can view all available HEX color code in the `RColorBrewer` package by running `RColorBrewer::display.brewer.all()`, which displays each palette so you can visually choose the one you prefer. 
+**Color Choice**: You can view all available HEX color code in the `RColorBrewer` package by running `RColorBrewer::display.brewer.all()`, which displays each palette so you can visually choose the one you prefer.
 
 Once you've decided, you can access its HEX codes using `RColorBrewer::brewer.pal(n = 99, name = "PaletteName")`.
 :::
 
 ### Basic Usage
 
-After setting all the parameters listed above, hit the Submit, and the plot will be shown on the right.
+After setting all the parameters listed above, click **Generate plot**, and the plot will be shown on the right.
 
 ![](images/ora_pathway_level_barplot.png){fig-align="center" width="580"}
 
@@ -146,23 +148,63 @@ This function creates comprehensive multi-level networks showing relationships b
 
 ### Key Settings
 
-+-------------------+-------------------------------------------+------------------+
-| Parameter         | Description                               | Default          |
-+===================+===========================================+==================+
-| `circular_plot`   | Circular vs. horizontal layout            | Not ticked       |
-+-------------------+-------------------------------------------+------------------+
-| `Module ID`       | Specific modules to show                  | `NULL`           |
-+-------------------+-------------------------------------------+------------------+
-| `Levels Included` | The extent of details to show on the plot | All ticked       |
-+-------------------+-------------------------------------------+------------------+
-| `Position Limits` | Determine how dense the node is arranged  | `[0, 1]` for all |
-+-------------------+-------------------------------------------+------------------+
++-------------------+------------------------------------------------+------------------+
+| Parameter         | Description                                    | Default          |
++===================+================================================+==================+
+| `Circular layout` | Circular vs. horizontal layout                 | Not ticked       |
++-------------------+------------------------------------------------+------------------+
+| `Module ID`       | Specific modules to show                       | `NULL`           |
++-------------------+------------------------------------------------+------------------+
+| `Filter Level`    | The extent of details to show on the plot      | `FM`             |
++-------------------+------------------------------------------------+------------------+
+| `Text size`       | Text size for each level of the plot objects   | `3` for all      |
++-------------------+------------------------------------------------+------------------+
+| `Position limits` | Determine how densely are these plots arranged | `[0, 1]` for all |
++-------------------+------------------------------------------------+------------------+
 
 ### Circular Layout
 
-Tick `Circular Plot` to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.
+Tick `Circular layout` to use a circular-style arrangement for relationship network. Plots will pothese plots areht panel. Representative figure is shown below.
 
 ![](images/relationship_network_circle.png){fig-align="center" width="580"}
+
+## Option 5: Relationship Heatmap
+
+::: callout-important
+Prerequisites: Before plotting relationship heatmap, you should prepare expression data.
+:::
+
+### Key Settings
+
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| Parameter               | Description                                               | Options / Defaults             |
++=========================+===========================================================+================================+
+| `Level`                 | Mapping level for heatmap and network                     | `Pathway`, `Molecule`          |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `Module ID`             | (Optional) Focus on a single functional module            | Text input (module identifier) |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `Scale expression data` | Scale/normalize expression values before plotting         | Toggle (off by default)        |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `Word cloud`            | Add a word cloud panel summarizing pathway terms          | Toggle                         |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `Cluster rows`          | Cluster heatmap rows to group similar expression profiles | Toggle                         |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `Show cluster tree`     | Display the dendrogram when rows are clustered            | Toggle                         |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+| `LLM text`              | Use LLM-generated names where available                   | Toggle                         |
++-------------------------+-----------------------------------------------------------+--------------------------------+
+
+### Basic Usage
+
+1.  Upload expression data (`.csv`, `.xlsx`, or `.rda`).
+
+2.  Choose Level (`Pathway` or `Molecule`); optionally enter a Module ID to subset.\
+
+3.  (Optional) Toggle Scale expression data, Cluster rows, Show cluster tree, Word cloud, and LLM text as needed.\
+
+4.  Customize Colors, Position limits, and Layout ratios to refine readability.\
+
+5.  Click Generate plot to render, then Download to save; use Type / Width / Height to control export; click Next Code to view the reproducible R code.
 
 ## View Visualization Code
 
@@ -171,13 +213,13 @@ Click the **"Code"** button to see the exact R code that replicates your analysi
 -   **Code 1**: Shows `function()` function usage
 -   **Code 2**: Shows `function()` function usage
 
-This code can be copied and used in your own R scripts for reproducible analysis.
+This code can be copied and used in your own R scripts for reproducibility.
 
 ## Troubleshooting Visualization Issues
 
 **Common Issues and Solutions:**
 
--   **Plots are not shown (white canva shown on the right)**
+-   **Plots are not shown (white canvas shown on the right)**
     -   Verify that modules exist at the specified level
 -   **Text labels overlapping or unreadable**
     -   Adjust `Y label width` parameter
@@ -189,4 +231,4 @@ This code can be copied and used in your own R scripts for reproducible analysis
 
 ## Next Steps
 
-Continue to [Results Report](17_res_report_shiny.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.
+Continue to [Results & Report](17_res_report_shiny.qmd) to learn how to generate comprehensive analysis reports that combine all your results into professional documents.

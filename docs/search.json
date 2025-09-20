@@ -1176,9 +1176,9 @@
     "href": "16_data_vis_shiny.html",
     "title": "16  Data Visualization",
     "section": "",
-    "text": "16.1 Overview of Visualization Functions\nThis chaper details on how to utilize comprehensive visualization functions to explore and present your pathway enrichment and functional module results. Four main visualization approaches are covered: pathway bar charts, module information plots, similarity networks, and relationship networks.\nmapa provides four main visualization functions:",
+    "text": "16.1 Overview of Visualization Functions\nmapa provides four main visualization functions:",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1187,9 +1187,9 @@
     "href": "16_data_vis_shiny.html#overview-of-visualization-functions",
     "title": "16  Data Visualization",
     "section": "",
-    "text": "Function tab\nPurpose\nBest Used For\n\n\n\n\nBarplot\nHorizontal bar charts of top enriched items\nShowing enrichment strength across pathways/modules\n\n\nModule Information\nMulti-panel module details (network + bar + wordcloud)\nDetailed examination of specific modules\n\n\nModule Similarity Network\nSimilarity-based networks\nUnderstanding pathway relationships and clustering\n\n\nRelationship Network\nMulti-level hierarchical networks\nVisualizing connections across biological levels",
+    "text": "Function tab\nPurpose\nBest Used For\n\n\n\n\nBarplot\nHorizontal bar charts of top enriched items\nShowing enrichment strength across pathways/modules\n\n\nModule Information\nMulti-panel module details (network + bar + wordcloud)\nDetailed examination of specific modules\n\n\nModule Similarity Network\nSimilarity-based networks\nUnderstanding pathway relationships and clustering\n\n\nRelationship Network\nMulti-level hierarchical networks\nVisualizing connections across biological levels\n\n\nModule-Expression Heatmap\nIntegrated heatmap of expression with modules/pathways\nShowing expression patterns per module or pathway; clustering molecules",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1198,9 +1198,9 @@
     "href": "16_data_vis_shiny.html#option-1-pathway-bar-chart",
     "title": "16  Data Visualization",
     "section": "16.2 Option 1: Pathway Bar Chart",
-    "text": "16.2 Option 1: Pathway Bar Chart\nThis function creates horizontal bar charts showing the top enriched pathways, modules, or functional modules. This is ideal for presenting enrichment results in publications.\n\n16.2.1 Key Settings\n\n\n\n\n\n\n\n\nSettings\nDescription\nOptions/Default\n\n\n\n\nLevel\nAnalysis level\nPathway, Module, FM\n\n\nX axis name\nX-axis metric\nORA: qscore, RichFactor, FoldEnrichment;\nGSEA: NES\n\n\nLine type\nBar style\nStraight (default), Meteor\n\n\nLLM text\nUse LLM names for functional modules\nTick box\n\n\nTop N\nNumber of items to show\nDefault: 10\n\n\nDatabase\nDatabases to include\nGO, KEGG, Reactome\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nX-axis Metrics Explained:\n\nqscore: -log₁₀(adjusted p-value), higher values indicate more significant enrichment\nRichFactor: Ratio of input genes in pathway vs. all genes in pathway\nFoldEnrichment: Enrichment fold change (GeneRatio divided by BgRatio), see Section 3.3\nNES: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation\n\n\n\nBesides, you can tweak the color designated for each database by setting HEXA code or PGBA code or just manually set them.\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nColor Choice: You can view all available HEX color code in the RColorBrewer package by running RColorBrewer::display.brewer.all(), which displays each palette so you can visually choose the one you prefer.\nOnce you’ve decided, you can access its HEX codes using RColorBrewer::brewer.pal(n = 99, name = \"PaletteName\").\n\n\n\n\n16.2.2 Basic Usage\nAfter setting all the parameters listed above, hit the Submit, and the plot will be shown on the right.",
+    "text": "16.2 Option 1: Pathway Bar Chart\nThis function creates horizontal bar charts showing the top enriched pathways, modules, or functional modules. This is ideal for presenting enrichment results in publications.\n\n16.2.1 Key Settings\n\n\n\n\n\n\n\n\nSettings\nDescription\nOptions/Default\n\n\n\n\nLevel\nAnalysis level\nPathway, Module, FM\n\n\nX axis name\nX-axis metric\nORA: qscore, RichFactor, FoldEnrichment;\nGSEA: NES\n\n\nLine type\nBar style\nStraight (default), Meteor\n\n\nLLM text\nUse LLM names for functional modules\nTick box\n\n\nTop N\nNumber of items to show\nDefault: 10\n\n\nDatabase\nDatabases to include\nGO, KEGG, Reactome\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nX-axis Metrics Explained:\n\nqscore: -log₁₀(adjusted p-value), higher values indicate more significant enrichment\nRichFactor: Ratio of input genes in pathway vs. all genes in pathway\nFoldEnrichment: Enrichment fold change (GeneRatio divided by BgRatio), see Section 3.3\nNES: Normalized Enrichment Score (GSEA only), positive/negative indicates up/down-regulation\n\n\n\nBesides, you can tweak the color designated for each database by setting HEX code or PGBA code or just manually set them.\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nColor Choice: You can view all available HEX color code in the RColorBrewer package by running RColorBrewer::display.brewer.all(), which displays each palette so you can visually choose the one you prefer.\nOnce you’ve decided, you can access its HEX codes using RColorBrewer::brewer.pal(n = 99, name = \"PaletteName\").\n\n\n\n\n16.2.2 Basic Usage\nAfter setting all the parameters listed above, click Generate plot, and the plot will be shown on the right.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1211,7 +1211,7 @@
     "section": "16.3 Option 2: Module Information Plot",
     "text": "16.3 Option 2: Module Information Plot\nThis function provides detailed, multi-panel visualizations of individual modules, including network topology, pathway rankings, and word clouds.\nThe content of each plot depends on the analysis level:\n\n\n\n\n\n\n\n\nPlot level\nModule Level\n(Database-specific)\nFM Level\n(Cross-database)\n\n\n\n\nNetwork\nShows pathways within the database-specific module and their similarity connections\nShows representative pathways from database-specific modules (SimCluster) or individual pathways (EmbedCluster)\n\n\nBar plot\nRanks individual pathways within the module by significance\nRanks the representative pathways or database-specific modules by significance\n\n\nWord cloud\nWord frequency from pathway descriptions, with word size reflecting statistical significance\nWord frequency from all pathway descriptions in the functional module, with word size proportional to the sum of statistical significance values\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWord Cloud Interpretation: Word size reflects the cumulative statistical significance of pathways containing that word:\n\nFor ORA (Over-Representation Analysis): Word size is proportional to the sum of -log10(adjusted p-value) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger statistical enrichment.\nFor GSEA (Gene Set Enrichment Analysis): Word size is proportional to the sum of |NES| (absolute Normalized Enrichment Score) across pathways containing that word. Larger words indicate terms appearing in pathways with stronger enrichment signals, regardless of direction (up- or down-regulation).\n\n\n\n\n16.3.1 For FM (Functional Module) Level\nChoose FM to plot functional module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO and KEGG database).\n  \n\n\n16.3.2 For Module Level\nChoose Module to plot database-specific module-level module information plot. Plots will pop up on the right panel. Representative figure is shown below (use GO database).",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1222,7 +1222,7 @@
     "section": "16.4 Option 3: Similarity Network",
     "text": "16.4 Option 3: Similarity Network\nThis function visualizes how pathways or modules cluster together based on similarity metrics.\n\n16.4.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nUsage\n\n\n\n\nDegree cutoff\nMinimum pathways per module\nFilter small modules\n\n\nText\nShow representative names\nOne label per module\n\n\nText all\nShow all pathway names\nAll nodes labeled\n\n\nLLM text\nUse LLM-generated names\nFor functional modules with LLM interpretation\n\n\n\n\n\n16.4.2 Basic Usage\nConfigure your customized plot settings and plots will pop up on the right panel. Representative figure is shown below.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1231,9 +1231,9 @@
     "href": "16_data_vis_shiny.html#option-4-relationship-network",
     "title": "16  Data Visualization",
     "section": "16.5 Option 4: Relationship Network",
-    "text": "16.5 Option 4: Relationship Network\nThis function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.\n\n16.5.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\n\n\n\n\ncircular_plot\nCircular vs. horizontal layout\nNot ticked\n\n\nModule ID\nSpecific modules to show\nNULL\n\n\nLevels Included\nThe extent of details to show on the plot\nAll ticked\n\n\nPosition Limits\nDetermine how dense the node is arranged\n[0, 1] for all\n\n\n\n\n\n16.5.2 Circular Layout\nTick Circular Plot to use a circular-style arrangement for relationship network. Plots will pop up on the right panel. Representative figure is shown below.",
+    "text": "16.5 Option 4: Relationship Network\nThis function creates comprehensive multi-level networks showing relationships between functional modules, modules, pathways, and molecules.\n\n16.5.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nDefault\n\n\n\n\nCircular layout\nCircular vs. horizontal layout\nNot ticked\n\n\nModule ID\nSpecific modules to show\nNULL\n\n\nFilter Level\nThe extent of details to show on the plot\nFM\n\n\nText size\nText size for each level of the plot objects\n3 for all\n\n\nPosition limits\nDetermine how densely are these plots arranged\n[0, 1] for all\n\n\n\n\n\n16.5.2 Circular Layout\nTick Circular layout to use a circular-style arrangement for relationship network. Plots will pothese plots areht panel. Representative figure is shown below.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1241,10 +1241,10 @@
     "objectID": "16_data_vis_shiny.html#view-visualization-code",
     "href": "16_data_vis_shiny.html#view-visualization-code",
     "title": "16  Data Visualization",
-    "section": "16.6 View Visualization Code",
-    "text": "16.6 View Visualization Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducible analysis.",
+    "section": "16.7 View Visualization Code",
+    "text": "16.7 View Visualization Code\nClick the “Code” button to see the exact R code that replicates your analysis:\n\nCode 1: Shows function() function usage\nCode 2: Shows function() function usage\n\nThis code can be copied and used in your own R scripts for reproducibility.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1252,10 +1252,10 @@
     "objectID": "16_data_vis_shiny.html#troubleshooting-visualization-issues",
     "href": "16_data_vis_shiny.html#troubleshooting-visualization-issues",
     "title": "16  Data Visualization",
-    "section": "16.7 Troubleshooting Visualization Issues",
-    "text": "16.7 Troubleshooting Visualization Issues\nCommon Issues and Solutions:\n\nPlots are not shown (white canva shown on the right)\n\nVerify that modules exist at the specified level\n\nText labels overlapping or unreadable\n\nAdjust Y label width parameter\nUntick Text all to show only representative labels\nIncrease plot dimensions when saving\n\nLLM text not appearing\n\nEnsure Chapter 15: LLM Interpretation was run successfully\nCheck that the object contains LLM interpretation results",
+    "section": "16.8 Troubleshooting Visualization Issues",
+    "text": "16.8 Troubleshooting Visualization Issues\nCommon Issues and Solutions:\n\nPlots are not shown (white canvas shown on the right)\n\nVerify that modules exist at the specified level\n\nText labels overlapping or unreadable\n\nAdjust Y label width parameter\nUntick Text all to show only representative labels\nIncrease plot dimensions when saving\n\nLLM text not appearing\n\nEnsure Chapter 15: LLM Interpretation was run successfully\nCheck that the object contains LLM interpretation results",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1263,10 +1263,10 @@
     "objectID": "16_data_vis_shiny.html#next-steps",
     "href": "16_data_vis_shiny.html#next-steps",
     "title": "16  Data Visualization",
-    "section": "16.8 Next Steps",
-    "text": "16.8 Next Steps\nContinue to Results Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
+    "section": "16.9 Next Steps",
+    "text": "16.9 Next Steps\nContinue to Results & Report to learn how to generate comprehensive analysis reports that combine all your results into professional documents.",
     "crumbs": [
-      "MAPA Shiny App",
+      "MAPA Shiny App/Web",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
@@ -1487,6 +1487,17 @@
     "crumbs": [
       "MAPA Shiny App/Web",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Functional Module Identification</span>"
+    ]
+  },
+  {
+    "objectID": "16_data_vis_shiny.html#option-5-relationship-heatmap",
+    "href": "16_data_vis_shiny.html#option-5-relationship-heatmap",
+    "title": "16  Data Visualization",
+    "section": "16.6 Option 5: Relationship Heatmap",
+    "text": "16.6 Option 5: Relationship Heatmap\n\n\n\n\n\n\nImportant\n\n\n\nPrerequisites: Before plotting relationship heatmap, you should prepare expression data.\n\n\n\n16.6.1 Key Settings\n\n\n\n\n\n\n\n\nParameter\nDescription\nOptions / Defaults\n\n\n\n\nLevel\nMapping level for heatmap and network\nPathway, Molecule\n\n\nModule ID\n(Optional) Focus on a single functional module\nText input (module identifier)\n\n\nScale expression data\nScale/normalize expression values before plotting\nToggle (off by default)\n\n\nWord cloud\nAdd a word cloud panel summarizing pathway terms\nToggle\n\n\nCluster rows\nCluster heatmap rows to group similar expression profiles\nToggle\n\n\nShow cluster tree\nDisplay the dendrogram when rows are clustered\nToggle\n\n\nLLM text\nUse LLM-generated names where available\nToggle\n\n\n\n\n\n16.6.2 Basic Usage\n\nUpload expression data (.csv, .xlsx, or .rda).\nChoose Level (Pathway or Molecule); optionally enter a Module ID to subset.\n\n(Optional) Toggle Scale expression data, Cluster rows, Show cluster tree, Word cloud, and LLM text as needed.\n\nCustomize Colors, Position limits, and Layout ratios to refine readability.\n\nClick Generate plot to render, then Download to save; use Type / Width / Height to control export; click Next Code to view the reproducible R code.",
+    "crumbs": [
+      "MAPA Shiny App/Web",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   }
 ]
