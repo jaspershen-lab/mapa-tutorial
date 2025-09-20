@@ -27,10 +27,11 @@ Once launched, you'll see the MAPA interface with:
 The sidebar contains the following sections:
 
 -   **Introduction**: Overview of MAPA functionality
--   **Upload Data**: File upload and ID conversion (covered in this chapter)
--   **Enrich Pathways**: Pathway enrichment analysis
--   **Pathway Clustering**: Two methods for grouping related pathways
--   **LLM Interpretation**: AI-powered functional module annotation
+-   **Data Upload**: File upload and ID conversion (covered in this chapter)
+-   **Pathway Enrichment**: Pathway enrichment analysis
+-   **Pathway Similarity Calculation**: Includes methods for grouping related pathways
+-   **Module Identification**: Identify inner-connected functional modules among merged pathways
+-   **Module Annotation**: AI-powered functional module annotation
 -   **Data Visualization**: Results plotting and visualization
 -   **Results & Report**: Final results and report generation
 

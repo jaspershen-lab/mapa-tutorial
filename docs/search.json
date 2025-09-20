@@ -692,7 +692,7 @@
     "href": "11_input_shiny.html#launching-the-mapa-shiny-app",
     "title": "11  Data Input and Preprocessing",
     "section": "",
-    "text": "Header: Application title and navigation\nSidebar: Menu with different analysis steps\nMain Panel: Content area for each analysis step\n\n\n\n\n\n\n\n\nIntroduction: Overview of MAPA functionality\nUpload Data: File upload and ID conversion (covered in this chapter)\nEnrich Pathways: Pathway enrichment analysis\nPathway Clustering: Two methods for grouping related pathways\nLLM Interpretation: AI-powered functional module annotation\nData Visualization: Results plotting and visualization\nResults & Report: Final results and report generation",
+    "text": "Header: Application title and navigation\nSidebar: Menu with different analysis steps\nMain Panel: Content area for each analysis step\n\n\n\n\n\n\n\n\nIntroduction: Overview of MAPA functionality\nData Upload: File upload and ID conversion (covered in this chapter)\nPathway Enrichment: Pathway enrichment analysis\nPathway Similarity Calculation: Includes methods for grouping related pathways\nModule Identification: Identify inner-connected functional modules among merged pathways\nModule Annotation: AI-powered functional module annotation\nData Visualization: Results plotting and visualization\nResults & Report: Final results and report generation",
     "crumbs": [
       "MAPA Shiny App/Web",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Data Input and Preprocessing</span>"
