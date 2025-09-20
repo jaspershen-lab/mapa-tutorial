@@ -161,10 +161,10 @@ met_llm_interpreted_modules <-
 ### LLM and API Settings
 
 | Parameter         | Description                   | Default                    | Notes                                           |
-|------------------|-------------------|------------------|------------------|
-| `llm_model`       | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
+|------------------|---------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------|
+| `llm_model`       | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | OpenAI, Google, SilisonFlow                     |
 | `embedding_model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
-| `api_key`         | OpenAI API key                | Required                   | Store securely, never commit to version control |
+| `api_key`         | API key                       | Required                   | Store securely, never commit to version control |
 
 ### Analysis Control
 

@@ -370,7 +370,7 @@ plot_relationship_heatmap(
   object      = functional_modules,
   level       = "molecule",
   expression_data = gsea_expression_dt,   # e.g., demo expression for liver (5,167 genes × 8 samples)
-  module_ids  = c("Functional_module_10", "Functional_module_25"),
+  # module_ids  = c("Functional_module_10", "Functional_module_25"),
   cluster_rows      = TRUE,               # hierarchical clustering of molecules
   show_cluster_tree = TRUE,               # show the dendrogram
   scale_expression_data = TRUE            # z-score per row

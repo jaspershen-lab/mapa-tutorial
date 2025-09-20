@@ -253,6 +253,7 @@ met_biotext_similarity <-
 
 -   For OpenAI: Obtain your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 -   For Gemini: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+-   For SiliconFlow: Get your API key from [SiliconFlow Quick Start](https://docs.siliconflow.com/en/userguide/quickstart)
 
 Store your API key securely and never commit it to version control.
 :::
