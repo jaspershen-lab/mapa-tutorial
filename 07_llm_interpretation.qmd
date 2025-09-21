@@ -161,7 +161,7 @@ met_llm_interpreted_modules <-
 ### LLM and API Settings
 
 | Parameter         | Description                   | Default                    | Notes                                           |
-|------------------|---------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------|
+|-------------------|-------------------------------|----------------------------|-------------------------------------------------|
 | `llm_model`       | GPT model for text generation | `"gpt-4o-mini-2024-07-18"` | OpenAI, Google, SilisonFlow                     |
 | `embedding_model` | Model for text embeddings     | `"text-embedding-3-small"` | Used for document similarity                    |
 | `api_key`         | API key                       | Required                   | Store securely, never commit to version control |
@@ -169,7 +169,7 @@ met_llm_interpreted_modules <-
 ### Analysis Control
 
 | Parameter                      | Description                          | Default | Use Case                                                   |
-|------------------|-------------------|------------------|------------------|
+|--------------------------------|--------------------------------------|---------|------------------------------------------------------------|
 | `module_content_number_cutoff` | Minimum pathways per module          | 1       | Filter small modules to focus on substantial ones          |
 | `years`                        | Years to search back in PubMed       | 5       | Balance between recent findings and comprehensive coverage |
 | `retmax`                       | Max papers per PubMed search         | 10      | Control API usage and processing time                      |
@@ -183,7 +183,7 @@ met_llm_interpreted_modules <-
 ### Optional Enhancements
 
 | Parameter          | Description                                 | Default | Benefits                                                                            |
-|------------------|-------------------|------------------|------------------|
+|--------------------|---------------------------------------------|---------|-------------------------------------------------------------------------------------|
 | `phenotype`        | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
 | `local_corpus_dir` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
 | `output_prompt`    | Include prompts in results                  | `TRUE`  | Useful for understanding AI reasoning                                               |
