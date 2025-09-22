@@ -74,7 +74,7 @@ You can also proceed directly if the functional module result is already present
 Configure your LLM and text embedding models settings with references to the table below:
 
 | Parameter         | Description                       | Example                    | Notes                                           |
-|------------------|-------------------|------------------|------------------|
+|-------------------|-----------------------------------|----------------------------|-------------------------------------------------|
 | `API provider`    | LLM model for text generation     | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
 | `Embedding model` | Model for text embeddings         | `"text-embedding-3-small"` | Used for document similarity                    |
 | `API key`         | OpenAI/Google/SiliconFlow API key | Required                   | Store securely, never commit to version control |
@@ -96,7 +96,7 @@ This restriction exists because the server is set up in China Mainland. To ensur
 ### Literature Search Settings
 
 | Parameter            | Description                    | Default | Use Case                                                   |
-|------------------|-------------------|------------------|------------------|
+|----------------------|--------------------------------|---------|------------------------------------------------------------|
 | `Module size cutoff` | Minimum pathways per module    | 1       | Filter small modules to focus on substantial ones          |
 | `Years to search`    | Years to search back in PubMed | 5       | Balance between recent findings and comprehensive coverage |
 
@@ -107,7 +107,7 @@ This restriction exists because the server is set up in China Mainland. To ensur
 ### Optional Enhancements
 
 | Parameter                | Description                                 | Default | Benefits                                                                            |
-|------------------|-------------------|------------------|------------------|
+|--------------------------|---------------------------------------------|---------|-------------------------------------------------------------------------------------|
 | `Disease or phenotype`   | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
 | `Local corpus directory` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
 
