@@ -74,7 +74,7 @@ You can also proceed directly if the functional module result is already present
 Configure your LLM and text embedding models settings with references to the table below:
 
 | Parameter         | Description                       | Example                    | Notes                                           |
-|-------------------|-----------------------------------|----------------------------|-------------------------------------------------|
+|----------------|-----------------|----------------|------------------------|
 | `API provider`    | LLM model for text generation     | `"gpt-4o-mini-2024-07-18"` | Currently supports OpenAI models only           |
 | `Embedding model` | Model for text embeddings         | `"text-embedding-3-small"` | Used for document similarity                    |
 | `API key`         | OpenAI/Google/SiliconFlow API key | Required                   | Store securely, never commit to version control |
@@ -96,18 +96,20 @@ This restriction exists because the server is set up in China Mainland. To ensur
 ### Literature Search Settings
 
 | Parameter            | Description                    | Default | Use Case                                                   |
-|----------------------|--------------------------------|---------|------------------------------------------------------------|
+|--------------|---------------|--------------|------------------------------|
 | `Module size cutoff` | Minimum pathways per module    | 1       | Filter small modules to focus on substantial ones          |
 | `Years to search`    | Years to search back in PubMed | 5       | Balance between recent findings and comprehensive coverage |
 
 ::: callout-note
-**API Usage & Processing Time:** Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking `Module size cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules.
+**API Usage & Processing Time:** Each module requires multiple API calls (embedding + LLM generation), with costs scaling by number of modules and literature volume, so consider tweaking `Module size cutoff` to focus on important modules. Typical processing takes 2-5 minutes per module, with time increasing for more literature and larger modules. 
+
+If you are using the server-based web version of MAPA, it is highly suggested that you **open the browser window as the this step is running**, otherwise the server may terminate the job.
 :::
 
 ### Optional Enhancements
 
 | Parameter                | Description                                 | Default | Benefits                                                                            |
-|--------------------------|---------------------------------------------|---------|-------------------------------------------------------------------------------------|
+|-------------|---------------|-------------|-------------------------------|
 | `Disease or phenotype`   | Disease/condition context                   | `NULL`  | Adds disease-specific interpretation                                                |
 | `Local corpus directory` | Local directory with your own **PDF** files | `NULL`  | Incorporates your own research or relevant literature to enhance the interpretation |
 
@@ -135,7 +137,11 @@ Two parameters are required before submit to LLM interpretation:
 
 ## Step 4: Review Results
 
-After successful completion, results will appear in the right panel with updated functional module.
+After successful completion, results will appear in the right panel with updated functional module. You can also first download the R object and load it into your R session to explore the results using **Step2: Check Module Annotation Result** in the lower panel.
+
+![](images/shinyapp_15_download_R.png){fig-align="center" width="300"}
+
+
 
 Key result elements:
 
