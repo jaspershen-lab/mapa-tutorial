@@ -26,34 +26,35 @@ Column names must be in lowercase.
 
 ### Gene Expression Data for *GSEA*
 
+1.  **One identifier column**\
+    (column name must be one of: `ensembl`, `entrezid`, `uniprot`, or `symbol`)
 
-  1. **One identifier column**  
-     (column name must be one of: `ensembl`, `entrezid`, `uniprot`, or `symbol`)  
-     
-     Finally, only `entrezid` will be used for GSEA in MAPA.  
-     If the user uploads other types of IDs, the `entrezid` will be matched by the first step of MAPA:  
-     ```r
-     convert_id()
-     ```
+    Finally, only `entrezid` will be used for GSEA in MAPA.\
+    If the you upload other types of IDs, the `entrezid` will be matched by the first step of MAPA:
 
-  2. **An `order_by` column**  
-     
-     - For MAPA R package users: the column name should be one of `fc` or `p_value_adjust`.  
-     - There are many ranking metrics—provide user guidance.  
-       Reference:  
-       Zyla, J., Marczyk, M., Weiner, J. et al. *Ranking metrics in gene set enrichment analysis: do they matter?*  
-       **BMC Bioinformatics** 18, 256 (2017). [https://doi.org/10.1186/s12859-017-1674-0](https://doi.org/10.1186/s12859-017-1674-0)  
-     - For MAPA R package users: there is no strict requirement for the column name,  
-       but the `order_by` parameter should be set to the column name of the ranking metrics.  
+    ``` r
+    convert_id()
+    ```
 
-  3. **A column named `p_value_adjust`**, which represents the statistical significance for the analysis results.  
-     
-     - **Why does `p_value_adjust` matter?**  
-       For GSEA, **no duplicated gene IDs are allowed**.  
-       Currently, MAPA removes duplicated `entrezid` by keeping the one with the smallest `p_value_adjust`.  
-     - **NOTE**: Only `entrezid` is used for performing GSEA in MAPA.  
-     - The keytype for **GO and KEGG** can only be `"ENTREZID"` and `"kegg"` respectively.  
-     - For **Reactome**, the internal function `ReactomePA::gsePathway()` only supports `entrezid`.  
+2.  **An `order_by` column**
+
+    -   Note: The column name should be either `fc` or `p_value_adjust`.\
+
+    -   Since multiple ranking metrics can be used in GSEA, it is important to provide guidance to users when choosing the appropriate metric. See:
+
+        > \
+        > Zyla, J., Marczyk, M., Weiner, J. et al. *Ranking metrics in gene set enrichment analysis: do they matter?* **BMC Bioinformatics** 18, 256 (2017). <https://doi.org/10.1186/s12859-017-1674-0>\
+
+    -   In practice, MAPA does not enforce a fixed column name. Instead, the `order_by` parameter should be set to match the name of the column containing the chosen ranking metric.
+
+3.  **A column named `p_value_adjust`**, which represents the statistical significance for the analysis results.
+
+    -   **Why does `p_value_adjust` matter?**\
+        For GSEA, **no duplicated gene IDs are allowed**.\
+        Currently, MAPA removes duplicated `entrezid` by keeping the one with the smallest `p_value_adjust`.\
+    -   **NOTE**: Only `entrezid` is used for performing GSEA in MAPA.\
+    -   The keytype for **GO and KEGG** can only be `"ENTREZID"` and `"kegg"` respectively.\
+    -   For **Reactome**, the internal function `ReactomePA::gsePathway()` only supports `entrezid`.
 
 ### Get Our Example Data
 

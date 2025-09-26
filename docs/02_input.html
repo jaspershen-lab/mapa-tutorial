@@ -371,19 +371,19 @@ Important
 <li><p><strong>One identifier column</strong><br>
 (column name must be one of: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code>)</p>
 <p>Finally, only <code>entrezid</code> will be used for GSEA in MAPA.<br>
-If the user uploads other types of IDs, the <code>entrezid</code> will be matched by the first step of MAPA:</p>
+If the you upload other types of IDs, the <code>entrezid</code> will be matched by the first step of MAPA:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_id</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>An <code>order_by</code> column</strong></p>
 <ul>
-<li>For MAPA R package users: the column name should be one of <code>fc</code> or <code>p_value_adjust</code>.<br>
-</li>
-<li>There are many ranking metrics—provide user guidance.<br>
-Reference:<br>
-Zyla, J., Marczyk, M., Weiner, J. et al.&nbsp;<em>Ranking metrics in gene set enrichment analysis: do they matter?</em><br>
-<strong>BMC Bioinformatics</strong> 18, 256 (2017). <a href="https://doi.org/10.1186/s12859-017-1674-0">https://doi.org/10.1186/s12859-017-1674-0</a><br>
-</li>
-<li>For MAPA R package users: there is no strict requirement for the column name,<br>
-but the <code>order_by</code> parameter should be set to the column name of the ranking metrics.</li>
+<li><p>Note: The column name should be either <code>fc</code> or <code>p_value_adjust</code>.<br>
+</p></li>
+<li><p>Since multiple ranking metrics can be used in GSEA, it is important to provide guidance to users when choosing the appropriate metric. See:</p>
+<blockquote class="blockquote">
+<p><br>
+Zyla, J., Marczyk, M., Weiner, J. et al.&nbsp;<em>Ranking metrics in gene set enrichment analysis: do they matter?</em> <strong>BMC Bioinformatics</strong> 18, 256 (2017). <a href="https://doi.org/10.1186/s12859-017-1674-0" class="uri">https://doi.org/10.1186/s12859-017-1674-0</a><br>
+</p>
+</blockquote></li>
+<li><p>In practice, MAPA does not enforce a fixed column name. Instead, the <code>order_by</code> parameter should be set to match the name of the column containing the chosen ranking metric.</p></li>
 </ul></li>
 <li><p><strong>A column named <code>p_value_adjust</code></strong>, which represents the statistical significance for the analysis results.</p>
 <ul>
