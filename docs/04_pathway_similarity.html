@@ -309,7 +309,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-biotext-embedding-works" id="toc-how-biotext-embedding-works" class="nav-link" data-scroll-target="#how-biotext-embedding-works"><span class="header-section-number">4.4.1</span> How Biotext Embedding Works</a></li>
   </ul></li>
   <li><a href="#results-interpretation" id="toc-results-interpretation" class="nav-link" data-scroll-target="#results-interpretation"><span class="header-section-number">4.5</span> Results Interpretation</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4.6</span> Next Steps</a></li>
+  <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting"><span class="header-section-number">4.6</span> Trouble Shooting</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4.7</span> Next Steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/edit/main/04_pathway_similarity.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/jaspershen-lab/mapa-tutorial/blob/main/04_pathway_similarity.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -567,8 +568,8 @@ Important
 <table class="table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 25%">
-<col style="width: 51%">
+<col style="width: 24%">
+<col style="width: 52%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -788,8 +789,19 @@ Tip
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># GO:0061900  0.4369859  0.3938414  0.2867548  0.4493753  1.0000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="next-steps" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">4.6</span> Next Steps</h2>
+<section id="trouble-shooting" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="trouble-shooting"><span class="header-section-number">4.6</span> Trouble Shooting</h2>
+<ul>
+<li>When calculating the pathway similarity using <strong>Biotext pathway embedding</strong>, if you encounter an error like this, it might be due to a network issue. Please try running it multiple times.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/biotext_embedding_touble_shooting.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="750"></p>
+</figure>
+</div>
+</section>
+<section id="next-steps" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">4.7</span> Next Steps</h2>
 <p>Continue to <a href="./05_determine_optimal_clustering_params.html">Optimal Clustering Parameters</a> to determine the best clustering parameters for your similarity data, then proceed to <a href="./06_get_functional_modules.html">Functional Module Identification</a> to group related pathways into modules.</p>
 
 

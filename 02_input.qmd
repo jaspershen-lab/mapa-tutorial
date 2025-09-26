@@ -11,7 +11,7 @@ library(mapa)
 
 ## Input Data Format Requirements {#sec-input_data_requirement}
 
-### Gene Expression Data
+### Gene Expression Data for *ORA*
 
 mapa accepts gene expression data with flexible identifier requirements, depending on your analysis type. Your input data must contain **at least one** of the following identifier columns:
 
@@ -23,6 +23,37 @@ mapa accepts gene expression data with flexible identifier requirements, dependi
 ::: callout-important
 Column names must be in lowercase.
 :::
+
+### Gene Expression Data for *GSEA*
+
+
+  1. **One identifier column**  
+     (column name must be one of: `ensembl`, `entrezid`, `uniprot`, or `symbol`)  
+     
+     Finally, only `entrezid` will be used for GSEA in MAPA.  
+     If the user uploads other types of IDs, the `entrezid` will be matched by the first step of MAPA:  
+     ```r
+     convert_id()
+     ```
+
+  2. **An `order_by` column**  
+     
+     - For MAPA R package users: the column name should be one of `fc` or `p_value_adjust`.  
+     - There are many ranking metrics—provide user guidance.  
+       Reference:  
+       Zyla, J., Marczyk, M., Weiner, J. et al. *Ranking metrics in gene set enrichment analysis: do they matter?*  
+       **BMC Bioinformatics** 18, 256 (2017). [https://doi.org/10.1186/s12859-017-1674-0](https://doi.org/10.1186/s12859-017-1674-0)  
+     - For MAPA R package users: there is no strict requirement for the column name,  
+       but the `order_by` parameter should be set to the column name of the ranking metrics.  
+
+  3. **A column named `p_value_adjust`**, which represents the statistical significance for the analysis results.  
+     
+     - **Why does `p_value_adjust` matter?**  
+       For GSEA, **no duplicated gene IDs are allowed**.  
+       Currently, MAPA removes duplicated `entrezid` by keeping the one with the smallest `p_value_adjust`.  
+     - **NOTE**: Only `entrezid` is used for performing GSEA in MAPA.  
+     - The keytype for **GO and KEGG** can only be `"ENTREZID"` and `"kegg"` respectively.  
+     - For **Reactome**, the internal function `ReactomePA::gsePathway()` only supports `entrezid`.  
 
 ### Get Our Example Data
 

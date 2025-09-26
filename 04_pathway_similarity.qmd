@@ -171,7 +171,7 @@ met_similarity_result <-
 For GO terms, MAPA uses the [simona](https://jokergoo.github.io/simona/) package:
 
 | Method            | Type                      | Description                                             |
-|-----------------|------------------|-------------------------------------|
+|-----------------|------------------|--------------------------------------|
 | `Sim_XGraSM_2013` | Hybrid                    | Combines multiple similarity aspects                    |
 | `Sim_Wang_2007`   | Structure-based           | Based on GO graph structure                             |
 | `Sim_Lin_1998`    | Information content-based | Uses information content of terms                       |
@@ -309,6 +309,12 @@ gene_biotext_similarity$sim_matrix[1:5, 1:5]
 # GO:0071375  0.3376592  0.3123477  0.3277389  1.0000000  0.4493753
 # GO:0061900  0.4369859  0.3938414  0.2867548  0.4493753  1.0000000
 ```
+
+## Trouble Shooting
+
+- When calculating the pathway similarity using **Biotext pathway embedding**, if you encounter an error like this, it might be due to a network issue. Please try running it multiple times.
+
+![](images/biotext_embedding_touble_shooting.png){fig-align="center" width="750"}
 
 ## Next Steps
 

@@ -300,9 +300,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-input_data_requirement" id="toc-sec-input_data_requirement" class="nav-link active" data-scroll-target="#sec-input_data_requirement"><span class="header-section-number">2.1</span> Input Data Format Requirements</a>
   <ul class="collapse">
-  <li><a href="#gene-expression-data" id="toc-gene-expression-data" class="nav-link" data-scroll-target="#gene-expression-data"><span class="header-section-number">2.1.1</span> Gene Expression Data</a></li>
-  <li><a href="#get-our-example-data" id="toc-get-our-example-data" class="nav-link" data-scroll-target="#get-our-example-data"><span class="header-section-number">2.1.2</span> Get Our Example Data</a></li>
-  <li><a href="#metabolite-data" id="toc-metabolite-data" class="nav-link" data-scroll-target="#metabolite-data"><span class="header-section-number">2.1.3</span> Metabolite Data</a></li>
+  <li><a href="#gene-expression-data-for-ora" id="toc-gene-expression-data-for-ora" class="nav-link" data-scroll-target="#gene-expression-data-for-ora"><span class="header-section-number">2.1.1</span> Gene Expression Data for <em>ORA</em></a></li>
+  <li><a href="#gene-expression-data-for-gsea" id="toc-gene-expression-data-for-gsea" class="nav-link" data-scroll-target="#gene-expression-data-for-gsea"><span class="header-section-number">2.1.2</span> Gene Expression Data for <em>GSEA</em></a></li>
+  <li><a href="#get-our-example-data" id="toc-get-our-example-data" class="nav-link" data-scroll-target="#get-our-example-data"><span class="header-section-number">2.1.3</span> Get Our Example Data</a></li>
+  <li><a href="#metabolite-data" id="toc-metabolite-data" class="nav-link" data-scroll-target="#metabolite-data"><span class="header-section-number">2.1.4</span> Metabolite Data</a></li>
   </ul></li>
   <li><a href="#input-data-preprocessing" id="toc-input-data-preprocessing" class="nav-link" data-scroll-target="#input-data-preprocessing"><span class="header-section-number">2.2</span> Input Data Preprocessing</a>
   <ul class="collapse">
@@ -341,8 +342,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="sec-input_data_requirement" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-input_data_requirement"><span class="header-section-number">2.1</span> Input Data Format Requirements</h2>
-<section id="gene-expression-data" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="gene-expression-data"><span class="header-section-number">2.1.1</span> Gene Expression Data</h3>
+<section id="gene-expression-data-for-ora" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="gene-expression-data-for-ora"><span class="header-section-number">2.1.1</span> Gene Expression Data for <em>ORA</em></h3>
 <p>mapa accepts gene expression data with flexible identifier requirements, depending on your analysis type. Your input data must contain <strong>at least one</strong> of the following identifier columns:</p>
 <ul>
 <li><code>ensembl</code>: <a href="https://asia.ensembl.org/info/genome/stable_ids/index.html">Ensembl gene IDs</a> (e.g., “ENSG00000141510”)</li>
@@ -364,13 +365,47 @@ Important
 </div>
 </div>
 </section>
-<section id="get-our-example-data" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="get-our-example-data"><span class="header-section-number">2.1.2</span> Get Our Example Data</h3>
+<section id="gene-expression-data-for-gsea" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="gene-expression-data-for-gsea"><span class="header-section-number">2.1.2</span> Gene Expression Data for <em>GSEA</em></h3>
+<ol type="1">
+<li><p><strong>One identifier column</strong><br>
+(column name must be one of: <code>ensembl</code>, <code>entrezid</code>, <code>uniprot</code>, or <code>symbol</code>)</p>
+<p>Finally, only <code>entrezid</code> will be used for GSEA in MAPA.<br>
+If the user uploads other types of IDs, the <code>entrezid</code> will be matched by the first step of MAPA:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_id</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>An <code>order_by</code> column</strong></p>
+<ul>
+<li>For MAPA R package users: the column name should be one of <code>fc</code> or <code>p_value_adjust</code>.<br>
+</li>
+<li>There are many ranking metrics—provide user guidance.<br>
+Reference:<br>
+Zyla, J., Marczyk, M., Weiner, J. et al.&nbsp;<em>Ranking metrics in gene set enrichment analysis: do they matter?</em><br>
+<strong>BMC Bioinformatics</strong> 18, 256 (2017). <a href="https://doi.org/10.1186/s12859-017-1674-0">https://doi.org/10.1186/s12859-017-1674-0</a><br>
+</li>
+<li>For MAPA R package users: there is no strict requirement for the column name,<br>
+but the <code>order_by</code> parameter should be set to the column name of the ranking metrics.</li>
+</ul></li>
+<li><p><strong>A column named <code>p_value_adjust</code></strong>, which represents the statistical significance for the analysis results.</p>
+<ul>
+<li><strong>Why does <code>p_value_adjust</code> matter?</strong><br>
+For GSEA, <strong>no duplicated gene IDs are allowed</strong>.<br>
+Currently, MAPA removes duplicated <code>entrezid</code> by keeping the one with the smallest <code>p_value_adjust</code>.<br>
+</li>
+<li><strong>NOTE</strong>: Only <code>entrezid</code> is used for performing GSEA in MAPA.<br>
+</li>
+<li>The keytype for <strong>GO and KEGG</strong> can only be <code>"ENTREZID"</code> and <code>"kegg"</code> respectively.<br>
+</li>
+<li>For <strong>Reactome</strong>, the internal function <code>ReactomePA::gsePathway()</code> only supports <code>entrezid</code>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="get-our-example-data" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="get-our-example-data"><span class="header-section-number">2.1.3</span> Get Our Example Data</h3>
 <p>MAPA provides several <strong>built-in demo datasets</strong> that help you to go through and study MAPA workflow such as pathway enrichment analysis in the next step <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>, and integrated heatmap visualization in <a href="08_data_vis.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
 <p>To load any dataset for the following step <a href="03_enrichment_analysis.html" class="quarto-xref"><span>Chapter 3</span></a>, use:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_ora)       <span class="co"># Gene ORA dataset</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_gsea)      <span class="co"># Gene GSEA dataset</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_met)       <span class="co"># Metabolite ORA dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_ora)       <span class="co"># Gene ORA dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_gsea)      <span class="co"># Gene GSEA dataset</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_met)       <span class="co"># Metabolite ORA dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Below are some information about these datasets:</p>
 <table class="table">
 <colgroup>
@@ -424,22 +459,22 @@ Important
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>For ORA, you <strong>only need one identifier column</strong> plus any additional metadata:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example ORA input data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_ora)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_ora)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 66 × 3</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    symbol    `log2FC (6 vs 30mo)` `FDR (6 vs 30mo)`</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    &lt;chr&gt;                    &lt;dbl&gt;             &lt;dbl&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 Rpl38                   -0.590          1.77e- 6</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 Akap1                   -0.640          1.81e- 2</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  3 Actc1                   -2.65           3.24e-10</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  4 Amd1                    -1.12           9.45e- 6</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  5 Serpina1e               -0.650          1.38e- 3</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#  6 Ensa                    -0.672          1.05e- 5</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  7 Mrps36                  -0.775          1.86e- 5</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  8 Aimp2                   -0.656          1.63e- 5</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#  9 Ank1                    -0.547          5.11e- 7</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 Aqp1                    -0.564          1.50e- 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example ORA input data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_ora)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_ora)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 66 × 3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    symbol    `log2FC (6 vs 30mo)` `FDR (6 vs 30mo)`</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    &lt;chr&gt;                    &lt;dbl&gt;             &lt;dbl&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 Rpl38                   -0.590          1.77e- 6</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 Akap1                   -0.640          1.81e- 2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  3 Actc1                   -2.65           3.24e-10</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  4 Amd1                    -1.12           9.45e- 6</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  5 Serpina1e               -0.650          1.38e- 3</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#  6 Ensa                    -0.672          1.05e- 5</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  7 Mrps36                  -0.775          1.86e- 5</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  8 Aimp2                   -0.656          1.63e- 5</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#  9 Ank1                    -0.547          5.11e- 7</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 Aqp1                    -0.564          1.50e- 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -449,25 +484,25 @@ Important
 <li><strong>An <code>order_by</code> column</strong> containing numeric values to rank genes (This is used to create the <strong>ranked gene list</strong> required for GSEA. Common choices like Log2 fold change values, pvalue)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example GSEA input data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_gsea)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_gsea)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 3</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   symbol        fc p_value_adjust</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Magohb    0.194       0.0129   </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Cask     -0.0215      0.686    </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 Igkv5-39  2.16        0.0000853</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 Ighg2b    2.09        0.0000557</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 Ighg1     1.68        0.482    </span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 Ighg3    -0.325       0.390 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example GSEA input data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_gsea)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_gsea)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 3</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   symbol        fc p_value_adjust</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Magohb    0.194       0.0129   </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Cask     -0.0215      0.686    </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 Igkv5-39  2.16        0.0000853</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 Ighg2b    2.09        0.0000557</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 Ighg1     1.68        0.482    </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 Ighg3    -0.325       0.390 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="metabolite-data" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="metabolite-data"><span class="header-section-number">2.1.3</span> Metabolite Data</h3>
+<section id="metabolite-data" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="metabolite-data"><span class="header-section-number">2.1.4</span> Metabolite Data</h3>
 <p>For metabolite analysis, mapa currently supports <strong>Over-Representation Analysis (ORA) only</strong>. You <strong>only need one identifier column</strong> plus any additional metadata (Column names must be in lowercase):</p>
 <ul>
 <li><code>hmdbid</code>: <a href="https://www.hmdb.ca">Human Metabolome Database IDs</a> (e.g., “HMDB0000001”, “HMDB0000002”) - <strong>Human only</strong></li>
@@ -491,18 +526,18 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_met)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_met)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 4</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   variable_id    keggid      fdr score</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 M441T680_2_NEG NA     3.59e-16  1.11</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 M448T566_NEG   C05466 5.12e- 3  1.13</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 M229T462_NEG   C02678 7.43e- 4  1.20</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 M367T590_NEG   C04555 2.28e- 4  1.34</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 M221T50_POS    C13008 7.99e- 3  1.36</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 M544T604_POS   C04230 1.19e-18  1.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example metabolite input data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(demo_data_met)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(demo_data_met)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   variable_id    keggid      fdr score</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 M441T680_2_NEG NA     3.59e-16  1.11</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 M448T566_NEG   C05466 5.12e- 3  1.13</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 M229T462_NEG   C02678 7.43e- 4  1.20</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 M367T590_NEG   C04555 2.28e- 4  1.34</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 M221T50_POS    C13008 7.99e- 3  1.36</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 M544T604_POS   C04230 1.19e-18  1.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -531,86 +566,86 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> demo_ora_data,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,  <span class="co"># This tells the function what your input column represents</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Mm.eg.db"</span>  <span class="co"># install and load the package at first</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(variable_info)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 6</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   ensembl           entrezid uniprot symbol `log2FC (6 vs 30mo)` `FDR (6 vs 30mo)`</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 ENSMUSG000000573… 67671    Q52KP0  Rpl38                -0.590          1.77e- 6</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 ENSMUSG000000184… 11640    B1AR25  Akap1                -0.640          1.81e- 2</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 ENSMUSG000000686… 11464    P68033  Actc1                -2.65           3.24e-10</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 ENSMUSG000000752… 11702    P0DMN7  Amd1                 -1.12           9.45e- 6</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 ENSMUSG000000728… 20704    P81105  Serpi…               -0.650          1.38e- 3</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 ENSMUSG000000386… 56205    P60840  Ensa                 -0.672          1.05e- 5 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> demo_ora_data,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"symbol"</span>,  <span class="co"># This tells the function what your input column represents</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"org.Mm.eg.db"</span>  <span class="co"># install and load the package at first</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(variable_info)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 6</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   ensembl           entrezid uniprot symbol `log2FC (6 vs 30mo)` `FDR (6 vs 30mo)`</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 ENSMUSG000000573… 67671    Q52KP0  Rpl38                -0.590          1.77e- 6</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 ENSMUSG000000184… 11640    B1AR25  Akap1                -0.640          1.81e- 2</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 ENSMUSG000000686… 11464    P68033  Actc1                -2.65           3.24e-10</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 ENSMUSG000000752… 11702    P0DMN7  Amd1                 -1.12           9.45e- 6</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 ENSMUSG000000728… 20704    P81105  Serpi…               -0.650          1.38e- 3</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 ENSMUSG000000386… 56205    P60840  Ensa                 -0.672          1.05e- 5 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>For organisms without standard packages, use AnnotationHub IDs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>non_model_org_dt <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_non_model_org_data.csv"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Macaca fascicularis (taxid: 9541)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> non_model_org_dt,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>,  <span class="co"># AnnotationHub ID for Macaca fascicularis</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_orgdb =</span> <span class="cn">TRUE</span>  <span class="co"># The organism database is needed for downstream analysis</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Successfully loaded organism database from AnnotationHub</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Database information:</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># OrgDb object:</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMAVERSION: 2.1</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMA: NOSCHEMA_DB</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># | ORGANISM: Simia fascicularis</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># | SPECIES: Simia fascicularis</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># | CENTRALID: GID</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># | Taxonomy ID: 9541</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># | Db type: OrgDb</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># | Supporting package: AnnotationDbi</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Please see: help('select') for usage information</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: The following ID types are not available in the organism database and will be filled with NA: uniprot</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Available ID types in database: ACCNUM, ALIAS, ENSEMBL, ENTREZID, EVIDENCE, EVIDENCEALL, GENENAME, GID, GO, GOALL, ONTOLOGY, ONTOLOGYALL, PMID, REFSEQ, SYMBOL, UNIGENE</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 'select()' returned 1:many mapping between keys and columns</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning in clusterProfiler::bitr(geneID = data[[from_id_type]], fromType = from_clusterprofiler_type,  :</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   57.38% of input gene IDs are fail to map...</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>variable_info</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># $data</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 183 × 8</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">#    ensembl            entrezid  uniprot symbol       Symbol  `Gene type`    Tissue     Cluster  </span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">#    &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;    </span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 ENSMFAG00000000264 NA        NA      NA           APH1B   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 ENSMFAG00000000283 NA        NA      NA           PLCG1   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">#  3 ENSMFAG00000000444 102141791 NA      EPS15L1      EPS15L1 protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#  4 ENSMFAG00000000464 NA        NA      NA           RCOR3   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#  5 ENSMFAG00000000583 101865185 NA      EXOC7        EXOC7   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#  6 ENSMFAG00000000608 NA        NA      NA           CD99    protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#  7 ENSMFAG00000000627 102121020 NA      MTFMT        MTFMT   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#  8 ENSMFAG00000000639 NA        NA      NA           GJC2    protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">#  9 ENSMFAG00000000737 101866375 NA      MKRN1        MKRN1   protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 ENSMFAG00000000852 102131151 NA      LOC102131151 CYB5R1  protein_coding Liver (LL) Cluster U</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ 173 more rows</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ Use `print(n = ...)` to see more rows</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co"># $orgdb</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># OrgDb object:</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMAVERSION: 2.1</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMA: NOSCHEMA_DB</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co"># | ORGANISM: Simia fascicularis</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co"># | SPECIES: Simia fascicularis</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># | CENTRALID: GID</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co"># | Taxonomy ID: 9541</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co"># | Db type: OrgDb</span></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co"># | Supporting package: AnnotationDbi</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Please see: help('select') for usage information</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>non_model_org_dt <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"examples/example_non_model_org_data.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Macaca fascicularis (taxid: 9541)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> non_model_org_dt,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"gene"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"ensembl"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ah_id =</span> <span class="st">"AH119902"</span>,  <span class="co"># AnnotationHub ID for Macaca fascicularis</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_orgdb =</span> <span class="cn">TRUE</span>  <span class="co"># The organism database is needed for downstream analysis</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Successfully loaded organism database from AnnotationHub</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Database information:</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># OrgDb object:</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMAVERSION: 2.1</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMA: NOSCHEMA_DB</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># | ORGANISM: Simia fascicularis</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># | SPECIES: Simia fascicularis</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># | CENTRALID: GID</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># | Taxonomy ID: 9541</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># | Db type: OrgDb</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># | Supporting package: AnnotationDbi</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Please see: help('select') for usage information</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: The following ID types are not available in the organism database and will be filled with NA: uniprot</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Available ID types in database: ACCNUM, ALIAS, ENSEMBL, ENTREZID, EVIDENCE, EVIDENCEALL, GENENAME, GID, GO, GOALL, ONTOLOGY, ONTOLOGYALL, PMID, REFSEQ, SYMBOL, UNIGENE</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 'select()' returned 1:many mapping between keys and columns</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning in clusterProfiler::bitr(geneID = data[[from_id_type]], fromType = from_clusterprofiler_type,  :</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   57.38% of input gene IDs are fail to map...</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>variable_info</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># $data</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 183 × 8</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">#    ensembl            entrezid  uniprot symbol       Symbol  `Gene type`    Tissue     Cluster  </span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#    &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;    </span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 ENSMFAG00000000264 NA        NA      NA           APH1B   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 ENSMFAG00000000283 NA        NA      NA           PLCG1   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#  3 ENSMFAG00000000444 102141791 NA      EPS15L1      EPS15L1 protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#  4 ENSMFAG00000000464 NA        NA      NA           RCOR3   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#  5 ENSMFAG00000000583 101865185 NA      EXOC7        EXOC7   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#  6 ENSMFAG00000000608 NA        NA      NA           CD99    protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">#  7 ENSMFAG00000000627 102121020 NA      MTFMT        MTFMT   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">#  8 ENSMFAG00000000639 NA        NA      NA           GJC2    protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">#  9 ENSMFAG00000000737 101866375 NA      MKRN1        MKRN1   protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 ENSMFAG00000000852 102131151 NA      LOC102131151 CYB5R1  protein_coding Liver (LL) Cluster U</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ 173 more rows</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ Use `print(n = ...)` to see more rows</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="co"># $orgdb</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="co"># OrgDb object:</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMAVERSION: 2.1</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co"># | DBSCHEMA: NOSCHEMA_DB</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="co"># | ORGANISM: Simia fascicularis</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="co"># | SPECIES: Simia fascicularis</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="co"># | CENTRALID: GID</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="co"># | Taxonomy ID: 9541</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="co"># | Db type: OrgDb</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="co"># | Supporting package: AnnotationDbi</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Please see: help('select') for usage information</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -624,18 +659,18 @@ Tip
 <div class="callout-body-container callout-body">
 <p><strong>How to find AnnotationHub IDs according to taxid?</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"AnnotationHub"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for your organism database by taxid (here taxid is "9541")</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> AnnotationHub<span class="sc">::</span><span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"OrgDb"</span>, <span class="st">"9541"</span>))</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the ah_id from the results</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>query_result<span class="sc">$</span>ah_id</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "AH119899" "AH119900" "AH119901" "AH119902"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"AnnotationHub"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for your organism database by taxid (here taxid is "9541")</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>query_result <span class="ot">&lt;-</span> AnnotationHub<span class="sc">::</span><span class="fu">query</span>(ah, <span class="fu">c</span>(<span class="st">"OrgDb"</span>, <span class="st">"9541"</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the ah_id from the results</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>query_result<span class="sc">$</span>ah_id</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "AH119899" "AH119900" "AH119901" "AH119902"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -647,25 +682,25 @@ Tip
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="metabolite-id-conversion"><span class="header-section-number">2.2.2</span> Metabolite ID Conversion</h3>
 <p>For human metabolite data, convert IDs bwteen KEGG and HMDB:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert KEGG IDs to HMDB IDs (human only)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>met_variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> demo_data_met,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"metabolite"</span>, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"keggid"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"hsa"</span> <span class="co"># KEGG organism code</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Result will include both hmdbid and keggid columns</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(met_variable_info)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 5</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   variable_id  keggid      fdr score hmdbid     </span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 M448T566_NEG C05466 5.12e- 3  1.13 HMDB0000637</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 M229T462_NEG C02678 7.43e- 4  1.20 HMDB0000623</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 M367T590_NEG C04555 2.28e- 4  1.34 HMDB0001032</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 M221T50_POS  C13008 7.99e- 3  1.36 HMDB0006240</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 M544T604_POS C04230 1.19e-18  1.53 HMDB0002815</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 M544T604_POS C04230 1.19e-18  1.53 HMDB0010380</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert KEGG IDs to HMDB IDs (human only)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>met_variable_info <span class="ot">&lt;-</span> <span class="fu">convert_id</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> demo_data_met,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">query_type =</span> <span class="st">"metabolite"</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_id_type =</span> <span class="st">"keggid"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">"hsa"</span> <span class="co"># KEGG organism code</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Result will include both hmdbid and keggid columns</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(met_variable_info)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 6 × 5</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   variable_id  keggid      fdr score hmdbid     </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 M448T566_NEG C05466 5.12e- 3  1.13 HMDB0000637</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 M229T462_NEG C02678 7.43e- 4  1.20 HMDB0000623</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 M367T590_NEG C04555 2.28e- 4  1.34 HMDB0001032</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 M221T50_POS  C13008 7.99e- 3  1.36 HMDB0006240</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 M544T604_POS C04230 1.19e-18  1.53 HMDB0002815</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 M544T604_POS C04230 1.19e-18  1.53 HMDB0010380</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
